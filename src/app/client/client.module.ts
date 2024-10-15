@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import {ClientRoutingModule} from "./client-routing.module";
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
+import {MatCardModule} from "@angular/material/card";
 
 
 
@@ -15,9 +16,10 @@ import { LoginComponent } from './login/login.component';
     HeaderComponent,
     LoginComponent
   ],
-  imports: [
-    CommonModule,
-    ClientRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        ClientRoutingModule,
+        MatCardModule
+    ]
 })
 export class ClientModule { }
