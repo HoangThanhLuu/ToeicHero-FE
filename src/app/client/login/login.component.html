@@ -1,33 +1,46 @@
-<div class="d-flex justify-content-center align-items-center margin">
-  <div class="col-md-4 mt-5 container">
-
-      <mat-card-content>
-        <div class="card-title">
-          <div class="w-100 d-flex flex-row-reverse"><button type="button" class="btn  btn-close" aria-label="Close"></button></div>
-          <img class="header-image " src="/assets/images/logo.jpg">
-          <h3 class="text-center">Login here !!!</h3>
-        </div>
-
-        <form>
-          <mat-form-field class="full-width input-group" appearance="outline">
-            <mat-label>Email</mat-label>
-            <input
-              matInput placeholder="Enter your Email " />
-          </mat-form-field>
-
-          <mat-form-field class="full-width" appearance="outline">
-            <mat-label>Password</mat-label>
-            <input
-              type="password" matInput placeholder="Enter here" />
-          </mat-form-field>
-
-          <div class="btn-submit">
-            <button type="button" class="custom-btn btn btn-outline-primary">Login</button>
-          </div>
-        </form>
-      </mat-card-content>
-
+<div class="container" [ngClass]="{'right-panel-active' : isRegisterTab}" id="container">
+  <div class="form-container sign-up-container">
+    <form action="#">
+      <h1>Create Account</h1>
+      <div class="social-container">
+        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <span>or use your email for registration</span>
+      <input type="text" placeholder="Name"/>
+      <input type="email" placeholder="Email"/>
+      <input type="password" placeholder="Password"/>
+      <button>Sign Up</button>
+    </form>
+  </div>
+  <div class="form-container sign-in-container" [ngClass]="{'d-none' : isRegisterTab}">
+    <form action="#">
+      <h1>Sign in</h1>
+      <div class="social-container">
+        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <span>or use your account</span>
+      <input type="email" placeholder="Email"/>
+      <input type="password" placeholder="Password"/>
+      <a href="#">Forgot your password?</a>
+      <button>Sign In</button>
+    </form>
+  </div>
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h1>Welcome Back!</h1>
+        <p>To keep connected with us please login with your personal info</p>
+        <button class="ghost" id="signIn" (click)="switchTab()">Sign In</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h1>Hello, Friend!</h1>
+        <p>Enter your personal details and start journey with us</p>
+        <button class="ghost" id="signUp" (click)="switchTab()">Sign Up</button>
+      </div>
+    </div>
   </div>
 </div>
-
-

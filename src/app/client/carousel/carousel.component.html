@@ -1,0 +1,42 @@
+<div class="container-fluid header bg-primary p-0 mb-5">
+  <div class="row g-0 align-items-center text-white flex-column-reverse flex-lg-row">
+    <div class="col-lg-6 p-4 wow fadeIn" data-wow-delay="0.1s">
+      <h2 class="display-4 text-white mb-5 quote-block">
+        <blockquote>
+          Push harder than yesterday if you want a different tomorrow.
+        </blockquote>
+      </h2>
+      <div class="row g-4">
+        <div class="col-sm-4">
+          <div class="border-start border-light ps-4">
+            <h2 class="text-white mb-1" data-toggle="counter-up">138</h2>
+            <p class="text-light mb-0">Đề thi toeic</p>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="border-start border-light ps-4">
+            <h2 class="text-white mb-1" data-toggle="counter-up">123,445</h2>
+            <p class="text-light mb-0">...</p>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="border-start border-light ps-4">
+            <h2 class="text-white mb-1" data-toggle="counter-up">196,000</h2>
+            <p class="text-light mb-0">Người tham gia</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+      <owl-carousel-o [options]="headerCarouselOptions" class="header-carousel">
+        <ng-container *ngFor="let slide of images">
+          <ng-template carouselSlide>
+            <div class="owl-carousel-item position-relative ">
+              <img class="img-fluid" [src]="slide" alt="TOEICUTE" [title]="slide"/>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+  </div>
+</div>
