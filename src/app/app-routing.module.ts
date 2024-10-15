@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {mapToCanActivate, RouterModule, Routes} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {ClientModule} from './client/client.module';
 import {AdminModule} from './admin/admin.module';
 import {adminGuardGuard} from "./admin-guard.guard";
