@@ -6,7 +6,14 @@ import {ClientRoutingModule} from "./client-routing.module";
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import {MatCardModule} from "@angular/material/card";
-
+import { FooterComponent } from './footer/footer.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import {MatButtonModule} from '@angular/material/button';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -14,12 +21,22 @@ import {MatCardModule} from "@angular/material/card";
     ClientComponent,
     HomeComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    FooterComponent,
+    RegisterComponent
   ],
     imports: [
-        CommonModule,
-        ClientRoutingModule,
-        MatCardModule
-    ]
+      NgbModule,
+      CommonModule,
+      ClientRoutingModule,
+      MatCardModule,
+      MatFormFieldModule,
+      MatInputModule,
+      FormsModule,
+      MatButtonModule,
+      FontAwesomeModule
+    ],
+  providers: [],
+  bootstrap: [ClientComponent]
 })
 export class ClientModule { }

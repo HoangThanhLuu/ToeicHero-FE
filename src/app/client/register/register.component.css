@@ -1,0 +1,56 @@
+.margin{
+  margin-top: 80px;
+}
+.header-image {
+  background-size: cover;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+
+  display: block;
+  margin: 0 auto;
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+}
+.full-width {
+  width: 100%;
+  padding: 8px;
+}
+.container {
+  text-align: center;
+  background:  rgba(229, 223, 223, 0.1);
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+  height: 550px;
+}
+.card-title{
+  margin-top: 20px;
+}
+.text-center {
+  margin-top: 15px;
+  color: var(--text-color-primary);
+}
+.mt-5 {
+  border-radius: 20px;
+}
+.input-group{
+  margin-top: 20px;
+}
+.btn-outline-primary{
+  color: var(--text-color-primary);
+  border: 1px solid var(--background-primary);
+  box-shadow: rgba(92, 20, 20, 0.25) 4px 4px 6px 0, rgba(249, 238, 238, 0.25) -4px -4px 6px 0 ;
+}
+.btn-outline-primary:hover{
+  background-color: #7E1E47;
+  color: #ffff;
+}
+.btn-submit{
+  text-align: center;
+}
+::ng-deep.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  border: 1px solid var(--text-color-primary) !important;
+}
+
+/*.mdc-notched-outline__notch {*/
+/*  border: 1px solid var(--text-color-primary) !important;*/
+/*  border-radius: 10px;*/
+/*}*/
