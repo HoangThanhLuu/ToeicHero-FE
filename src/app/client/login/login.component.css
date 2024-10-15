@@ -28,8 +28,8 @@ a {
 
 button {
   border-radius: 20px;
-  border: 1px solid #FF4B2B;
-  background-color: #FF4B2B;
+  border: 1px solid #7E1E47;
+  background-color: #7E1E47;
   color: #FFFFFF;
   font-size: 12px;
   font-weight: bold;
@@ -76,7 +76,7 @@ input {
   overflow: hidden;
   width: 768px;
   max-width: 100%;
-  min-height: 480px;
+  min-height: 520px;
 }
 
 .form-container {
@@ -139,8 +139,8 @@ input {
 
 .overlay {
   background: #FF416C;
-  background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-  background: linear-gradient(to right, #FF4B2B, #FF416C);
+  background: -webkit-linear-gradient(to right, #560f2d, #e80864);
+  background: linear-gradient(to right, #560f2d, #e80864);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
