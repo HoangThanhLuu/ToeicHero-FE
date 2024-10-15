@@ -50,6 +50,11 @@ import { AboutComponent } from './about/about.component';
     NgOptimizedImage,
   ],
   providers: [],
+  exports: [
+    HeaderComponent,
+    NavbarComponent,
+    FooterComponent
+  ],
   bootstrap: [ClientComponent]
 })
 export class ClientModule { }

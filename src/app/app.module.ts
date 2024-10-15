@@ -15,6 +15,7 @@ import {NgxSpinnerModule} from "ngx-spinner";
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {ModalModule} from "ngx-bootstrap/modal";
+import {ClientModule} from "./client/client.module";
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,7 @@ import {ModalModule} from "ngx-bootstrap/modal";
     FormsModule,
     HttpClientModule,
     ModalModule.forRoot(),
+    ClientModule
   ],
   providers: [
   ],
