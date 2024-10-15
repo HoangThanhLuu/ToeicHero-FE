@@ -2,10 +2,11 @@
 
 .content {
   color: #000000;
+  /*box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;*/
 }
 
 .content h1 {
-  font-size: 88px;
+  font-size: 80px;
   color: var(--text-color-primary);
 }
 
@@ -15,7 +16,8 @@
 
 .content p {
   font-family: rubik, serif;
-  font-size: 24px;
+  font-size: 20px;
+  max-width: 60%;
   background:  rgba(229, 223, 223, 0.1);
   box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
 }
@@ -24,4 +26,12 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+
+.text-primary {
+  color: var(--text-color-primary) !important;
+  font-weight: 500;
+  font-size: 24px;
+  border: 2px solid var(--border-primary);
 }
