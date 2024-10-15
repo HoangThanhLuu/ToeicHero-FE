@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,300&display=swap');
+
+.content {
+  color: #000000;
+}
+
+.content h1 {
+  font-size: 88px;
+  color: var(--text-color-primary);
+}
+
+.content span {
+  color: var(--name-primary);
+}
+
+.content p {
+  font-family: rubik, serif;
+  font-size: 24px;
+  background:  rgba(229, 223, 223, 0.1);
+  box-shadow: rgba(99, 99, 99, 0.2) 0 2px 8px 0;
+}
+.image1 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
