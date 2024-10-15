@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto+Serif:ital,opsz,wght@1,8..144,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto+Serif:opsz,wght@8..144,700&family=Roboto+Slab:wght@700&display=swap');
+
+.container{
+  margin-top: 30px;
+}
+.row {
+  background-color: rgba(22,3,2,0.6);
+  /*margin-top: 30px;*/
+  border-radius: 10px;
+}
+.image-footer{
+  display: block;
+  margin: 0 auto;
+  width: 90px;
+  height: 90px;
+}
+.text h5 {
+  font-family: 'Roboto Slab', serif;
+}
+.text{
+  color: rgba(217,203,203,0.8);
+  margin-right: 100px;
+  padding: 30px 80px 0px;
+  font-size: 15px;
+  /*font-family: 'Roboto Serif', serif;*/
+  font-family: 'Open Sans', sans-serif
+}
+
+.icon-footer{
+  display: block;
+  margin: 0 auto;
+}
+.icon-padding{
+  padding: 6px;
+  font-size: 20px;
+  color:  rgba(126,30,70,0.6);
+}
+.title-name {
+  text-align: center;
+  color: rgba(217, 203, 203, 0.8);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+}

@@ -1,2 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
 @import "bootstrap/dist/css/bootstrap.min.css";
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+:root {
+  --text-color-primary: #7E1E47;
+  --background-primary: #9B1741;
+  --border-primary: #860141;
+  --name-primary: #BF113C;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
