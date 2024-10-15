@@ -1,5 +1,30 @@
 .header-image {
   background-size: cover;
-  width: 50px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
+}
+.text a {
+  font-size: 32px;
+  color: var(--text-color-primary);
+}
+
+.btn-outline-primary {
+  color: var(--text-color-primary);
+  border: 1px solid var(--background-primary);
+
+}
+.btn-outline-primary:hover {
+  background-color: #7E1E47;
+  color: #ffff;
+}
+.btn-primary {
+  background-color: #7E1E47;
+  border: 1px solid var(--background-primary);
+}
+
+.search {
+  width: 40%;
+  justify-content: center;
+  border: #7E1E47 1px ;
 }
