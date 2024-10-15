@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { ClientComponent } from './client.component';
 import { HomeComponent } from './home/home.component';
 import {ClientRoutingModule} from "./client-routing.module";
@@ -14,6 +14,12 @@ import {MatButtonModule} from '@angular/material/button';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { RegisterComponent } from './register/register.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import { ServiceComponent } from './service/service.component';
+import {CarouselModule} from "ngx-owl-carousel-o";
+import { TopbarComponent } from './topbar/topbar.component';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -23,19 +29,26 @@ import { RegisterComponent } from './register/register.component';
     HeaderComponent,
     LoginComponent,
     FooterComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavbarComponent,
+    CarouselComponent,
+    ServiceComponent,
+    TopbarComponent,
+    AboutComponent
   ],
-    imports: [
-      NgbModule,
-      CommonModule,
-      ClientRoutingModule,
-      MatCardModule,
-      MatFormFieldModule,
-      MatInputModule,
-      FormsModule,
-      MatButtonModule,
-      FontAwesomeModule
-    ],
+  imports: [
+    NgbModule,
+    CommonModule,
+    ClientRoutingModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatButtonModule,
+    FontAwesomeModule,
+    CarouselModule,
+    NgOptimizedImage,
+  ],
   providers: [],
   bootstrap: [ClientComponent]
 })

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {faEnvelope} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-header',
@@ -8,5 +7,4 @@ import {faEnvelope} from "@fortawesome/free-solid-svg-icons";
 })
 export class HeaderComponent {
 
-  protected readonly faEnvelope = faEnvelope;
 }

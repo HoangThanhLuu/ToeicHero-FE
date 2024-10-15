@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 
 
 
@@ -9,7 +9,15 @@ import { Component } from '@angular/core';
 
 })
 export class LoginComponent {
+  @Output() close = new EventEmitter();
+  @Output() signIn = new EventEmitter();
+  @Output() signUp = new EventEmitter();
 
+  isRegisterTab = false;
+
+  switchTab() {
+    this.isRegisterTab = !this.isRegisterTab;
+  }
 }
 
 

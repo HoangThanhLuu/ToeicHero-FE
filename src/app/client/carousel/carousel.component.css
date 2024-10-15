@@ -1,0 +1,9 @@
+.quote-block {
+  text-align: center;
+}
+
+blockquote {
+  font-size: 2rem;
+  font-style: italic;
+  margin: 0;
+}
