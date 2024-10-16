@@ -30,6 +30,7 @@ export class EditQuestionPart34Component implements OnInit {
     @Output() addSuccessEmit = new EventEmitter();
     messageError: string = '';
     listAnswer = Array.from({length: 4});
+    titleShow = '';
     isHasImage: boolean = false;
     param: any = {
         questionId: '',
@@ -56,7 +57,7 @@ export class EditQuestionPart34Component implements OnInit {
 
     ngOnInit(): void {
         this.isHasImage = this.isQuestionOfPart34HasImage();
-        this.title += ` ${this.currentPart?.partName} - Câu ${this.question?.questionNumber}`;
+        this.titleShow = `${this.title} ${this.currentPart?.partName} - Câu ${this.question?.questionNumber}`;
         this.param = {
             questionId: this.question?.questionId,
             questionContent: this.question?.questionContent,

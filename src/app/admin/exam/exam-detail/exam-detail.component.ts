@@ -19,6 +19,7 @@ import {finalize} from "rxjs";
 export class ExamDetailComponent implements OnInit {
   @ViewChild('fileInput') fileInput: any;
   title = 'Chi tiết đề thi';
+  titleShow = '';
   currentPage: string = "Chi tiết đề thi"
   listPart: any = [];
   currentExam: any;

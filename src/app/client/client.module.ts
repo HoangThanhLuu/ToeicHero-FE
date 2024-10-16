@@ -29,6 +29,7 @@ import {NzTabsModule} from "ng-zorro-antd/tabs";
 import {NzCheckboxModule} from "ng-zorro-antd/checkbox";
 import {NzGridModule} from "ng-zorro-antd/grid";
 import {NzButtonModule} from "ng-zorro-antd/button";
+import {StartComponent} from './test/start/start.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,9 @@ import {NzButtonModule} from "ng-zorro-antd/button";
     PageHeaderComponent,
     ListTestComponent,
     ProfileComponent,
-    UpdateProfileComponent],
+    UpdateProfileComponent,
+    StartComponent
+  ],
   imports: [
     NgbModule,
     CommonModule,

@@ -20,6 +20,7 @@ import {EditQuestionPart34Component} from "../edit-question-part34/edit-question
 })
 export class QuestionComponent implements OnInit {
     title: string = "Quản lý câu hỏi";
+    titleShow = '';
     currentPage: string = "Câu hỏi"
     listQuestion: any = [];
     currentPart: any;
@@ -73,7 +74,7 @@ export class QuestionComponent implements OnInit {
                         this.currentPart = res?.[0]?.data;
                         this.listQuestion = res?.[1]?.data;
                         this.validNumberQuestionOfPart(this.currentPart, this.listQuestion);
-                        this.title += ` - ${this.currentPart?.partName}`;
+                        this.titleShow = `${this.title} - ${this.currentPart?.partName}`;
                     } else {
                         this.toast.error('Không tìm thấy câu hỏi');
                     }

@@ -26,6 +26,7 @@ export class EditQuestionPart1Component implements OnInit {
   selectedFileImage: any;
   selectedFileAudio: any;
   showBorderError: boolean = false;
+  titleShow = '';
   @Output() addSuccessEmit = new EventEmitter();
   param: any = {
     questionId: '',
@@ -47,7 +48,7 @@ export class EditQuestionPart1Component implements OnInit {
       this.imageSrc = this.question?.questionImage;
       this.isShowImage = true;
     }
-    this.title += ` ${this.currentPart?.partName} - Câu ${this.question?.questionNumber}`;
+    this.titleShow = `${this.title} ${this.currentPart?.partName} - Câu ${this.question?.questionNumber}`;
     this.param = {
       questionId: this.question?.questionId,
       questionImage: this.question?.questionImage,

@@ -184,4 +184,8 @@ export class TestComponent implements OnInit {
   startFullTest() {
 
   }
+
+  startPractice() {
+
+  }
 }
