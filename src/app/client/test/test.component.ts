@@ -14,10 +14,6 @@ export class TestComponent {
     }
   }
 
-  submitTest() {
-    // Hàm nộp bài
-  }
-
 
   listQuestion: any[] = [  ];
   listData: any[] = [];

@@ -72,18 +72,17 @@ export class LoginComponent {
   }
 
   login() {
-
-
     if (this.isNotValidInputLogin()) {
       alert('Email hoặc tên đăng nhập không được bỏ trống');
       return;
     }
+
     this.http.post("/api/user/authenticate", this.loginForm)
       .subscribe((res: any) => {
         if(res?.success == true) {
           alert(res?.message);
           window.localStorage.setItem("token", res?.data);
-          window.location.href = '/test';
+          window.location.href = '/home';
         }else{
           alert(res?.message);
         }

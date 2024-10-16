@@ -24,8 +24,8 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const headers = this.getHeaderService.postHeaderAuthencation();
-    this.http.post('/api/user/get-profile', null, {
+    const headers = this.getHeaderService.getHeaderAuthentication();
+    this.http.get('/api/user/get-profile', {
       headers
     })
       .subscribe((res: any) => {
