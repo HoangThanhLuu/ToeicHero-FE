@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-
+import {HttpClient} from "@angular/common/http";
 
 
 @Component({
@@ -16,6 +16,10 @@ export class LoginComponent {
   *
   *
   * */
+
+  constructor(private http: HttpClient) {
+  }
+
   @Output() close = new EventEmitter();
   @Output() signIn = new EventEmitter();
   @Output() signUp = new EventEmitter();
@@ -24,6 +28,13 @@ export class LoginComponent {
 
   switchTab() {
     this.isRegisterTab = !this.isRegisterTab;
+  }
+
+  loginSubmit() {
+    this.http.get("/api/test")
+      .subscribe((data) => {
+        console.log(data);
+      });
   }
 }
 
