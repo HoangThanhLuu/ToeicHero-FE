@@ -24,6 +24,9 @@ import {NzButtonModule} from "ng-zorro-antd/button";
 import {TooltipModule} from "ngx-bootstrap/tooltip";
 import { QuestionComponent } from './exam/question/question.component';
 import { EditQuestionPart1Component } from './exam/edit-question-part1/edit-question-part1.component';
+import {NzAvatarModule} from "ng-zorro-antd/avatar";
+import {NzImageModule} from "ng-zorro-antd/image";
+import { EditQuestionPart34Component } from './exam/edit-question-part34/edit-question-part34.component';
 
 @NgModule({
   declarations: [
@@ -42,19 +45,22 @@ import { EditQuestionPart1Component } from './exam/edit-question-part1/edit-ques
     EditExamComponent,
     ExamDetailComponent,
     QuestionComponent,
-    EditQuestionPart1Component
+    EditQuestionPart1Component,
+    EditQuestionPart34Component
   ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    NzUploadModule,
-    NzIconModule,
-    NgOptimizedImage,
-    FormsModule,
-    NgxSpinnerModule,
-    NzButtonModule,
-    TooltipModule,
-  ],
+    imports: [
+        CommonModule,
+        AdminRoutingModule,
+        NzUploadModule,
+        NzIconModule,
+        NgOptimizedImage,
+        FormsModule,
+        NgxSpinnerModule,
+        NzButtonModule,
+        TooltipModule,
+        NzAvatarModule,
+        NzImageModule,
+    ],
 })
 export class AdminModule {
 }

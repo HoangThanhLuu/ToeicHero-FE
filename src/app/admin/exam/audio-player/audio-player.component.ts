@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {AdminLibBaseCss3, AdminStyle2} from "../../admin.style";
 import {ToastrService} from "ngx-toastr";
 
@@ -10,7 +10,7 @@ import {ToastrService} from "ngx-toastr";
     ...AdminStyle2,
   ]
 })
-export class AudioPlayerComponent implements OnInit {
+export class AudioPlayerComponent implements OnInit, OnChanges {
   @Input() audioSource: string = '';
   @Input() partName: string = '';
   audio: HTMLAudioElement;
@@ -28,16 +28,7 @@ export class AudioPlayerComponent implements OnInit {
       return;
     }
 
-    this.audio.src = this.audioSource;
-    this.audio.addEventListener('loadeddata', () => {
-      this.duration = this.getTimeCodeFromNum(this.audio.duration);
-    });
-
-    this.audio.addEventListener('timeupdate', () => {
-      this.currentTime = this.getTimeCodeFromNum(this.audio.currentTime);
-    });
-
-    this.audio.volume = this.volume;
+    this.setupAudio();
   }
 
   playPause() {
@@ -71,5 +62,26 @@ export class AudioPlayerComponent implements OnInit {
     } else {
       return `${String(hours).padStart(2, '0')}:${minutes}:${String(seconds).padStart(2, '0')}`;
     }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['audioSource'] && !changes['audioSource'].firstChange) {
+      this.audio.pause();
+      this.audioSource = changes['audioSource'].currentValue;
+      this.setupAudio();
+    }
+  }
+
+  setupAudio(): void {
+    this.audio.src = this.audioSource;
+    this.audio.addEventListener('loadeddata', () => {
+      this.duration = this.getTimeCodeFromNum(this.audio.duration);
+    });
+
+    this.audio.addEventListener('timeupdate', () => {
+      this.currentTime = this.getTimeCodeFromNum(this.audio.currentTime);
+    });
+
+    this.audio.volume = this.volume;
   }
 }

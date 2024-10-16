@@ -22,6 +22,8 @@ import {registerLocaleData} from '@angular/common';
 import en from '@angular/common/locales/en';
 import {ToastrModule} from "ngx-toastr";
 import {NzModalModule} from "ng-zorro-antd/modal";
+import {NzAvatarModule} from "ng-zorro-antd/avatar";
+import {NzImageModule} from "ng-zorro-antd/image";
 
 registerLocaleData(en);
 
@@ -51,7 +53,9 @@ registerLocaleData(en);
       closeButton: true,
     }),
     NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' }),
-    NzModalModule
+    NzModalModule,
+    NzAvatarModule,
+    NzImageModule,
   ],
   providers: [
 

@@ -45,6 +45,7 @@ export class ExamDetailComponent implements OnInit {
           if (res?.success && res?.data?.status == 'ACTIVE') {
             this.currentExam = res?.data;
             this.listPart = res?.data?.parts;
+            this.title += ` - ${this.currentExam?.examName}`;
           } else {
             this.toast.error('Không tìm thấy đề thi');
           }
