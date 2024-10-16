@@ -24,7 +24,7 @@
             </tr>
             </thead>
             <tbody>
-            <ng-container *ngFor="let item of listExam; trackBy: trackByFn">
+            <ng-container *ngFor="let item of listExam; let i = index; trackBy: trackByFn">
               <tr>
                 <td>{{ item?.examId }}</td>
                 <td>{{ item.examName }}</td>
@@ -40,10 +40,10 @@
                 <td>
                   <app-audio-player [audioSource]="item.audioPart4" partName="Part 4"></app-audio-player>
                 </td>
-                <td>
-                  <button class="btn btn-gradient-primary btn-rounded btn-fw" (click)="openDetail(item)">Chi tiết
-                  </button>
-                  <button class="btn btn-gradient-danger btn-rounded btn-fw" (click)="delete(item)">Xóa</button>
+                <td class="template-demo">
+                  <button class="btn btn-gradient-primary btn-sm" (click)="openDetail(item)">Chi tiết</button>
+                  <button class="btn btn-gradient-info btn-sm" (click)="openFormEdit(item)">Sửa</button>
+                  <button class="btn btn-gradient-danger btn-sm" (click)="delete(item)">Xóa</button>
                 </td>
               </tr>
             </ng-container>

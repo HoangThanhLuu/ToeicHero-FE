@@ -1,0 +1,24 @@
+<div class="col-12 grid-margin stretch-card mb-0">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title" [innerText]="title"></h4>
+      <form class="forms-sample">
+        <div class="form-group">
+          <label for="examName">Tên đề thi</label>
+          <input type="text" class="form-control" [ngClass]="{'error-input-custom': showBorderError}" id="examName" [value]="formModel.examName" (input)="updateExamName($event)" placeholder="Nhập tên đề thi">
+        </div>
+        <div class="form-group">
+          <label for="examTopic">Bộ đề thi</label>
+          <select class="form-control" id="examTopic" [value]="formModel.topicId" (change)="onExamTopicChange($event)">
+            <option value="">-- Chọn bộ đề thi --</option>
+            <ng-container *ngFor="let topic of listTopic">
+              <option [value]="topic?.topicId" [selected]="topic.topicId == formModel.topicId">{{topic?.topicName}}</option>
+            </ng-container>
+          </select>
+        </div>
+      </form>
+      <button class="btn btn-gradient-primary me-2" (click)="ediExam()">Chỉnh sửa</button>
+      <button class="btn btn-light" (click)="cancel()">Hủy</button>
+    </div>
+  </div>
+</div>

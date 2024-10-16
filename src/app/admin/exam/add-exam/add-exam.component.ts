@@ -100,6 +100,20 @@ export class AddExamComponent implements OnInit {
         } else
           this.toastr.error(res?.message);
       });
+    // if not upload file
+    if (uploadObservables.length === 0) {
+      this.http.post('/api/admin/exam/create-exam', this.param)
+        .subscribe((res: any) => {
+          this.spinnerService.hide();
+          if (res?.success) {
+            this.addSuccessEmit.emit();
+            this.toastr.success(res?.message);
+            this.bsModalRef.hide();
+          } else
+            this.toastr.error(res?.message);
+        });
+    }
+
   }
 
   triggerFileInput(fileInput: any) {

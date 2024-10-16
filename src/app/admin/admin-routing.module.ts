@@ -5,6 +5,7 @@ import {AdminComponent} from "./admin.component";
 import {ExamComponent} from "./exam/exam.component";
 import {TopicComponent} from "./topic/topic.component";
 import {UsersComponent} from "./users/users.component";
+import {ExamDetailComponent} from "./exam/exam-detail/exam-detail.component";
 
 
 const routes: Routes = [
@@ -22,7 +23,16 @@ const routes: Routes = [
       },
       {
         path: 'exam',
-        component: ExamComponent
+        children: [
+          {
+            path: '',
+            component: ExamComponent
+          },
+          {
+            path: 'detail',
+            component: ExamDetailComponent
+          }
+        ]
       }, {
         path: 'topic',
         component: TopicComponent

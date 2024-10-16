@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {BsModalService} from "ngx-bootstrap/modal";
 import {AddExamComponent} from "./add-exam/add-exam.component";
+import {EditExamComponent} from "./edit-exam/edit-exam.component";
 
 @Component({
   selector: 'app-exam',
@@ -58,10 +59,29 @@ export class ExamComponent implements OnInit{
   }
 
   openDetail(item: any) {
-
+    window.location.href = `/admin/exam/detail?eid=${item.examId}`;
   }
 
   delete(item: any) {
 
+  }
+
+  openFormEdit(item: any) {
+    const bsModalRef = this.bsModalService.show(EditExamComponent, {
+      class: 'modal-lg modal-dialog-centered',
+      initialState: {
+        title: 'Thêm đề thi',
+        param: {
+          examId: item.examId,
+          examName: item.examName,
+          topicId: item.topic?.topicId,
+        }
+      }
+    });
+    if(bsModalRef && bsModalRef.content) {
+      bsModalRef.content.editSuccessEmit.subscribe(() => {
+        this.getListExam();
+      });
+    }
   }
 }
