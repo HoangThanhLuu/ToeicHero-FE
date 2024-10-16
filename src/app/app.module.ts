@@ -10,7 +10,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {NgxSpinnerModule} from "ngx-spinner";
 import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ModalModule} from "ngx-bootstrap/modal";
 import {ClientModule} from "./client/client.module";
 import {AdminModule} from "./admin/admin.module";
@@ -23,6 +23,7 @@ import {ToastrModule} from "ngx-toastr";
 import {NzModalModule} from "ng-zorro-antd/modal";
 import {NzAvatarModule} from "ng-zorro-antd/avatar";
 import {NzImageModule} from "ng-zorro-antd/image";
+import {AuthServiceService} from "./auth-service.service";
 
 registerLocaleData(en);
 
@@ -56,8 +57,12 @@ registerLocaleData(en);
     NzImageModule,
   ],
   providers: [
-
-    {provide: NZ_I18N, useValue: en_US}
+    {provide: NZ_I18N, useValue: en_US},
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthServiceService,
+      multi: true
+    }
   ],
   exports: [FontAwesomeModule],
   bootstrap: [AppComponent],

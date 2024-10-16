@@ -1,6 +1,8 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {BsModalService} from "ngx-bootstrap/modal";
 import {LoginComponent} from "../login/login.component";
+import {AuthServiceService} from "../../auth-service.service";
+import {GetHeaderService} from "../../common/get-headers/get-header.service";
 import {HttpClient} from "@angular/common/http";
 
 @Component({
@@ -11,13 +13,17 @@ import {HttpClient} from "@angular/common/http";
 export class NavbarComponent implements OnInit {
 
   activeNav: string = 'home';
+  isLogin: boolean = false;
+
+  constructor(private bs: BsModalService, private getHeaderService: GetHeaderService, private http: HttpClient) {
+  }
 
   ngOnInit(): void {
     this.activeHeader();
+    const tokenValid = localStorage.getItem('tokenValid');
+    this.isLogin = tokenValid === 'true';
   }
 
-  constructor(private bs: BsModalService, private http: HttpClient) {
-  }
 
   openLogin() {
     this.bs.show(LoginComponent, {class: 'modal-lg modal-dialog-centered'});
@@ -38,4 +44,9 @@ export class NavbarComponent implements OnInit {
     }
   }
 
+
+  logout() {
+    localStorage.removeItem('token');
+    window.location.href = '/home';
+  }
 }

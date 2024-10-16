@@ -9,4 +9,9 @@ import {AdminLibBaseCss2, AdminStyle} from "../admin.style";
 })
 export class NavbarComponent {
   @Input() sidebarId: string = "sidebar";
+
+  logout() {
+    localStorage.removeItem('token');
+    window.location.href = '/home';
+  }
 }

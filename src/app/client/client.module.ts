@@ -34,6 +34,7 @@ import { AudioPartComponent } from './test/audio-part/audio-part.component';
 import {NzRadioModule} from "ng-zorro-antd/radio";
 import {NzImageModule} from "ng-zorro-antd/image";
 import {NzDividerModule} from "ng-zorro-antd/divider";
+import { LoginPopupComponent } from './login/login-popup/login-popup.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import {NzDividerModule} from "ng-zorro-antd/divider";
     ProfileComponent,
     UpdateProfileComponent,
     StartComponent,
-    AudioPartComponent
+    AudioPartComponent,
+    LoginPopupComponent
   ],
   imports: [
     NgbModule,
