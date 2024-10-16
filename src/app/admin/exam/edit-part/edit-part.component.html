@@ -1,0 +1,26 @@
+<div class="col-12 grid-margin stretch-card mb-0">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title" [innerText]="titleShow"></h4>
+      <form class="forms-sample">
+        <div class="form-group">
+          <label>{{ 'Audio'}}</label>
+          <input type="file" [name]="'audio-part'" (change)="onFileSelected($event)" accept="audio/*"
+                 class="file-upload-default" #fileInput>
+          <div class="input-group col-xs-12">
+            <input type="text" class="form-control file-upload-info" [value]="selectedFileAudio?.name" disabled
+                   [placeholder]="'Audio part'">
+            <span class="input-group-append">
+                <button type="button" class="file-upload-browse btn btn-gradient-danger btn-icon-text"
+                        (click)="triggerFileInput(fileInput)">
+                            <i class="mdi mdi-upload btn-icon-prepend"></i> Tải lên</button>
+              </span>
+          </div>
+        </div>
+      </form>
+      <button class="btn btn-gradient-primary" (click)="editPart()">Xác nhận</button>
+      <button class="btn btn-secondary ms-2" (click)="close()">Hủy</button>
+    </div>
+  </div>
+</div>
+

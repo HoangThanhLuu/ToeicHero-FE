@@ -7,6 +7,7 @@ import {BsModalService} from "ngx-bootstrap/modal";
 import {ActivatedRoute} from "@angular/router";
 import {NgxSpinnerService} from "ngx-spinner";
 import {finalize} from "rxjs";
+import {EditPartComponent} from "../edit-part/edit-part.component";
 
 @Component({
   selector: 'app-exam-detail',
@@ -26,7 +27,6 @@ export class ExamDetailComponent implements OnInit {
   selectedFile: any;
   selectPart: any;
   formData = new FormData();
-
   constructor(private toast: ToastrService,
               private http: HttpClient,
               private modal: NzModalService,
@@ -46,7 +46,7 @@ export class ExamDetailComponent implements OnInit {
           if (res?.success && res?.data?.status == 'ACTIVE') {
             this.currentExam = res?.data;
             this.listPart = res?.data?.parts;
-            this.title += ` - ${this.currentExam?.examName}`;
+            this.titleShow = `${this.title} - ${this.currentExam?.examName}`;
           } else {
             this.toast.error('Không tìm thấy đề thi');
           }
@@ -59,21 +59,46 @@ export class ExamDetailComponent implements OnInit {
   }
 
   openFormEdit(item: any) {
-
+    const modalRef = this.bsModalService.show(EditPartComponent, {
+      class: 'modal-lg modal-dialog-centered',
+      initialState: {
+        title: 'Sửa part',
+        currentPart: item,
+        currentExam: this.currentExam
+      }
+    });
+    if (modalRef && modalRef.content) {
+      modalRef.content.editPartSuccess.subscribe(() => {
+        this.ngOnInit();
+      });
+    }
   }
 
-  seeDetail(item: any) {
+  seeDetail(item
+              :
+              any
+  ) {
     window.location.href = `/admin/question/list-by-part?pid=${item?.partId}`;
   }
 
-  importExel(item: any, index: number) {
+  importExel(item
+               :
+               any, index
+               :
+               number
+  ) {
     this.formData.delete('file');
     this.formData.delete('partId');
     this.formData.append('partId', item?.partId);
     this.fileInput.nativeElement.click();
   }
 
-  onFileChange($event: any, item: any) {
+  onFileChange($event
+                 :
+                 any, item
+                 :
+                 any
+  ) {
     const files = $event.target?.files;
     if (files && files.length > 0) {
       this.selectedFile = files[0];
@@ -97,7 +122,10 @@ export class ExamDetailComponent implements OnInit {
     }
   }
 
-  deletePart(item: any) {
+  deletePart(item
+               :
+               any
+  ) {
     const confirmModal: NzModalRef = this.modal.create({
       nzTitle: `Xác nhận`,
       nzContent: `Bạn có muốn chắc chắn muốn  xóa toàn bộ câu hỏi trong part ${item.partName} không?`,
