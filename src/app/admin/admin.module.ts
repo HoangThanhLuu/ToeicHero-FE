@@ -29,25 +29,25 @@ import {NzImageModule} from "ng-zorro-antd/image";
 import { EditQuestionPart34Component } from './exam/edit-question-part34/edit-question-part34.component';
 
 @NgModule({
-  declarations: [
-    AdminComponent,
-    HomeComponent,
-    NavbarComponent,
-    FooterAdminComponent,
-    SidebarComponent,
-    ExamComponent,
-    TopicComponent,
-    PageHeaderComponent,
-    AddTopicComponent,
-    UsersComponent,
-    AddExamComponent,
-    AudioPlayerComponent,
-    EditExamComponent,
-    ExamDetailComponent,
-    QuestionComponent,
-    EditQuestionPart1Component,
-    EditQuestionPart34Component
-  ],
+    declarations: [
+        AdminComponent,
+        HomeComponent,
+        NavbarComponent,
+        FooterAdminComponent,
+        SidebarComponent,
+        ExamComponent,
+        TopicComponent,
+        PageHeaderComponent,
+        AddTopicComponent,
+        UsersComponent,
+        AddExamComponent,
+        AudioPlayerComponent,
+        EditExamComponent,
+        ExamDetailComponent,
+        QuestionComponent,
+        EditQuestionPart1Component,
+        EditQuestionPart34Component
+    ],
     imports: [
         CommonModule,
         AdminRoutingModule,
@@ -61,6 +61,9 @@ import { EditQuestionPart34Component } from './exam/edit-question-part34/edit-qu
         NzAvatarModule,
         NzImageModule,
     ],
+    exports: [
+        PageHeaderComponent
+    ]
 })
 export class AdminModule {
 }

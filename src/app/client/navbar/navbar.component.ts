@@ -4,27 +4,34 @@ import {LoginComponent} from "../login/login.component";
 import {HttpClient} from "@angular/common/http";
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
 
+    activeNav: string = 'home';
 
-  constructor(private bs: BsModalService, private http: HttpClient) {
-  }
+    constructor(private bs: BsModalService, private http: HttpClient) {
+    }
 
-  openLogin() {
-    this.bs.show(LoginComponent, {class: 'modal-lg modal-dialog-centered'});
-  }
+    openLogin() {
+        this.bs.show(LoginComponent, {class: 'modal-lg modal-dialog-centered'});
+    }
 
-  test() {
-    this.http.get("/api/test")
-      .subscribe((res: any) => {
-        console.log(res);
-        if(res?.succes) {
-          alert('ket noi dc roi a');
+    activeHeader() {
+        const url = window.location.href;
+        if (url.includes('home')) {
+            this.activeNav = 'home';
+        } else if (url.includes('test')) {
+            this.activeNav = 'test';
+        } else if (url.includes('result')) {
+            this.activeNav = 'result';
+        } else if (url.includes('profile')) {
+            this.activeNav = 'profile';
+        } else if (url.includes('logout')) {
+            this.activeNav = 'logout';
         }
-      });
-  }
+    }
+
 }

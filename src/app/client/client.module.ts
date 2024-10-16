@@ -17,6 +17,8 @@ import { TopbarComponent } from './topbar/topbar.component';
 import { AboutComponent } from './about/about.component';
 import { TestComponent } from './test/test.component';
 import { OtpConfirmComponent } from './login/otp-confirm/otp-confirm.component';
+import { PageHeaderComponent } from './page-header/page-header.component';
+import {NzAvatarModule} from "ng-zorro-antd/avatar";
 
 
 @NgModule({
@@ -32,7 +34,8 @@ import { OtpConfirmComponent } from './login/otp-confirm/otp-confirm.component';
     TopbarComponent,
     AboutComponent,
     TestComponent,
-    OtpConfirmComponent
+    OtpConfirmComponent,
+    PageHeaderComponent
   ],
     imports: [
         NgbModule,
@@ -43,6 +46,7 @@ import { OtpConfirmComponent } from './login/otp-confirm/otp-confirm.component';
         CarouselModule,
         NgOptimizedImage,
         ReactiveFormsModule,
+        NzAvatarModule,
     ],
   providers: [],
   exports: [
