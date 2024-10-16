@@ -15,3 +15,9 @@
   filter: blur(4px) invert(1) contrast(0.75);
   mix-blend-mode: overlay;
 }
+
+.card:hover {
+  box-shadow: 0 0 30px rgba(0, 0, 0, .15);
+  cursor: pointer;
+}
+

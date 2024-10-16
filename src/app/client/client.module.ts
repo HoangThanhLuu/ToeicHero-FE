@@ -23,6 +23,8 @@ import {NgxSpinnerModule} from "ngx-spinner";
 import {ListTestComponent} from './list-test/list-test.component';
 import {ProfileComponent} from './profile/profile.component';
 import {UpdateProfileComponent} from './profile/update-profile/update-profile.component';
+import {NzTagModule} from "ng-zorro-antd/tag";
+import {NzEmptyModule} from "ng-zorro-antd/empty";
 
 @NgModule({
   declarations: [
@@ -53,6 +55,8 @@ import {UpdateProfileComponent} from './profile/update-profile/update-profile.co
     ReactiveFormsModule,
     NzAvatarModule,
     NgxSpinnerModule,
+    NzTagModule,
+    NzEmptyModule,
   ],
   providers: [],
   exports: [

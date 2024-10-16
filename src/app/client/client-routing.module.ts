@@ -27,9 +27,12 @@ const routes: Routes = [
       }, {
         path: 'list-test',
         component: ListTestComponent
-      },{
-      path:'profile',
+      }, {
+        path: 'profile',
         component: ProfileComponent
+      }, {
+        path: 'test/:examId',
+        component: TestComponent
       }
     ]
 
