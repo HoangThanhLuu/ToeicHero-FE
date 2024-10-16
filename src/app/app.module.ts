@@ -9,12 +9,11 @@ import {AppRoutingModule} from "./app-routing.module";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {NgxSpinnerModule} from "ngx-spinner";
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {ModalModule} from "ngx-bootstrap/modal";
 import {ClientModule} from "./client/client.module";
 import {AdminModule} from "./admin/admin.module";
-import {AlertComponent} from './common/alert/alert.component';
 import {ConfirmModalComponent} from './common/confirm-modal/confirm-modal.component';
 import {NZ_I18N} from 'ng-zorro-antd/i18n';
 import {en_US} from 'ng-zorro-antd/i18n';
@@ -31,7 +30,6 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    AlertComponent,
     ConfirmModalComponent,
   ],
   imports: [
