@@ -1,0 +1,29 @@
+<div id="content" class="container-fluid fill">
+  <form id="submitForm" name="submitForm">
+    <div class="row">
+      <div id="navigation" class="col-md-3 ">
+
+        <div class="fix-scrolling">
+          <br>
+          <div>
+            <span id="time">120:00</span>
+          </div>
+          <hr width="60%">
+
+          <div *ngFor="let number of numbersArray; let i = index" class="numberCircle" id="answer{{ i + 1 }}">{{ i + 1 }}</div>
+          <br> <br>
+          <button class="btn btn-primary" (click)="submitTest()">Nộp bài</button>
+
+          <hr width="60%">
+        </div>
+        <!--Nội dung bài test -->
+        <div id="main" class="col-md-8 web-font">
+          <div *ngFor="let question of listQuestion">
+            <input type="hidden" class="hidden" id="correctanswer{{ question.number }}" name="correctanswer{{ question.number }}" [value]="question.correctanswer" />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>

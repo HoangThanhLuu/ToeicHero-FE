@@ -173,7 +173,9 @@ $theme-colors: (
 .breadcrumb-item + .breadcrumb-item::before {
   color: var(--light);
 }
-
+.modal-dialog-custom {
+  max-width: 50vw;
+}
 /* Importing Bootstrap SCSS file. */
 @import "node_modules/bootstrap/scss/bootstrap";
 

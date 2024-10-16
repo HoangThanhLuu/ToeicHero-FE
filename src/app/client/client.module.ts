@@ -15,6 +15,8 @@ import { ServiceComponent } from './service/service.component';
 import {CarouselModule} from "ngx-owl-carousel-o";
 import { TopbarComponent } from './topbar/topbar.component';
 import { AboutComponent } from './about/about.component';
+import { TestComponent } from './test/test.component';
+import { OtpConfirmComponent } from './login/otp-confirm/otp-confirm.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { AboutComponent } from './about/about.component';
     CarouselComponent,
     ServiceComponent,
     TopbarComponent,
-    AboutComponent
+    AboutComponent,
+    TestComponent,
+    OtpConfirmComponent
   ],
     imports: [
         NgbModule,

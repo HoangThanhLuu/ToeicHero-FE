@@ -11,16 +11,17 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <div class="navbar-nav ms-auto p-4 p-lg-0">
       <a href="" class="nav-item nav-link active">Trang chủ</a>
-      <a href="" class="nav-item nav-link">Đề thi</a>
-      <a href="" class="nav-item nav-link">Dịch vụ</a>
-      <a href="" class="nav-item nav-link">Liên hệ</a>
+      <a href="/test" class="nav-item nav-link">Đề thi</a>
+      <a href="" class="nav-item nav-link">Kểt quả</a>
+      <a href="/otp" class="nav-item nav-link">Liên hệ</a>
       <a href="javascript:;" (click)="openLogin()" class="nav-item nav-link">Đăng nhập</a>
       <a href="" class="nav-item nav-link d-none">Lịch sử khám bệnh</a>
       <a href="" class="nav-item nav-link d-none" id="logout">Đăng xuất</a>
       <a href="" class="nav-item nav-link d-xl-none">Thi thử</a>
     </div>
-    <a href="" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block">
-      Thi thử<i class="fa fa-arrow-right ms-3"></i>
+    <a href="javascript:;" class="btn btn-primary rounded-0 py-4 px-lg-5 d-none d-lg-block" (click)="test()">
+      Tuyet<i class="fa fa-arrow-right ms-3"></i>
     </a>
+
   </div>
 </nav>

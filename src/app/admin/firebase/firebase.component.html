@@ -1,0 +1,36 @@
+<app-page-header
+  [title]="title"
+  [currentPage]="currentPage">
+</app-page-header>
+
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th> Project Id </th>
+          <th> Token key </th>
+          <th> Bucket name </th>
+          <th> File Json </th>
+          <th> Status </th>
+          <th>#</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of switchData; let i = index">
+          <td>{{ item.projectId }}</td>
+          <td>{{ item.tokenKey }}</td>
+          <td>{{ item.bucketName }}</td>
+          <td>{{ item.fileJson }}</td>
+          <td>
+            <nz-switch [(ngModel)]="item.switchValue" (ngModelChange)="onSwitchChange($event, i)"></nz-switch>
+          </td>
+          <td></td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

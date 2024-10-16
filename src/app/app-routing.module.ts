@@ -4,6 +4,7 @@ import {ClientModule} from './client/client.module';
 import {AdminModule} from './admin/admin.module';
 import {adminGuardGuard} from "./admin-guard.guard";
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
+import {TestComponent} from "./client/test/test.component";
 
 const routes: Routes = [
   {
