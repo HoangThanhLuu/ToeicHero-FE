@@ -19,6 +19,8 @@ import { TestComponent } from './test/test.component';
 import { OtpConfirmComponent } from './login/otp-confirm/otp-confirm.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import {NzAvatarModule} from "ng-zorro-antd/avatar";
+import { ProfileComponent } from './profile/profile.component';
+import { UpdateProfileComponent } from './profile/update-profile/update-profile.component';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import {NzAvatarModule} from "ng-zorro-antd/avatar";
     AboutComponent,
     TestComponent,
     OtpConfirmComponent,
-    PageHeaderComponent
+    PageHeaderComponent,
+    ProfileComponent,
+    UpdateProfileComponent
   ],
     imports: [
         NgbModule,

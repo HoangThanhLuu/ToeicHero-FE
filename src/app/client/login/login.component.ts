@@ -72,22 +72,22 @@ export class LoginComponent {
   }
 
   login() {
-    this.bs.show(ConfirmModalComponent, {class: 'modal-lg modal-dialog-centered'});
 
-    // if (this.isNotValidInputLogin()) {
-    //   alert('Email hoặc tên đăng nhập không được bỏ trống');
-    //   return;
-    // }
-    // this.http.post("/api/user/authenticate", this.loginForm)
-    //   .subscribe((res: any) => {
-    //     if(res?.success == true) {
-    //       alert(res?.message);
-    //       window.localStorage.setItem("token", res?.data);
-    //       window.location.href = '/test';
-    //     }else{
-    //       alert(res?.message);
-    //     }
-    //   });
+
+    if (this.isNotValidInputLogin()) {
+      alert('Email hoặc tên đăng nhập không được bỏ trống');
+      return;
+    }
+    this.http.post("/api/user/authenticate", this.loginForm)
+      .subscribe((res: any) => {
+        if(res?.success == true) {
+          alert(res?.message);
+          window.localStorage.setItem("token", res?.data);
+          window.location.href = '/test';
+        }else{
+          alert(res?.message);
+        }
+      });
   }
 
   private isNotValidInputLogin(): boolean {
