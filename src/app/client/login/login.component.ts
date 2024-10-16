@@ -1,7 +1,8 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {matchpassword} from "./matchpassword.validator";
 
 
 @Component({
@@ -28,10 +29,7 @@ export class LoginComponent {
     this.isRegisterTab = !this.isRegisterTab;
   }
 
-  // protected readonly register = register;
-  // registerForm: any;
-
-  public registerForm !: FormGroup
+  public registerForm : FormGroup
   private user: any;
 
 
@@ -39,44 +37,36 @@ export class LoginComponent {
               private http: HttpClient,
               private router: Router) {
     this.registerForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email],
-        Validators.pattern("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")],
+      email: ['', [Validators.required, Validators.email,Validators.pattern("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")]],
+
       fullName: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      repeatPassword: ['', Validators.required]
-    }, {
-      validator: this.passwordMatchValidator // Sử dụng custom validator
-    });
+      confirmPassword: ['', Validators.required]
+    },
+      {
+        validators:matchpassword
+      });
   }
 
-  ngOnInit(): void {
+
+  ngOnInit(): void {  }
 
 
-  }
-
-  passwordMatchValidator(group: FormGroup) {
-    const password = group.get('password')?.value;
-    const repeatPassword = group.get('repeatPassword')?.value;
-
-    return password === repeatPassword;
-  }
 
   register() {
     console.log(this.registerForm.value)
 
-    this.http.post('/api/user/register', this.registerForm.value).subscribe(
-      res => {
-        if (this.user) {
+    this.http.post('/api/user/register', this.registerForm.value)
+      .subscribe((res: any) => {
+        if (res?.success) {
           localStorage.setItem('currentUser', JSON.stringify(this.user));
-          alert('Đăng ký thành công');
-          this.registerForm.reset();
-          this.router.navigate(['/home']);
+          // alert('Đăng ký thành công');
+          // this.registerForm.reset();
+          // this.switchTab();
         } else {
           alert('Đăng ký thất bại');
         }
-      }, err => {
-        alert('Đăng ký thất bại')
-      })
+      });
 
 
     console.log('Dữ liệu nhập vào form:', this.registerForm.value);

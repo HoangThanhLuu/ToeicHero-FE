@@ -4,6 +4,7 @@ import {HomeComponent} from "./home/home.component";
 import {AdminComponent} from "./admin.component";
 import {ExamComponent} from "./exam/exam.component";
 import {TopicComponent} from "./topic/topic.component";
+import {UsersComponent} from "./users/users.component";
 
 
 const routes: Routes = [
@@ -25,6 +26,9 @@ const routes: Routes = [
       }, {
         path: 'topic',
         component: TopicComponent
+      }, {
+        path: 'users',
+        component: UsersComponent
       }
     ]
   },

@@ -11,7 +11,7 @@ import { ExamComponent } from './exam/exam.component';
 import { TopicComponent } from './topic/topic.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { AddTopicComponent } from './topic/add-topic/add-topic.component';
-
+import { UsersComponent } from './users/users.component'
 
 @NgModule({
   declarations: [
@@ -23,7 +23,8 @@ import { AddTopicComponent } from './topic/add-topic/add-topic.component';
     ExamComponent,
     TopicComponent,
     PageHeaderComponent,
-    AddTopicComponent
+    AddTopicComponent,
+    UsersComponent
   ],
   imports: [
     CommonModule,
