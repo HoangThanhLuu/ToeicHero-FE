@@ -1,48 +1,38 @@
-<div class="col-12 grid-margin stretch-card">
+<div class="col-12 grid-margin stretch-card mb-0">
   <div class="card">
     <div class="card-body">
       <h4 class="card-title" [innerText]="title"></h4>
       <form class="forms-sample">
         <div class="form-group">
-          <label for="exampleInputName1">Name</label>
-          <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+          <label for="examName">Tên đề thi</label>
+          <input type="text" class="form-control" id="examName" placeholder="Nhập tên đề thi">
         </div>
         <div class="form-group">
-          <label for="exampleInputEmail3">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword4">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password">
-        </div>
-        <div class="form-group">
-          <label for="exampleSelectGender">Gender</label>
-          <select class="form-control" id="exampleSelectGender">
-            <option>Male</option>
-            <option>Female</option>
+          <label for="examTopic">Bộ đề thi</label>
+          <select class="form-control" id="examTopic">
+            <option value="">-- Chọn bộ đề thi --</option>
+            <ng-container *ngFor="let topic of listTopic">
+              <option [value]="topic?.topicId">{{topic?.topicName}}</option>
+            </ng-container>
           </select>
         </div>
-        <div class="form-group">
-          <label>File upload</label>
-          <input type="file" name="img[]" class="file-upload-default">
-          <div class="input-group col-xs-12">
-            <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-            <span class="input-group-append">
-                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
-                          </span>
+
+        <ng-container *ngFor="let part of audioParts; let i = index">
+          <div class="form-group">
+            <label>{{ 'Audio part ' + (i + 1) }}</label>
+            <input type="file" [name]="'audio-part' + (i + 1)" (change)="onFileSelected($event, i)" accept="audio/*" class="file-upload-default" #fileInput>
+            <div class="input-group col-xs-12">
+              <input type="text" class="form-control file-upload-info" [value]="selectedFiles[i]?.name" disabled [placeholder]="'Audio part ' + (i + 1)">
+              <span class="input-group-append">
+            <button class="file-upload-browse btn btn-gradient-primary" type="button"
+                    (click)="triggerFileInput(fileInput)">Tải lên</button>
+        </span>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="exampleInputCity1">City</label>
-          <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">
-        </div>
-        <div class="form-group">
-          <label for="exampleTextarea1">Textarea</label>
-          <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
-        </div>
-        <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
-        <button class="btn btn-light">Cancel</button>
+        </ng-container>
       </form>
+      <button class="btn btn-gradient-primary me-2" (click)="addNewExam()">Thêm</button>
+      <button class="btn btn-light">Hủy</button>
     </div>
   </div>
 </div>
