@@ -21,7 +21,11 @@ export class StartComponent implements OnInit {
   buttonStates: boolean[][] = [];
   currentExam: any;
   listPart: any = [];
-  selectedIndex: number = 5;
+  selectedIndex: number = 6;
+  questionPart7Has2Answer: any = ['147', '149', '154', '156'];
+  questionPart7Has3Answer: any = ['151', '166', '169'];
+  questionPart7Has4Answer: any = ['158', '162', '172'];
+  questionPart7Has2Paragraph: any = ['176', '181', '186', '191', '196'];
 
   constructor(private toast: ToastrService,
               private http: HttpClient,
@@ -116,7 +120,12 @@ export class StartComponent implements OnInit {
   }
 
   protected readonly Number = Number;
+
   counter(i: number) {
     return new Array(i);
+  }
+
+  questionPart7HasAnswerCheck(questNumber: number, list: any) {
+    return !!list.includes(questNumber);
   }
 }
