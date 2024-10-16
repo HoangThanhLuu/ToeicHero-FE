@@ -6,6 +6,8 @@ import {NzModalService} from "ng-zorro-antd/modal";
 import {BsModalService} from "ngx-bootstrap/modal";
 import {AddExamComponent} from "./add-exam/add-exam.component";
 import {EditExamComponent} from "./edit-exam/edit-exam.component";
+import {NgxSpinnerService} from "ngx-spinner";
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'app-exam',
@@ -15,18 +17,22 @@ import {EditExamComponent} from "./edit-exam/edit-exam.component";
     ...AdminStyle
   ]
 })
-export class ExamComponent implements OnInit{
+export class ExamComponent implements OnInit {
   title: string = "Quản lý đề thi";
   currentPage: string = "Đề thi"
   listExam: any = [];
+
   constructor(private toast: ToastrService,
               private http: HttpClient,
               private modal: NzModalService,
-              private bsModalService: BsModalService) {
+              private bsModalService: BsModalService,
+              private spinnerService: NgxSpinnerService) {
   }
+
   ngOnInit(): void {
     this.getListExam();
   }
+
   importFile() {
 
   }
@@ -38,7 +44,7 @@ export class ExamComponent implements OnInit{
         title: 'Thêm đề thi'
       }
     });
-    if(bsModalRef && bsModalRef.content) {
+    if (bsModalRef && bsModalRef.content) {
       bsModalRef.content.addSuccessEmit.subscribe(() => {
         this.getListExam();
       });
@@ -47,13 +53,18 @@ export class ExamComponent implements OnInit{
 
 
   private getListExam() {
+    this.spinnerService.show();
     this.http.get('/api/admin/exam/list')
+      .pipe(finalize(() => {
+        this.spinnerService.hide();
+      }))
       .subscribe((res: any) => {
-        if(res?.success) {
+        if (res?.success) {
           this.listExam = res?.data;
         }
       });
   }
+
   trackByFn(index: number, item: any): any {
     return item.examId;
   }
@@ -78,7 +89,7 @@ export class ExamComponent implements OnInit{
         }
       }
     });
-    if(bsModalRef && bsModalRef.content) {
+    if (bsModalRef && bsModalRef.content) {
       bsModalRef.content.editSuccessEmit.subscribe(() => {
         this.getListExam();
       });

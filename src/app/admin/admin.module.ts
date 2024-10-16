@@ -22,6 +22,8 @@ import { EditExamComponent } from './exam/edit-exam/edit-exam.component';
 import { ExamDetailComponent } from './exam/exam-detail/exam-detail.component';
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {TooltipModule} from "ngx-bootstrap/tooltip";
+import { QuestionComponent } from './exam/question/question.component';
+import { EditQuestionPart1Component } from './exam/edit-question-part1/edit-question-part1.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import {TooltipModule} from "ngx-bootstrap/tooltip";
     AddExamComponent,
     AudioPlayerComponent,
     EditExamComponent,
-    ExamDetailComponent
+    ExamDetailComponent,
+    QuestionComponent,
+    EditQuestionPart1Component
   ],
   imports: [
     CommonModule,

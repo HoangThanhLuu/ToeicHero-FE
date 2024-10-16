@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {AdminLibBaseCss, AdminStyle} from "./admin.style";
 import {AddAssetsService} from "../add-assets.service";
 
@@ -13,7 +13,16 @@ import {AddAssetsService} from "../add-assets.service";
 export class AdminComponent implements OnInit {
   constructor(private assetService: AddAssetsService) {
   }
+  isShow: boolean = false;
 
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isShow = window.scrollY > 100;
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
   ngOnInit(): void {
   }
 }

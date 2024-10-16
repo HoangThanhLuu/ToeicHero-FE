@@ -42,7 +42,7 @@ export class AudioPlayerComponent implements OnInit {
 
   playPause() {
     if(!this.audioSource) {
-      this.toastr.error('File audio đang bị lỗi!');
+      this.toastr.error(`File audio ${this.partName.toLowerCase()} đang bị lỗi!`);
       return;
     }
     if (this.audio.paused) {

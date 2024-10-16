@@ -37,7 +37,11 @@
               <button type="button" class="btn btn-gradient-success btn-sm" tooltip="Import câu hỏi từ file excel"
                       (click)="importExel(item, i)">
                 <i class="mdi mdi-upload"></i></button>
-              <input type="file" #fileInput style="display: none" (change)="onFileChange($event, item)">
+              <input type="file" #fileInput style="display: none"  (change)="onFileChange($event, item)">
+
+              <button class="btn btn-gradient-danger btn-sm" tooltip="Xóa toàn bộ câu hỏi trong part" (click)="deletePart(item)">
+                <i class="mdi mdi-delete"></i>
+              </button>
             </td>
           </tr>
         </ng-container>
