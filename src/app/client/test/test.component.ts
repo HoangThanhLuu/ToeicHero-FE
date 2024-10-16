@@ -182,7 +182,7 @@ export class TestComponent implements OnInit {
   }
 
   startFullTest() {
-
+      window.location.href = `${window.location.href}/start`
   }
 
   startPractice() {

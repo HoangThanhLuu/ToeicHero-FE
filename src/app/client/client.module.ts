@@ -30,6 +30,10 @@ import {NzCheckboxModule} from "ng-zorro-antd/checkbox";
 import {NzGridModule} from "ng-zorro-antd/grid";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {StartComponent} from './test/start/start.component';
+import { AudioPartComponent } from './test/audio-part/audio-part.component';
+import {NzRadioModule} from "ng-zorro-antd/radio";
+import {NzImageModule} from "ng-zorro-antd/image";
+import {NzDividerModule} from "ng-zorro-antd/divider";
 
 @NgModule({
   declarations: [
@@ -49,7 +53,8 @@ import {StartComponent} from './test/start/start.component';
     ListTestComponent,
     ProfileComponent,
     UpdateProfileComponent,
-    StartComponent
+    StartComponent,
+    AudioPartComponent
   ],
   imports: [
     NgbModule,
@@ -68,6 +73,9 @@ import {StartComponent} from './test/start/start.component';
     NzCheckboxModule,
     NzGridModule,
     NzButtonModule,
+    NzRadioModule,
+    NzImageModule,
+    NzDividerModule,
   ],
   providers: [],
   exports: [

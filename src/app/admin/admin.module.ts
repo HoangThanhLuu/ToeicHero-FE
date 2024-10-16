@@ -64,7 +64,8 @@ import { EditPartComponent } from './exam/edit-part/edit-part.component';
         NzImageModule,
     ],
     exports: [
-        PageHeaderComponent
+        PageHeaderComponent,
+        AudioPlayerComponent
     ]
 })
 export class AdminModule {

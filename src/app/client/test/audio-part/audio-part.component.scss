@@ -1,48 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Rubik:ital,wght@1,300&display=swap');
-
-.time {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.time p {
-  margin-left: 4px;
-}
-
-.right-button {
-  width: 90%;
-  border: 1px solid #d2dfd5;
-  border-radius: 4px;
-  margin-left: 4px;
-}
-
-.left-content {
-  border: 1px solid #d2dfd5;
-  border-radius: 4px;
-}
-
-.btn-circle {
-  border-radius: 50%;
-  border: 1px solid #7E1E47;
-  font-size: 14px;
-  width: 32px; /* Độ rộng của nút */
-  height: 32px; /* Chiều cao của nút */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #000;
-}
-
-
 .audio-player {
   height: 50px;
-  width: 350px;
+  width: 100%;
 
   font-family: arial;
   color: white;
   font-size: 0.75em;
   overflow: hidden;
-
+  background: #808080;
   display: grid;
   grid-template-rows: 6px auto;
 
@@ -160,7 +124,6 @@
           width: 75%;
         }
       }
-
       &:hover {
         .volume-slider {
           left: -123px;
@@ -169,18 +132,4 @@
       }
     }
   }
-}
-
-[nz-radio] {
-  display: block;
-  height: 32px;
-  line-height: 32px;
-}
-
-.nz-image {
-  object-fit: contain;
-}
-
-.paragraph {
-  font-family: "roboto", sans-serif;
 }
