@@ -1,0 +1,11 @@
+.bg-404 {
+  background: rgb(82, 20, 47);
+  background: linear-gradient(142deg, rgba(82, 20, 47, 1) 0%, rgba(99, 23, 56, 1) 15%, rgba(126, 30, 71, 1) 30%, rgba(165, 39, 94, 1) 44%, rgba(198, 47, 112, 1) 58%, rgba(212, 73, 134, 1) 70%, rgba(220, 106, 156, 1) 82%, rgba(227, 140, 178, 1) 90%, rgba(236, 172, 200, 1) 100%);
+}
+
+.btn-primary-300{
+  background: var(--primary-300);
+}
+.text-primary-300{
+  color: var(--primary-300);
+}

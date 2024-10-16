@@ -1,5 +1,13 @@
 :root {
+  --primary-100: #ECACC8;
+  --primary-200: #E38CB2;
+  --primary-300: #DC6A9C;
+  --primary-400: #D44986;
+  --primary-500: #C62F70;
+  --primary-600: #A5275E;
   --primary: #7E1E47;
+  --primary-800: #631738;
+  --primary-900: #52142F;
   --light: #EFF5FF;
   --dark: #1B2C51;
 }
@@ -173,7 +181,7 @@ $theme-colors: (
 }
 
 /* Importing Bootstrap SCSS file. */
-@import "./node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/bootstrap/scss/bootstrap";
 
 /* Importing Datepicker SCSS file. */
 @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";

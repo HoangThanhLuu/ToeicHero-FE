@@ -14,6 +14,6 @@ export class NavbarComponent {
   }
 
   openLogin() {
-    this.bs.show(LoginComponent, {class: 'modal-lg'});
+    this.bs.show(LoginComponent, {class: 'modal-lg modal-dialog-centered'});
   }
 }

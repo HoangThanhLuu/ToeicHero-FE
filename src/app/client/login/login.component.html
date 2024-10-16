@@ -3,15 +3,15 @@
     <form action="#">
       <h1>Tạo tài khoản</h1>
       <div class="social-container">
-        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        <a href="javascript:;" class="social"><i class="fab fa-facebook-f"></i></a>
+        <a href="javascript:;" class="social"><i class="fab fa-google-plus-g"></i></a>
+        <a href="javascript:;" class="social"><i class="fab fa-linkedin-in"></i></a>
       </div>
       <span>Hoặc sử dụng email của bạn để đăng ký </span>
-      <input type="text" placeholder="Họ và tên "/>
       <input type="email" placeholder="Email"/>
-      <input type="text" placeholder="Số điện thoại"/>
+      <input type="text" placeholder="Họ và tên "/>
       <input type="password" placeholder="Mật khẩu "/>
+      <input type="password" placeholder="Nhập lại mật khẩu"/>
 
       <button>Đăng ký </button>
     </form>
@@ -19,16 +19,18 @@
   <div class="form-container sign-in-container" [ngClass]="{'d-none' : isRegisterTab}">
     <form action="#">
       <h1>Đăng nhập</h1>
+
       <div class="social-container">
-        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        <a href="javascript:;" class="social"><i class="fab fa-facebook-f"></i></a>
+        <a href="javascript:;" class="social"><i class="fab fa-google-plus-g"></i></a>
+        <a href="javascript:;" class="social"><i class="fab fa-linkedin-in"></i></a>
       </div>
+
       <span>Hoặc sử dụng tài khoản của bạn đã đăng ký </span>
       <input type="email" placeholder="Email"/>
       <input type="password" placeholder="Mật khẩu "/>
-      <a href="#">Quên mật khẩu </a>
-      <button>Đăng nhập </button>
+      <a href="javascript:;">Quên mật khẩu </a>
+      <button (click)="loginSubmit()">Đăng nhập </button>
     </form>
   </div>
   <div class="overlay-container">
