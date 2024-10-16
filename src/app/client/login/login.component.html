@@ -1,6 +1,6 @@
 <div class="container" [ngClass]="{'right-panel-active' : isRegisterTab}" id="container">
   <div class="form-container sign-up-container">
-    <form action="#">
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
       <h1>Tạo tài khoản</h1>
       <div class="social-container">
         <a href="javascript:;" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -8,11 +8,25 @@
         <a href="javascript:;" class="social"><i class="fab fa-linkedin-in"></i></a>
       </div>
       <span>Hoặc sử dụng email của bạn để đăng ký </span>
-      <input type="email" placeholder="Email"/>
-      <input type="text" placeholder="Họ và tên "/>
-      <input type="password" placeholder="Mật khẩu "/>
-      <input type="password" placeholder="Nhập lại mật khẩu"/>
+      <input formControlName="email"
+             type="email"
 
+             placeholder="Email" required/>
+      <div *ngIf="registerForm.controls['email'].errors?.['pattern']">
+        Username must contain only letters and numbers.
+      </div>
+      <input formControlName="password"
+             type="password"
+             placeholder="Mật khẩu " required/>
+      <input formControlName="repeatPassword"
+             type="password"
+             placeholder="Nhập lại mật khẩu" required/>
+      <input formControlName= "fullName"
+             type="text"
+             placeholder="Họ và tên " required/>
+<!--      <div *ngIf="registerForm.get('pass').errors?.passwordMismatch">-->
+<!--        Mật khẩu không trùng khớp, Vui lòng nhập lại!-->
+<!--      </div>-->
       <button>Đăng ký </button>
     </form>
   </div>
@@ -30,7 +44,7 @@
       <input type="email" placeholder="Email"/>
       <input type="password" placeholder="Mật khẩu "/>
       <a href="javascript:;">Quên mật khẩu </a>
-      <button (click)="loginSubmit()">Đăng nhập </button>
+      <button>Đăng nhập </button>
     </form>
   </div>
   <div class="overlay-container">
