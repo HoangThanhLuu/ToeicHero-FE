@@ -1,0 +1,53 @@
+<nav class="sidebar sidebar-offcanvas mt-6" id="sidebar">
+  <ul class="nav">
+    <li class="nav-item nav-profile">
+      <a href="#" class="nav-link">
+        <div class="nav-profile-image">
+          <img src="assets/images/admin-avatar.jpg" alt="profile">
+          <span class="login-status online"></span>
+        </div>
+        <div class="nav-profile-text d-flex flex-column">
+          <span class="font-weight-bold mb-2">TOEICUTE</span>
+          <span class="text-small">Quản trị viên</span>
+        </div>
+        <i class="mdi mdi-bookmark-check text-primary nav-profile-badge"></i>
+      </a>
+    </li>
+    <li class="nav-item" [ngClass]="{'active': navItemActive == 'dashboard'}">
+      <a class="nav-link" href="/admin">
+        <span class="menu-title">Trang chủ</span>
+        <i class="mdi mdi-home menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item" [ngClass]="{'active' : navItemActive == 'users'}">
+      <a class="nav-link" data-bs-toggle="collapse" href="/admin/user" aria-expanded="false" aria-controls="ui-basic">
+        <span class="menu-title">Quản lý người dùng</span>
+        <i class="mdi mdi-account-circle menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item" [ngClass]="{'active' : navItemActive == 'topic'}">
+      <a class="nav-link" href="/admin/topic">
+        <span class="menu-title">Quản lý bộ đề</span>
+        <i class="mdi mdi-lightbulb menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item" [ngClass]="{'active' : navItemActive == 'exam'}">
+      <a class="nav-link" href="/admin/exam">
+        <span class="menu-title">Quản lý đề thi</span>
+        <i class="mdi mdi-book-open menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="javascript:;">
+        <span class="menu-title">Charts</span>
+        <i class="mdi mdi-chart-bar menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="javascript:;">
+        <span class="menu-title">Tables</span>
+        <i class="mdi mdi-table-large menu-icon"></i>
+      </a>
+    </li>
+  </ul>
+</nav>
