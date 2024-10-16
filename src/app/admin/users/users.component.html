@@ -1,0 +1,42 @@
+<app-page-header
+  [title]="this.title"
+  [currentPage]="this.currentPage"
+></app-page-header>
+<div class="container-fluid stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Quản lý tài khoản người dùng</h4>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Mã người dùng</th>
+          <th>Tên người dùng</th>
+          <th>Email</th>
+          <th>Trạng thái</th>
+          <th>#</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let item of listUser">
+          <tr>
+            <td>{{item?.userId}}</td>
+            <td>{{item?.fullName}}</td>
+            <td>{{item?.email}}</td>
+            <td>
+              <label class="badge badge-gradient-{{this.getCssStatus(item?.status)}}">{{item?.status}}</label>
+            </td>
+            <td>
+              <ng-container *ngIf="item?.status == 'ACTIVE'">
+                <a href="javascript:;" class="btn btn-outline-danger text-capitalize" (click)="changeState('Block')">block</a>
+              </ng-container>
+              <ng-container *ngIf="item?.status == 'BLOCKED'">
+                <a href="javascript:;" class="btn btn-secondary text-capitalize" (click)="changeState('Block')">un block</a>
+              </ng-container>
+            </td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -6,15 +6,25 @@ import {NavbarComponent} from './navbar/navbar.component';
 
 import {AdminRoutingModule} from "./admin-routing.module";
 import {FooterAdminComponent} from './footer/footer.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { ExamComponent } from './exam/exam.component';
+import { TopicComponent } from './topic/topic.component';
+import { PageHeaderComponent } from './page-header/page-header.component';
+import { AddTopicComponent } from './topic/add-topic/add-topic.component';
+import { UsersComponent } from './users/users.component'
 
-
-// @ts-ignore
 @NgModule({
   declarations: [
     AdminComponent,
     HomeComponent,
     NavbarComponent,
-    FooterAdminComponent
+    FooterAdminComponent,
+    SidebarComponent,
+    ExamComponent,
+    TopicComponent,
+    PageHeaderComponent,
+    AddTopicComponent,
+    UsersComponent
   ],
   imports: [
     CommonModule,

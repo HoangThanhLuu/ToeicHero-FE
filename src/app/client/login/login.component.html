@@ -10,23 +10,23 @@
       <span>Hoặc sử dụng email của bạn để đăng ký </span>
       <input formControlName="email"
              type="email"
-
              placeholder="Email" required/>
-      <div *ngIf="registerForm.controls['email'].errors?.['pattern']">
-        Username must contain only letters and numbers.
+      <div *ngIf="registerForm.get('email')?.errors?.['pattern'] && registerForm.get('email')?.touched">
+        <span class="text-danger">*Sai định dạng email! Vui lòng nhập lại</span>
       </div>
-      <input formControlName="password"
-             type="password"
-             placeholder="Mật khẩu " required/>
-      <input formControlName="repeatPassword"
-             type="password"
-             placeholder="Nhập lại mật khẩu" required/>
       <input formControlName= "fullName"
              type="text"
              placeholder="Họ và tên " required/>
-<!--      <div *ngIf="registerForm.get('pass').errors?.passwordMismatch">-->
-<!--        Mật khẩu không trùng khớp, Vui lòng nhập lại!-->
-<!--      </div>-->
+      <input formControlName="password"
+             type="password"
+             placeholder="Mật khẩu " required/>
+      <input formControlName="confirmPassword"
+             type="password"
+             placeholder="Nhập lại mật khẩu" required/>
+      <div *ngIf="registerForm.errors?.['passwordmatcherror']">
+        <span class="text-danger">*Mật khẩu không trùng khớp. Vui lòng nhập lại!</span>
+      </div>
+
       <button>Đăng ký </button>
     </form>
   </div>
@@ -50,12 +50,12 @@
   <div class="overlay-container">
     <div class="overlay">
       <div class="overlay-panel overlay-left">
-        <h1>Xin chào bạn!</h1>
+        <h1 class="text-white">Xin chào bạn!</h1>
         <p>Nếu bạn đã có tài khoản thì nhấn đăng nhập bên dưới</p>
         <button class="ghost" id="signIn" (click)="switchTab()">Đăng nhập</button>
       </div>
       <div class="overlay-panel overlay-right">
-        <h1>Xin chào bạn!</h1>
+        <h1 class="text-white">Xin chào bạn!</h1>
         <p>Nếu bạn chưa có tài khoản thì hãy nhấn đăng ký để trở thành thành viên của ToeicUte</p>
         <button class="ghost" id="signUp" (click)="switchTab()">Đăng ký</button>
       </div>

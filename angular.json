@@ -25,7 +25,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "node_modules/animate.css/animate.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css",
@@ -37,7 +36,10 @@
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-              "node_modules/wowjs/dist/wow.js"
+              "node_modules/wowjs/dist/wow.js",
+              "./src/assets/vendors/js/vendor.bundle.base.js",
+              "./src/assets/js/off-canvas.js",
+              "./src/assets/js/hoverable-collapse.js"
             ]
           },
           "configurations": {

@@ -105,11 +105,11 @@
         background: $sidebar-light-menu-active-bg;
         > .nav-link {
           .menu-title {
-            color: $sidebar-light-menu-active-color;
-            font-family: $type1-medium;            
+            color: $default-text-color;
+            font-family: $type1-medium;
           }
           i {
-            color: $primary;
+            color: $default-text-color;
           }
         }
       }

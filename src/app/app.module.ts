@@ -8,8 +8,6 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatCardModule} from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {NgxSpinnerModule} from "ngx-spinner";
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -17,11 +15,13 @@ import { HttpClientModule } from '@angular/common/http';
 import {ModalModule} from "ngx-bootstrap/modal";
 import {ClientModule} from "./client/client.module";
 import {AdminModule} from "./admin/admin.module";
+import { AlertComponent } from './common/alert/alert.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,8 +29,6 @@ import {AdminModule} from "./admin/admin.module";
     RouterOutlet,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatCardModule,
-    MatButtonModule,
     FontAwesomeModule,
     NgxSpinnerModule,
     FormsModule,
