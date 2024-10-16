@@ -27,10 +27,10 @@
             </td>
             <td>
               <ng-container *ngIf="item?.status == 'ACTIVE'">
-                <a href="javascript:;" class="btn btn-outline-danger text-capitalize" (click)="changeState('Block')">block</a>
+                <button class="btn btn-outline-danger text-capitalize" (click)="changeState(item?.userId,'BLOCKED')">block</button>
               </ng-container>
               <ng-container *ngIf="item?.status == 'BLOCKED'">
-                <a href="javascript:;" class="btn btn-secondary text-capitalize" (click)="changeState('Block')">un block</a>
+                <button class="btn btn-secondary text-capitalize" (click)="changeState(item?.userId,'ACTIVE')">un block</button>
               </ng-container>
             </td>
           </tr>

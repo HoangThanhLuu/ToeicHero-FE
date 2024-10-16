@@ -1,8 +1,10 @@
 import {Component, EventEmitter, Output} from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
-import {Router} from "@angular/router";
 import {matchpassword} from "./matchpassword.validator";
+import {BsModalService} from "ngx-bootstrap/modal";
+import {OtpConfirmComponent} from "./otp-confirm/otp-confirm.component";
+import {ConfirmModalComponent} from "../../common/confirm-modal/confirm-modal.component";
 
 
 @Component({
@@ -13,12 +15,6 @@ import {matchpassword} from "./matchpassword.validator";
 })
 export class LoginComponent {
 
-  /*
-  * Ví dụ cái đường dẫn endpoint là: http://localhost:8080/api/user/login
-  * Thì m chỉ cần gọi đến bằng cách: http.post('/user/login') thôi
-  *
-  *
-  * */
   @Output() close = new EventEmitter();
   @Output() signIn = new EventEmitter();
   @Output() signUp = new EventEmitter();
@@ -29,49 +25,73 @@ export class LoginComponent {
     this.isRegisterTab = !this.isRegisterTab;
   }
 
-  public registerForm : FormGroup
-  private user: any;
+  public registerForm: FormGroup
+  loginForm = {
+    email: '',
+    password: ''
+  };
 
 
   constructor(private formBuilder: FormBuilder,
               private http: HttpClient,
-              private router: Router) {
+              private bs: BsModalService) {
     this.registerForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email,Validators.pattern("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")]],
-
-      fullName: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
-    },
+        email: ['', [Validators.required, Validators.email, Validators.pattern("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")]],
+        fullName: ['', [Validators.required]],
+        password: ['', [Validators.required, Validators.minLength(6)]],
+        confirmPassword: ['', Validators.required]
+      },
       {
-        validators:matchpassword
+        validators: matchpassword
       });
+
   }
 
-
-  ngOnInit(): void {  }
-
-
-
   register() {
-    console.log(this.registerForm.value)
 
     this.http.post('/api/user/register', this.registerForm.value)
       .subscribe((res: any) => {
         if (res?.success) {
-          localStorage.setItem('currentUser', JSON.stringify(this.user));
-          // alert('Đăng ký thành công');
-          // this.registerForm.reset();
-          // this.switchTab();
+           this.sendEmail(this.registerForm.value?.email);
         } else {
-          alert('Đăng ký thất bại');
+          alert(res?.message);
         }
       });
+  }
 
+  sendEmail(email: any){
+    this.http.post('/api/user/send-email', {to:email})
+      .subscribe((res: any) => {
+      if(res.success == true){
+        this.bs.show(OtpConfirmComponent, {class: 'modal-lg modal-dialog-centered'});
 
-    console.log('Dữ liệu nhập vào form:', this.registerForm.value);
+      } else {
+        alert("Gửi mã OTP tới email thất bại")
+      }
+      })
+  }
 
+  login() {
+    this.bs.show(ConfirmModalComponent, {class: 'modal-lg modal-dialog-centered'});
 
+    // if (this.isNotValidInputLogin()) {
+    //   alert('Email hoặc tên đăng nhập không được bỏ trống');
+    //   return;
+    // }
+    // this.http.post("/api/user/authenticate", this.loginForm)
+    //   .subscribe((res: any) => {
+    //     if(res?.success == true) {
+    //       alert(res?.message);
+    //       window.localStorage.setItem("token", res?.data);
+    //       window.location.href = '/test';
+    //     }else{
+    //       alert(res?.message);
+    //     }
+    //   });
+  }
+
+  private isNotValidInputLogin(): boolean {
+    return this.loginForm?.email === '' || this.loginForm.password === '';
   }
 
 

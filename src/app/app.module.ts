@@ -16,12 +16,14 @@ import {ModalModule} from "ngx-bootstrap/modal";
 import {ClientModule} from "./client/client.module";
 import {AdminModule} from "./admin/admin.module";
 import { AlertComponent } from './common/alert/alert.component';
+import { ConfirmModalComponent } from './common/confirm-modal/confirm-modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
     AlertComponent,
+    ConfirmModalComponent,
   ],
   imports: [
     BrowserModule,
