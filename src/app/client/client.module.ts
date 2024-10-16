@@ -9,7 +9,7 @@ import {MatCardModule} from "@angular/material/card";
 import { FooterComponent } from './footer/footer.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
@@ -36,19 +36,20 @@ import { AboutComponent } from './about/about.component';
     TopbarComponent,
     AboutComponent
   ],
-  imports: [
-    NgbModule,
-    CommonModule,
-    ClientRoutingModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatButtonModule,
-    FontAwesomeModule,
-    CarouselModule,
-    NgOptimizedImage,
-  ],
+    imports: [
+        NgbModule,
+        CommonModule,
+        ClientRoutingModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        MatButtonModule,
+        FontAwesomeModule,
+        CarouselModule,
+        NgOptimizedImage,
+        ReactiveFormsModule,
+    ],
   providers: [],
   exports: [
     HeaderComponent,
