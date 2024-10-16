@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
   .upload-box {
     padding: 20px;
     border: 2px dashed rgb(199, 199, 199);
@@ -60,4 +61,8 @@
       }
     }
   }
+}
+
+.error {
+  border: 1px solid red !important;
 }

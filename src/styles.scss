@@ -181,3 +181,7 @@ $theme-colors: (
 
 /* Importing Datepicker SCSS file. */
 @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+@import "node_modules/ng-zorro-antd/ng-zorro-antd.min.css";
+@import "node_modules/ng-zorro-antd/style/index.min.css"; /* Import base styles */
+@import "node_modules/ng-zorro-antd/button/style/index.min.css";  /* Import one component's styles */
+@import 'ngx-toastr/toastr-bs5-alert';
