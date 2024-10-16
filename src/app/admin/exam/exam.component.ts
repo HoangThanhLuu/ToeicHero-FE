@@ -9,39 +9,59 @@ import {AddExamComponent} from "./add-exam/add-exam.component";
 @Component({
   selector: 'app-exam',
   templateUrl: './exam.component.html',
-  styleUrls: ['./exam.component.css',
+  styleUrls: ['./exam.component.scss',
     ...AdminLibBaseCss2,
     ...AdminStyle
   ]
 })
 export class ExamComponent implements OnInit{
   title: string = "Quản lý đề thi";
-  currentPage: string = "Đề thi";
+  currentPage: string = "Đề thi"
+  listExam: any = [];
   constructor(private toast: ToastrService,
               private http: HttpClient,
               private modal: NzModalService,
               private bsModalService: BsModalService) {
   }
   ngOnInit(): void {
-    this.bsModalService.show(AddExamComponent, {
-      class: 'modal-lg modal-dialog-centered',
-      initialState: {
-        title: 'Thêm đề thi'
-      }
-    });
+    this.getListExam();
   }
   importFile() {
 
   }
 
   openFormAdd() {
-    this.bsModalService.show(AddExamComponent, {
+    const bsModalRef = this.bsModalService.show(AddExamComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
         title: 'Thêm đề thi'
       }
     });
+    if(bsModalRef && bsModalRef.content) {
+      bsModalRef.content.addSuccessEmit.subscribe(() => {
+        this.getListExam();
+      });
+    }
   }
 
 
+  private getListExam() {
+    this.http.get('/api/admin/exam/list')
+      .subscribe((res: any) => {
+        if(res?.success) {
+          this.listExam = res?.data;
+        }
+      });
+  }
+  trackByFn(index: number, item: any): any {
+    return item.examId;
+  }
+
+  openDetail(item: any) {
+
+  }
+
+  delete(item: any) {
+
+  }
 }

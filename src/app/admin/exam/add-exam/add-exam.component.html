@@ -5,11 +5,11 @@
       <form class="forms-sample">
         <div class="form-group">
           <label for="examName">Tên đề thi</label>
-          <input type="text" class="form-control" id="examName" placeholder="Nhập tên đề thi">
+          <input type="text" class="form-control" [ngClass]="{'error-input-custom': showBorderError}" id="examName" [(ngModel)]="param.examName" placeholder="Nhập tên đề thi">
         </div>
         <div class="form-group">
           <label for="examTopic">Bộ đề thi</label>
-          <select class="form-control" id="examTopic">
+          <select class="form-control" id="examTopic" [(ngModel)]="param.topicId">
             <option value="">-- Chọn bộ đề thi --</option>
             <ng-container *ngFor="let topic of listTopic">
               <option [value]="topic?.topicId">{{topic?.topicName}}</option>
@@ -24,15 +24,16 @@
             <div class="input-group col-xs-12">
               <input type="text" class="form-control file-upload-info" [value]="selectedFiles[i]?.name" disabled [placeholder]="'Audio part ' + (i + 1)">
               <span class="input-group-append">
-            <button class="file-upload-browse btn btn-gradient-primary" type="button"
-                    (click)="triggerFileInput(fileInput)">Tải lên</button>
+
+                <button type="button" class="file-upload-browse btn btn-gradient-danger btn-icon-text" (click)="triggerFileInput(fileInput)">
+                            <i class="mdi mdi-upload btn-icon-prepend"></i> Tải lên</button>
         </span>
             </div>
           </div>
         </ng-container>
       </form>
       <button class="btn btn-gradient-primary me-2" (click)="addNewExam()">Thêm</button>
-      <button class="btn btn-light">Hủy</button>
+      <button class="btn btn-light" (click)="cancel()">Hủy</button>
     </div>
   </div>
 </div>

@@ -17,6 +17,7 @@ import {NzIconModule} from "ng-zorro-antd/icon";
 import {FormsModule} from "@angular/forms";
 import {NgxSpinnerModule} from "ngx-spinner";
 import { AddExamComponent } from './exam/add-exam/add-exam.component';
+import { AudioPlayerComponent } from './exam/audio-player/audio-player.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AddExamComponent } from './exam/add-exam/add-exam.component';
     PageHeaderComponent,
     AddTopicComponent,
     UsersComponent,
-    AddExamComponent
+    AddExamComponent,
+    AudioPlayerComponent
   ],
   imports: [
     CommonModule,
