@@ -1,0 +1,36 @@
+<div class="col-12 grid-margin stretch-card mb-0">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title" [innerText]="title"></h4>
+      <form class="forms-sample">
+        <div class="form-group">
+          <label for="exampleInputName1">Tên bộ đề thi</label>
+          <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+        </div>
+
+        <div class="form-group">
+          <label>Hình ảnh</label>
+
+          <div class="container-upload">
+            <div class="upload-box">
+              <div class="content">
+                <div class="upload-icon">
+                  <i class="mdi mdi-cloud-upload text-dark" style="height: 100px; width: 100px;"></i>
+                </div>
+                <h5 class="text-dark">Kéo và thả tập tin của bạn vào đây</h5>
+                <p>hoặc</p>
+                <div class="upload-btn-wrapper">
+                  <button class="btn btn-gradient-primary">Tải lên</button>
+                  <input type="file" type="file" name="myfile"/>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <button type="submit" class="btn btn-gradient-primary">Xác nhận</button>
+        <button class="btn btn-light">Hủy</button>
+      </form>
+    </div>
+  </div>
+</div>

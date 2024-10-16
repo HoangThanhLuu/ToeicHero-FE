@@ -10,6 +10,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ExamComponent } from './exam/exam.component';
 import { TopicComponent } from './topic/topic.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
+import { AddTopicComponent } from './topic/add-topic/add-topic.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { PageHeaderComponent } from './page-header/page-header.component';
     SidebarComponent,
     ExamComponent,
     TopicComponent,
-    PageHeaderComponent
+    PageHeaderComponent,
+    AddTopicComponent
   ],
   imports: [
     CommonModule,
