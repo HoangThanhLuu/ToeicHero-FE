@@ -156,7 +156,7 @@ export class StartComponent implements OnInit {
       .subscribe((res: any) => {
         if (res?.success) {
           this.toast.success('Nộp bài thành công');
-          window.location.href = `/test${this.currentExam?.examId}/result/${res?.data}`;
+          window.location.href = `/test/${this.currentExam?.examId}/result/${res?.data}`;
         } else {
           this.toast.error(res?.message);
         }
