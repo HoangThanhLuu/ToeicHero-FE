@@ -1,140 +1,29 @@
-<div class="container-fluid bg-info-test mb-5">
-  <div class="container mt-3 main-info-test py-2 px-4">
+<div id="content" class="container-fluid fill">
+  <form id="submitForm" name="submitForm">
     <div class="row">
-      <div class="col-12">
-        <nz-tag [nzMode]="'default'" [nzChecked]="true" [nzColor]="'#7E1E47'">
-          <span>#Toeic</span>
-        </nz-tag>
-      </div>
-      <div class="col-12">
-        <h1 class="">{{this.currentExam?.examName}}</h1>
-      </div>
-      <div class="col-12">
-        <p><i class="fa-regular fa-clock"></i> Thời gian làm bài: 120 phút | 7 phần thi | 200 câu hỏi </p>
-      </div>
-      <div class="col-12">
-        <span class="text-danger">* Chú ý: để được quy đổi sang scaled score (ví dụ trên thang điểm 990 cho TOEIC hoặc 9.0 cho IELTS), vui lòng chọn chế độ làm FULL TEST.</span>
-      </div>
-      <nz-tabset class="col-12">
-        <nz-tab nzTitle="Làm full test">
-          <div class="row">
-            <div class="col-12 px-3 fs-5 bg-light-warning border-1 d-flex align-items-center">
-              <i class="fa fa-info-circle"></i>
-              <span class="ms-1">
-                Sẵn sàng để bắt đầu làm full test? Để đạt được kết quả tốt nhất, bạn cần dành ra 120 phút cho bài test này.
-              </span>
-            </div>
-            <div class="col-1">
-              <button nz-button nzType="primary" class="mt-1 bg-primary border-0" style="width: 140px;"
-                      [nzShape]="'round'" nzSize="large" nzBlock (click)="startFullTest()">Bắt đầu
-              </button>
-            </div>
+      <div id="navigation" class="col-md-3 ">
+
+        <div class="fix-scrolling">
+          <br>
+          <div>
+            <span id="time">120:00</span>
           </div>
+          <hr width="60%">
 
-        </nz-tab>
-        <nz-tab nzTitle="Luyện tập">
-          <div class="row">
-            <div class="col-12 fs-5 bg-light-success border-1">
-              <i class="fa fa-lightbulb-o"></i>
-              <span>
-                Pro tips: Hình thức luyện tập từng phần và chọn mức thời gian phù hợp sẽ giúp bạn tập trung vào giải
-                đúng các câu hỏi thay vì phải chịu áp lực hoàn thành bài thi.
-              </span>
-            </div>
-            <div class="col-12 fs-6">
-              <p>Chọn phần thi bạn muốn làm</p>
-            </div>
-            <div class="col-12">
-              <nz-checkbox-wrapper class="w-100">
-                <div nz-row>
-                  <div nz-col nzSpan="24">
-                    <label nz-checkbox nzValue="A"
-                           class="text-dark fw-bold fs-6"
-                           [(ngModel)]="allChecked"
-                           (ngModelChange)="updateAllChecked()"
-                           [nzIndeterminate]="indeterminate"
-                    >Chọn tất cả</label>
-                  </div>
-                  <ng-container *ngFor="let item of checkOptionsOne; let i = index">
-                    <div nz-col nzSpan="24" class="text-dark fw-bold fs-5">
-                      <label nz-checkbox [nzValue]="item.value"
-                             [(ngModel)]="item.checked"
-                             (ngModelChange)="updateSingleChecked()">
-                        {{item.label}}
-                      </label>
-                    </div>
-                    <ng-container *ngIf="i == 0">
-                      <div nz-col nzSpan="24" class="ms-4">
-                        <ng-container *ngFor="let itemP1 of listTagPart1;">
-                          <nz-tag [nzColor]="colorTag" class="text-dark mt-1"># {{itemP1}}</nz-tag>
-                        </ng-container>
-                      </div>
-                    </ng-container>
+          <div *ngFor="let number of numbersArray; let i = index" class="numberCircle" id="answer{{ i + 1 }}">{{ i + 1 }}</div>
+          <br> <br>
+          <button class="btn btn-primary" (click)="submitTest()">Nộp bài</button>
 
-                    <ng-container *ngIf="i == 1">
-                      <div nz-col nzSpan="24" class="ms-4" [nzOffset]="1">
-                        <ng-container *ngFor="let itemP2 of listTagPart2;">
-                          <nz-tag [nzColor]="colorTag" class="text-dark mt-1"># {{itemP2}}</nz-tag>
-                        </ng-container>
-                      </div>
-                    </ng-container>
-
-                    <ng-container *ngIf="i == 2">
-                      <div nz-col nzSpan="24" class="ms-4" [nzOffset]="1">
-                        <ng-container *ngFor="let itemP3 of listTagPart3;">
-                          <nz-tag [nzColor]="colorTag" class="text-dark mt-1"># {{itemP3}}</nz-tag>
-                        </ng-container>
-                      </div>
-                    </ng-container>
-
-                    <ng-container *ngIf="i == 3">
-                      <div nz-col nzSpan="24" class="ms-4" [nzOffset]="1">
-                        <ng-container *ngFor="let itemP4 of listTagPart4;">
-                          <nz-tag [nzColor]="colorTag" class="text-dark mt-1"># {{itemP4}}</nz-tag>
-                        </ng-container>
-                      </div>
-                    </ng-container>
-
-                    <ng-container *ngIf="i == 4">
-                      <div nz-col nzSpan="24" class="ms-4" [nzOffset]="1">
-                        <ng-container *ngFor="let itemP5 of listTagPart5;">
-                          <nz-tag [nzColor]="colorTag" class="text-dark mt-1"># {{itemP5}}</nz-tag>
-                        </ng-container>
-                      </div>
-                    </ng-container>
-
-                    <ng-container *ngIf="i == 5">
-                      <div nz-col nzSpan="24" class="ms-4" [nzOffset]="1">
-                        <ng-container *ngFor="let itemP6 of listTagPart6;">
-                          <nz-tag [nzColor]="colorTag" class="text-dark mt-1"># {{itemP6}}</nz-tag>
-                        </ng-container>
-                      </div>
-                    </ng-container>
-
-                    <ng-container *ngIf="i == 6">
-                      <div nz-col nzSpan="24" class="ms-4" [nzOffset]="1">
-                        <ng-container *ngFor="let itemP7 of listTagPart7;">
-                          <nz-tag [nzColor]="colorTag" class="text-dark mt-1"># {{itemP7}}</nz-tag>
-                        </ng-container>
-                      </div>
-                    </ng-container>
-
-
-                  </ng-container>
-                </div>
-              </nz-checkbox-wrapper>
-            </div>
-            <div class="col-12 fs-6">
-
-            </div>
-            <div class="col-1">
-              <button nz-button nzType="primary" class="mt-2 bg-primary border-0" style="width: 150px;"
-                      [nzShape]="'round'" nzSize="large" nzBlock (click)="startPractice()">Luyện tập
-              </button>
-            </div>
+          <hr width="60%">
+        </div>
+        <!--Nội dung bài test -->
+        <div id="main" class="col-md-8 web-font">
+          <div *ngFor="let question of listQuestion">
+            <input type="hidden" class="hidden" id="correctanswer{{ question.number }}" name="correctanswer{{ question.number }}" [value]="question.correctanswer" />
           </div>
-        </nz-tab>
-      </nz-tabset>
+        </div>
+
+      </div>
     </div>
-  </div>
+  </form>
 </div>

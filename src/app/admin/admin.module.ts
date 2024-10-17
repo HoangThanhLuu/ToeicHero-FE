@@ -1,5 +1,5 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from "@angular/common";
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {AdminComponent} from './admin.component';
 import {HomeComponent} from './home/home.component';
 import {NavbarComponent} from './navbar/navbar.component';
@@ -12,6 +12,11 @@ import { TopicComponent } from './topic/topic.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { AddTopicComponent } from './topic/add-topic/add-topic.component';
 import { UsersComponent } from './users/users.component'
+import {NzUploadModule} from "ng-zorro-antd/upload";
+import {NzIconModule} from "ng-zorro-antd/icon";
+import {FormsModule} from "@angular/forms";
+import {NgxSpinnerModule} from "ngx-spinner";
+import { AddExamComponent } from './exam/add-exam/add-exam.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +29,17 @@ import { UsersComponent } from './users/users.component'
     TopicComponent,
     PageHeaderComponent,
     AddTopicComponent,
-    UsersComponent
+    UsersComponent,
+    AddExamComponent
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    NzUploadModule,
+    NzIconModule,
+    NgOptimizedImage,
+    FormsModule,
+    NgxSpinnerModule,
   ],
 })
 export class AdminModule {
