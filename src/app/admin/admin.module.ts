@@ -17,30 +17,56 @@ import {NzIconModule} from "ng-zorro-antd/icon";
 import {FormsModule} from "@angular/forms";
 import {NgxSpinnerModule} from "ngx-spinner";
 import { AddExamComponent } from './exam/add-exam/add-exam.component';
+import { AudioPlayerComponent } from './exam/audio-player/audio-player.component';
+import { EditExamComponent } from './exam/edit-exam/edit-exam.component';
+import { ExamDetailComponent } from './exam/exam-detail/exam-detail.component';
+import {NzButtonModule} from "ng-zorro-antd/button";
+import {TooltipModule} from "ngx-bootstrap/tooltip";
+import { QuestionComponent } from './exam/question/question.component';
+import { EditQuestionPart1Component } from './exam/edit-question-part1/edit-question-part1.component';
+import {NzAvatarModule} from "ng-zorro-antd/avatar";
+import {NzImageModule} from "ng-zorro-antd/image";
+import { EditQuestionPart34Component } from './exam/edit-question-part34/edit-question-part34.component';
+import { EditPartComponent } from './exam/edit-part/edit-part.component';
 
 @NgModule({
-  declarations: [
-    AdminComponent,
-    HomeComponent,
-    NavbarComponent,
-    FooterAdminComponent,
-    SidebarComponent,
-    ExamComponent,
-    TopicComponent,
-    PageHeaderComponent,
-    AddTopicComponent,
-    UsersComponent,
-    AddExamComponent
-  ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    NzUploadModule,
-    NzIconModule,
-    NgOptimizedImage,
-    FormsModule,
-    NgxSpinnerModule,
-  ],
+    declarations: [
+        AdminComponent,
+        HomeComponent,
+        NavbarComponent,
+        FooterAdminComponent,
+        SidebarComponent,
+        ExamComponent,
+        TopicComponent,
+        PageHeaderComponent,
+        AddTopicComponent,
+        UsersComponent,
+        AddExamComponent,
+        AudioPlayerComponent,
+        EditExamComponent,
+        ExamDetailComponent,
+        QuestionComponent,
+        EditQuestionPart1Component,
+        EditQuestionPart34Component,
+        EditPartComponent
+    ],
+    imports: [
+        CommonModule,
+        AdminRoutingModule,
+        NzUploadModule,
+        NzIconModule,
+        NgOptimizedImage,
+        FormsModule,
+        NgxSpinnerModule,
+        NzButtonModule,
+        TooltipModule,
+        NzAvatarModule,
+        NzImageModule,
+    ],
+    exports: [
+        PageHeaderComponent,
+        AudioPlayerComponent
+    ]
 })
 export class AdminModule {
 }

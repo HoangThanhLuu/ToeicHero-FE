@@ -5,6 +5,9 @@ import {HomeComponent} from "./home/home.component";
 import {LoginComponent} from "./login/login.component";
 import {TestComponent} from "./test/test.component";
 import {OtpConfirmComponent} from "./login/otp-confirm/otp-confirm.component";
+import {ListTestComponent} from "./list-test/list-test.component";
+import {ProfileComponent} from "./profile/profile.component";
+import {StartComponent} from "./test/start/start.component";
 
 
 const routes: Routes = [
@@ -23,13 +26,26 @@ const routes: Routes = [
         path: 'login',
         component: LoginComponent
       }, {
-        path: 'test',
-        component: TestComponent
+        path: 'list-test',
+        component: ListTestComponent
+      }, {
+        path: 'profile',
+        component: ProfileComponent
+      }, {
+        path: 'test/:examId',
+        children: [
+          {
+            path: '',
+            component: TestComponent
+          },
+          {
+            path: 'start',
+            component: StartComponent
+          }
+        ]
       }
     ]
-
   }
-
 ];
 
 @NgModule({

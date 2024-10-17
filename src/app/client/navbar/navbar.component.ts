@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {BsModalService} from "ngx-bootstrap/modal";
 import {LoginComponent} from "../login/login.component";
 import {HttpClient} from "@angular/common/http";
@@ -8,8 +8,13 @@ import {HttpClient} from "@angular/common/http";
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
 
+  activeNav: string = 'home';
+
+  ngOnInit(): void {
+    this.activeHeader();
+  }
 
   constructor(private bs: BsModalService, private http: HttpClient) {
   }
@@ -18,13 +23,19 @@ export class NavbarComponent {
     this.bs.show(LoginComponent, {class: 'modal-lg modal-dialog-centered'});
   }
 
-  test() {
-    this.http.get("/api/test")
-      .subscribe((res: any) => {
-        console.log(res);
-        if(res?.succes) {
-          alert('ket noi dc roi a');
-        }
-      });
+  activeHeader() {
+    const url = window.location.href;
+    if (url.includes('home')) {
+      this.activeNav = 'home';
+    } else if (url.includes('test')) {
+      this.activeNav = 'test';
+    } else if (url.includes('result')) {
+      this.activeNav = 'result';
+    } else if (url.includes('profile')) {
+      this.activeNav = 'profile';
+    } else if (url.includes('logout')) {
+      this.activeNav = 'logout';
+    }
   }
+
 }

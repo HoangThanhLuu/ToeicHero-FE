@@ -54,7 +54,7 @@ export class TopicComponent implements OnInit {
   }
 
   trackByFn(index: number, item: any): any {
-    return item.id;
+    return item.topicId;
   }
 
 
