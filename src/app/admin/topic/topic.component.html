@@ -14,15 +14,26 @@
           <table class="table">
             <thead>
             <tr>
-              <th> Mã bộ đề thi</th>
-              <th> Tên bộ đề thi</th>
-              <th> Hình ảnh</th>
-              <th> Trạng thái</th>
-              <th> #</th>
+              <th style="width: 15%;"> Mã bộ đề thi</th>
+              <th style="width: 40%;"> Tên bộ đề thi</th>
+              <th style="width: 30%;"> Hình ảnh</th>
+              <th style="width: 15%;"> #</th>
             </tr>
             </thead>
             <tbody>
-
+            <ng-container *ngFor="let item of listTopic; trackBy: trackByFn">
+              <tr>
+                <td>{{ item.topicId }}</td>
+                <td>{{ item.topicName }}</td>
+                <td><img [src]="item.topicImage" style="height: 100px; width: 100px;" alt="Hình ảnh"></td>
+                <td>
+                  <button class="btn btn-gradient-info btn-rounded btn-fw" (click)="editTopic(item)">Sửa
+                  </button>
+                  <button class="btn btn-gradient-danger btn-rounded btn-fw" (click)="deleteTopic(item)">Xóa
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
             </tbody>
           </table>
         </div>

@@ -1,0 +1,59 @@
+<div class="col-12 grid-margin stretch-card mb-0">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title" [innerText]="titleShow"></h4>
+      <form class="forms-sample">
+        <ng-container *ngIf="currentPart?.partCode == 'PART1'">
+          <div class="form-group">
+            <label>Hình ảnh</label>
+            <div class="container-upload" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
+              <div class="upload-box">
+                <div class="content">
+                  <div class="upload-icon" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
+                    <i class="mdi mdi-cloud-upload text-dark" style="height: 100px; width: 100px;"></i>
+                  </div>
+                  <h5 class="text-dark" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
+                    Kéo và thả tập tin của bạn vào đây
+                  </h5>
+                  <p>hoặc</p>
+                  <div class="upload-btn-wrapper">
+                    <button class="btn btn-gradient-primary">Tải lên</button>
+                    <input type="file" (change)="handleFileInput($event)" (drop)="handleDrop($event)"
+                           (dragover)="allowDrop($event)"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="box-body" [ngClass]="{'d-none' : !isShowImage}">
+              <img [src]="this.imageSrc" alt="" style="width: 200px; height: 200px;" class="ant-image-preview">
+            </div>
+          </div>
+        </ng-container>
+
+        <div class="form-group">
+          <label>{{ 'Audio'}}</label>
+          <input type="file" [name]="'audio-part'" (change)="onFileSelected($event)" accept="audio/*"
+                 class="file-upload-default" #fileInput>
+          <div class="input-group col-xs-12">
+            <input type="text" class="form-control file-upload-info" [value]="selectedFileAudio?.name" disabled
+                   [placeholder]="'Audio part'">
+            <span class="input-group-append">
+                <button type="button" class="file-upload-browse btn btn-gradient-danger btn-icon-text"
+                        (click)="triggerFileInput(fileInput)">
+                            <i class="mdi mdi-upload btn-icon-prepend"></i> Tải lên</button>
+              </span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="examName">Đáp án</label>
+          <input type="text" class="form-control" (input)="updateCorrectAnswer($event)" [ngClass]="{'error-input-custom': showBorderError}" id="examName"
+                 [value]="question.correctAnswer"
+                 placeholder="Nhập tên đề thi">
+        </div>
+      </form>
+      <button class="btn btn-gradient-primary" (click)="editQuestion()">Xác nhận</button>
+      <button class="btn btn-secondary ms-2" (click)="close()">Hủy</button>
+    </div>
+  </div>
+</div>
+

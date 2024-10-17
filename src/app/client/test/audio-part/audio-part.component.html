@@ -1,0 +1,24 @@
+<div class="audio-player bg-inverse-dark">
+  <div class="timeline">
+    <div class="progress bg-gradient-danger"></div>
+  </div>
+  <div class="controls">
+    <div class="play-container">
+      <div class="toggle-play" [ngClass]="{'play': !isPlaying, 'pause': isPlaying}" (click)="playPause()"></div>
+    </div>
+    <div class="time">
+      <div class="current">{{this.currentTime}}</div>
+      <div class="divider">/</div>
+      <div class="length">{{this.duration}}</div>
+    </div>
+    <div class="name" [innerText]="partName"></div>
+    <div class="volume-container">
+      <div class="volume-button">
+        <div class="volume icono-volumeMedium"></div>
+      </div>
+      <div class="volume-slider">
+        <div class="volume-percentage"></div>
+      </div>
+    </div>
+  </div>
+</div>

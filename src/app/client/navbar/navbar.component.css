@@ -49,6 +49,10 @@
   transition: .5s;
 }
 
+.dropdown-menu{
+  margin-left: -100px;
+}
+
 @media (min-width: 992px) {
   .navbar .nav-item .dropdown-menu {
     display: block;
@@ -66,4 +70,8 @@
     transition: .5s;
     opacity: 1;
   }
+}
+
+.navbar {
+  box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.3);
 }

@@ -181,3 +181,32 @@ $theme-colors: (
 
 /* Importing Datepicker SCSS file. */
 @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+@import "node_modules/ng-zorro-antd/ng-zorro-antd.min.css";
+@import "node_modules/ng-zorro-antd/style/index.min.css"; /* Import base styles */
+@import "node_modules/ng-zorro-antd/button/style/index.min.css";  /* Import one component's styles */
+@import 'ngx-toastr/toastr-bs5-alert';
+
+@import "node_modules/ng-zorro-antd/src/ng-zorro-antd.min.css";
+@import "node_modules/ng-zorro-antd/resizable/style/index.min.css";
+@import "node_modules/ng-zorro-antd/code-editor/style/index.min.css";
+@import "node_modules/ng-zorro-antd/graph/style/index.min.css";
+.fs-message{
+  font-size: 0.8rem;
+}
+.error-input-custom {
+  border: 1px solid red !important;
+}
+
+.back-to-top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: $default-text-color;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 10000;
+}

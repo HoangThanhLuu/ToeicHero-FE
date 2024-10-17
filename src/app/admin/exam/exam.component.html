@@ -3,3 +3,56 @@
   [currentPage]="currentPage">
 </app-page-header>
 
+<div class="row">
+  <div class="col-12 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">
+          <button class="btn btn-block btn-lg btn-gradient-primary" (click)="openFormAdd()">Thêm mới</button>
+        </h4>
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th style="width: 10%;"> Mã đề thi</th>
+              <th style="width: 10%;"> Bộ đề thi</th>
+              <th style="width: 20%;"> Tên đề thi</th>
+              <th style="width: 12.5%;"> Audio part 1</th>
+              <th style="width: 12.5%;"> Audio part 2</th>
+              <th style="width: 12.5%;"> Audio part 3</th>
+              <th style="width: 12.5%;"> Audio part 4</th>
+              <th style="width: 10%;"> #</th>
+            </tr>
+            </thead>
+            <tbody>
+            <ng-container *ngFor="let item of listExam; let i = index; trackBy: trackByFn">
+              <tr>
+                <td>{{ item?.examId }}</td>
+                <td>{{item?.topic?.topicName}}</td>
+                <td>{{ item.examName }}</td>
+                <td>
+                  <app-audio-player [audioSource]="item.audioPart1" partName="Part 1"></app-audio-player>
+                </td>
+                <td>
+                  <app-audio-player [audioSource]="item.audioPart2" partName="Part 2"></app-audio-player>
+                </td>
+                <td>
+                  <app-audio-player [audioSource]="item.audioPart3" partName="Part 3"></app-audio-player>
+                </td>
+                <td>
+                  <app-audio-player [audioSource]="item.audioPart4" partName="Part 4"></app-audio-player>
+                </td>
+                <td class="template-demo">
+                  <button class="btn btn-gradient-primary btn-sm" (click)="openDetail(item)">Chi tiết</button>
+                  <button class="btn btn-gradient-info btn-sm" (click)="openFormEdit(item)">Sửa</button>
+                  <button class="btn btn-gradient-danger btn-sm" (click)="delete(item)">Xóa</button>
+                </td>
+              </tr>
+            </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,265 @@
+<app-page-header
+        [title]="titleShow"
+        [currentPage]="currentPage">
+</app-page-header>
+
+<div class="row">
+    <div class="col-12 grid-margin">
+        <div class="card">
+            <div class="card-body">
+                <div class="template-demo">
+                    <button class="btn btn-block btn-outline-secondary btn-fw" (click)="backPreviousPage()">Quay lại
+                    </button>
+
+                    <button class="btn btn-block btn-lg btn-gradient-primary d-none"
+                            (click)="openFormAdd()">Thêm mới
+                    </button>
+                </div>
+                <div class="table-responsive">
+                    <ng-container *ngTemplateOutlet="getTemplatePartQuestion()"></ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #part1>
+    <table class="table table-hover" aria-label="Part 1">
+        <thead>
+        <tr>
+            <th style="width: 15%;"> Câu hỏi</th>
+            <th style="width: 20%;"> Hình câu hỏi</th>
+            <th style="width: 30%;"> Audio câu hỏi</th>
+            <th style="width: 15%;"> Đáp án</th>
+            <th style="width: 20%;"> #</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let item of listQuestion; let i = index; trackBy: trackByFn">
+            <tr>
+                <td>{{item.questionNumber}}</td>
+                <td>
+                    <img
+                            nz-image
+                            style="height: 100px; width: 100px; border-radius: 0;"
+                            [nzSrc]="item.questionImage"
+                            [nzFallback]="fallback"
+                            alt="TOEICUTE"
+                    />
+                </td>
+                <td>
+                    <app-audio-player [audioSource]="item.questionAudio"
+                                      [partName]="'Câu hỏi ' + item.questionNumber"></app-audio-player>
+                </td>
+                <td>{{item.correctAnswer}}</td>
+                <td>
+                    <button class="btn btn-gradient-primary btn-rounded btn-fw" (click)="openFormEditPart12(item)">Sửa
+                    </button>
+                </td>
+            </tr>
+        </ng-container>
+        </tbody>
+    </table>
+</ng-template>
+
+<ng-template #part2>
+    <table class="table table-hover" aria-label="Part 2">
+        <thead>
+        <tr>
+            <th style="width: 15%;"> Câu hỏi</th>
+            <th style="width: 45%;"> Audio câu hỏi</th>
+            <th style="width: 20%;"> Đáp án</th>
+            <th style="width: 20%;"> #</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let item of listQuestion; let i = index; trackBy: trackByFn">
+            <tr>
+                <td>{{item.questionNumber}}</td>
+                <td>
+                    <app-audio-player [audioSource]="item.questionAudio"
+                                      [partName]="'Câu hỏi ' + item.questionNumber"></app-audio-player>
+                </td>
+                <td>{{item.correctAnswer}}</td>
+                <td>
+                    <button class="btn btn-gradient-primary btn-rounded btn-fw" (click)="openFormEditPart12(item)">Sửa
+                    </button>
+                </td>
+            </tr>
+        </ng-container>
+        </tbody>
+    </table>
+</ng-template>
+
+
+<ng-template #part34>
+    <table class="table table-hover" aria-label="Part 3-4">
+        <thead>
+        <tr>
+            <th style="width: 9%;"> Câu hỏi</th>
+            <th style="width: 10%;"> Hình ảnh</th>
+            <th style="width: 15%;"> Nội dung</th>
+            <th style="width: 9%;"> Đáp án A</th>
+            <th style="width: 9%;"> Đáp án B</th>
+            <th style="width: 9%;"> Đáp án C</th>
+            <th style="width: 9%;"> Đáp án D</th>
+            <th style="width: 10%;"> Audio câu hỏi</th>
+            <th style="width: 10%;"> Đáp án</th>
+            <th style="width: 10%;"> #</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let item of listQuestion; let i = index; trackBy: trackByFn">
+            <tr>
+                <td>{{item.questionNumber}}</td>
+                <td>
+                    <ng-container *ngIf="this.isQuestionOfPart34HasImage(item); else noImage">
+                        <img
+                                nz-image
+                                style="height: 100px; width: 100px; border-radius: 0;"
+                                [nzSrc]="item.questionImage || 'error'"
+                                [nzFallback]="fallback"
+                                alt="TOEICUTE"
+                        />
+                    </ng-container>
+                </td>
+                <td class="text-wrap" [tooltip]="item.questionContent">{{item.questionContent}}</td>
+                <td class="text-wrap" [tooltip]="item.answerA">{{item.answerA}}</td>
+                <td class="text-wrap" [tooltip]="item.answerB">{{item.answerB}}</td>
+                <td class="text-wrap" [tooltip]="item.answerC">{{item.answerC}}</td>
+                <td class="text-wrap" [tooltip]="item.answerD">{{item.answerD}}</td>
+                <td>
+                    <ng-container *ngIf="this.isQuestionOfPart34HasAudio(item); else noAudio">
+                        <app-audio-player [audioSource]="item.questionAudio"></app-audio-player>
+                    </ng-container>
+                </td>
+                <td>{{item.correctAnswer}}</td>
+                <td>
+                    <button class="btn btn-gradient-primary btn-rounded btn-fw" (click)="openFormEditPart34(item)">Sửa
+                    </button>
+                </td>
+            </tr>
+        </ng-container>
+        </tbody>
+    </table>
+</ng-template>
+
+<ng-template #noImage>
+    <label class="badge badge-info">Không có hình ảnh</label>
+</ng-template>
+<ng-template #noAudio>
+    <label class="badge badge-info">Không có audio</label>
+</ng-template>
+
+<ng-template #part5>
+    <table class="table table-hover" aria-label="Part 5">
+        <thead>
+        <tr>
+            <th style="width: 10%;"> Câu hỏi</th>
+            <th style="width: 20%;"> Nội dung</th>
+            <th style="width: 12.5%;"> Đáp án A</th>
+            <th style="width: 12.5%;"> Đáp án B</th>
+            <th style="width: 12.5%;"> Đáp án C</th>
+            <th style="width: 12.5%;"> Đáp án D</th>
+            <th style="width: 10%;"> Đáp án</th>
+            <th style="width: 10%;"> #</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let item of listQuestion; let i = index; trackBy: trackByFn">
+            <tr>
+                <td>{{item.questionNumber}}</td>
+                <td class="text-wrap" [tooltip]="item.questionContent">{{item.questionContent}}</td>
+                <td class="text-wrap" [tooltip]="item.answerA">{{item.answerA}}</td>
+                <td class="text-wrap" [tooltip]="item.answerB">{{item.answerB}}</td>
+                <td class="text-wrap" [tooltip]="item.answerC">{{item.answerC}}</td>
+                <td class="text-wrap" [tooltip]="item.answerD">{{item.answerD}}</td>
+                <td>{{item.correctAnswer}}</td>
+                <td>
+                    <button class="btn btn-gradient-primary btn-rounded btn-fw" (click)="openFormEdit5(item)">Sửa
+                    </button>
+                </td>
+            </tr>
+        </ng-container>
+        </tbody>
+    </table>
+</ng-template>
+
+
+<ng-template #part6>
+    <table class="table table-hover" aria-label="Part 6">
+        <thead>
+        <tr>
+            <th style="width: 10%;"> Câu hỏi</th>
+            <th style="width: 20%;"> Đoạn văn</th>
+            <th style="width: 12.5%;"> Đáp án A</th>
+            <th style="width: 12.5%;"> Đáp án B</th>
+            <th style="width: 12.5%;"> Đáp án C</th>
+            <th style="width: 12.5%;"> Đáp án D</th>
+            <th style="width: 10%;"> Đáp án</th>
+            <th style="width: 10%;"> #</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let item of listQuestion; let i = index; trackBy: trackByFn">
+            <tr>
+                <td>{{item.questionNumber}}</td>
+                <td class="text-wrap" [tooltip]="item.paragraph1">{{item.paragraph1}}</td>
+                <td class="text-wrap" [tooltip]="item.answerA">{{item.answerA}}</td>
+                <td class="text-wrap" [tooltip]="item.answerB">{{item.answerB}}</td>
+                <td class="text-wrap" [tooltip]="item.answerC">{{item.answerC}}</td>
+                <td class="text-wrap" [tooltip]="item.answerD">{{item.answerD}}</td>
+                <td>{{item.correctAnswer}}</td>
+                <td>
+                    <button class="btn btn-gradient-primary btn-rounded btn-fw" (click)="openFormEdit67(item)">Sửa
+                    </button>
+                </td>
+            </tr>
+        </ng-container>
+        </tbody>
+    </table>
+</ng-template>
+
+<ng-template #part7>
+    <table class="table table-hover" aria-label="Part 7">
+        <thead>
+        <tr>
+            <th style="width: 10%;"> Câu hỏi</th>
+            <th style="width: 15%;"> Đoạn văn 1</th>
+            <th style="width: 15%;"> Đoạn văn 2</th>
+            <th style="width: 10%;"> Đáp án A</th>
+            <th style="width: 10%;"> Đáp án B</th>
+            <th style="width: 10%;"> Đáp án C</th>
+            <th style="width: 10%;"> Đáp án D</th>
+            <th style="width: 10%;"> Đáp án</th>
+            <th style="width: 10%;"> #</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let item of listQuestion; let i = index; trackBy: trackByFn">
+            <tr>
+                <td>{{item.questionNumber}}</td>
+                <td class="text-wrap" [tooltip]="item.paragraph1">{{item.paragraph1}}</td>
+                <td class="text-wrap" [tooltip]="item.paragraph2">{{item.paragraph2}}</td>
+                <td class="text-wrap" [tooltip]="item.answerA">{{item.answerA}}</td>
+                <td class="text-wrap" [tooltip]="item.answerB">{{item.answerB}}</td>
+                <td class="text-wrap" [tooltip]="item.answerC">{{item.answerC}}</td>
+                <td class="text-wrap" [tooltip]="item.answerD">{{item.answerD}}</td>
+                <td>{{item.correctAnswer}}</td>
+                <td>
+                    <button class="btn btn-gradient-primary btn-rounded btn-fw" (click)="openFormEdit67(item)">Sửa
+                    </button>
+                </td>
+            </tr>
+        </ng-container>
+        </tbody>
+    </table>
+</ng-template>
+
+
+<ng-template #notFound>
+    <div class="text-center">
+        <h3>Không có câu hỏi nào</h3>
+    </div>
+</ng-template>
