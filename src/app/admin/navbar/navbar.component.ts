@@ -12,6 +12,7 @@ export class NavbarComponent {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.setItem('tokenValid', 'false');
     window.location.href = '/home';
   }
 }

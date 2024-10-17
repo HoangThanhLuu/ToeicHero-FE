@@ -35,6 +35,12 @@ import {NzRadioModule} from "ng-zorro-antd/radio";
 import {NzImageModule} from "ng-zorro-antd/image";
 import {NzDividerModule} from "ng-zorro-antd/divider";
 import { LoginPopupComponent } from './login/login-popup/login-popup.component';
+import { ResultComponent } from './test/result/result.component';
+import { PracticeComponent } from './test/practice/practice.component';
+import {NzCardModule} from "ng-zorro-antd/card";
+import {NzIconModule} from "ng-zorro-antd/icon";
+import {NzListModule} from "ng-zorro-antd/list";
+import {NzTypographyModule} from "ng-zorro-antd/typography";
 
 @NgModule({
   declarations: [
@@ -56,7 +62,9 @@ import { LoginPopupComponent } from './login/login-popup/login-popup.component';
     UpdateProfileComponent,
     StartComponent,
     AudioPartComponent,
-    LoginPopupComponent
+    LoginPopupComponent,
+    ResultComponent,
+    PracticeComponent
   ],
   imports: [
     NgbModule,
@@ -78,6 +86,10 @@ import { LoginPopupComponent } from './login/login-popup/login-popup.component';
     NzRadioModule,
     NzImageModule,
     NzDividerModule,
+    NzCardModule,
+    NzIconModule,
+    NzListModule,
+    NzTypographyModule,
   ],
   providers: [],
   exports: [

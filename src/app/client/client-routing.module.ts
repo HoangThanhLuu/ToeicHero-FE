@@ -7,6 +7,8 @@ import {ListTestComponent} from "./list-test/list-test.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {StartComponent} from "./test/start/start.component";
 import {LoginPopupComponent} from "./login/login-popup/login-popup.component";
+import {ResultComponent} from "./test/result/result.component";
+import {PracticeComponent} from "./test/practice/practice.component";
 
 const routes: Routes = [
   {
@@ -39,6 +41,14 @@ const routes: Routes = [
           {
             path: 'start',
             component: StartComponent
+          },
+          {
+            path: 'result/:resultId',
+            component: ResultComponent
+          },
+          {
+            path: 'practice',
+            component: PracticeComponent
           }
         ]
       }

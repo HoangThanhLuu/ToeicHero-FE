@@ -1,10 +1,9 @@
-import {Component, ElementRef, HostListener, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
 import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
 import {BsModalService} from "ngx-bootstrap/modal";
 import {NgxSpinnerService} from "ngx-spinner";
-import {GetHeaderService} from "../../../common/get-headers/get-header.service";
 import {ActivatedRoute} from "@angular/router";
 import {finalize} from "rxjs";
 import {AuthServiceService} from "../../../auth-service.service";
@@ -29,6 +28,7 @@ export class StartComponent implements OnInit {
   questionPart7Has4Answer: any = ['158', '162', '172'];
   questionPart7Has2Paragraph: any = ['176', '181', '186', '191', '196'];
   selectedAnswer: { [key: number]: string } = {};
+  param: any = {};
 
   constructor(private toast: ToastrService,
               private http: HttpClient,
@@ -36,7 +36,6 @@ export class StartComponent implements OnInit {
               private bs: BsModalService,
               private bsModalService: BsModalService,
               private spinnerService: NgxSpinnerService,
-              private getHeaderService: GetHeaderService,
               private authService: AuthServiceService,
               private route: ActivatedRoute) {
     this.initializeButtonStates();
@@ -110,6 +109,7 @@ export class StartComponent implements OnInit {
       if (this.totalTimeInSeconds <= 0) {
         clearInterval(interval);
         this.toast.success('Hết thời gian làm bài');
+        this.submitTest();
       }
     }, 1000);
   }
@@ -119,47 +119,48 @@ export class StartComponent implements OnInit {
   }
 
   finishTest() {
-    // const isNotSelectAll = this.checkSelectedAll();
-    // const isNotSubmit = this.totalTimeInSeconds > 0;
-    // if (isNotSelectAll && isNotSubmit) {
-    //   const confirmModal: NzModalRef = this.modal.create({
-    //     nzTitle: `Xác nhận`,
-    //     nzContent: `Bạn chưa hoàn thành bài thi, bạn có muốn nộp bài không?`,
-    //     nzCentered: true,
-    //     nzFooter: [
-    //       {
-    //         label: 'Hủy',
-    //         onClick: () => confirmModal.destroy()
-    //       },
-    //       {
-    //         label: 'Đồng ý',
-    //         type: 'primary',
-    //         onClick: () => {
-    //           this.submitTest();
-    //           confirmModal.destroy();
-    //         }
-    //       }
-    //     ]
-    //   });
-    // }
-    const finishExamData = {
-      examId: this.currentExam.examId,
-      answers: this.mapAnswersToArray(),
-      totalTime: this.totalTimeInSeconds,
-    };
-    this.http.post('/api/exam/finish-exam', {})
+    const isNotSelectAll = this.checkSelectedAll();
+    const isNotSubmit = this.totalTimeInSeconds > 0;
+    if (isNotSelectAll && isNotSubmit) {
+      const confirmModal: NzModalRef = this.modal.create({
+        nzTitle: `Xác nhận`,
+        nzContent: `Bạn chưa hoàn thành bài thi, bạn có muốn nộp bài không?`,
+        nzCentered: true,
+        nzFooter: [
+          {
+            label: 'Hủy',
+            onClick: () => confirmModal.destroy()
+          },
+          {
+            label: 'Đồng ý',
+            type: 'primary',
+            onClick: () => {
+              this.submitTest();
+              confirmModal.destroy();
+            }
+          }
+        ]
+      });
+    }
+  }
+
+  submitTest() {
+    this.param.timeRemaining = this.totalTimeInSeconds;
+    this.param.totalQuestion = 200;
+    this.spinnerService.show();
+    this.http.post('/api/exam/finish-exam', this.param)
+      .pipe(
+        finalize(() => {
+          this.spinnerService.hide();
+        }))
       .subscribe((res: any) => {
         if (res?.success) {
-          console.log(res);
           this.toast.success('Nộp bài thành công');
+          window.location.href = `/test${this.currentExam?.examId}/result/${res?.data}`;
         } else {
           this.toast.error(res?.message);
         }
       });
-  }
-
-  submitTest() {
-
   }
 
   initializeButtonStates() {
@@ -189,9 +190,14 @@ export class StartComponent implements OnInit {
   }
 
 
-  changeStateButton(selectedAnswerValue: string, questionId: number) {
+  changeStateButton(selectedAnswerValue: string, questionId: number, partCode: string) {
     this.selectedAnswer[questionId] = selectedAnswerValue;
     this.buttonStates[questionId] = true;
+    this.param.answers.forEach((answer: any) => {
+      if (answer.questionId === questionId) {
+        answer.answer = selectedAnswerValue;
+      }
+    });
   }
 
   switchToTab(partIndex: number, questionId: number) {
@@ -214,22 +220,20 @@ export class StartComponent implements OnInit {
   }
 
   private initializeSelectedAnswer() {
-    this.listPart.forEach((part: any) => {
+    this.param.examId = this.currentExam.examId;
+    this.param.totalTime = 120 * 60;
+    this.param.answers = [];
+    this.listPart.forEach((part: any, partIndex: any) => {
+      const partCode = part.partCode;
       part.questions.forEach((question: any) => {
+        const questionId = question.questionId;
         this.selectedAnswer[question.questionId] = '';
+        this.param.answers.push({
+          questionId: questionId,
+          answer: '',
+          partCode: partCode
+        });
       });
     });
-  }
-  private mapAnswersToArray() {
-    const answersArray = [];
-    for (const questionId in this.selectedAnswer) {
-      if (this.selectedAnswer.hasOwnProperty(questionId)) {
-        answersArray.push({
-          questionId: +questionId,
-          answer: this.selectedAnswer[questionId],
-        });
-      }
-    }
-    return answersArray;
   }
 }
