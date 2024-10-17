@@ -1,15 +1,19 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {navItems} from "./navbar/_nav";
+import {AdminLibBaseCss, AdminStyle} from "./admin.style";
+import {AddAssetsService} from "../add-assets.service";
+
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss',
-      './assets/vendors/mdi/css/materialdesignicons.min.css',
-      './assets/vendors/css/vendor.bundle.base.css']
+    ...AdminLibBaseCss,
+    './assets/css/style.css'
+  ]
 })
-export class AdminComponent implements OnInit{
-  public navItems = navItems;
+export class AdminComponent implements OnInit {
+  constructor(private assetService: AddAssetsService) {
+  }
+
   ngOnInit(): void {
-    console.log("navItems",navItems)
   }
 }

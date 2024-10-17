@@ -3,7 +3,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   .upload-box {
     padding: 20px;
     border: 2px dashed rgb(199, 199, 199);
@@ -20,6 +19,7 @@
       .upload-icon {
         img {
           width: 10%;
+          //   height: 8%;
           display: block;
           margin-left: auto;
           margin-right: auto;
@@ -61,5 +61,3 @@
     }
   }
 }
-
-

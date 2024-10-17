@@ -1,5 +1,8 @@
 import {Component, EventEmitter, Output} from '@angular/core';
+import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
+import {matchpassword} from "./matchpassword.validator";
 
 
 @Component({
@@ -16,10 +19,6 @@ export class LoginComponent {
   *
   *
   * */
-
-  constructor(private http: HttpClient) {
-  }
-
   @Output() close = new EventEmitter();
   @Output() signIn = new EventEmitter();
   @Output() signUp = new EventEmitter();
@@ -30,12 +29,52 @@ export class LoginComponent {
     this.isRegisterTab = !this.isRegisterTab;
   }
 
-  loginSubmit() {
-    this.http.get("/api/test")
-      .subscribe((data) => {
-        console.log(data);
+  public registerForm : FormGroup
+  private user: any;
+
+
+  constructor(private formBuilder: FormBuilder,
+              private http: HttpClient,
+              private router: Router) {
+    this.registerForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email,Validators.pattern("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")]],
+
+      fullName: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required]
+    },
+      {
+        validators:matchpassword
       });
   }
+
+
+  ngOnInit(): void {  }
+
+
+
+  register() {
+    console.log(this.registerForm.value)
+
+    this.http.post('/api/user/register', this.registerForm.value)
+      .subscribe((res: any) => {
+        if (res?.success) {
+          localStorage.setItem('currentUser', JSON.stringify(this.user));
+          // alert('Đăng ký thành công');
+          // this.registerForm.reset();
+          // this.switchTab();
+        } else {
+          alert('Đăng ký thất bại');
+        }
+      });
+
+
+    console.log('Dữ liệu nhập vào form:', this.registerForm.value);
+
+
+  }
+
+
 }
 
 

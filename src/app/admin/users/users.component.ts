@@ -23,7 +23,7 @@ export class UsersComponent implements OnInit{
   constructor(private http: HttpClient) {
   }
   ngOnInit(): void {
-    this.http.get("/api/admin/user/list")
+    this.http.get("/api/admin/user/find-all")
       .subscribe((res: any) => {
          if(res?.success){
            this.listUser = res?.data;
@@ -35,23 +35,15 @@ export class UsersComponent implements OnInit{
     this.showOptions = !this.showOptions;
   }
 
-  changeState(userId: any, status: string) {
-    this.http.post("/api/admin/user/update-user", {id: userId, status: status})
-      .subscribe((res: any) => {
-        if(res.success == true){
-          alert('Cập nhật thành công');
-          const indexUser = this.listUser.findIndex((item: any) => item.userId == userId);
-          this.listUser[indexUser].status = status;
-        } else {
-          alert('Lỗi hệ thống. Vui lòng thử lại sau')
-        }
-
-      });
+  changeState(newState: string) {
+    this.selectedState = newState;
+    this.showOptions = false;
+    this.currentStateClass = 'state-' + newState.toLowerCase();
   }
 
   getCssStatus(item: any) {
     switch (item) {
-      case 'BLOCKED': return 'danger';
+      case 'BLOCK': return 'danger';
       case 'INACTIVE': return 'warning';
       default: return 'success';
     }
