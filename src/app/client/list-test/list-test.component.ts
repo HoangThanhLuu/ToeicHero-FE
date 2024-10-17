@@ -31,7 +31,7 @@ export class ListTestComponent implements OnInit {
 
   getListTopic() {
     this.spinnerService.show();
-    this.http.get('/api/topic/list')
+    this.http.get<any>('/api/topic/list')
       .subscribe((res: any) => {
         if (res?.success) {
           this.listTopic = res?.data;
@@ -53,7 +53,7 @@ export class ListTestComponent implements OnInit {
 
   changeTopic(i: number) {
     this.spinnerService.show();
-    this.http.get(`/api/exam/list-by-topic/${this.listTopic[i].topicId}`)
+    this.http.get<any>(`/api/exam/list-by-topic/${this.listTopic[i].topicId}`)
       .pipe(finalize(() => {
         this.spinnerService.hide();
       }))
@@ -68,7 +68,7 @@ export class ListTestComponent implements OnInit {
   }
 
   private getListExam() {
-    this.http.get('/api/exam/list')
+    this.http.get<any>('/api/exam/list')
       .pipe(finalize(() => {
         this.spinnerService.hide();
       }))

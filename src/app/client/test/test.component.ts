@@ -5,7 +5,7 @@ import {NzModalService} from "ng-zorro-antd/modal";
 import {BsModalService} from "ngx-bootstrap/modal";
 import {NgxSpinnerService} from "ngx-spinner";
 import {GetHeaderService} from "../../common/get-headers/get-header.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {finalize} from "rxjs";
 
 @Component({
@@ -18,13 +18,13 @@ export class TestComponent implements OnInit {
   allChecked = false;
   indeterminate = true;
   checkOptionsOne = [
-    {label: 'Part 1 (6 câu hỏi)', value: 'PART1', checked: false},
-    {label: 'Part 2 (25 câu hỏi)', value: 'PART2', checked: false},
-    {label: 'Part 3 (39 câu hỏi)', value: 'PART3', checked: false},
-    {label: 'Part 4 (30 câu hỏi)', value: 'PART4', checked: false},
-    {label: 'Part 5 (30 câu hỏi)', value: 'PART5', checked: false},
-    {label: 'Part 6 (16 câu hỏi)', value: 'PART6', checked: false},
-    {label: 'Part 7 (54 câu hỏi)', value: 'PART7', checked: false},
+    {label: 'Part 1 (6 câu hỏi)', value: 'Part 1', checked: true},
+    {label: 'Part 2 (25 câu hỏi)', value: 'Part 2', checked: false},
+    {label: 'Part 3 (39 câu hỏi)', value: 'Part 3', checked: false},
+    {label: 'Part 4 (30 câu hỏi)', value: 'Part 4', checked: false},
+    {label: 'Part 5 (30 câu hỏi)', value: 'Part 5', checked: false},
+    {label: 'Part 6 (16 câu hỏi)', value: 'Part 6', checked: false},
+    {label: 'Part 7 (54 câu hỏi)', value: 'Part 7', checked: false},
   ];
 
   listTagPart1 = [
@@ -129,7 +129,6 @@ export class TestComponent implements OnInit {
               private bsModalService: BsModalService,
               private spinnerService: NgxSpinnerService,
               private getHeaderService: GetHeaderService,
-              private router: Router,
               private route: ActivatedRoute) {
   }
 
@@ -183,23 +182,10 @@ export class TestComponent implements OnInit {
   }
 
   startFullTest() {
-    window.location.href = `${window.location.href}/start`
+      window.location.href = `${window.location.href}/start`
   }
 
   startPractice() {
-    if (this.checkOptionsOne.filter(item => item.checked).length === 0) {
-      this.toast.error('Vui lòng chọn ít nhất 1 part để luyện tập');
-      return;
-    }
-    if (this.allChecked) {
-      window.location.href = `${window.location.href}/start`;
-      return;
-    }
-    const listPart = this.checkOptionsOne.filter(item => item.checked).map(item => item.value);
-    const listPartString = listPart.join(',');
-    const routeParams = {
-      part: listPartString,
-    };
-    this.router.navigate([`/test/${this.currentExam?.examId}/practice`], { queryParams: routeParams });
+
   }
 }

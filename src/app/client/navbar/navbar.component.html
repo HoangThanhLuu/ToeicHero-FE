@@ -1,33 +1,36 @@
-<nav class="navbar navbar-expand-lg bg-white navbar-light p-0 wow fadeIn" data-wow-delay="0.1s">
-  <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-    <h1 class="m-0 text-primary d-flex align-items-center">
-      <img src="assets/images/logo_tachnen.png" width="60" height="60" alt="">
-      ToeicUte
-    </h1>
-  </a>
-  <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarCollapse">
-    <div class="navbar-nav ms-auto p-4 p-lg-0">
-      <a href="" class="nav-item nav-link" [ngClass]="{'active': activeNav=='home'}">Trang chủ</a>
-      <a href="/list-test" class="nav-item nav-link" [ngClass]="{'active': activeNav=='test'}">Đề thi</a>
-      <a href="" class="nav-item nav-link">Kết quả</a>
-      <a href="" class="nav-item nav-link d-xl-none">Trang cá nhân</a>
-      <a href="/otp" class="nav-item nav-link">Liên hệ</a>
-      <a href="javascript:;" (click)="openLogin()" class="nav-item nav-link" [ngClass]="{'d-none': isLogin}">Đăng
-        nhập</a>
+<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 wow fadeIn" data-wow-delay="0.1s">
+    <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <h1 class="m-0 text-primary d-flex align-items-center">
+            <img src="assets/images/logo_tachnen.png" width="60" height="60" alt="">
+            ToeicUte
+        </h1>
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a href="" class="nav-item nav-link" [ngClass]="{'active': activeNav=='home'}">Trang chủ</a>
+            <a href="/list-test" class="nav-item nav-link" [ngClass]="{'active': activeNav=='test'}">Đề thi</a>
+            <a href="" class="nav-item nav-link">Kểt quả</a>
+            <a href="/otp" class="nav-item nav-link">Liên hệ</a>
+            <a href="javascript:;" (click)="openLogin()" class="nav-item nav-link">Đăng nhập</a>
+            <a href="" class="nav-item nav-link d-none" id="logout">Đăng xuất</a>
+            <a href="" class="nav-item nav-link d-xl-none">Thi thử</a>
+            <a href="" class="nav-item nav-link d-xl-none">Trang cá nhân</a>
+        </div>
+      <div class="nav-item dropdown">
+        <a href="javascript:;" class="navbar-brand d-flex align-items-center">
+          <img class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+               src="/assets/images/default-avatar.jpg" width="60" height="60" class="rounded-circle d-none d-lg-block"
+               alt="Avatar"/>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="/profile">Trang cá nhân</a></li>
+          <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+
+        </ul>
+      </div>
+
     </div>
-    <div class="nav-item dropdown" [ngClass]="{'d-none': !isLogin}">
-      <a href="javascript:;" class="navbar-brand d-flex align-items-center">
-        <img class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-             src="/assets/images/default-avatar.jpg" width="60" height="60" class="rounded-circle d-none d-lg-block"
-             alt="Avatar"/>
-      </a>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="/profile">Trang cá nhân</a></li>
-        <li><a class="dropdown-item" href="javascript:;" (click)="logout()">Đăng xuất</a></li>
-      </ul>
-    </div>
-  </div>
 </nav>
