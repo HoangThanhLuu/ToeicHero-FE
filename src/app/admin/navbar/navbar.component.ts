@@ -1,18 +1,14 @@
-import {Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import {AdminLibBaseCss2, AdminStyle} from "../admin.style";
-
+import { ClassToggleService, HeaderComponent } from '@coreui/angular';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css', ...AdminLibBaseCss2, ...AdminStyle]
+  styleUrls: ['./navbar.component.css', '../assets/css/style.css']
 })
-export class NavbarComponent {
+export class NavbarComponent extends HeaderComponent{
   @Input() sidebarId: string = "sidebar";
-
-  logout() {
-    localStorage.removeItem('token');
-    localStorage.setItem('tokenValid', 'false');
-    window.location.href = '/home';
+  constructor(private classToggler: ClassToggleService) {
+    super();
   }
 }

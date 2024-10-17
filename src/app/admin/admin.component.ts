@@ -1,25 +1,15 @@
-import {Component, HostListener, OnInit} from '@angular/core';
-import {AdminLibBaseCss} from "./admin.style";
-import {AddAssetsService} from "../add-assets.service";
-
+import {Component, Input, OnInit} from '@angular/core';
+import {navItems} from "./navbar/_nav";
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss',
-    ...AdminLibBaseCss,
-    './assets/css/style.css'
-  ]
+      './assets/vendors/mdi/css/materialdesignicons.min.css',
+      './assets/vendors/css/vendor.bundle.base.css']
 })
-export class AdminComponent implements OnInit {
-  isShow: boolean = false;
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    this.isShow = window.scrollY > 100;
-  }
-
-  scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+export class AdminComponent implements OnInit{
+  public navItems = navItems;
   ngOnInit(): void {
+    console.log("navItems",navItems)
   }
 }

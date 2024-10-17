@@ -1,46 +1,26 @@
-import {NgModule} from '@angular/core';
+import { NgModule } from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
-import {ClientComponent} from './client.component';
-import {HomeComponent} from './home/home.component';
+import { ClientComponent } from './client.component';
+import { HomeComponent } from './home/home.component';
 import {ClientRoutingModule} from "./client-routing.module";
-import {HeaderComponent} from './header/header.component';
-import {LoginComponent} from './login/login.component';
-import {FooterComponent} from './footer/footer.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { HeaderComponent } from './header/header.component';
+import { LoginComponent } from './login/login.component';
+import {MatCardModule} from "@angular/material/card";
+import { FooterComponent } from './footer/footer.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import {MatButtonModule} from '@angular/material/button';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {NavbarComponent} from './navbar/navbar.component';
-import {CarouselComponent} from './carousel/carousel.component';
-import {ServiceComponent} from './service/service.component';
+import { RegisterComponent } from './register/register.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import { ServiceComponent } from './service/service.component';
 import {CarouselModule} from "ngx-owl-carousel-o";
-import {TopbarComponent} from './topbar/topbar.component';
-import {AboutComponent} from './about/about.component';
-import {TestComponent} from './test/test.component';
-import {OtpConfirmComponent} from './login/otp-confirm/otp-confirm.component';
-import {PageHeaderComponent} from './page-header/page-header.component';
-import {NzAvatarModule} from "ng-zorro-antd/avatar";
-import {NgxSpinnerModule} from "ngx-spinner";
-import {ListTestComponent} from './list-test/list-test.component';
-import {ProfileComponent} from './profile/profile.component';
-import {UpdateProfileComponent} from './profile/update-profile/update-profile.component';
-import {NzTagModule} from "ng-zorro-antd/tag";
-import {NzEmptyModule} from "ng-zorro-antd/empty";
-import {NzTabsModule} from "ng-zorro-antd/tabs";
-import {NzCheckboxModule} from "ng-zorro-antd/checkbox";
-import {NzGridModule} from "ng-zorro-antd/grid";
-import {NzButtonModule} from "ng-zorro-antd/button";
-import {StartComponent} from './test/start/start.component';
-import { AudioPartComponent } from './test/audio-part/audio-part.component';
-import {NzRadioModule} from "ng-zorro-antd/radio";
-import {NzImageModule} from "ng-zorro-antd/image";
-import {NzDividerModule} from "ng-zorro-antd/divider";
-import { LoginPopupComponent } from './login/login-popup/login-popup.component';
-import { ResultComponent } from './test/result/result.component';
-import { PracticeComponent } from './test/practice/practice.component';
-import {NzCardModule} from "ng-zorro-antd/card";
-import {NzIconModule} from "ng-zorro-antd/icon";
-import {NzListModule} from "ng-zorro-antd/list";
-import {NzTypographyModule} from "ng-zorro-antd/typography";
+import { TopbarComponent } from './topbar/topbar.component';
+import { AboutComponent } from './about/about.component';
+
 
 @NgModule({
   declarations: [
@@ -49,47 +29,25 @@ import {NzTypographyModule} from "ng-zorro-antd/typography";
     HeaderComponent,
     LoginComponent,
     FooterComponent,
+    RegisterComponent,
     NavbarComponent,
     CarouselComponent,
     ServiceComponent,
     TopbarComponent,
-    AboutComponent,
-    TestComponent,
-    OtpConfirmComponent,
-    PageHeaderComponent,
-    ListTestComponent,
-    ProfileComponent,
-    UpdateProfileComponent,
-    StartComponent,
-    AudioPartComponent,
-    LoginPopupComponent,
-    ResultComponent,
-    PracticeComponent
+    AboutComponent
   ],
   imports: [
     NgbModule,
     CommonModule,
     ClientRoutingModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
     FormsModule,
+    MatButtonModule,
     FontAwesomeModule,
     CarouselModule,
     NgOptimizedImage,
-    ReactiveFormsModule,
-    NzAvatarModule,
-    NgxSpinnerModule,
-    NzTagModule,
-    NzEmptyModule,
-    NzTabsModule,
-    NzCheckboxModule,
-    NzGridModule,
-    NzButtonModule,
-    NzRadioModule,
-    NzImageModule,
-    NzDividerModule,
-    NzCardModule,
-    NzIconModule,
-    NzListModule,
-    NzTypographyModule,
   ],
   providers: [],
   exports: [
@@ -99,5 +57,4 @@ import {NzTypographyModule} from "ng-zorro-antd/typography";
   ],
   bootstrap: [ClientComponent]
 })
-export class ClientModule {
-}
+export class ClientModule { }

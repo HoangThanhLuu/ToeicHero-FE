@@ -1,6 +1,6 @@
 <div class="container" [ngClass]="{'right-panel-active' : isRegisterTab}" id="container">
   <div class="form-container sign-up-container">
-    <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <form action="#">
       <h1>Tạo tài khoản</h1>
       <div class="social-container">
         <a href="javascript:;" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -8,27 +8,15 @@
         <a href="javascript:;" class="social"><i class="fab fa-linkedin-in"></i></a>
       </div>
       <span>Hoặc sử dụng email của bạn để đăng ký </span>
-      <input formControlName="email"
-             type="email"
-             [ngClass]="{'borderError': this.showBorderError[0]}"
-             placeholder="Email" required/>
-      <input formControlName="fullName"
-             type="text"
-             [ngClass]="{'borderError': this.showBorderError[1]}"
-             placeholder="Họ và tên " required/>
-      <input formControlName="password"
-             type="password"
-             [ngClass]="{'borderError': this.showBorderError[2]}"
-             placeholder="Mật khẩu " required/>
-      <input formControlName="confirmPassword"
-             type="password"
-             [ngClass]="{'borderError': this.showBorderError[3]}"
-             placeholder="Nhập lại mật khẩu" required/>
-      <button>Đăng ký</button>
+      <input type="email" placeholder="Email"/>
+      <input type="password" placeholder="Mật khẩu "/>
+      <input type="password" placeholder="Nhập lại mật khẩu"/>
+      <input type="text" placeholder="Họ và tên "/>
+      <button>Đăng ký </button>
     </form>
   </div>
   <div class="form-container sign-in-container" [ngClass]="{'d-none' : isRegisterTab}">
-    <form (ngSubmit)="login()">
+    <form action="#">
       <h1>Đăng nhập</h1>
 
       <div class="social-container">
@@ -38,21 +26,21 @@
       </div>
 
       <span>Hoặc sử dụng tài khoản của bạn đã đăng ký </span>
-      <input type="email" placeholder="Email" name="email" [(ngModel)]="loginForm.email" required/>
-      <input type="password" placeholder="Mật khẩu " name="password" [(ngModel)]="loginForm.password" required/>
+      <input type="email" placeholder="Email"/>
+      <input type="password" placeholder="Mật khẩu "/>
       <a href="javascript:;">Quên mật khẩu </a>
-      <button>Đăng nhập</button>
+      <button (click)="loginSubmit()">Đăng nhập </button>
     </form>
   </div>
   <div class="overlay-container">
     <div class="overlay">
       <div class="overlay-panel overlay-left">
-        <h1 class="text-white">Xin chào bạn!</h1>
+        <h1>Xin chào bạn!</h1>
         <p>Nếu bạn đã có tài khoản thì nhấn đăng nhập bên dưới</p>
         <button class="ghost" id="signIn" (click)="switchTab()">Đăng nhập</button>
       </div>
       <div class="overlay-panel overlay-right">
-        <h1 class="text-white">Xin chào bạn!</h1>
+        <h1>Xin chào bạn!</h1>
         <p>Nếu bạn chưa có tài khoản thì hãy nhấn đăng ký để trở thành thành viên của ToeicUte</p>
         <button class="ghost" id="signUp" (click)="switchTab()">Đăng ký</button>
       </div>

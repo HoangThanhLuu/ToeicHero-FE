@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import {AdminLibBaseCss2, AdminStyle} from "../admin.style";
+import {FooterComponent} from "@coreui/angular";
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.css',
-    ...AdminLibBaseCss2,
-    ...AdminStyle]
+  styleUrls: ['./footer.component.css']
 })
-export class FooterAdminComponent  {
-  date: Date = new Date();
+export class FooterAdminComponent  extends FooterComponent{
+
 }
