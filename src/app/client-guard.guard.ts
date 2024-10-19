@@ -16,6 +16,9 @@ export class ClientGuardGuard implements CanActivate {
       .subscribe((res: any) => {
         if (res?.success) {
           if (!res?.data) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('tokenValid');
+            localStorage.removeItem('profile');
             window.location.href = '/login';
             return false;
           }

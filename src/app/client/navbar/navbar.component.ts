@@ -68,6 +68,7 @@ export class NavbarComponent implements OnInit {
   logout() {
     localStorage.removeItem('token');
     localStorage.setItem('tokenValid', 'false');
+    localStorage.removeItem('profile');
     window.location.href = '/home';
   }
 }

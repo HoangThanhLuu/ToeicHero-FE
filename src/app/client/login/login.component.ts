@@ -12,14 +12,12 @@ import {
   SocialAuthService,
   SocialUser
 } from "@abacritt/angularx-social-login";
-import {GoogleAuthService} from "./google-auth.service";
-
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-
 })
 export class LoginComponent implements OnInit, OnDestroy {
   @Output() close = new EventEmitter();
@@ -45,7 +43,6 @@ export class LoginComponent implements OnInit, OnDestroy {
               private bsModalRef: BsModalRef,
               private spinnerService: NgxSpinnerService,
               private socialAuthService: SocialAuthService,
-              private googleAuthService: GoogleAuthService,
               private toast: ToastrService) {
     this.registerForm = this.formBuilder.group({
         email: ['', [Validators.required, Validators.email, Validators.pattern("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")]],
@@ -60,17 +57,27 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.spinnerService.show().then(r => r);
     this.http.get('/api/user/is-login')
+      .pipe(finalize(() => this.spinnerService.hide()))
       .subscribe((res: any) => {
         if (res?.success && res?.data) {
           this.bsModalRef.hide();
           window.location.href = '/home';
         } else {
           this.socialAuthService.authState
-            .subscribe((user) => {
-              this.user = user;
-              if (user) {
-                console.log('User logged in:', user);
+            .subscribe((res) => {
+              this.user = res;
+              if (res) {
+                if (res.provider == 'GOOGLE') {
+                  const params = {
+                    email: res?.email,
+                    fullName: res?.name,
+                    avatar: res?.photoUrl,
+                    provider: res?.provider,
+                  };
+                  this.loginWithSocial(params);
+                }
               }
             });
         }
@@ -174,16 +181,14 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
     this.spinnerService.show();
     this.http.post("/api/user/authenticate", this.loginForm)
+      .pipe(finalize(() => this.spinnerService.hide()))
       .subscribe((res: any) => {
         if (!res?.success) {
           this.toast.error(res?.message);
           if (res?.data == 'INACTIVE') {
             this.sendEmail(this.loginForm.email, false);
-          } else {
-            this.spinnerService.hide();
           }
         } else {
-          this.spinnerService.hide();
           this.toast.success('Đăng nhập thành công');
           const roles = res?.data?.roles;
           localStorage.setItem('token', res?.data?.token);
@@ -212,12 +217,36 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.socialAuthService
       .signIn(FacebookLoginProvider.PROVIDER_ID)
       .then((data: any) => {
-        console.log(data);
+        const params = {
+          email: data?.email,
+          fullName: data?.name,
+          avatar: data?.photoUrl,
+          provider: data?.provider,
+        };
+        this.loginWithSocial(params);
       });
   }
 
-  loginWithGoogle() {
-    this.googleAuthService.authenticateUser(this.clientId);
+  loginWithSocial(params: any) {
+    this.spinnerService.show().then(r => r);
+    this.http.post('/api/user/login-social', params)
+      .pipe(finalize(() => this.spinnerService.hide()))
+      .subscribe((res: any) => {
+        if (res?.success) {
+          this.toast.success('Đăng nhập thành công');
+          localStorage.setItem('token', res?.data);
+          localStorage.setItem('tokenValid', 'true');
+          if (!this.isNotDirect) {
+            window.location.href = '/home';
+          } else {
+            this.signIn.emit();
+            this.bsModalRef.hide();
+            window.location.reload();
+          }
+        } else {
+          this.toast.error(res?.message);
+        }
+      });
   }
 
   ngOnDestroy(): void {

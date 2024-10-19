@@ -7,6 +7,8 @@ import {NgxSpinnerService} from "ngx-spinner";
 import {GetHeaderService} from "../../common/get-headers/get-header.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {finalize} from "rxjs";
+import {AuthService} from "../../auth.service";
+import {LoginComponent} from "../login/login.component";
 
 @Component({
   selector: 'app-test',
@@ -130,6 +132,7 @@ export class TestComponent implements OnInit {
               private spinnerService: NgxSpinnerService,
               private getHeaderService: GetHeaderService,
               private router: Router,
+              private auth: AuthService,
               private route: ActivatedRoute) {
   }
 
@@ -151,8 +154,6 @@ export class TestComponent implements OnInit {
           }
         });
     });
-
-
   }
 
   updateAllChecked() {
@@ -183,7 +184,23 @@ export class TestComponent implements OnInit {
   }
 
   startFullTest() {
-    window.location.href = `${window.location.href}/start`
+    const headers = this.getHeaderService.getHeaderAuthentication();
+    this.http.get('/api/user/get-profile', {
+      headers
+    })
+      .subscribe((res: any) => {
+        if (res?.success) {
+          window.location.href = `${window.location.href}/start`;
+        } else {
+          this.toast.error('Vui lòng đăng nhập để thực hiện bài test');
+          this.bsModalService.show(LoginComponent, {
+            class: 'modal-lg modal-dialog-centered',
+            initialState: {
+              isNotDirect: true
+            }
+          });
+        }
+      });
   }
 
   startPractice() {
@@ -192,14 +209,30 @@ export class TestComponent implements OnInit {
       return;
     }
     if (this.allChecked) {
-      window.location.href = `${window.location.href}/start`;
+      this.startFullTest();
       return;
     }
-    const listPart = this.checkOptionsOne.filter(item => item.checked).map(item => item.value);
-    const listPartString = listPart.join(',');
-    const routeParams = {
-      part: listPartString,
-    };
-    this.router.navigate([`/test/${this.currentExam?.examId}/practice`], { queryParams: routeParams });
+    const headers = this.getHeaderService.getHeaderAuthentication();
+    this.http.get('/api/user/get-profile', {
+      headers
+    })
+      .subscribe((res: any) => {
+        if (res?.success) {
+          const listPart = this.checkOptionsOne.filter(item => item.checked).map(item => item.value);
+          const listPartString = listPart.join(',');
+          const routeParams = {
+            part: listPartString,
+          };
+          this.router.navigate([`/test/${this.currentExam?.examId}/practice`], {queryParams: routeParams});
+        } else {
+          this.toast.error('Vui lòng đăng nhập để thực hiện bài test');
+          this.bsModalService.show(LoginComponent, {
+            class: 'modal-lg modal-dialog-centered',
+            initialState: {
+              isNotDirect: true
+            }
+          });
+        }
+      });
   }
 }

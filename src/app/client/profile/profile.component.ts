@@ -8,6 +8,8 @@ import {GetHeaderService} from "../../common/get-headers/get-header.service";
 import {ChangePasswordComponent} from "./change-password/change-password.component";
 import {UpdateProfileComponent} from "./update-profile/update-profile.component";
 import {AuthService} from "../../auth.service";
+import {switchMap, tap, catchError, finalize} from 'rxjs/operators';
+import {of} from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -15,10 +17,10 @@ import {AuthService} from "../../auth.service";
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
   currentUser: any;
   avatarSrc: string = '';
   formData = new FormData();
+  showDropdown = false;
 
   constructor(private toast: ToastrService,
               private http: HttpClient,
@@ -61,9 +63,14 @@ export class ProfileComponent implements OnInit {
   }
 
   openFormEditInfo() {
-    this.bsModalService.show(UpdateProfileComponent, {
+    const bsModalRef = this.bsModalService.show(UpdateProfileComponent, {
       class: 'modal-lg modal-dialog-centered',
     });
+    if (bsModalRef.content) {
+      bsModalRef.content.close.subscribe(() => {
+        this.ngOnInit();
+      })
+    }
   }
 
   openFormChangePassword() {
@@ -103,24 +110,33 @@ export class ProfileComponent implements OnInit {
           type: 'primary',
           onClick: () => {
             this.spinner.show().then(r => r);
-            this.http.post<any>('/api/upload-file', this.formData)
-              .subscribe((res: any) => {
+            this.http.post<any>('/api/upload-file', this.formData).pipe(
+              switchMap((res: any) => {
                 if (res?.success) {
-                  this.http.post<any>('/api/user/update-avatar', {avatar: res?.data})
-                    .subscribe((res: any) => {
-                      if (res?.success) {
-                        this.toast.success(res?.message);
-                      } else {
-                        this.toast.error(res?.message);
-                      }
-                      this.spinner.hide().then(r => r);
-                      confirmModal.destroy();
-                    });
+                  return this.http.post<any>('/api/user/update-avatar', {avatar: res?.data});
                 } else {
-                  this.toast.error(res?.message);
-                  this.spinner.hide().then(r => r);
+                  return of(res);
                 }
-              });
+              }),
+              tap((res1: any) => {
+                if (res1?.success) {
+                  this.toast.success(res1?.message);
+                  const profile = localStorage.getItem('profile') ?? '';
+                  const currentProfile = JSON.parse(profile);
+                  currentProfile.avatar = res1?.data;
+                  localStorage.setItem('profile', JSON.stringify(currentProfile));
+                } else {
+                  this.toast.error(res1?.message);
+                }
+              }),
+              catchError((error: any) => {
+                this.toast.error(error?.message || 'Cập nhật ảnh đại diện thất bại');
+                return of(error);
+              }),
+              finalize(() => this.spinner.hide())
+            ).subscribe(() => {
+              confirmModal.destroy();
+            });
           }
         }
       ]
@@ -131,5 +147,12 @@ export class ProfileComponent implements OnInit {
 
   triggerFileInput(fileInput: any) {
     fileInput.click();
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.setItem('tokenValid', 'false');
+    localStorage.removeItem('profile');
+    window.location.href = '/home';
   }
 }

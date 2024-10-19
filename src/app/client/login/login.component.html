@@ -3,7 +3,10 @@
     <form [formGroup]="registerForm">
       <h1>Tạo tài khoản</h1>
       <div class="social-container">
-        <button class="btn btn-facebook" (click)="loginWithFB()"><i class="fab fa-facebook-f"></i> Continue with Facebook</button>
+        <a href="javascript:;" class="btn btn-facebook" (click)="loginWithFB()">
+          <i class="fab fa-facebook-f me-2"></i>
+          <span>Continue with Facebook</span>
+        </a>
         <asl-google-signin-button class="social" text="continue_with" type='standard' size='medium'><i
           class="fab fa-google-plus-g"></i></asl-google-signin-button>
       </div>
@@ -25,23 +28,30 @@
              [ngClass]="{'borderError': this.showBorderError[3]}"
              placeholder="Nhập lại mật khẩu" required/>
       <button (click)="register()">Đăng ký</button>
+      <span class="mt-3 d-sm-none">Đã có tài khoản? <a href="javascript:;" (click)="switchTab()"
+                                                            class="text-decoration-underline">Đăng nhập</a></span>
     </form>
   </div>
   <div class="form-container sign-in-container" [ngClass]="{'d-none' : isRegisterTab}">
-    <form (ngSubmit)="login()">
+    <form>
       <h1>Đăng nhập</h1>
 
       <div class="social-container">
-        <a href="javascript:;" class="social" (click)="loginWithFB()"><i class="fab fa-facebook-f"></i></a>
-        <a href="javascript:;" class="social" (click)="loginWithGoogle()"><i class="fab fa-google-plus-g"></i></a>
-        <a href="javascript:;" class="social"><i class="fab fa-linkedin-in"></i></a>
+        <a href="javascript:;" class="btn btn-facebook" (click)="loginWithFB()">
+          <i class="fab fa-facebook-f me-2"></i>
+          <span>Continue with Facebook</span>
+        </a>
+        <asl-google-signin-button class="social" text="continue_with" type='standard' size='medium'><i
+          class="fab fa-google-plus-g"></i></asl-google-signin-button>
       </div>
 
       <span>Hoặc sử dụng tài khoản của bạn đã đăng ký </span>
       <input type="email" placeholder="Email" name="email" [(ngModel)]="loginForm.email" required/>
       <input type="password" placeholder="Mật khẩu " name="password" [(ngModel)]="loginForm.password" required/>
       <a href="javascript:;">Quên mật khẩu </a>
-      <button>Đăng nhập</button>
+      <button (click)="login()">Đăng nhập</button>
+      <span class="mt-3 d-sm-none">Chưa có tài khoản bấm <a href="javascript:;" (click)="switchTab()"
+                                                            class="text-decoration-underline">Đăng ký</a></span>
     </form>
   </div>
   <div class="overlay-container">

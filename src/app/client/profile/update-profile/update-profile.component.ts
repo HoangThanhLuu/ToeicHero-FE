@@ -1,10 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
 import {GetHeaderService} from "../../../common/get-headers/get-header.service";
 import {FormBuilder, Validators, FormGroup} from "@angular/forms";
 import {AuthService} from "../../../auth.service";
 import {BsModalRef} from "ngx-bootstrap/modal";
+import {NgxSpinnerService} from "ngx-spinner";
+import {tap, catchError, finalize} from 'rxjs/operators';
+import {of} from 'rxjs';
 
 @Component({
   selector: 'app-update-profile',
@@ -15,11 +18,15 @@ export class UpdateProfileComponent implements OnInit {
   profileForm!: FormGroup;
   currentUser: any;
   currentProfile: any;
+  avatarSrc: string = '';
+  formData = new FormData();
+  @Output() close = new EventEmitter();
 
   constructor(private toast: ToastrService,
               private formBuilder: FormBuilder,
               private http: HttpClient,
               private bsModalRef: BsModalRef,
+              private spin: NgxSpinnerService,
               private auth: AuthService,
               private getHeaderService: GetHeaderService) {
     this.profileForm = this.formBuilder.group({
@@ -38,6 +45,7 @@ export class UpdateProfileComponent implements OnInit {
       if (profile) {
         this.currentProfile = JSON.parse(profile);
         this.currentUser = JSON.parse(profile);
+        this.avatarSrc = this.currentUser?.avatar;
       } else {
         const headers = this.getHeaderService.getHeaderAuthentication();
         this.http.get('/api/user/get-profile', {
@@ -46,6 +54,7 @@ export class UpdateProfileComponent implements OnInit {
           .subscribe((res: any) => {
             if (res?.success) {
               this.currentUser = res?.data;
+              this.avatarSrc = this.currentUser?.avatar;
               const profile = {
                 email: res?.data?.email,
                 fullName: res?.data?.fullName,
@@ -57,35 +66,66 @@ export class UpdateProfileComponent implements OnInit {
             } else {
               localStorage.removeItem('profile');
               localStorage.removeItem('token');
-              window.location.reload();
+              window.location.href = '/home';
             }
           });
       }
     }
   }
 
-  onSubmit(): void {
-    if (this.profileForm) {
-      const updatedProfile = this.profileForm.value;
-      this.http.patch('/api/user/update-profile', updatedProfile)
-        .subscribe((res: any) => {
-          if (res?.success) {
-            this.toast.success('Chỉnh sửa thông tin thành công');
-            this.currentProfile.fullName = updatedProfile.fullName;
-            this.currentProfile.address = updatedProfile.address;
-            this.currentProfile.phone = updatedProfile.phone;
-            localStorage.setItem('profile', JSON.stringify(this.currentProfile));
-            window.location.reload();
-          } else {
-            this.toast.error('Chỉnh sửa thông tin thất bại');
-          }
-        });
+  closeModal() {
+    this.close.emit('ok');
+    this.bsModalRef.hide();
+  }
+
+  handleFileInput($event: any) {
+    const file = $event.target.files[0];
+    this.handleFiles(file);
+  }
+
+  handleFiles(file: any) {
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.avatarSrc = `${e.target?.result}`;
+        this.formData.append('file', file);
+      };
+      reader.readAsDataURL(file);
     } else {
-      this.toast.error('Chỉnh sửa thông tin thất bại');
+      this.avatarSrc = this.currentUser?.avatar;
+      this.formData.delete('file');
     }
   }
 
-  closeModal() {
-    this.bsModalRef.hide();
+  onUpdateProfile() {
+    if (this.profileForm) {
+      const updatedProfile = this.profileForm.value;
+      this.spin.show().then(r => r);
+      this.formData.append('fullName', updatedProfile.fullName);
+      this.formData.append('address', updatedProfile.address);
+      this.formData.append('phone', updatedProfile.phone);
+      this.http.patch('/api/user/update-profile', this.formData)
+        .pipe(
+          tap((res: any) => {
+            if (res?.success) {
+              this.toast.success('Chỉnh sửa thông tin thành công');
+              this.currentProfile.fullName = updatedProfile.fullName;
+              this.currentProfile.address = updatedProfile.address;
+              this.currentProfile.phone = updatedProfile.phone;
+              this.currentProfile.avatar = res?.data?.avatar;
+              localStorage.setItem('profile', JSON.stringify(this.currentProfile));
+            } else {
+              this.toast.error(res?.message);
+            }
+          }),
+          catchError(error => {
+            this.toast.error('Chỉnh sửa thông tin thất bại');
+            return of(null);
+          }),
+          finalize(() => this.spin.hide().then(r => r))
+        ).subscribe();
+    } else {
+      this.toast.error('Chỉnh sửa thông tin thất bại');
+    }
   }
 }

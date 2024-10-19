@@ -63,8 +63,6 @@ export class ChangePasswordComponent implements OnInit {
       this.toast.error('Mật khẩu xác nhận phải có độ dài lớn hơn hoặc bằng 8 ký tự');
       return false;
     }
-
-
     return true;
   }
 
