@@ -1,4 +1,11 @@
 import {Component, OnInit} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {NzModalService} from "ng-zorro-antd/modal";
+import {BsModalService} from "ngx-bootstrap/modal";
+import {NgxSpinnerService} from "ngx-spinner";
+import {AuthService} from "../../../auth.service";
+import {GetHeaderService} from "../../../common/get-headers/get-header.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-change-password',
@@ -7,26 +14,25 @@ import {Component, OnInit} from '@angular/core';
 })
 export class ChangePasswordComponent implements OnInit {
 
-  password: HTMLInputElement | null = null;
-  confirmPassword: HTMLInputElement | null = null;
+  changePasswordForm: FormGroup;
 
-  constructor() {
+  constructor(private formBuilder: FormBuilder,
+              private http: HttpClient,
+              private modal: NzModalService,
+              private bsModalService: BsModalService,
+              private spinner: NgxSpinnerService,
+              private auth: AuthService,
+              private getHeaderService: GetHeaderService) {
+
+    this.changePasswordForm = this.formBuilder.group({
+      currentPassword: ['', Validators.required],
+      newPassword: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required]
+    });
   }
-
   ngOnInit(): void {
-    this.password = document.getElementById("password") as HTMLInputElement;
-    this.confirmPassword = document.getElementById("confirmPassword") as HTMLInputElement;
+
   }
 
-  validatePassword(): boolean {
-    if (this.password && this.confirmPassword && this.password.value !== this.confirmPassword.value) {
-      this.confirmPassword.setCustomValidity("Mật khẩu mới không trùng khớp. Vui lòng nhập lại");
-      return false;
-    } else {
-      if (this.confirmPassword) {
-        this.confirmPassword.setCustomValidity('');
-      }
-      return true;
-    }
-  }
+
 }
