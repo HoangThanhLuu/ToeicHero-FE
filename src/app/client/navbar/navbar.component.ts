@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BsModalService} from "ngx-bootstrap/modal";
 import {LoginComponent} from "../login/login.component";
-import {GetHeaderService} from "../../common/get-headers/get-header.service";
-import {HttpClient} from "@angular/common/http";
 import {AuthService} from "../../auth.service";
 
 @Component({
@@ -15,7 +13,7 @@ export class NavbarComponent implements OnInit {
   activeNav: string = 'home';
   isLogin: boolean = false;
 
-  constructor(private bs: BsModalService, private getHeaderService: GetHeaderService, private http: HttpClient, private auth: AuthService) {
+  constructor(private bs: BsModalService, private auth: AuthService) {
   }
 
   ngOnInit(): void {

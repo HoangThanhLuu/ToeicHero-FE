@@ -6,8 +6,8 @@ import {BsModalService} from "ngx-bootstrap/modal";
 import {NgxSpinnerService} from "ngx-spinner";
 import {ActivatedRoute} from "@angular/router";
 import {finalize} from "rxjs";
-import {AuthServiceService} from "../../../auth-service.service";
 import {LoginComponent} from "../../login/login.component";
+import {AuthService} from "../../../auth.service";
 
 @Component({
   selector: 'app-start',
@@ -36,14 +36,15 @@ export class StartComponent implements OnInit {
               private bs: BsModalService,
               private bsModalService: BsModalService,
               private spinnerService: NgxSpinnerService,
-              private authService: AuthServiceService,
+              private auth: AuthService,
               private route: ActivatedRoute) {
     this.initializeButtonStates();
   }
 
   ngOnInit(): void {
-    const tokenValid = localStorage.getItem('tokenValid');
-    if (tokenValid === 'false') {
+    const token = this.auth.getToken();
+    const isLogin = token ? !this.auth.isTokenExpired(token) : false;
+    if (!isLogin) {
       const confirmModal: NzModalRef = this.modal.create({
         nzTitle: `Vui lòng đăng nhập để thực hiện bài thi`,
         nzContent: `Bạn chưa đăng nhập, vui lòng đăng nhập để thực hiện bài thi?`,
@@ -99,11 +100,11 @@ export class StartComponent implements OnInit {
       const minutes = Math.floor(this.totalTimeInSeconds / 60);
       const remainingSeconds = this.totalTimeInSeconds % 60;
 
-      if (this.minutes && this.minutes.nativeElement) {
+      if (this.minutes?.nativeElement) {
         this.minutes.nativeElement.textContent = this.formatTime(minutes);
       }
 
-      if (this.seconds && this.seconds.nativeElement) {
+      if (this.seconds?.nativeElement) {
         this.seconds.nativeElement.textContent = this.formatTime(remainingSeconds);
       }
       if (this.totalTimeInSeconds <= 0) {
@@ -147,11 +148,11 @@ export class StartComponent implements OnInit {
   submitTest() {
     this.param.timeRemaining = this.totalTimeInSeconds;
     this.param.totalQuestion = 200;
-    this.spinnerService.show();
+    this.spinnerService.show().then(r => r);
     this.http.post('/api/exam/finish-exam', this.param)
       .pipe(
         finalize(() => {
-          this.spinnerService.hide();
+          this.spinnerService.hide().then(r => r);
         }))
       .subscribe((res: any) => {
         if (res?.success) {

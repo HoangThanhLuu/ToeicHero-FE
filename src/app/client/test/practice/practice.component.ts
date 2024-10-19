@@ -4,10 +4,10 @@ import {HttpClient} from "@angular/common/http";
 import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
 import {BsModalService} from "ngx-bootstrap/modal";
 import {NgxSpinnerService} from "ngx-spinner";
-import {GetHeaderService} from "../../../common/get-headers/get-header.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {LoginComponent} from "../../login/login.component";
 import {finalize} from "rxjs";
+import {AuthService} from "../../../auth.service";
 
 @Component({
   selector: 'app-practice',
@@ -35,14 +35,15 @@ export class PracticeComponent implements OnInit {
               private bs: BsModalService,
               private bsModalService: BsModalService,
               private spinnerService: NgxSpinnerService,
-              private getHeaderService: GetHeaderService,
+              private auth: AuthService,
               private router: Router,
               private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    const tokenValid = localStorage.getItem('tokenValid');
-    if (tokenValid === 'false') {
+    const token = this.auth.getToken();
+    const isLogin = token ? !this.auth.isTokenExpired(token) : false;
+    if (!isLogin) {
       const confirmModal: NzModalRef = this.modal.create({
         nzTitle: `Vui lòng đăng nhập để thực hiện bài thi`,
         nzContent: `Bạn chưa đăng nhập, vui lòng đăng nhập để thực hiện bài thi?`,
