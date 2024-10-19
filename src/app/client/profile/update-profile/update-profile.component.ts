@@ -41,14 +41,12 @@ export class UpdateProfileComponent implements OnInit{
 
   onSubmit(): void {
     if (this.currentUser) {
-      // Xử lý khi form được submit, gửi thông tin lên server hoặc xử lý theo nhu cầu của bạn
       console.log('Updating user:', this.currentUser);
-      // Gọi API để cập nhật thông tin của currentUser
       this.http.post('/api/user/update-profile', this.currentUser).subscribe((res: any) => {
         if (res?.success) {
-          this.toast.success('Profile updated successfully');
+          this.toast.success('Chỉnh sửa thông tin thành công');
         } else {
-          this.toast.error('Failed to update profile');
+          this.toast.error('CHỉnh sửa thông tin thất bại');
         }
       });
     }
