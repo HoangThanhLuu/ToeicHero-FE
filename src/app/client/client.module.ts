@@ -54,6 +54,7 @@ import {NzCollapseModule} from "ng-zorro-antd/collapse";
 import {NzTableModule} from "ng-zorro-antd/table";
 import { HistoryExamDetailComponent } from './history-exam/history-exam-detail/history-exam-detail.component';
 import {GoogleSigninButtonModule} from "@abacritt/angularx-social-login";
+import {NzToolTipModule} from "ng-zorro-antd/tooltip";
 
 @NgModule({
   declarations: [
@@ -116,6 +117,7 @@ import {GoogleSigninButtonModule} from "@abacritt/angularx-social-login";
         NzCollapseModule,
         NzTableModule,
         GoogleSigninButtonModule,
+        NzToolTipModule,
     ],
   providers: [],
   exports: [

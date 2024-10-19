@@ -43,7 +43,6 @@ const routes: Routes = [
           },
           {
             path: 'start',
-            canActivate: [ClientGuardGuard],
             component: StartComponent
           },
           {

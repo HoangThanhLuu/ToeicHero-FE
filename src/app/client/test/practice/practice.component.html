@@ -10,8 +10,8 @@
         <ng-container *ngIf="partItem?.partCode == 'PART1'">
           <nz-tab nzTitle="Part 1">
             <div class="row">
-              <div class="col-12">
-                <p class="text-dark mt-3 fs-6 part-content">
+              <div class="col-12 title">
+                <p class="mt-3 fs-6 part-content">
                   {{partItem?.partContent}}
                 </p>
               </div>
@@ -20,7 +20,7 @@
               </div>
               <ng-container *ngFor="let item of partItem?.questions; let part1Index = index;">
                 <div class="row" id="questionContainer_{{partIndex}}_{{item?.questionId}}">
-                  <div class="col-12">
+                  <div class="col-12 fw-bold fs-6 mt-3">
                     Câu  {{item?.questionNumber}}
                   </div>
                   <div class="col-12">
@@ -60,7 +60,7 @@
           <nz-tab nzTitle="Part 2">
             <div class="row">
               <div class="col-12">
-                <p class="text-dark mt-3 fs-6 part-content">
+                <p class="mt-3 fs-6 part-content">
                   {{partItem?.partContent}}
                 </p>
               </div>
@@ -69,7 +69,7 @@
               </div>
               <ng-container *ngFor="let item of partItem?.questions; let part2Index = index;">
                 <div class="row" id="questionContainer_{{partIndex}}_{{item?.questionId}}">
-                  <div class="col-12">
+                  <div class="col-12 fw-bold fs-6 mt-3">
                     Câu  {{item?.questionNumber}}
                   </div>
                   <div class="col-12">
@@ -103,7 +103,7 @@
           <nz-tab nzTitle="Part 3">
             <div class="row">
               <div class="col-12">
-                <p class="text-dark mt-3 fs-6 part-content">
+                <p class="mt-3 fs-6 part-content">
                   {{partItem?.partContent}}
                 </p>
               </div>
@@ -113,7 +113,7 @@
               <ng-container *ngFor="let item of partItem?.questions; let part3Index = index;">
                 <div class="row" id="questionContainer_{{partIndex}}_{{item?.questionId}}">
                   <ng-container *ngIf="part3Index % 3 == 0">
-                <span class="col-12 mt-2 fs-6">Question {{item?.questionNumber}} - {{Number(item?.questionNumber) + 2}}
+                <span class="col-12 mt-2 fw-bold fs-6 title">Question {{item?.questionNumber}} - {{Number(item?.questionNumber) + 2}}
                   refer to
                   following conversation: </span>
                   </ng-container>
@@ -130,7 +130,7 @@
                       />
                     </div>
                   </ng-container>
-                  <div class="col-12" translate="no">
+                  <div class="col-12 fw-bold fs-6 mt-3" translate="no">
                     Câu  {{item?.questionNumber}}: {{item?.questionContent}}
                   </div>
                   <div class="col-12">
@@ -163,7 +163,7 @@
           <nz-tab nzTitle="Part 4">
             <div class="row">
               <div class="col-12">
-                <p class="text-dark mt-3 fs-6 part-content">
+                <p class="mt-3 fs-6 part-content">
                   {{partItem?.partContent}}
                 </p>
               </div>
@@ -173,7 +173,7 @@
               <ng-container *ngFor="let item of partItem?.questions; let part4Index = index;">
                 <div class="row" id="questionContainer_{{partIndex}}_{{item?.questionId}}">
                   <ng-container *ngIf="part4Index % 3 == 0">
-                <span class="col-12 mt-2 fs-6">Question {{item?.questionNumber}} - {{Number(item?.questionNumber) + 2}}
+                <span class="col-12 mt-2 fs-6 fw-bold title">Question {{item?.questionNumber}} - {{Number(item?.questionNumber) + 2}}
                   refer to
                   following conversation: </span>
                   </ng-container>
@@ -190,7 +190,7 @@
                       />
                     </div>
                   </ng-container>
-                  <div class="col-12" translate="no">
+                  <div class="col-12 fw-bold fs-6 mt-3" translate="no">
                     Câu  {{item?.questionNumber}}: {{item?.questionContent}}
                   </div>
                   <div class="col-12">
@@ -223,13 +223,13 @@
           <nz-tab nzTitle="Part 5">
             <div class="row">
               <div class="col-12">
-                <p class="text-dark mt-3 fs-6 part-content">
+                <p class="mt-3 fs-6 part-content">
                   {{partItem?.partContent}}
                 </p>
               </div>
               <ng-container *ngFor="let item of partItem?.questions; let part5Index = index;">
                 <div class="row" id="questionContainer_{{partIndex}}_{{item?.questionId}}">
-                  <div class="col-12" translate="no">
+                  <div class="col-12 fw-bold fs-6 mt-3" translate="no">
                     Câu  {{item?.questionNumber}}: {{item?.questionContent}}
                   </div>
                   <div class="col-12">
@@ -262,14 +262,14 @@
           <nz-tab nzTitle="Part 6">
             <div class="row">
               <div class="col-12">
-                <p class="text-dark mt-3 fs-6 part-content">
+                <p class="mt-3 fs-6 part-content">
                   {{partItem?.partContent}}
                 </p>
               </div>
               <ng-container *ngFor="let item of partItem?.questions; let part6Index = index;">
                 <div class="row">
                   <ng-container *ngIf="part6Index % 4 == 0">
-                <span class="col-12 mt-2 fs-6">Question {{item?.questionNumber}} - {{Number(item?.questionNumber) + 3}}
+                <span class="col-12 mt-2 fs-6 fw-bold">Question {{item?.questionNumber}} - {{Number(item?.questionNumber) + 3}}
                   refer to
                   following conversation: </span>
                     <div class="col-7 fs-6 paragraph" translate="no">
@@ -280,7 +280,7 @@
                     <div class="col-5 px-2">
                       <div class="row">
                         <ng-container *ngFor="let i of counter(4); let counterIndex = index;">
-                          <div class="col-12 mt-1" translate="no"
+                          <div class="col-12 fw-bold fs-6 mt-3" translate="no"
                                id="questionContainer_{{partIndex}}_{{partItem?.questions[part6Index + counterIndex]?.questionId}}">
                             Câu  {{partItem?.questions[part6Index + counterIndex]?.questionNumber}}:
                           </div>
@@ -322,7 +322,7 @@
           <nz-tab nzTitle="Part 7">
             <div class="row">
               <div class="col-12">
-                <p class="text-dark mt-3 fs-6 part-content">
+                <p class="mt-3 fs-6 part-content">
                   {{partItem?.partContent}}
                 </p>
               </div>
@@ -331,7 +331,7 @@
                   <div class="row">
                     <ng-container
                       *ngIf="questionPart7HasAnswerCheck(item?.questionNumber, questionPart7Has2Answer);">
-                <span class="col-12 mt-2 fs-6">Question {{item?.questionNumber}} - {{Number(item?.questionNumber) + 1}}
+                <span class="col-12 mt-2 fw-bold fs-6">Question {{item?.questionNumber}} - {{Number(item?.questionNumber) + 1}}
                   refer to
                   following conversation: </span>
                       <div class="col-7 fs-6 paragraph" translate="no">
@@ -342,7 +342,7 @@
                       <div class="col-5 px-2">
                         <div class="row">
                           <ng-container *ngFor="let i of counter(2); let counterIndex = index;">
-                            <div class="col-12" translate="no"
+                            <div class="col-12 fw-bold fs-6 mt-3" translate="no"
                                  id="questionContainer_{{partIndex}}_{{partItem?.questions[part7Index + counterIndex]?.questionId}}">
                               Câu  {{partItem?.questions[part7Index + counterIndex]?.questionNumber}}
                               : {{partItem?.questions[part7Index + counterIndex]?.questionContent}}
@@ -370,7 +370,7 @@
 
                     <ng-container
                       *ngIf="questionPart7HasAnswerCheck(item?.questionNumber, questionPart7Has3Answer);">
-                <span class="col-12 mt-2 fs-6">Question {{item?.questionNumber}} - {{Number(item?.questionNumber) + 2}}
+                <span class="col-12 mt-2 fs-6 fw-bold ">Question {{item?.questionNumber}} - {{Number(item?.questionNumber) + 2}}
                   refer to
                   following conversation: </span>
                       <div class="col-7 fs-6 paragraph" translate="no">
@@ -381,7 +381,7 @@
                       <div class="col-5 px-2">
                         <div class="row">
                           <ng-container *ngFor="let i of counter(3); let counterIndex = index;">
-                            <div class="col-12" translate="no"
+                            <div class="col-12 fw-bold fs-6 mt-3" translate="no"
                                  id="questionContainer_{{partIndex}}_{{partItem?.questions[part7Index + counterIndex]?.questionId}}">
                               Câu  {{partItem?.questions[part7Index + counterIndex]?.questionNumber}}
                               : {{partItem?.questions[part7Index + counterIndex]?.questionContent}}
@@ -409,7 +409,7 @@
 
                     <ng-container
                       *ngIf="questionPart7HasAnswerCheck(item?.questionNumber, questionPart7Has4Answer);">
-                <span class="col-12 mt-2 fs-6">Question {{item?.questionNumber}} - {{Number(item?.questionNumber) + 3}}
+                <span class="col-12 mt-2 fs-6 fw-bold ">Question {{item?.questionNumber}} - {{Number(item?.questionNumber) + 3}}
                   refer to
                   following conversation: </span>
                       <div class="col-7 fs-6 paragraph" translate="no">
@@ -420,7 +420,7 @@
                       <div class="col-5 px-2">
                         <div class="row">
                           <ng-container *ngFor="let i of counter(4); let counterIndex = index;">
-                            <div class="col-12" translate="no"
+                            <div class="col-12 fw-bold fs-6 mt-3" translate="no"
                                  id="questionContainer_{{partIndex}}_{{partItem?.questions[part7Index + counterIndex]?.questionId}}">
                               Câu  {{partItem?.questions[part7Index + counterIndex]?.questionNumber}}
                               : {{partItem?.questions[part7Index + counterIndex]?.questionContent}}
@@ -450,7 +450,7 @@
                 <ng-container *ngIf="item?.questionNumber > 175">
                   <ng-container
                     *ngIf="questionPart7HasAnswerCheck(item?.questionNumber, questionPart7Has2Paragraph);">
-                <span class="col-12 mt-2 fs-6">Question {{item?.questionNumber}} - {{Number(item?.questionNumber) + 5}}
+                <span class="col-12 mt-2 fs-6 fw-bold ">Question {{item?.questionNumber}} - {{Number(item?.questionNumber) + 5}}
                   refer to
                   following conversation: </span>
                     <div class="col-7 fs-6 paragraph" translate="no">
@@ -464,7 +464,7 @@
                     <div class="col-5 px-2">
                       <div class="row">
                         <ng-container *ngFor="let i of counter(5); let counterIndex = index;">
-                          <div class="col-12" translate="no"
+                          <div class="col-12 fw-bold fs-6 mt-3" translate="no"
                                id="questionContainer_{{partIndex}}}}_{{partItem?.questions[part7Index + counterIndex]?.questionId}}">
                             Câu  {{partItem?.questions[part7Index + counterIndex]?.questionNumber}}
                             : {{partItem?.questions[part7Index + counterIndex]?.questionContent}}
@@ -505,15 +505,17 @@
     <div class="col-sm-2 col-12">
       <div class="row right-button">
         <div class="col-12 d-flex flex-column align-items-start">
-          <label class="text-center text-dark">Thời gian làm bài: </label>
-          <label class="text-center text-dark">
+          <label class="text-center title fw-bold">Thời gian làm bài: </label>
+          <label class="text-center title">
             <i class="fa fa-clock-o" aria-hidden="true"></i>
             120 phút
           </label>
-          <div class="time d-flex" [ngClass]="{'text-danger': totalTimeInSeconds < 300}">
-            <p #minutes></p>
-            <p>:</p>
-            <p #seconds></p>
+          <div class="col-12">
+            <div class="time d-flex justify-content-center" [ngClass]="{'text-danger': totalTimeInSeconds < 300}">
+              <p #minutes></p>
+              <p>:</p>
+              <p #seconds></p>
+            </div>
           </div>
         </div>
         <div class="col-12 d-flex flex-column align-items-center justify-content-center">
@@ -522,7 +524,7 @@
           </button>
         </div>
         <div class="col-12">
-          <p class="text-info fw-bold">Chú ý: bạn có thể click vào số thứ tự câu hỏi trong bài để chuyển hướng đến câu
+          <p class="notice fw-bold">Chú ý: bạn có thể click vào số thứ tự câu hỏi trong bài để chuyển hướng đến câu
             hỏi muốn làm</p>
         </div>
         <ng-container *ngFor="let partIem of listPartResult; let partIndex = index">
@@ -533,10 +535,10 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-9 row">
+              <div class="col row">
                 <ng-container *ngFor="let questionButton of partIem?.questions; let questionIndex = index">
                   <div class="col-3">
-                    <button class="mb-1 btn btn-outline-primary btn-circle"
+                    <button class="mb-1 btn btn-outline-primary btn-circle mt-2 me-2"
                             (click)="switchToTab(partIndex , partIem?.questions[questionIndex]?.questionId)"
                             [ngClass]="{'btn-fill': buttonStates[questionButton?.questionId]}">
                       {{questionButton?.questionNumber}}
