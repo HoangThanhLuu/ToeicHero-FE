@@ -1,7 +1,7 @@
 const PROXY_CONFIG = [
   {
     context: [
-      "/api",
+      // "/api",
     ],
     target: "http://localhost:8080",
     secure: false,
@@ -12,10 +12,9 @@ const PROXY_CONFIG = [
   },
   {
     context: [
-      // "/api",
+      "/api",
     ],
     target: "https://toeicute-38c2b32a7c77.herokuapp.com/",
-    secure: false,
     "changeOrigin": true,
     "logLevel": "debug",
     headers: {host: 'toeicute-38c2b32a7c77.herokuapp.com'},
