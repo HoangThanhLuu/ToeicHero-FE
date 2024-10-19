@@ -1,13 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
-import {NzModalService} from "ng-zorro-antd/modal";
-import {BsModalService} from "ngx-bootstrap/modal";
 import {NgxSpinnerService} from "ngx-spinner";
-import {AuthService} from "../../auth.service";
 import {GetHeaderService} from "../../common/get-headers/get-header.service";
 import {finalize} from "rxjs";
-import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-history-exam',
@@ -19,11 +15,7 @@ export class HistoryExamComponent implements OnInit {
 
   constructor(private toast: ToastrService,
               private http: HttpClient,
-              private modal: NzModalService,
-              private bsModalService: BsModalService,
-              private datePipe: DatePipe,
               private spinner: NgxSpinnerService,
-              private auth: AuthService,
               private getHeaderService: GetHeaderService) {
   }
 
