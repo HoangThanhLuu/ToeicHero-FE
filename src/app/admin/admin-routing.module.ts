@@ -8,7 +8,6 @@ import {UsersComponent} from "./users/users.component";
 import {ExamDetailComponent} from "./exam/exam-detail/exam-detail.component";
 import {QuestionComponent} from "./exam/question/question.component";
 
-
 const routes: Routes = [
   {
     path: '',
@@ -17,7 +16,7 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: 'home',
-        pathMatch: 'full'
+        pathMatch: 'full',
       }, {
         path: 'home',
         component: HomeComponent
