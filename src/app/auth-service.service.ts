@@ -3,17 +3,18 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor, HttpClient
+  HttpInterceptor
 } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AuthService} from "./auth.service";
+import {BASE_URL} from "./common/constant";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService implements HttpInterceptor {
 
-  constructor(private http: HttpClient, private authService: AuthService) {
+  constructor(private authService: AuthService) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -32,6 +33,9 @@ export class AuthServiceService implements HttpInterceptor {
         });
       }
     }
-    return next.handle(req);
+    // handle if running on production
+    const apiReq = req.clone({url: `${BASE_URL}/${req.url}`});
+    const isDevMode = window.location.host.includes('localhost');
+    return next.handle(isDevMode ? req : apiReq);
   }
 }

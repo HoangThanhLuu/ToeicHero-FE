@@ -7,7 +7,6 @@ import {NgxSpinnerService} from "ngx-spinner";
 import {GetHeaderService} from "../../common/get-headers/get-header.service";
 import {ChangePasswordComponent} from "./change-password/change-password.component";
 import {UpdateProfileComponent} from "./update-profile/update-profile.component";
-import {finalize} from "rxjs";
 
 @Component({
     selector: 'app-profile',
@@ -85,7 +84,7 @@ export class ProfileComponent implements OnInit {
                     label: 'Đồng ý',
                     type: 'primary',
                     onClick: () => {
-                        this.spinner.show();
+                        this.spinner.show().then(r => r);
                         this.http.post<any>('/api/upload-file', this.formData)
                             .subscribe((res: any) => {
                                 if (res?.success) {
@@ -96,12 +95,12 @@ export class ProfileComponent implements OnInit {
                                             } else {
                                                 this.toast.error(res?.message);
                                             }
-                                            this.spinner.hide();
+                                            this.spinner.hide().then(r => r);
                                             confirmModal.destroy();
                                         });
                                 } else {
                                     this.toast.error(res?.message);
-                                    this.spinner.hide();
+                                    this.spinner.hide().then(r => r);
                                 }
                             });
                     }

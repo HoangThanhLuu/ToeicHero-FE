@@ -1,6 +1,5 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {AdminLibBaseCss} from "./admin.style";
-import {AddAssetsService} from "../add-assets.service";
 
 @Component({
   selector: 'app-admin',
