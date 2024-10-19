@@ -19,29 +19,48 @@ export class AuthServiceService implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    for (const authenItem of this.authenList) {
-      if (req.url.includes(authenItem)) {
-        const token = this.authService.getToken();
-        if (token) {
-          const isTokenExpired = this.authService.isTokenExpired(token);
-          if (isTokenExpired) {
-            localStorage.removeItem('token');
-            localStorage.setItem('tokenValid', 'false');
-          } else {
-            localStorage.setItem('tokenValid', 'true');
-            req = req.clone({
-              setHeaders: {
-                Authorization: `Bearer ${token}`
-              }
-            });
-          }
-        }
-      }
-    }
-    // handle if running on production
+
+    // for (const authenItem of this.authenList) {
+    //   if (req.url.includes(authenItem)) {
+    //     isAuthen = true;
+    //     const token = this.authService.getToken();
+    //     if (token) {
+    //       const isTokenExpired = this.authService.isTokenExpired(token);
+    //       if (isTokenExpired) {
+    //         localStorage.removeItem('token');
+    //         localStorage.setItem('tokenValid', 'false');
+    //       } else {
+    //         localStorage.setItem('tokenValid', 'true');
+    //         let req2 = req.clone({
+    //           url: (!isDevMode ? apiEndPoint.href : ''),
+    //           setHeaders: {
+    //             Authorization: `Bearer ${token}`
+    //           }
+    //         });
+    //         return next.handle(req2);
+    //       }
+    //     }
+    //   }
+    // }
+
     let apiEndPoint = new URL(req.url, BASE_URL);
-    const apiReq = req.clone({url: apiEndPoint.href});
     const isDevMode = window.location.host.includes('localhost');
-    return next.handle(isDevMode ? req : apiReq);
+    const token = this.authService.getToken();
+    // handle if running on production
+    if (isDevMode) {
+      req = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+    } else {
+      req = req.clone({
+        url: apiEndPoint.href,
+        setHeaders: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+    }
+    return next.handle(req);
   }
 }
