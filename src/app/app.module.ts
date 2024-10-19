@@ -24,6 +24,11 @@ import {NzAvatarModule} from "ng-zorro-antd/avatar";
 import {NzImageModule} from "ng-zorro-antd/image";
 import {AuthServiceService} from "./auth-service.service";
 import {ClientGuardGuard} from "./client-guard.guard";
+import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider
+} from '@abacritt/angularx-social-login';
 
 registerLocaleData(en);
 
@@ -55,6 +60,7 @@ registerLocaleData(en);
     NzModalModule,
     NzAvatarModule,
     NzImageModule,
+    SocialLoginModule
   ],
   providers: [
     {provide: NZ_I18N, useValue: en},
@@ -64,7 +70,28 @@ registerLocaleData(en);
       multi: true
     },
     ClientGuardGuard,
-    DatePipe
+    DatePipe,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '979931356007-03ed2esa3j6gl56rom12robrgln5iop3.apps.googleusercontent.com'
+            )
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('826944865787994')
+          }
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+    }
   ],
   exports: [FontAwesomeModule],
   bootstrap: [AppComponent],

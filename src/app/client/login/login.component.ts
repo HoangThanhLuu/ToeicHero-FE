@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {matchpassword} from "./matchpassword.validator";
@@ -7,6 +7,12 @@ import {OtpConfirmComponent} from "./otp-confirm/otp-confirm.component";
 import {ToastrService} from "ngx-toastr";
 import {NgxSpinnerService} from "ngx-spinner";
 import {NzModalService} from "ng-zorro-antd/modal";
+import {
+  FacebookLoginProvider,
+  SocialAuthService,
+  SocialUser
+} from "@abacritt/angularx-social-login";
+import {GoogleAuthService} from "./google-auth.service";
 
 
 @Component({
@@ -15,8 +21,7 @@ import {NzModalService} from "ng-zorro-antd/modal";
   styleUrls: ['./login.component.css'],
 
 })
-export class LoginComponent {
-
+export class LoginComponent implements OnInit, OnDestroy {
   @Output() close = new EventEmitter();
   @Output() signIn = new EventEmitter();
   @Output() signUp = new EventEmitter();
@@ -24,12 +29,9 @@ export class LoginComponent {
   isRegisterTab = false;
   message: string = '';
   showBorderError: any = [];
-
-  switchTab() {
-    this.isRegisterTab = !this.isRegisterTab;
-  }
-
-  public registerForm: FormGroup
+  clientId: string = '979931356007-03ed2esa3j6gl56rom12robrgln5iop3.apps.googleusercontent.com';
+  user!: SocialUser;
+  registerForm: FormGroup;
   loginForm = {
     email: '',
     password: ''
@@ -42,6 +44,8 @@ export class LoginComponent {
               private modal: NzModalService,
               private bsModalRef: BsModalRef,
               private spinnerService: NgxSpinnerService,
+              private socialAuthService: SocialAuthService,
+              private googleAuthService: GoogleAuthService,
               private toast: ToastrService) {
     this.registerForm = this.formBuilder.group({
         email: ['', [Validators.required, Validators.email, Validators.pattern("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")]],
@@ -53,6 +57,28 @@ export class LoginComponent {
         validators: matchpassword
       });
 
+  }
+
+  ngOnInit(): void {
+    this.http.get('/api/user/is-login')
+      .subscribe((res: any) => {
+        if (res?.success && res?.data) {
+          this.bsModalRef.hide();
+          window.location.href = '/home';
+        } else {
+          this.socialAuthService.authState
+            .subscribe((user) => {
+              this.user = user;
+              if (user) {
+                console.log('User logged in:', user);
+              }
+            });
+        }
+      });
+  }
+
+  switchTab() {
+    this.isRegisterTab = !this.isRegisterTab;
   }
 
   register() {
@@ -182,6 +208,21 @@ export class LoginComponent {
   }
 
 
+  loginWithFB() {
+    this.socialAuthService
+      .signIn(FacebookLoginProvider.PROVIDER_ID)
+      .then((data: any) => {
+        console.log(data);
+      });
+  }
+
+  loginWithGoogle() {
+    this.googleAuthService.authenticateUser(this.clientId);
+  }
+
+  ngOnDestroy(): void {
+
+  }
 }
 
 

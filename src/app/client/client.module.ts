@@ -53,6 +53,7 @@ import { HistoryExamComponent } from './history-exam/history-exam.component';
 import {NzCollapseModule} from "ng-zorro-antd/collapse";
 import {NzTableModule} from "ng-zorro-antd/table";
 import { HistoryExamDetailComponent } from './history-exam/history-exam-detail/history-exam-detail.component';
+import {GoogleSigninButtonModule} from "@abacritt/angularx-social-login";
 
 @NgModule({
   declarations: [
@@ -114,6 +115,7 @@ import { HistoryExamDetailComponent } from './history-exam/history-exam-detail/h
         TooltipModule,
         NzCollapseModule,
         NzTableModule,
+        GoogleSigninButtonModule,
     ],
   providers: [],
   exports: [

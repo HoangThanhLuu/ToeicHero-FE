@@ -1,11 +1,11 @@
 <div class="container" [ngClass]="{'right-panel-active' : isRegisterTab}" id="container">
   <div class="form-container sign-up-container">
-    <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <form [formGroup]="registerForm">
       <h1>Tạo tài khoản</h1>
       <div class="social-container">
-        <a href="javascript:;" class="social"><i class="fab fa-facebook-f"></i></a>
-        <a href="javascript:;" class="social"><i class="fab fa-google-plus-g"></i></a>
-        <a href="javascript:;" class="social"><i class="fab fa-linkedin-in"></i></a>
+        <button class="btn btn-facebook" (click)="loginWithFB()"><i class="fab fa-facebook-f"></i> Continue with Facebook</button>
+        <asl-google-signin-button class="social" text="continue_with" type='standard' size='medium'><i
+          class="fab fa-google-plus-g"></i></asl-google-signin-button>
       </div>
       <span>Hoặc sử dụng email của bạn để đăng ký </span>
       <input formControlName="email"
@@ -24,7 +24,7 @@
              type="password"
              [ngClass]="{'borderError': this.showBorderError[3]}"
              placeholder="Nhập lại mật khẩu" required/>
-      <button>Đăng ký</button>
+      <button (click)="register()">Đăng ký</button>
     </form>
   </div>
   <div class="form-container sign-in-container" [ngClass]="{'d-none' : isRegisterTab}">
@@ -32,8 +32,8 @@
       <h1>Đăng nhập</h1>
 
       <div class="social-container">
-        <a href="javascript:;" class="social"><i class="fab fa-facebook-f"></i></a>
-        <a href="javascript:;" class="social"><i class="fab fa-google-plus-g"></i></a>
+        <a href="javascript:;" class="social" (click)="loginWithFB()"><i class="fab fa-facebook-f"></i></a>
+        <a href="javascript:;" class="social" (click)="loginWithGoogle()"><i class="fab fa-google-plus-g"></i></a>
         <a href="javascript:;" class="social"><i class="fab fa-linkedin-in"></i></a>
       </div>
 
