@@ -3,7 +3,6 @@ import {Router} from "@angular/router";
 import {NgwWowService} from "ngx-wow";
 import {HttpClient} from "@angular/common/http";
 import {BsModalService} from "ngx-bootstrap/modal";
-import {AuthServiceService} from "../auth-service.service";
 
 @Component({
   selector: 'app-client',
@@ -16,6 +15,9 @@ export class ClientComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.http.get('/api/test')
+      .subscribe((res: any) => {
+        console.log(res);
+      })
   }
 }
