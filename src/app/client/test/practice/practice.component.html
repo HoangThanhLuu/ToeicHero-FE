@@ -36,7 +36,7 @@
                   <div class="col-12">
                     <nz-radio-group nzName="radiogroup"
                                     [(ngModel)]="selectedAnswer[item?.questionId]"
-                                    (ngModelChange)="changeStateButton($event, item?.questionId, item?.partCode)">
+                                    (ngModelChange)="changeStateButton($event, item?.questionId)">
                       <label nz-radio nzValue="A">A</label>
                       <label nz-radio nzValue="B">B</label>
                       <label nz-radio nzValue="C">C</label>
@@ -75,7 +75,7 @@
                   <div class="col-12">
                     <nz-radio-group nzName="radiogroup"
                                     [(ngModel)]="selectedAnswer[item?.questionId]"
-                                    (ngModelChange)="changeStateButton($event, item?.questionId, item?.partCode)"
+                                    (ngModelChange)="changeStateButton($event, item?.questionId)"
                     >
                       <label nz-radio nzValue="A">A</label>
                       <label nz-radio nzValue="B">B</label>
@@ -136,7 +136,7 @@
                   <div class="col-12">
                     <nz-radio-group nzName="radiogroup" translate="no"
                                     [(ngModel)]="selectedAnswer[item?.questionId]"
-                                    (ngModelChange)="changeStateButton($event, item?.questionId, item?.partCode)">
+                                    (ngModelChange)="changeStateButton($event, item?.questionId)">
                       <label nz-radio nzValue="A">A: {{item?.answerA}}</label>
                       <label nz-radio nzValue="B">B: {{item?.answerB}}</label>
                       <label nz-radio nzValue="C">C: {{item?.answerC}}</label>
@@ -196,7 +196,7 @@
                   <div class="col-12">
                     <nz-radio-group nzName="radiogroup" translate="no"
                                     [(ngModel)]="selectedAnswer[item?.questionId]"
-                                    (ngModelChange)="changeStateButton($event, item?.questionId, item?.partCode)">
+                                    (ngModelChange)="changeStateButton($event, item?.questionId)">
                       <label nz-radio nzValue="A">A: {{item?.answerA}}</label>
                       <label nz-radio nzValue="B">B: {{item?.answerB}}</label>
                       <label nz-radio nzValue="C">C: {{item?.answerC}}</label>
@@ -235,7 +235,7 @@
                   <div class="col-12">
                     <nz-radio-group nzName="radiogroup" translate="no"
                                     [(ngModel)]="selectedAnswer[item?.questionId]"
-                                    (ngModelChange)="changeStateButton($event, item?.questionId, item?.partCode)">
+                                    (ngModelChange)="changeStateButton($event, item?.questionId)">
                       <label nz-radio nzValue="A">A: {{item?.answerA}}</label>
                       <label nz-radio nzValue="B">B: {{item?.answerB}}</label>
                       <label nz-radio nzValue="C">C: {{item?.answerC}}</label>
@@ -287,7 +287,7 @@
                           <div class="col-12">
                             <nz-radio-group nzName="radiogroup" translate="no"
                                             [(ngModel)]="selectedAnswer[partItem?.questions[part6Index + counterIndex]?.questionId]"
-                                            (ngModelChange)="changeStateButton($event, partItem?.questions[part6Index + counterIndex]?.questionId, item?.partCode)">
+                                            (ngModelChange)="changeStateButton($event, partItem?.questions[part6Index + counterIndex]?.questionId)">
                               <label nz-radio
                                      nzValue="A">A: {{partItem?.questions[part6Index + counterIndex]?.answerA}}</label>
                               <label nz-radio
@@ -350,7 +350,7 @@
                             <div class="col-12">
                               <nz-radio-group nzName="radiogroup" translate="no"
                                               [(ngModel)]="selectedAnswer[partItem?.questions[part7Index + counterIndex]?.questionId]"
-                                              (ngModelChange)="changeStateButton($event, partItem?.questions[part7Index + counterIndex]?.questionId, item?.partCode)">
+                                              (ngModelChange)="changeStateButton($event, partItem?.questions[part7Index + counterIndex]?.questionId)">
                                 <label nz-radio
                                        nzValue="A">A: {{partItem?.questions[part7Index + counterIndex]?.answerA}}</label>
                                 <label nz-radio
@@ -389,7 +389,7 @@
                             <div class="col-12">
                               <nz-radio-group nzName="radiogroup" translate="no"
                                               [(ngModel)]="selectedAnswer[partItem?.questions[part7Index + counterIndex]?.questionId]"
-                                              (ngModelChange)="changeStateButton($event, partItem?.questions[part7Index + counterIndex]?.questionId, item?.partCode)">
+                                              (ngModelChange)="changeStateButton($event, partItem?.questions[part7Index + counterIndex]?.questionId)">
                                 <label nz-radio
                                        nzValue="A">A: {{partItem?.questions[part7Index + counterIndex]?.answerA}}</label>
                                 <label nz-radio
@@ -428,7 +428,7 @@
                             <div class="col-12">
                               <nz-radio-group nzName="radiogroup" translate="no"
                                               [(ngModel)]="selectedAnswer[partItem?.questions[part7Index + counterIndex]?.questionId]"
-                                              (ngModelChange)="changeStateButton($event, partItem?.questions[part7Index + counterIndex]?.questionId, item?.partCode)">
+                                              (ngModelChange)="changeStateButton($event, partItem?.questions[part7Index + counterIndex]?.questionId)">
                                 <label nz-radio
                                        nzValue="A">A: {{partItem?.questions[part7Index + counterIndex]?.answerA}}</label>
                                 <label nz-radio
@@ -472,7 +472,7 @@
                           <div class="col-12">
                             <nz-radio-group nzName="radiogroup" translate="no"
                                             [(ngModel)]="selectedAnswer[partItem?.questions[part7Index + counterIndex]?.questionId]"
-                                            (ngModelChange)="changeStateButton($event, partItem?.questions[part7Index + counterIndex]?.questionId, item?.partCode)">
+                                            (ngModelChange)="changeStateButton($event, partItem?.questions[part7Index + counterIndex]?.questionId)">
                               <label nz-radio
                                      nzValue="A">A: {{partItem?.questions[part7Index + counterIndex]?.answerA}}</label>
                               <label nz-radio

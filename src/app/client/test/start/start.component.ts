@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
 import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
@@ -14,7 +14,7 @@ import {AuthService} from "../../../auth.service";
   templateUrl: './start.component.html',
   styleUrls: ['./start.component.scss']
 })
-export class StartComponent implements OnInit {
+export class StartComponent implements OnInit, OnDestroy {
   @ViewChild('minutes', {static: true}) minutes: ElementRef | null = null;
   @ViewChild('seconds', {static: true}) seconds: ElementRef | null = null;
   totalTimeInSeconds: number = 120 * 60; // 120 minutes
@@ -29,7 +29,6 @@ export class StartComponent implements OnInit {
   questionPart7Has2Paragraph: any = ['176', '181', '186', '191', '196'];
   selectedAnswer: { [key: number]: string } = {};
   param: any = {};
-
   constructor(private toast: ToastrService,
               private http: HttpClient,
               private modal: NzModalService,
@@ -110,7 +109,8 @@ export class StartComponent implements OnInit {
       if (this.totalTimeInSeconds <= 0) {
         clearInterval(interval);
         this.toast.success('Hết thời gian làm bài');
-        this.submitTest();
+        const isNotSelectAll = this.checkSelectedAll();
+        this.submitTest(isNotSelectAll);
       }
     }, 1000);
   }
@@ -136,7 +136,7 @@ export class StartComponent implements OnInit {
             label: 'Đồng ý',
             type: 'primary',
             onClick: () => {
-              this.submitTest();
+              this.submitTest(isNotSelectAll);
               confirmModal.destroy();
             }
           }
@@ -145,9 +145,11 @@ export class StartComponent implements OnInit {
     }
   }
 
-  submitTest() {
+  submitTest(done: boolean = false) {
     this.param.timeRemaining = this.totalTimeInSeconds;
     this.param.totalQuestion = 200;
+    this.param.isFullTest = true;
+    this.param.isDone = done;
     this.spinnerService.show().then(r => r);
     this.http.post('/api/exam/finish-exam', this.param)
       .pipe(
@@ -236,5 +238,8 @@ export class StartComponent implements OnInit {
         });
       });
     });
+  }
+
+  ngOnDestroy(): void {
   }
 }

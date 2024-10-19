@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
 import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
@@ -14,11 +14,11 @@ import {AuthService} from "../../../auth.service";
   templateUrl: './practice.component.html',
   styleUrls: ['./practice.component.scss']
 })
-export class PracticeComponent implements OnInit {
+export class PracticeComponent implements OnInit, OnDestroy {
   @ViewChild('minutes', {static: true}) minutes: ElementRef | null = null;
   @ViewChild('seconds', {static: true}) seconds: ElementRef | null = null;
   currentExam: any;
-  listPart: any = [];
+  listPart: any;
   listPartResult: any = [];
   buttonStates: { [key: number]: boolean } = {};
   selectedIndex: number = 0;
@@ -29,6 +29,8 @@ export class PracticeComponent implements OnInit {
   selectedAnswer: { [key: number]: string } = {};
   param: any = {};
   totalTimeInSeconds: number = 0;     // initialize the time variable, it's seconds not minutes!
+  interval: any;
+
   constructor(private toast: ToastrService,
               private http: HttpClient,
               private modal: NzModalService,
@@ -96,6 +98,7 @@ export class PracticeComponent implements OnInit {
     const examId = this.route.snapshot.params['examId'];
     this.route.queryParams.subscribe(params => {
       this.listPart = params['part'];
+      this.param.listPart = this.listPart;
       this.getExam(examId);
     })
   }
@@ -103,7 +106,8 @@ export class PracticeComponent implements OnInit {
   private initializeSelectedAnswer() {
     this.param.examId = this.currentExam.examId;
     this.param.answers = [];
-    this.listPartResult.forEach((part: any, partIndex: any) => {
+    this.param.isFullTest = false;
+    this.listPartResult.forEach((part: any) => {
       const partCode = part.partCode;
       part.questions.forEach((question: any) => {
         const questionId = question.questionId;
@@ -113,14 +117,6 @@ export class PracticeComponent implements OnInit {
           answer: '',
           partCode: partCode
         });
-      });
-    });
-  }
-
-  initializeButtonStates() {
-    this.listPartResult.forEach((part: any) => {
-      part.questions.forEach((question: any) => {
-        this.buttonStates[question.questionId] = false;
       });
     });
   }
@@ -144,7 +140,7 @@ export class PracticeComponent implements OnInit {
   }
 
 
-  changeStateButton(selectedAnswerValue: string, questionId: number, partCode: string) {
+  changeStateButton(selectedAnswerValue: string, questionId: number) {
     this.selectedAnswer[questionId] = selectedAnswerValue;
     this.buttonStates[questionId] = true;
     this.param.answers.forEach((answer: any) => {
@@ -200,17 +196,17 @@ export class PracticeComponent implements OnInit {
   }
 
   startTimer() {
-    const interval = setInterval(() => {
+    this.interval = setInterval(() => {
       this.totalTimeInSeconds++;
 
       const minutes = Math.floor(this.totalTimeInSeconds / 60);
       const remainingSeconds = this.totalTimeInSeconds % 60;
 
-      if (this.minutes && this.minutes.nativeElement) {
+      if (this.minutes?.nativeElement) {
         this.minutes.nativeElement.textContent = this.formatTime(minutes);
       }
 
-      if (this.seconds && this.seconds.nativeElement) {
+      if (this.seconds?.nativeElement) {
         this.seconds.nativeElement.textContent = this.formatTime(remainingSeconds);
       }
     }, 1000);
@@ -224,11 +220,12 @@ export class PracticeComponent implements OnInit {
     this.param.totalTime = this.totalTimeInSeconds;
     this.param.timeRemaining = 0;
     this.param.totalQuestion = this.param.answers.length;
-    this.spinnerService.show();
+    this.param.isDone = this.checkSelectedAll();
+    this.spinnerService.show().then(r => r);
     this.http.post('/api/exam/finish-exam', this.param)
       .pipe(
         finalize(() => {
-          this.spinnerService.hide();
+          this.spinnerService.hide().then(r => r);
         }))
       .subscribe((res: any) => {
         if (res?.success) {
@@ -238,5 +235,9 @@ export class PracticeComponent implements OnInit {
           this.toast.error(res?.message);
         }
       });
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.interval);
   }
 }
