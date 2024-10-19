@@ -18,19 +18,24 @@ export class AuthServiceService implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = this.authService.getToken();
-    if (token) {
-      const isTokenExpired = this.authService.isTokenExpired(token);
-      if (isTokenExpired) {
-        localStorage.removeItem('token');
-        localStorage.setItem('tokenValid', 'false');
-      } else {
-        localStorage.setItem('tokenValid', 'true');
-        req = req.clone({
-          setHeaders: {
-            Authorization: `Bearer ${token}`
-          }
-        });
+    if (!(req.url.includes('login')
+      || req.url.includes('register')
+      || req.url.includes('forgot-password')
+      || req.url.includes('reset-password'))) {
+      const token = this.authService.getToken();
+      if (token) {
+        const isTokenExpired = this.authService.isTokenExpired(token);
+        if (isTokenExpired) {
+          localStorage.removeItem('token');
+          localStorage.setItem('tokenValid', 'false');
+        } else {
+          localStorage.setItem('tokenValid', 'true');
+          req = req.clone({
+            setHeaders: {
+              Authorization: `Bearer ${token}`
+            }
+          });
+        }
       }
     }
     // handle if running on production
