@@ -29,7 +29,7 @@
             <td>{{ data?.numberOfCorrectAnswer }}/{{data?.totalQuestion}}</td>
             <td>{{formatTimeFromSeconds((Number(data?.timeToDoExam) - Number(data?.timeRemaining)))}}</td>
             <td>
-              <button class="btn btn-outline-info">Xem chi tiết</button>
+              <button class="btn btn-outline-info" (click)="openDetailExam()">Xem chi tiết</button>
             </td>
           </tr>
           </tbody>

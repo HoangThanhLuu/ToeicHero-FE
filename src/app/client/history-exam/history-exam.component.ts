@@ -57,4 +57,8 @@ export class HistoryExamComponent implements OnInit {
   }
 
   protected readonly Number = Number;
+
+  openDetailExam() {
+    this.toast.info('Chức năng đang phát triển');
+  }
 }

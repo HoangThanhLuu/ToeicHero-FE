@@ -52,6 +52,7 @@ import {TooltipModule} from "ngx-bootstrap/tooltip";
 import { HistoryExamComponent } from './history-exam/history-exam.component';
 import {NzCollapseModule} from "ng-zorro-antd/collapse";
 import {NzTableModule} from "ng-zorro-antd/table";
+import { HistoryExamDetailComponent } from './history-exam/history-exam-detail/history-exam-detail.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import {NzTableModule} from "ng-zorro-antd/table";
     ResultComponent,
     PracticeComponent,
     ChangePasswordComponent,
-    HistoryExamComponent
+    HistoryExamComponent,
+    HistoryExamDetailComponent
   ],
     imports: [
         NgbModule,
