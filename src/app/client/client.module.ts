@@ -49,6 +49,7 @@ import {NzInputNumberModule} from "ng-zorro-antd/input-number";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzTimePickerModule} from "ng-zorro-antd/time-picker";
 import {TooltipModule} from "ngx-bootstrap/tooltip";
+import { HistoryExamComponent } from './history-exam/history-exam.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import {TooltipModule} from "ngx-bootstrap/tooltip";
     LoginPopupComponent,
     ResultComponent,
     PracticeComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    HistoryExamComponent
   ],
     imports: [
         NgbModule,

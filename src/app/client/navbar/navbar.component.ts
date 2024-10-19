@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {BsModalService} from "ngx-bootstrap/modal";
 import {LoginComponent} from "../login/login.component";
 import {AuthService} from "../../auth.service";
+import {HttpClient} from "@angular/common/http";
+import {GetHeaderService} from "../../common/get-headers/get-header.service";
 
 @Component({
   selector: 'app-navbar',
@@ -9,17 +11,41 @@ import {AuthService} from "../../auth.service";
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
+  avatar: string = '/assets/images/default-avatar.jpg';
   activeNav: string = 'home';
   isLogin: boolean = false;
 
-  constructor(private bs: BsModalService, private auth: AuthService) {
+  constructor(private bs: BsModalService, private auth: AuthService, private http: HttpClient, private getHeaderService: GetHeaderService) {
   }
 
   ngOnInit(): void {
     this.activeHeader();
     const token = this.auth.getToken();
     this.isLogin = token ? !this.auth.isTokenExpired(token) : false;
+
+    if (this.isLogin) {
+      const profile = localStorage.getItem('profile');
+      if (profile) {
+        this.avatar = JSON.parse(profile).avatar;
+      } else {
+        const headers = this.getHeaderService.getHeaderAuthentication();
+        this.http.get('/api/user/get-profile', {
+          headers
+        })
+          .subscribe((res: any) => {
+            if (res?.success) {
+              const profile = {
+                avatar: res?.data?.avatar,
+                email: res?.data?.email,
+                fullName: res?.data?.fullName,
+                userId: res?.data?.userId,
+              };
+              localStorage.setItem('profile', JSON.stringify(profile));
+              this.avatar = res?.data?.avatar;
+            }
+          })
+      }
+    }
   }
 
 

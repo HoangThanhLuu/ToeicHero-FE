@@ -10,6 +10,7 @@ import {LoginPopupComponent} from "./login/login-popup/login-popup.component";
 import {ResultComponent} from "./test/result/result.component";
 import {PracticeComponent} from "./test/practice/practice.component";
 import {ClientGuardGuard} from "../client-guard.guard";
+import {HistoryExamComponent} from "./history-exam/history-exam.component";
 
 const routes: Routes = [
   {
@@ -56,6 +57,11 @@ const routes: Routes = [
             component: PracticeComponent
           }
         ]
+      },
+      {
+        path: 'my-exam',
+        canActivate: [ClientGuardGuard],
+        component: HistoryExamComponent
       }
     ]
   }
