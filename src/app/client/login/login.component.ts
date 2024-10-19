@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   isRegisterTab = false;
   message: string = '';
   showBorderError: any = [];
-  clientId: string = '979931356007-03ed2esa3j6gl56rom12robrgln5iop3.apps.googleusercontent.com';
   user!: SocialUser;
   registerForm: FormGroup;
   loginForm = {
@@ -68,6 +67,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.socialAuthService.authState
             .subscribe((res) => {
               this.user = res;
+              console.log(res);
               if (res) {
                 if (res.provider == 'GOOGLE') {
                   const params = {
@@ -223,6 +223,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           avatar: data?.photoUrl,
           provider: data?.provider,
         };
+        console.log(data);
         this.loginWithSocial(params);
       });
   }

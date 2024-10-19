@@ -28,7 +28,6 @@ import {SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider, Faceboo
 import {FACEBOOK_APP_ID} from "./common/constant";
 
 registerLocaleData(en);
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,7 +84,6 @@ registerLocaleData(en);
           }
         ],
         onError: (err) => {
-          console.error(err);
         }
       } as SocialAuthServiceConfig,
     }
