@@ -34,7 +34,8 @@ export class AuthServiceService implements HttpInterceptor {
       }
     }
     // handle if running on production
-    const apiReq = req.clone({url: `${BASE_URL}${req.url}`});
+    let apiEndPoint = new URL(req.url, BASE_URL);
+    const apiReq = req.clone({url: apiEndPoint.href});
     const isDevMode = window.location.host.includes('localhost');
     return next.handle(isDevMode ? req : apiReq);
   }
