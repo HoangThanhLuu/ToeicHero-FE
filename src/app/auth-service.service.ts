@@ -13,28 +13,28 @@ import {BASE_URL} from "./common/constant";
   providedIn: 'root'
 })
 export class AuthServiceService implements HttpInterceptor {
+  authenList: string[] = ['profile', 'start', 'result', 'practice', 'admin'];
 
   constructor(private authService: AuthService) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (!(req.url.includes('login')
-      || req.url.includes('register')
-      || req.url.includes('forgot-password')
-      || req.url.includes('reset-password'))) {
-      const token = this.authService.getToken();
-      if (token) {
-        const isTokenExpired = this.authService.isTokenExpired(token);
-        if (isTokenExpired) {
-          localStorage.removeItem('token');
-          localStorage.setItem('tokenValid', 'false');
-        } else {
-          localStorage.setItem('tokenValid', 'true');
-          req = req.clone({
-            setHeaders: {
-              Authorization: `Bearer ${token}`
-            }
-          });
+    for (const authenItem of this.authenList) {
+      if (req.url.includes(authenItem)) {
+        const token = this.authService.getToken();
+        if (token) {
+          const isTokenExpired = this.authService.isTokenExpired(token);
+          if (isTokenExpired) {
+            localStorage.removeItem('token');
+            localStorage.setItem('tokenValid', 'false');
+          } else {
+            localStorage.setItem('tokenValid', 'true');
+            req = req.clone({
+              setHeaders: {
+                Authorization: `Bearer ${token}`
+              }
+            });
+          }
         }
       }
     }
