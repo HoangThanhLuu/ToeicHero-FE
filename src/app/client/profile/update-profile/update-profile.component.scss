@@ -1,9 +1,9 @@
-body{
+body {
   background-color: #f5f5f5;
   font-family: Lato;
 }
 
-.profile{
+.profile {
   left: 0;
   right: 0;
   min-height: 100%;
@@ -13,7 +13,8 @@ body{
   background-color: #fff;
   border-radius: 10px;
 }
-.content{
+
+.content {
   /* position: absolute; */
   min-height: 100%;
   height: 100%;
@@ -29,7 +30,7 @@ body{
 }
 
 
-span.photo{
+span.photo {
   position: relative;
   height: 80px;
   width: 80px;
@@ -39,12 +40,13 @@ span.photo{
   top: 10%;
   left: 10%;
   overflow: hidden;
-  background: #ddd ;
+  background: #ddd;
   background-size: 100%;
   border-radius: 100%;
   border: 2px solid #ddd;
 }
-span.photo:after{
+
+span.photo:after {
   content: " Add Profile Pic ";
   text-align: center;
   position: absolute;
@@ -55,18 +57,20 @@ span.photo:after{
   width: 100%;
   opacity: 0;
   color: #222;
-  background-color: rgba(0,0,0,0.25);
+  background-color: rgba(0, 0, 0, 0.25);
   background-size: 100%;
   transition: 0.35s ease-in-out;
   overflow: hidden;
   border-radius: 100%;
 }
-span.photo:hover:after{
+
+span.photo:hover:after {
   bottom: 0;
   opacity: 1;
   color: #fff;
 }
-input[type="file"]{
+
+input[type="file"] {
   /* position: absolute; */
   color: #555;
   font-size: 15px;
@@ -79,9 +83,7 @@ input[type="file"]{
 }
 
 
-
-
-.btn{
+.btn {
   /* position: absolute; */
   top: 45%;
   left: 25%;
@@ -95,26 +97,30 @@ input[type="file"]{
   cursor: pointer;
   transition: 0.5s ease;
 }
-span.btn:hover{
+
+span.btn:hover {
   opacity: 1;
   color: #fff;
   background-color: var(--primary-600);;
   /* background-color: #39cb58; */
 }
-.profile:hover .btn{
+
+.profile:hover .btn {
   opacity: 1;
 }
 
-div.circles{
+div.circles {
   width: 100%;
   margin: 0 auto;
 }
-span.fa-users{
+
+span.fa-users {
   color: #777;
   margin-left: 1px;
   margin: 7px 7px 2.5px;
 }
-span.fa-users:after{
+
+span.fa-users:after {
   content: "Circles";
   font-family: Lato;
   margin-left: 3px;
@@ -122,10 +128,9 @@ span.fa-users:after{
 }
 
 
-
 /*Input Fields Styles
 =========================*/
-fieldset textarea,input{
+fieldset textarea, input {
   font-family: Open Sans;
   font-size: 15px;
   color: #333;
@@ -139,27 +144,31 @@ fieldset textarea,input{
   outline: 0;
   transition: 0.3s ease;
 }
-fieldset textarea{
+
+fieldset textarea {
   min-height: 40px;
   max-height: 60px;
 }
-fieldset textarea:hover,input:hover{
+
+fieldset textarea:hover, input:hover {
   box-shadow: 0 0 0 1px var(--primary-600);;
   background-color: #fff;
 }
-fieldset textarea:focus,input:focus{
+
+fieldset textarea:focus, input:focus {
   box-shadow: 0 0 0 1px var(--primary-600),
-  inset 0 2px 5px -1px rgba(0,0,0,0.25);
+  inset 0 2px 5px -1px rgba(0, 0, 0, 0.25);
 }
 
-.grid-35{
+.grid-35 {
   width: 35%;
   float: left;
   font-weight: 500;
   color: #333;
   /* text-align: left; */
 }
-.grid-65{
+
+.grid-65 {
   position: relative;
   width: 65%;
   float: right;
@@ -171,7 +180,7 @@ fieldset textarea:focus,input:focus{
 
 /* #CLEARFIX HACK
 =========================*/
-.clear:after{
+.clear:after {
   content: " ";
   display: table;
   clear: both;
@@ -179,7 +188,7 @@ fieldset textarea:focus,input:focus{
 
 /* Edit View
 ======================*/
-.content h1{
+.content h1 {
   text-align: center;
   color: #555;
   font-family: Lato;
@@ -189,13 +198,11 @@ fieldset textarea:focus,input:focus{
 }
 
 
-
-input.Btn{
+input.Btn {
   width: 30%;
   float: left;
   display: block;
-  margin: 40px auto;
-  margin-left: 1%;
+  margin: 40px auto 40px 1%;
   padding: 15px 15px;
   font-size: 16px;
   color: #fff;
@@ -208,7 +215,15 @@ input.Btn{
   margin-inline-start: 45px;
   margin-inline-end: 40px;
 }
-input.Btn:hover{
+
+input.Btn:hover {
   background-color: var(--primary-500);
 }
 
+.border-none {
+  box-shadow: none;
+}
+
+.border-none:focus, .border-none:hover {
+  box-shadow: none;
+}

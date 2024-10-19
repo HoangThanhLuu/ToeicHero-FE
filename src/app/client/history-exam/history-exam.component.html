@@ -1,1 +1,40 @@
-<p>history-exam works!</p>
+<div class="container-fluid page-header py-5 mb-5 wow fadeIn"
+     data-wow-delay="0.1s"
+     id="header"
+>
+  <app-page-header [nextItem]="'Thống kê bài thi'"></app-page-header>
+</div>
+<div class="container mb-5" id="contact">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="text-center"><i class="fa fa-line-chart"></i> Thống kê kết quả luyện thi</h2>
+      </div>
+      <div class="col-12">
+        <nz-table nzShowPagination
+                  nzShowSizeChanger #basicTable [nzData]="listMyExam">
+          <thead>
+          <tr>
+            <th scope="row">Ngày làm</th>
+            <th>Đề thi</th>
+            <th>Kết quả</th>
+            <th>Thời gian làm bài</th>
+            <th>#</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of basicTable.data">
+            <td scope="col">{{ data?.examDate | date: 'MMM d, y, h:mm:ss a'}}</td>
+            <td>{{ data?.exam?.examName }}</td>
+            <td>{{ data?.numberOfCorrectAnswer }}/{{data?.totalQuestion}}</td>
+            <td>{{formatTimeFromSeconds((Number(data?.timeToDoExam) - Number(data?.timeRemaining)))}}</td>
+            <td>
+              <button class="btn btn-outline-info">Xem chi tiết</button>
+            </td>
+          </tr>
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+  </div>
+</div>

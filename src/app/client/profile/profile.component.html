@@ -80,6 +80,16 @@
       <div class="col-lg-8">
         <div class="card">
           <div class="card-body">
+
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Email</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input type="text" readonly class="form-control" [value]="currentUser?.email">
+              </div>
+            </div>
+
             <div class="row mb-3">
               <div class="col-sm-3">
                 <h6 class="mb-0">Họ tên</h6>
@@ -88,12 +98,22 @@
                 <input type="text" readonly class="form-control" [value]="currentUser?.fullName">
               </div>
             </div>
+
             <div class="row mb-3">
               <div class="col-sm-3">
-                <h6 class="mb-0">Email</h6>
+                <h6 class="mb-0">Số điện thoại</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                <input type="text" readonly class="form-control" [value]="currentUser?.email">
+                <input type="text" readonly class="form-control" [value]="currentUser?.phone">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Địa chỉ</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input type="text" readonly class="form-control" [value]="currentUser?.address">
               </div>
             </div>
           </div>

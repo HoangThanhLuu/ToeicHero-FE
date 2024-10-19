@@ -50,6 +50,8 @@ import {NzInputModule} from "ng-zorro-antd/input";
 import {NzTimePickerModule} from "ng-zorro-antd/time-picker";
 import {TooltipModule} from "ngx-bootstrap/tooltip";
 import { HistoryExamComponent } from './history-exam/history-exam.component';
+import {NzCollapseModule} from "ng-zorro-antd/collapse";
+import {NzTableModule} from "ng-zorro-antd/table";
 
 @NgModule({
   declarations: [
@@ -108,6 +110,8 @@ import { HistoryExamComponent } from './history-exam/history-exam.component';
         NzInputModule,
         NzTimePickerModule,
         TooltipModule,
+        NzCollapseModule,
+        NzTableModule,
     ],
   providers: [],
   exports: [

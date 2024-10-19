@@ -59,12 +59,8 @@ export class NavbarComponent implements OnInit {
       this.activeNav = 'home';
     } else if (url.includes('test')) {
       this.activeNav = 'test';
-    } else if (url.includes('result')) {
-      this.activeNav = 'result';
-    } else if (url.includes('profile')) {
-      this.activeNav = 'profile';
-    } else if (url.includes('logout')) {
-      this.activeNav = 'logout';
+    } else if (url.includes('my-exam')) {
+      this.activeNav = 'my-exam';
     }
   }
 

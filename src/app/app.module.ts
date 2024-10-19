@@ -16,7 +16,7 @@ import {ClientModule} from "./client/client.module";
 import {AdminModule} from "./admin/admin.module";
 import {ConfirmModalComponent} from './common/confirm-modal/confirm-modal.component';
 import {NZ_I18N} from 'ng-zorro-antd/i18n';
-import {registerLocaleData} from '@angular/common';
+import {DatePipe, registerLocaleData} from '@angular/common';
 import en from '@angular/common/locales/en';
 import {ToastrModule} from "ngx-toastr";
 import {NzModalModule} from "ng-zorro-antd/modal";
@@ -63,7 +63,8 @@ registerLocaleData(en);
       useClass: AuthServiceService,
       multi: true
     },
-    ClientGuardGuard
+    ClientGuardGuard,
+    DatePipe
   ],
   exports: [FontAwesomeModule],
   bootstrap: [AppComponent],
