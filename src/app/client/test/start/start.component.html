@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="row mb-2">
-    <nz-tabset class="col-xl-10 left-content" [nzSelectedIndex]="selectedIndex">
+    <nz-tabset class="col-xl-10 left-content" [(nzSelectedIndex)]="selectedIndex">
       <nz-tab nzTitle="Part 1">
         <div class="row">
           <div class="col-12">
@@ -16,8 +16,8 @@
           <div class="col-5">
             <app-audio-part [audioSource]="listPart[0]?.partAudio"></app-audio-part>
           </div>
-          <ng-container *ngFor="let item of listPart[0]?.questions;">
-            <div class="row">
+          <ng-container *ngFor="let item of listPart[0]?.questions; let part1Index = index;">
+            <div class="row" id="questionContainer_0_{{item?.questionId}}">
               <div class="col-12">
                 Câu  {{item?.questionNumber}}
               </div>
@@ -32,7 +32,9 @@
                 />
               </div>
               <div class="col-12">
-                <nz-radio-group nzName="radiogroup">
+                <nz-radio-group nzName="radiogroup"
+                                [(ngModel)]="selectedAnswer[item?.questionId]"
+                                (ngModelChange)="changeStateButton($event, item?.questionId, item?.partCode)">
                   <label nz-radio nzValue="A">A</label>
                   <label nz-radio nzValue="B">B</label>
                   <label nz-radio nzValue="C">C</label>
@@ -60,13 +62,16 @@
           <div class="col-5">
             <app-audio-part [audioSource]="listPart[1]?.partAudio"></app-audio-part>
           </div>
-          <ng-container *ngFor="let item of listPart[1]?.questions;">
-            <div class="row">
+          <ng-container *ngFor="let item of listPart[1]?.questions; let part2Index = index;">
+            <div class="row" id="questionContainer_1_{{item?.questionId}}">
               <div class="col-12">
                 Câu  {{item?.questionNumber}}
               </div>
               <div class="col-12">
-                <nz-radio-group nzName="radiogroup">
+                <nz-radio-group nzName="radiogroup"
+                                [(ngModel)]="selectedAnswer[item?.questionId]"
+                                (ngModelChange)="changeStateButton($event, item?.questionId, item?.partCode)"
+                >
                   <label nz-radio nzValue="A">A</label>
                   <label nz-radio nzValue="B">B</label>
                   <label nz-radio nzValue="C">C</label>
@@ -98,7 +103,7 @@
             <app-audio-part [audioSource]="listPart[2]?.partAudio"></app-audio-part>
           </div>
           <ng-container *ngFor="let item of listPart[2]?.questions; let part3Index = index;">
-            <div class="row">
+            <div class="row" id="questionContainer_2_{{item?.questionId}}">
               <ng-container *ngIf="part3Index % 3 == 0">
                 <span class="col-12 mt-2 fs-6">Question {{item?.questionNumber}} - {{Number(item?.questionNumber) + 2}}
                   refer to
@@ -121,7 +126,9 @@
                 Câu  {{item?.questionNumber}}: {{item?.questionContent}}
               </div>
               <div class="col-12">
-                <nz-radio-group nzName="radiogroup" translate="no">
+                <nz-radio-group nzName="radiogroup" translate="no"
+                                [(ngModel)]="selectedAnswer[item?.questionId]"
+                                (ngModelChange)="changeStateButton($event, item?.questionId, item?.partCode)">
                   <label nz-radio nzValue="A">A: {{item?.answerA}}</label>
                   <label nz-radio nzValue="B">B: {{item?.answerB}}</label>
                   <label nz-radio nzValue="C">C: {{item?.answerC}}</label>
@@ -153,7 +160,7 @@
             <app-audio-part [audioSource]="listPart[3]?.partAudio"></app-audio-part>
           </div>
           <ng-container *ngFor="let item of listPart[3]?.questions; let part4Index = index;">
-            <div class="row">
+            <div class="row" id="questionContainer_3_{{item?.questionId}}">
               <ng-container *ngIf="part4Index % 3 == 0">
                 <span class="col-12 mt-2 fs-6">Question {{item?.questionNumber}} - {{Number(item?.questionNumber) + 2}}
                   refer to
@@ -176,7 +183,9 @@
                 Câu  {{item?.questionNumber}}: {{item?.questionContent}}
               </div>
               <div class="col-12">
-                <nz-radio-group nzName="radiogroup" translate="no">
+                <nz-radio-group nzName="radiogroup" translate="no"
+                                [(ngModel)]="selectedAnswer[item?.questionId]"
+                                (ngModelChange)="changeStateButton($event, item?.questionId, item?.partCode)">
                   <label nz-radio nzValue="A">A: {{item?.answerA}}</label>
                   <label nz-radio nzValue="B">B: {{item?.answerB}}</label>
                   <label nz-radio nzValue="C">C: {{item?.answerC}}</label>
@@ -204,13 +213,15 @@
               {{listPart[4]?.partContent}}
             </p>
           </div>
-          <ng-container *ngFor="let item of listPart[4]?.questions;">
-            <div class="row">
+          <ng-container *ngFor="let item of listPart[4]?.questions; let part5Index = index;">
+            <div class="row" id="questionContainer_4_{{item?.questionId}}">
               <div class="col-12" translate="no">
                 Câu  {{item?.questionNumber}}: {{item?.questionContent}}
               </div>
               <div class="col-12">
-                <nz-radio-group nzName="radiogroup" translate="no">
+                <nz-radio-group nzName="radiogroup" translate="no"
+                                [(ngModel)]="selectedAnswer[item?.questionId]"
+                                (ngModelChange)="changeStateButton($event, item?.questionId, item?.partCode)">
                   <label nz-radio nzValue="A">A: {{item?.answerA}}</label>
                   <label nz-radio nzValue="B">B: {{item?.answerB}}</label>
                   <label nz-radio nzValue="C">C: {{item?.answerC}}</label>
@@ -245,16 +256,21 @@
                   refer to
                   following conversation: </span>
                 <div class="col-7 fs-6 paragraph" translate="no">
-                  {{item?.paragraph1}}
+                  <pre>
+                    {{item?.paragraph1}}
+                  </pre>
                 </div>
-                <div class="col-4 px-2">
+                <div class="col-5 px-2">
                   <div class="row">
                     <ng-container *ngFor="let i of counter(4); let counterIndex = index;">
-                      <div class="col-12" translate="no">
+                      <div class="col-12 mt-1" translate="no"
+                           id="questionContainer_5_{{listPart[5]?.questions[part6Index + counterIndex]?.questionId}}">
                         Câu  {{listPart[5]?.questions[part6Index + counterIndex]?.questionNumber}}:
                       </div>
                       <div class="col-12">
-                        <nz-radio-group nzName="radiogroup" translate="no">
+                        <nz-radio-group nzName="radiogroup" translate="no"
+                                        [(ngModel)]="selectedAnswer[listPart[5]?.questions[part6Index + counterIndex]?.questionId]"
+                                        (ngModelChange)="changeStateButton($event, listPart[5]?.questions[part6Index + counterIndex]?.questionId, item?.partCode)">
                           <label nz-radio
                                  nzValue="A">A: {{listPart[5]?.questions[part6Index + counterIndex]?.answerA}}</label>
                           <label nz-radio
@@ -284,7 +300,186 @@
           </div>
         </div>
       </nz-tab>
-      <nz-tab nzTitle="Part 7">Content of Tab Pane 3</nz-tab>
+      <nz-tab nzTitle="Part 7">
+        <div class="row">
+          <div class="col-12">
+            <p class="text-dark mt-3 fs-6 part-content">
+              {{listPart[6]?.partContent}}
+            </p>
+          </div>
+          <ng-container *ngFor="let item of listPart[6]?.questions; let part7Index = index;">
+            <ng-container *ngIf="item?.questionNumber < 176">
+              <div class="row">
+                <ng-container
+                  *ngIf="questionPart7HasAnswerCheck(item?.questionNumber, questionPart7Has2Answer);">
+                <span class="col-12 mt-2 fs-6">Question {{item?.questionNumber}} - {{Number(item?.questionNumber) + 1}}
+                  refer to
+                  following conversation: </span>
+                  <div class="col-7 fs-6 paragraph" translate="no">
+                    <pre>
+                      {{item?.paragraph1}}
+                    </pre>
+                  </div>
+                  <div class="col-5 px-2">
+                    <div class="row">
+                      <ng-container *ngFor="let i of counter(2); let counterIndex = index;">
+                        <div class="col-12" translate="no"
+                             id="questionContainer_6_{{listPart[6]?.questions[part7Index + counterIndex]?.questionId}}">
+                          Câu  {{listPart[6]?.questions[part7Index + counterIndex]?.questionNumber}}
+                          : {{listPart[6]?.questions[part7Index + counterIndex]?.questionContent}}
+                        </div>
+                        <div class="col-12">
+                          <nz-radio-group nzName="radiogroup" translate="no"
+                                          [(ngModel)]="selectedAnswer[listPart[6]?.questions[part7Index + counterIndex]?.questionId]"
+                                          (ngModelChange)="changeStateButton($event, listPart[6]?.questions[part7Index + counterIndex]?.questionId, item?.partCode)">
+                            <label nz-radio
+                                   nzValue="A">A: {{listPart[6]?.questions[part7Index + counterIndex]?.answerA}}</label>
+                            <label nz-radio
+                                   nzValue="B">B: {{listPart[6]?.questions[part7Index + counterIndex]?.answerB}}</label>
+                            <label nz-radio
+                                   nzValue="C">C: {{listPart[6]?.questions[part7Index + counterIndex]?.answerC}}</label>
+                            <label nz-radio
+                                   nzValue="D">D: {{listPart[6]?.questions[part7Index + counterIndex]?.answerD}}</label>
+                          </nz-radio-group>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <nz-divider></nz-divider>
+                </ng-container>
+
+
+                <ng-container
+                  *ngIf="questionPart7HasAnswerCheck(item?.questionNumber, questionPart7Has3Answer);">
+                <span class="col-12 mt-2 fs-6">Question {{item?.questionNumber}} - {{Number(item?.questionNumber) + 2}}
+                  refer to
+                  following conversation: </span>
+                  <div class="col-7 fs-6 paragraph" translate="no">
+                    <pre>
+                      {{item?.paragraph1}}
+                    </pre>
+                  </div>
+                  <div class="col-5 px-2">
+                    <div class="row">
+                      <ng-container *ngFor="let i of counter(3); let counterIndex = index;">
+                        <div class="col-12" translate="no"
+                             id="questionContainer_6_{{listPart[6]?.questions[part7Index + counterIndex]?.questionId}}">
+                          Câu  {{listPart[6]?.questions[part7Index + counterIndex]?.questionNumber}}
+                          : {{listPart[6]?.questions[part7Index + counterIndex]?.questionContent}}
+                        </div>
+                        <div class="col-12">
+                          <nz-radio-group nzName="radiogroup" translate="no"
+                                          [(ngModel)]="selectedAnswer[listPart[6]?.questions[part7Index + counterIndex]?.questionId]"
+                                          (ngModelChange)="changeStateButton($event, listPart[6]?.questions[part7Index + counterIndex]?.questionId, item?.partCode)">
+                            <label nz-radio
+                                   nzValue="A">A: {{listPart[6]?.questions[part7Index + counterIndex]?.answerA}}</label>
+                            <label nz-radio
+                                   nzValue="B">B: {{listPart[6]?.questions[part7Index + counterIndex]?.answerB}}</label>
+                            <label nz-radio
+                                   nzValue="C">C: {{listPart[6]?.questions[part7Index + counterIndex]?.answerC}}</label>
+                            <label nz-radio
+                                   nzValue="D">D: {{listPart[6]?.questions[part7Index + counterIndex]?.answerD}}</label>
+                          </nz-radio-group>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <nz-divider></nz-divider>
+                </ng-container>
+
+
+                <ng-container
+                  *ngIf="questionPart7HasAnswerCheck(item?.questionNumber, questionPart7Has4Answer);">
+                <span class="col-12 mt-2 fs-6">Question {{item?.questionNumber}} - {{Number(item?.questionNumber) + 3}}
+                  refer to
+                  following conversation: </span>
+                  <div class="col-7 fs-6 paragraph" translate="no">
+                    <pre>
+                      {{item?.paragraph1}}
+                    </pre>
+                  </div>
+                  <div class="col-5 px-2">
+                    <div class="row">
+                      <ng-container *ngFor="let i of counter(4); let counterIndex = index;">
+                        <div class="col-12" translate="no"
+                             id="questionContainer_6_{{listPart[6]?.questions[part7Index + counterIndex]?.questionId}}">
+                          Câu  {{listPart[6]?.questions[part7Index + counterIndex]?.questionNumber}}
+                          : {{listPart[6]?.questions[part7Index + counterIndex]?.questionContent}}
+                        </div>
+                        <div class="col-12">
+                          <nz-radio-group nzName="radiogroup" translate="no"
+                                          [(ngModel)]="selectedAnswer[listPart[6]?.questions[part7Index + counterIndex]?.questionId]"
+                                          (ngModelChange)="changeStateButton($event, listPart[6]?.questions[part7Index + counterIndex]?.questionId, item?.partCode)">
+                            <label nz-radio
+                                   nzValue="A">A: {{listPart[6]?.questions[part7Index + counterIndex]?.answerA}}</label>
+                            <label nz-radio
+                                   nzValue="B">B: {{listPart[6]?.questions[part7Index + counterIndex]?.answerB}}</label>
+                            <label nz-radio
+                                   nzValue="C">C: {{listPart[6]?.questions[part7Index + counterIndex]?.answerC}}</label>
+                            <label nz-radio
+                                   nzValue="D">D: {{listPart[6]?.questions[part7Index + counterIndex]?.answerD}}</label>
+                          </nz-radio-group>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                  <nz-divider></nz-divider>
+                </ng-container>
+              </div>
+            </ng-container>
+
+            <ng-container *ngIf="item?.questionNumber > 175">
+              <ng-container
+                *ngIf="questionPart7HasAnswerCheck(item?.questionNumber, questionPart7Has2Paragraph);">
+                <span class="col-12 mt-2 fs-6">Question {{item?.questionNumber}} - {{Number(item?.questionNumber) + 5}}
+                  refer to
+                  following conversation: </span>
+                <div class="col-7 fs-6 paragraph" translate="no">
+                  <pre>
+                    {{item?.paragraph1}}
+                  </pre>
+                  <pre>
+                    {{item?.paragraph2}}
+                  </pre>
+                </div>
+                <div class="col-5 px-2">
+                  <div class="row">
+                    <ng-container *ngFor="let i of counter(5); let counterIndex = index;">
+                      <div class="col-12" translate="no"
+                           id="questionContainer_6_{{listPart[6]?.questions[part7Index + counterIndex]?.questionId}}">
+                        Câu  {{listPart[6]?.questions[part7Index + counterIndex]?.questionNumber}}
+                        : {{listPart[6]?.questions[part7Index + counterIndex]?.questionContent}}
+                      </div>
+                      <div class="col-12">
+                        <nz-radio-group nzName="radiogroup" translate="no"
+                                        [(ngModel)]="selectedAnswer[listPart[6]?.questions[part7Index + counterIndex]?.questionId]"
+                                        (ngModelChange)="changeStateButton($event, listPart[6]?.questions[part7Index + counterIndex]?.questionId, item?.partCode)">
+                          <label nz-radio
+                                 nzValue="A">A: {{listPart[6]?.questions[part7Index + counterIndex]?.answerA}}</label>
+                          <label nz-radio
+                                 nzValue="B">B: {{listPart[6]?.questions[part7Index + counterIndex]?.answerB}}</label>
+                          <label nz-radio
+                                 nzValue="C">C: {{listPart[6]?.questions[part7Index + counterIndex]?.answerC}}</label>
+                          <label nz-radio
+                                 nzValue="D">D: {{listPart[6]?.questions[part7Index + counterIndex]?.answerD}}</label>
+                        </nz-radio-group>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+                <nz-divider></nz-divider>
+              </ng-container>
+            </ng-container>
+
+          </ng-container>
+          <div class="col-12 d-flex justify-content-between">
+            <a class="btn btn-link" (click)="previousPart()">
+              <i class="fa fa-arrow-left"></i>
+              Previous Part
+            </a>
+          </div>
+        </div>
+      </nz-tab>
     </nz-tabset>
     <div class="col-sm-2 col-12">
       <div class="row right-button">
@@ -309,19 +504,21 @@
           <p class="text-info fw-bold">Chú ý: bạn có thể click vào số thứ tự câu hỏi trong bài để chuyển hướng đến câu
             hỏi muốn làm</p>
         </div>
-        <ng-container *ngFor="let partQuestion of parts; let partIndex = index">
+        <ng-container *ngFor="let partIem of listPart; let partIndex = index">
           <div class="col-12">
             <div class="row">
               <div class="col-12">
-                <p class="text-dark fw-bold mt-3" [innerText]="'Part ' + (partIndex + 1)"></p>
+                <p class="text-dark fw-bold mt-3" [innerText]="partIem?.partName"></p>
               </div>
             </div>
             <div class="row">
               <div class="col-9 row">
-                <ng-container *ngFor="let questionButton of getPartQuestions(partIndex); let questionIndex = index">
+                <ng-container *ngFor="let questionButton of partIem?.questions; let questionIndex = index">
                   <div class="col-3">
-                    <button class="mb-1 btn btn-outline-primary btn-circle">
-                      {{questionButton}}
+                    <button class="mb-1 btn btn-outline-primary btn-circle"
+                            (click)="switchToTab(partIndex ,questionButton?.questionId)"
+                            [ngClass]="{'btn-fill': buttonStates[questionButton?.questionId]}">
+                      {{questionButton?.questionNumber}}
                     </button>
                   </div>
                 </ng-container>
