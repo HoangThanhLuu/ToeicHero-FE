@@ -9,6 +9,7 @@ import {StartComponent} from "./test/start/start.component";
 import {LoginPopupComponent} from "./login/login-popup/login-popup.component";
 import {ResultComponent} from "./test/result/result.component";
 import {PracticeComponent} from "./test/practice/practice.component";
+import {ClientGuardGuard} from "../client-guard.guard";
 
 const routes: Routes = [
   {
@@ -30,6 +31,7 @@ const routes: Routes = [
         component: ListTestComponent
       }, {
         path: 'profile',
+        canActivate: [ClientGuardGuard],
         component: ProfileComponent
       }, {
         path: 'test/:examId',
@@ -40,14 +42,17 @@ const routes: Routes = [
           },
           {
             path: 'start',
+            canActivate: [ClientGuardGuard],
             component: StartComponent
           },
           {
             path: 'result/:resultId',
+            canActivate: [ClientGuardGuard],
             component: ResultComponent
           },
           {
             path: 'practice',
+            canActivate: [ClientGuardGuard],
             component: PracticeComponent
           }
         ]

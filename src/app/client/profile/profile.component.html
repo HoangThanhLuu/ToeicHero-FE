@@ -6,9 +6,9 @@
           <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center">
               <input type="file" name="" id="" class="d-none" (change)="handleFileInput($event)" #fileInput>
-              <img [src]="currentUser.avatar" (click)="triggerFileInput(fileInput)" tooltip="click vào để thay đổi ảnh đại diện" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+              <img [src]="avatarSrc" (click)="triggerFileInput(fileInput)" tooltip="click vào để thay đổi ảnh đại diện" alt="Admin" class="rounded-circle p-1 bg-primary" width="110" height="110" style="object-fit: contain;">
               <div class="mt-3">
-                <h4>{{currentUser.fullName}}</h4>
+                <h4>{{currentUser?.fullName}}</h4>
                 <button class="btn btn-primary" (click)="openFormEditInfo()">Thay đổi thông tin</button>
                 <button class="btn btn-outline-primary ms-2" (click)="openFormChangePassword()">Thay đổi mật khẩu
                 </button>
@@ -85,7 +85,7 @@
                 <h6 class="mb-0">Họ tên</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                <input type="text" readonly class="form-control" value="{{currentUser.fullName}}">
+                <input type="text" readonly class="form-control" [value]="currentUser?.fullName">
               </div>
             </div>
             <div class="row mb-3">
@@ -93,7 +93,7 @@
                 <h6 class="mb-0">Email</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                <input type="text" readonly class="form-control" value="{{currentUser.email}}">
+                <input type="text" readonly class="form-control" [value]="currentUser?.email">
               </div>
             </div>
           </div>

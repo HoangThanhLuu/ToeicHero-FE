@@ -1,9 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BsModalService} from "ngx-bootstrap/modal";
 import {LoginComponent} from "../login/login.component";
-import {AuthServiceService} from "../../auth-service.service";
 import {GetHeaderService} from "../../common/get-headers/get-header.service";
 import {HttpClient} from "@angular/common/http";
+import {AuthService} from "../../auth.service";
 
 @Component({
   selector: 'app-navbar',
@@ -15,13 +15,13 @@ export class NavbarComponent implements OnInit {
   activeNav: string = 'home';
   isLogin: boolean = false;
 
-  constructor(private bs: BsModalService, private getHeaderService: GetHeaderService, private http: HttpClient) {
+  constructor(private bs: BsModalService, private getHeaderService: GetHeaderService, private http: HttpClient, private auth: AuthService) {
   }
 
   ngOnInit(): void {
     this.activeHeader();
-    const tokenValid = localStorage.getItem('tokenValid');
-    this.isLogin = tokenValid === 'true';
+    const token = this.auth.getToken();
+    this.isLogin = token ? !this.auth.isTokenExpired(token) : false;
   }
 
 

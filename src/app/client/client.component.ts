@@ -15,9 +15,5 @@ export class ClientComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.http.get('https://toeicute-38c2b32a7c77.herokuapp.com/api/test')
-      .subscribe((res: any) => {
-        console.log(res);
-      })
   }
 }

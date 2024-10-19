@@ -15,7 +15,10 @@ export class LoginPopupComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.bs.show(LoginComponent, {class: 'modal-lg modal-dialog-centered'});
+    this.bs.show(LoginComponent, {
+      class: 'modal-lg modal-dialog-centered',
+      ignoreBackdropClick: true,
+    });
   }
 
 }

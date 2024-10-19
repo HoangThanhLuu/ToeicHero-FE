@@ -16,7 +16,6 @@ import {ClientModule} from "./client/client.module";
 import {AdminModule} from "./admin/admin.module";
 import {ConfirmModalComponent} from './common/confirm-modal/confirm-modal.component';
 import {NZ_I18N} from 'ng-zorro-antd/i18n';
-import {en_US} from 'ng-zorro-antd/i18n';
 import {registerLocaleData} from '@angular/common';
 import en from '@angular/common/locales/en';
 import {ToastrModule} from "ngx-toastr";
@@ -24,6 +23,7 @@ import {NzModalModule} from "ng-zorro-antd/modal";
 import {NzAvatarModule} from "ng-zorro-antd/avatar";
 import {NzImageModule} from "ng-zorro-antd/image";
 import {AuthServiceService} from "./auth-service.service";
+import {ClientGuardGuard} from "./client-guard.guard";
 
 registerLocaleData(en);
 
@@ -57,12 +57,13 @@ registerLocaleData(en);
     NzImageModule,
   ],
   providers: [
-    {provide: NZ_I18N, useValue: en_US},
+    {provide: NZ_I18N, useValue: en},
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthServiceService,
       multi: true
-    }
+    },
+    ClientGuardGuard
   ],
   exports: [FontAwesomeModule],
   bootstrap: [AppComponent],
