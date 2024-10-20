@@ -29,8 +29,8 @@ export class SidebarComponent implements OnInit {
       this.navItemActive = 'topic';
     } else if (url.includes('exam') || url.includes('question')) {
       this.navItemActive = 'exam';
-    }else if (url.includes('profile')) {
-      this.navItemActive = 'profile';
+    }else if (url.includes('score')) {
+      this.navItemActive = 'score';
     } else if (url.includes('logout')) {
       this.navItemActive = 'logout';
     }

@@ -3,33 +3,70 @@
   [currentPage]="currentPage">
 </app-page-header>
 
+
 <div class="row">
   <div class="col-12 grid-margin">
     <div class="card">
       <div class="card-body">
         <div class="table-responsive">
-          <table class="table">
+          <div class="template-demo">
+            <button type="button" class="btn btn-gradient-primary btn-icon-text mb-3 btn-sm"
+                    [ngClass]="{'d-none': !showSaveAllBtn}"
+                    (click)="saveAll()"
+            >
+              <i class="mdi mdi-file-check btn-icon-prepend"></i> Lưu tất cả
+            </button>
+            <input type="file" (change)="onFileSelected($event)" accept=".xlsx" class="file-upload-default d-none" #fileInput />
+            <button type="button" class="btn btn-gradient-success btn-icon-text mb-3 btn-sm"
+                    (click)="triggerFileInput(fileInput)">
+              <i class="mdi mdi-upload btn-icon-prepend"></i> Nhập điểm từ file excel
+            </button>
+          </div>
+
+          <nz-table #list [nzData]="listScore" nzBordered nzShowSizeChanger [nzLoading]="tblLoading">
             <thead>
             <tr>
-              <th style="width: 25%;"> Số câu đúng</th>
-              <th style="width: 25%;"> Điểm nghe</th>
-              <th style="width: 25%;"> Điểm đọc</th>
-              <th style="width: 25%;"> #</th>
+              <th
+                *ngFor="let column of listOfColumns"
+                [nzSortOrder]="column.sortOrder"
+                [nzSortFn]="column.sortFn"
+                [nzSortDirections]="column.sortDirections"
+              >
+                {{ column.name }}
+              </th>
+              <th>#</th>
             </tr>
             </thead>
             <tbody>
-            <ng-container *ngFor="let item of listScore; trackBy: trackByFn">
-              <tr>
-                <td [tooltip]="'Số câu đúng ' + item?.totalQuestion">{{ item?.totalQuestion }}</td>
+            <tr *ngFor="let item of list.data; trackBy: trackByFn">
+              <td [tooltip]="'Số câu đúng ' + item?.totalQuestion">{{ item?.totalQuestion }}</td>
+              <ng-container *ngIf="!editCache[item.calculateScoreId].edit; else editTemplate">
                 <td>{{item?.scoreListening}}</td>
                 <td>{{item?.scoreReading}}</td>
-                <td>
-                  <button class="btn btn-gradient-info btn-rounded btn-fw" (click)="editScore(item)">Sửa</button>
+                <td class="template-demo">
+                  <button class="btn btn-success btn-rounded btn-sm" (click)="startEdit(item?.calculateScoreId)">
+                    Sửa
+                  </button>
                 </td>
-              </tr>
-            </ng-container>
+              </ng-container>
+              <ng-template #editTemplate>
+                <td>
+                  <input type="text" nz-input [(ngModel)]="editCache[item.calculateScoreId].data.scoreListening"/>
+                </td>
+                <td><input type="text" nz-input [(ngModel)]="editCache[item.calculateScoreId].data.scoreReading"/>
+                </td>
+                <td class="template-demo">
+                  <button type="button" class="btn btn-warning btn-sm" (click)="saveEdit(item)">Lưu</button>
+                  <button class="btn btn-outline-danger btn-sm"
+                          nz-popconfirm nzPopconfirmTitle="Bạn chắc chắn muốn xóa?"
+                          [nzCancelText]="'Hủy'" [nzOkText]="'Đồng ý'"
+                          (nzOnConfirm)="cancelEdit(item?.calculateScoreId)">Hủy
+                  </button>
+                </td>
+              </ng-template>
+            </tr>
             </tbody>
-          </table>
+          </nz-table>
         </div>
       </div>
     </div>

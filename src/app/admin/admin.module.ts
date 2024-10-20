@@ -29,6 +29,9 @@ import {NzImageModule} from "ng-zorro-antd/image";
 import { EditQuestionPart34Component } from './exam/edit-question-part34/edit-question-part34.component';
 import { EditPartComponent } from './exam/edit-part/edit-part.component';
 import { ScoreComponent } from './score/score.component';
+import {NzTableModule} from "ng-zorro-antd/table";
+import {NzPopconfirmModule} from "ng-zorro-antd/popconfirm";
+import {NzInputModule} from "ng-zorro-antd/input";
 
 @NgModule({
     declarations: [
@@ -64,6 +67,9 @@ import { ScoreComponent } from './score/score.component';
         TooltipModule,
         NzAvatarModule,
         NzImageModule,
+        NzTableModule,
+        NzPopconfirmModule,
+        NzInputModule,
     ],
     exports: [
         PageHeaderComponent,
