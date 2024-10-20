@@ -6,18 +6,22 @@
 <div class="col-lg-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
-      <nz-table #borderedTable nzBordered [nzData]="dataSet" >
+      <nz-table #borderedTable nzBordered [nzData]="dataSet">
         <thead>
         <tr>
-          <th> Account Name </th>
-          <th> PassWord </th>
+          <th> Id </th>
+          <th> Tên đề thi </th>
+          <th> Thời gian </th>
+          <th> Trạng thái </th>
           <th> # </th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let data of borderedTable.data">
+          <td>{{ data.id }}</td>
           <td>{{ data.name }}</td>
-          <td>{{ data.context }}</td>
+          <td>{{ data.time }}</td>
+          <td>{{ data.action }}</td>
           <td>
             <button class="btn btn-success btn-rounded btn-sm me-2 " > Sửa </button>
             <button class="btn btn-danger btn-rounded btn-sm" > Xóa </button>

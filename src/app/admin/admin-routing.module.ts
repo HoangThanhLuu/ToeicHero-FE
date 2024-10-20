@@ -27,6 +27,8 @@ import {UpdateGeminiComponent} from "./gemini/update-gemini/update-gemini.compon
 import {
   UpdateTemplateEmailComponent
 } from "./email/template-email/update-template-email/update-template-email.component";
+import {CrawlDataComponent} from "./crawl-data/crawl-data.component";
+import {CrawlConfigComponent} from "./crawl-data/crawl-config/crawl-config.component";
 
 const routes: Routes = [
   {
@@ -122,6 +124,12 @@ const routes: Routes = [
       }, {
         path: 'update-gemini',
         component: UpdateGeminiComponent
+      }, {
+        path: 'crawl-data',
+        component: CrawlDataComponent
+      }, {
+        path: 'crawl-config',
+        component: CrawlConfigComponent
       }
     ]
   },

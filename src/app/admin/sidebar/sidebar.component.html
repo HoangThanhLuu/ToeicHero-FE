@@ -33,18 +33,17 @@
       </a>
       <div class="collapse" id="ui-basic">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item" [ngClass]="{'active' : navItemActive == 'addTopic'}">
-            <a class="nav-link" href="admin/addTopic">
-              <span class="menu-title"> Thêm bộ đề </span>
-              <i class="mdi mdi-database-plus menu-icon"></i>
-            </a>
-          </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'topic'}">
             <a class="nav-link" href="admin/topic">
               <span class="menu-title">Danh sách</span>
-              <i class="mdi mdi-database-plus menu-icon"></i>
             </a>
           </li>
+          <li class="nav-item" [ngClass]="{'active' : navItemActive == 'addTopic'}">
+            <a class="nav-link" href="admin/addTopic">
+              <span class="menu-title"> Thêm bộ đề </span>
+            </a>
+          </li>
+
         </ul>
       </div>
     </li>
@@ -60,13 +59,11 @@
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'addExam'}">
             <a class="nav-link" href="admin/addExam">
               <span class="menu-title"> Thêm đề thi </span>
-              <i class="mdi mdi-database-plus menu-icon"></i>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'exam'}">
             <a class="nav-link" href="admin/exam">
               <span class="menu-title">Danh sách</span>
-              <i class="mdi mdi-database-plus menu-icon"></i>
             </a>
           </li>
         </ul>
@@ -83,6 +80,28 @@
         <span class="menu-title">Transcript</span>
         <i class="mdi mdi-tooltip-text menu-icon"></i>
       </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#crawl-management" aria-expanded="false"
+         aria-controls="exam-management">
+        <span class="menu-title">Crawl Data</span>
+        <i class="menu-arrow"></i>
+        <i class="mdi mdi-database-plus menu-icon"></i>
+      </a>
+      <div class="collapse" id="crawl-management">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item" [ngClass]="{'active' : navItemActive == 'crawl-data'}">
+            <a class="nav-link" href="admin/crawl-data">
+              <span class="menu-title"> Danh sách </span>
+            </a>
+          </li>
+          <li class="nav-item" [ngClass]="{'active' : navItemActive == 'crawl-config'}">
+            <a class="nav-link" href="admin/crawl-config">
+              <span class="menu-title"> Config </span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </li>
 
     <div class="border-bottom"></div>
@@ -105,13 +124,11 @@
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'firebase'}">
             <a class="nav-link" href="admin/firebase">
               <span class="menu-title"> Danh sách </span>
-              <i class="mdi mdi-book-open-variant menu-icon"></i>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-firebase'}">
             <a class="nav-link" href="admin/update-firebase">
               <span class="menu-title"> Update Firebase </span>
-              <i class="mdi mdi-border-color menu-icon"></i>
             </a>
           </li>
         </ul>
@@ -129,14 +146,12 @@
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'email'}">
             <a class="nav-link" href="admin/email">
               <span class="menu-title"> Danh sách </span>
-              <i class="mdi mdi-email menu-icon"></i>
             </a>
           </li>
 
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-email'}">
             <a class="nav-link" href="admin/update-email">
               <span class="menu-title"> Thêm Email </span>
-              <i class="mdi mdi-border-color menu-icon"></i>
             </a>
           </li>
         </ul>
@@ -154,13 +169,11 @@
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'template-email'}">
             <a class="nav-link" href="admin/template-email">
               <span class="menu-title"> Danh sách </span>
-              <i class="mdi mdi-book-open-variant menu-icon"></i>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-template-email'}">
             <a class="nav-link" href="admin/update-template-email">
               <span class="menu-title"> Thêm Template </span>
-              <i class="mdi mdi-border-color menu-icon"></i>
             </a>
           </li>
         </ul>
@@ -178,13 +191,11 @@
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'slider'}">
             <a class="nav-link" href="admin/slider">
               <span class="menu-title"> Danh sách </span>
-              <i class="mdi mdi-book-open-variant menu-icon"></i>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-silder'}">
             <a class="nav-link" href="admin/update-slider">
               <span class="menu-title"> Thêm Slider </span>
-              <i class="mdi mdi-border-color menu-icon"></i>
             </a>
           </li>
         </ul>
@@ -202,13 +213,11 @@
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'rev-ai'}">
             <a class="nav-link" href="admin/rev-ai">
               <span class="menu-title"> Danh sách </span>
-              <i class="mdi mdi-book-open-variant menu-icon"></i>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-silder'}">
             <a class="nav-link" href="admin/update-slider">
               <span class="menu-title"> Thêm REV-AI </span>
-              <i class="mdi mdi-border-color menu-icon"></i>
             </a>
           </li>
         </ul>
@@ -226,13 +235,11 @@
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'kommunicate'}">
             <a class="nav-link" href="admin/kommunicate">
               <span class="menu-title"> Danh sách </span>
-              <i class="mdi mdi-book-open-variant menu-icon"></i>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-kommunicate'}">
             <a class="nav-link" href="admin/update-kommunicate">
               <span class="menu-title"> Thêm Kommunicate </span>
-              <i class="mdi mdi-border-color menu-icon"></i>
             </a>
           </li>
         </ul>
@@ -250,13 +257,11 @@
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'gemini'}">
             <a class="nav-link" href="admin/gemini">
               <span class="menu-title"> Danh sách </span>
-              <i class="mdi mdi-book-open-variant menu-icon"></i>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-gemini'}">
             <a class="nav-link" href="admin/update-gemini">
               <span class="menu-title"> Thêm Gemini </span>
-              <i class="mdi mdi-border-color menu-icon"></i>
             </a>
           </li>
         </ul>

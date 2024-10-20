@@ -49,7 +49,10 @@ import { UpdateKommunicateComponent } from './kommunicate/update-kommunicate/upd
 import { GeminiComponent } from './gemini/gemini.component';
 import { UpdateGeminiComponent } from './gemini/update-gemini/update-gemini.component';
 import { UpdateTemplateEmailComponent } from './email/template-email/update-template-email/update-template-email.component';
-
+import {NzPaginationModule} from "ng-zorro-antd/pagination";
+import { CrawlDataComponent } from './crawl-data/crawl-data.component';
+import { CrawlConfigComponent } from './crawl-data/crawl-config/crawl-config.component';
+import {NzModalModule} from "ng-zorro-antd/modal";
 
 @NgModule({
     declarations: [
@@ -87,6 +90,8 @@ import { UpdateTemplateEmailComponent } from './email/template-email/update-temp
         GeminiComponent,
         UpdateGeminiComponent,
         UpdateTemplateEmailComponent,
+        CrawlDataComponent,
+        CrawlConfigComponent,
 
     ],
   imports: [
@@ -108,6 +113,8 @@ import { UpdateTemplateEmailComponent } from './email/template-email/update-temp
     NzSwitchModule,
     NzFormModule,
     ReactiveFormsModule,
+    NzPaginationModule,
+    NzModalModule,
   ],
     exports: [
         PageHeaderComponent,
