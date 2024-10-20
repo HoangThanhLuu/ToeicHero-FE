@@ -76,8 +76,7 @@ input {
   position: relative;
   overflow: hidden;
   max-width: 100%;
-  min-height: 480px;
-
+  min-height: 600px;
 }
 
 .form-container {
@@ -194,13 +193,51 @@ input {
   margin: 20px 0;
 }
 
-.social-container a {
-  border: 1px solid #DDDDDD;
-  border-radius: 50%;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 5px;
-  height: 40px;
-  width: 40px;
+.borderError {
+  border: 1px solid red;
+}
+
+
+.btn-facebook {
+  border: 1px solid #dadce0;
+  padding: 4px 12px 4px 8px;
+  border-radius: 4px;
+}
+
+.btn-facebook span {
+  font-family: "Google Sans", arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.btn-facebook i {
+  margin-right: 5px;
+  font-size: 20px;
+  color: #2143ef;
+}
+
+@media screen and (max-width: 767px) {
+  .sign-up-container {
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    z-index: 1;
+  }
+
+  .sign-in-container {
+    left: 0;
+    width: 100%;
+    z-index: 2;
+  }
+
+  .overlay-container {
+    display: none;
+  }
+
+  .container.right-panel-active .sign-up-container {
+    transform: translateX(0);
+    opacity: 1;
+    z-index: 5;
+    animation: show 0.6s;
+  }
 }

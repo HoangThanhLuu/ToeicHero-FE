@@ -43,7 +43,7 @@ export class ResultComponent implements OnInit {
           this.exam = res?.data?.exam;
           this.examHistory = res?.data;
         }
-      })
+      });
   }
 
   backToListTest() {

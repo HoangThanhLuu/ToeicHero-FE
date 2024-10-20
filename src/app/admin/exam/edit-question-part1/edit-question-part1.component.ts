@@ -44,9 +44,11 @@ export class EditQuestionPart1Component implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.question && this.question?.questionImage) {
-      this.imageSrc = this.question?.questionImage;
-      this.isShowImage = true;
+    if (this.question) {
+      if (this.question?.questionImage) {
+        this.imageSrc = this.question?.questionImage;
+        this.isShowImage = true;
+      }
     }
     this.titleShow = `${this.title} ${this.currentPart?.partName} - Câu ${this.question?.questionNumber}`;
     this.param = {

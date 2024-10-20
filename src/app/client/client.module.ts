@@ -34,6 +34,27 @@ import { AudioPartComponent } from './test/audio-part/audio-part.component';
 import {NzRadioModule} from "ng-zorro-antd/radio";
 import {NzImageModule} from "ng-zorro-antd/image";
 import {NzDividerModule} from "ng-zorro-antd/divider";
+import { LoginPopupComponent } from './login/login-popup/login-popup.component';
+import { ResultComponent } from './test/result/result.component';
+import { PracticeComponent } from './test/practice/practice.component';
+import {NzCardModule} from "ng-zorro-antd/card";
+import {NzIconModule} from "ng-zorro-antd/icon";
+import {NzListModule} from "ng-zorro-antd/list";
+import {NzTypographyModule} from "ng-zorro-antd/typography";
+import { ChangePasswordComponent } from './profile/change-password/change-password.component';
+import {NzFormModule} from "ng-zorro-antd/form";
+import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
+import {NzSelectModule} from "ng-zorro-antd/select";
+import {NzInputNumberModule} from "ng-zorro-antd/input-number";
+import {NzInputModule} from "ng-zorro-antd/input";
+import {NzTimePickerModule} from "ng-zorro-antd/time-picker";
+import {TooltipModule} from "ngx-bootstrap/tooltip";
+import { HistoryExamComponent } from './history-exam/history-exam.component';
+import {NzCollapseModule} from "ng-zorro-antd/collapse";
+import {NzTableModule} from "ng-zorro-antd/table";
+import { HistoryExamDetailComponent } from './history-exam/history-exam-detail/history-exam-detail.component';
+import {GoogleSigninButtonModule} from "@abacritt/angularx-social-login";
+import {NzToolTipModule} from "ng-zorro-antd/tooltip";
 
 @NgModule({
   declarations: [
@@ -54,29 +75,50 @@ import {NzDividerModule} from "ng-zorro-antd/divider";
     ProfileComponent,
     UpdateProfileComponent,
     StartComponent,
-    AudioPartComponent
+    AudioPartComponent,
+    LoginPopupComponent,
+    ResultComponent,
+    PracticeComponent,
+    ChangePasswordComponent,
+    HistoryExamComponent,
+    HistoryExamDetailComponent
   ],
-  imports: [
-    NgbModule,
-    CommonModule,
-    ClientRoutingModule,
-    FormsModule,
-    FontAwesomeModule,
-    CarouselModule,
-    NgOptimizedImage,
-    ReactiveFormsModule,
-    NzAvatarModule,
-    NgxSpinnerModule,
-    NzTagModule,
-    NzEmptyModule,
-    NzTabsModule,
-    NzCheckboxModule,
-    NzGridModule,
-    NzButtonModule,
-    NzRadioModule,
-    NzImageModule,
-    NzDividerModule,
-  ],
+    imports: [
+        NgbModule,
+        CommonModule,
+        ClientRoutingModule,
+        FormsModule,
+        FontAwesomeModule,
+        CarouselModule,
+        NgOptimizedImage,
+        ReactiveFormsModule,
+        NzAvatarModule,
+        NgxSpinnerModule,
+        NzTagModule,
+        NzEmptyModule,
+        NzTabsModule,
+        NzCheckboxModule,
+        NzGridModule,
+        NzButtonModule,
+        NzRadioModule,
+        NzImageModule,
+        NzDividerModule,
+        NzCardModule,
+        NzIconModule,
+        NzListModule,
+        NzTypographyModule,
+        NzFormModule,
+        NzDatePickerModule,
+        NzSelectModule,
+        NzInputNumberModule,
+        NzInputModule,
+        NzTimePickerModule,
+        TooltipModule,
+        NzCollapseModule,
+        NzTableModule,
+        GoogleSigninButtonModule,
+        NzToolTipModule,
+    ],
   providers: [],
   exports: [
     HeaderComponent,

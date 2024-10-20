@@ -24,7 +24,7 @@
                 Sẵn sàng để bắt đầu làm full test? Để đạt được kết quả tốt nhất, bạn cần dành ra 120 phút cho bài test này.
               </span>
             </div>
-            <div class="col-1">
+            <div class="col-1 mt-3">
               <button nz-button nzType="primary" class="mt-1 bg-primary border-0" style="width: 140px;"
                       [nzShape]="'round'" nzSize="large" nzBlock (click)="startFullTest()">Bắt đầu
               </button>
@@ -41,7 +41,7 @@
                 đúng các câu hỏi thay vì phải chịu áp lực hoàn thành bài thi.
               </span>
             </div>
-            <div class="col-12 fs-6">
+            <div class="col-12 fs-6 fw-bold">
               <p>Chọn phần thi bạn muốn làm</p>
             </div>
             <div class="col-12">
@@ -66,7 +66,7 @@
                     <ng-container *ngIf="i == 0">
                       <div nz-col nzSpan="24" class="ms-4">
                         <ng-container *ngFor="let itemP1 of listTagPart1;">
-                          <nz-tag [nzColor]="colorTag" class="text-dark mt-1"># {{itemP1}}</nz-tag>
+                          <nz-tag [nzColor]="colorTag" class="text-dark mt-1 border-1"># {{itemP1}}</nz-tag>
                         </ng-container>
                       </div>
                     </ng-container>
@@ -74,7 +74,7 @@
                     <ng-container *ngIf="i == 1">
                       <div nz-col nzSpan="24" class="ms-4" [nzOffset]="1">
                         <ng-container *ngFor="let itemP2 of listTagPart2;">
-                          <nz-tag [nzColor]="colorTag" class="text-dark mt-1"># {{itemP2}}</nz-tag>
+                          <nz-tag [nzColor]="colorTag" class="text-dark mt-1 border-1"># {{itemP2}}</nz-tag>
                         </ng-container>
                       </div>
                     </ng-container>
@@ -82,7 +82,7 @@
                     <ng-container *ngIf="i == 2">
                       <div nz-col nzSpan="24" class="ms-4" [nzOffset]="1">
                         <ng-container *ngFor="let itemP3 of listTagPart3;">
-                          <nz-tag [nzColor]="colorTag" class="text-dark mt-1"># {{itemP3}}</nz-tag>
+                          <nz-tag [nzColor]="colorTag" class="text-dark mt-1 border-1"># {{itemP3}}</nz-tag>
                         </ng-container>
                       </div>
                     </ng-container>
@@ -90,7 +90,7 @@
                     <ng-container *ngIf="i == 3">
                       <div nz-col nzSpan="24" class="ms-4" [nzOffset]="1">
                         <ng-container *ngFor="let itemP4 of listTagPart4;">
-                          <nz-tag [nzColor]="colorTag" class="text-dark mt-1"># {{itemP4}}</nz-tag>
+                          <nz-tag [nzColor]="colorTag" class="text-dark mt-1 border-1"># {{itemP4}}</nz-tag>
                         </ng-container>
                       </div>
                     </ng-container>
@@ -98,7 +98,7 @@
                     <ng-container *ngIf="i == 4">
                       <div nz-col nzSpan="24" class="ms-4" [nzOffset]="1">
                         <ng-container *ngFor="let itemP5 of listTagPart5;">
-                          <nz-tag [nzColor]="colorTag" class="text-dark mt-1"># {{itemP5}}</nz-tag>
+                          <nz-tag [nzColor]="colorTag" class="text-dark mt-1 border-1"># {{itemP5}}</nz-tag>
                         </ng-container>
                       </div>
                     </ng-container>
@@ -106,7 +106,7 @@
                     <ng-container *ngIf="i == 5">
                       <div nz-col nzSpan="24" class="ms-4" [nzOffset]="1">
                         <ng-container *ngFor="let itemP6 of listTagPart6;">
-                          <nz-tag [nzColor]="colorTag" class="text-dark mt-1"># {{itemP6}}</nz-tag>
+                          <nz-tag [nzColor]="colorTag" class="text-dark mt-1 border-1"># {{itemP6}}</nz-tag>
                         </ng-container>
                       </div>
                     </ng-container>
@@ -114,7 +114,7 @@
                     <ng-container *ngIf="i == 6">
                       <div nz-col nzSpan="24" class="ms-4" [nzOffset]="1">
                         <ng-container *ngFor="let itemP7 of listTagPart7;">
-                          <nz-tag [nzColor]="colorTag" class="text-dark mt-1"># {{itemP7}}</nz-tag>
+                          <nz-tag [nzColor]="colorTag" class="text-dark mt-1 border-1"># {{itemP7}}</nz-tag>
                         </ng-container>
                       </div>
                     </ng-container>

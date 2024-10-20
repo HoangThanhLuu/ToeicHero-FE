@@ -6,9 +6,10 @@
   color: white;
   font-size: 0.75em;
   overflow: hidden;
-  background: #808080;
+  background: rgba(206, 203, 203, 0.99);
   display: grid;
   grid-template-rows: 6px auto;
+  border-radius: 25px;
 
   .timeline {
     background: white;

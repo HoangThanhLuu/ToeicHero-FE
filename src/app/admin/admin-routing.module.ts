@@ -7,7 +7,7 @@ import {TopicComponent} from "./topic/topic.component";
 import {UsersComponent} from "./users/users.component";
 import {ExamDetailComponent} from "./exam/exam-detail/exam-detail.component";
 import {QuestionComponent} from "./exam/question/question.component";
-
+import {ScoreComponent} from "./score/score.component";
 
 const routes: Routes = [
   {
@@ -17,7 +17,7 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: 'home',
-        pathMatch: 'full'
+        pathMatch: 'full',
       }, {
         path: 'home',
         component: HomeComponent
@@ -49,6 +49,9 @@ const routes: Routes = [
             component: QuestionComponent
           }
         ]
+      }, {
+        path: 'score',
+        component: ScoreComponent
       }
     ]
   },

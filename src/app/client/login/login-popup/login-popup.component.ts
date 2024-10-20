@@ -1,8 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {NzModalService} from "ng-zorro-antd/modal";
-import {NgxSpinnerService} from "ngx-spinner";
-import {ToastrService} from "ngx-toastr";
+import {BsModalService} from "ngx-bootstrap/modal";
 import {LoginComponent} from "../login.component";
 
 @Component({
@@ -15,7 +12,10 @@ export class LoginPopupComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.bs.show(LoginComponent, {class: 'modal-lg modal-dialog-centered'});
+    this.bs.show(LoginComponent, {
+      class: 'modal-lg modal-dialog-centered',
+      ignoreBackdropClick: true,
+    });
   }
 
 }

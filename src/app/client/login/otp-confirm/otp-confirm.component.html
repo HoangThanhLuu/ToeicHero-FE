@@ -1,26 +1,21 @@
+<div class="w-100 d-flex flex-row-reverse"><button class="btn-close" (click)="closeModal()"></button></div>
 <div class="auth-screen">
-  <!-- Otp screen -->
   <div class="login">
     <div class="title-auth">
-
       <h5>Xác thực OTP để kích hoạt tài khoản TOEICUTE</h5>
       <p>Nhập OTP đã gửi tới email của bạn.</p>
     </div>
     <form action="" class="otp-form">
-      <input class="otp-field" type="text" name="opt-field[]" maxlength=1>
-      <input class="otp-field" type="text" name="opt-field[]" maxlength=1>
-      <input class="otp-field" type="text" name="opt-field[]" maxlength=1>
-      <input class="otp-field" type="text" name="opt-field[]" maxlength=1>
-      <input class="otp-field" type="text" name="opt-field[]" maxlength=1>
-      <input class="otp-field" type="text" name="opt-field[]" maxlength=1>
-
+      <input class="otp-field" type="text" name="opt-field[]" (click)="handleClick(0)" (keyup)="handleInput($event, 2)">
+      <input class="otp-field" type="text" name="opt-field[]" (click)="handleClick(1)" (keyup)="handleInput($event, 3)">
+      <input class="otp-field" type="text" name="opt-field[]" (click)="handleClick(2)" (keyup)="handleInput($event, 4)">
+      <input class="otp-field" type="text" name="opt-field[]" (click)="handleClick(3)" (keyup)="handleInput($event, 5)">
+      <input class="otp-field" type="text" name="opt-field[]" (click)="handleClick(4)" (keyup)="handleInput($event, 6)">
+      <input class="otp-field" type="text" name="opt-field[]" (click)="handleClick(5)" (keyup)="handleInput($event, 1)">
     </form>
-
-    <input type="button" name="usern" value="Xác nhận" class="btn">
+    <input type="button" name="usern" value="Xác nhận" class="btn" (click)="confirmOtp()">
     <div class="auth-footer">
-
-      <p>Chưa nhận được OTP. <span class="resend-btn">Gửi lại</span></p>
+      <p>Chưa nhận được OTP. <span class="resend-btn btn-link" (click)="sendAgainEmail()">Gửi lại</span></p>
     </div>
   </div>
-
 </div>
