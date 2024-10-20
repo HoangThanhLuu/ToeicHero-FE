@@ -1,0 +1,36 @@
+<app-page-header
+  [title]="title"
+  [currentPage]="currentPage">
+</app-page-header>
+
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <div style="overflow-x: auto;">
+      <nz-table #borderedTable nzBordered [nzData]="dataSet">
+        <thead>
+        <tr>
+          <th> Id </th>
+          <th> Email </th>
+          <th> Token </th>
+          <th> Agent_user </th>
+          <th> # </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of borderedTable.data">
+          <td>{{ data.id }}</td>
+          <td>{{ data.email }}</td>
+          <td>{{ data.token }}</td>
+          <td>{{ data.agent_user }}</td>
+          <td>
+            <button class="btn btn-success btn-rounded btn-sm  " > Sửa </button>
+            <button class="btn btn-danger btn-rounded btn-sm mt-2" > Xóa </button>
+          </td>
+        </tr>
+        </tbody>
+      </nz-table>
+      </div>
+    </div>
+  </div>
+</div>
