@@ -1,0 +1,47 @@
+<div class="col-12 grid-margin stretch-card mb-0">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title" [innerText]="title"></h4>
+      <form class="forms-sample">
+        <div class="form-group">
+          <label for="exampleInputName1">Tên bộ transcript</label>
+          <input type="text" class="form-control" [ngClass]="{'error-input-custom': showBorderError}" id="exampleInputName1"
+                 [(ngModel)]="param.topicName" placeholder="Nhập tên transcript">
+        </div>
+        <div class="form-group">
+          <label>MP3</label>
+          <div class="container-upload" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
+            <div class="upload-box">
+              <div class="content">
+                <div class="upload-icon" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
+                  <i class="mdi mdi-cloud-upload text-dark" style="height: 100px; width: 100px;"></i>
+                </div>
+                <h6 class="text-dark" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
+                  Kéo và thả tập tin của bạn vào đây. Hoặc
+                </h6>
+                <div class="upload-btn-wrapper">
+                  <button class="btn btn-gradient-primary">Tải lên file mp3</button>
+                  <input type="file" (change)="handleFileInput($event)" (drop)="handleDrop($event)"
+                         (dragover)="allowDrop($event)"
+                         accept="audio/*"/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="box-body" [ngClass]="{'d-none' : !isShowImage}">
+            <img [src]="this.imageSrc" alt="" style="width: 200px; height: 200px;" class="ant-image-preview">
+          </div>
+        </div>
+      </form>
+      <div class="mt-3">
+        <button class="btn btn-gradient-primary" (click)="addNew()">Xác nhận</button>
+        <button class="btn btn-secondary ms-2" (click)="close()">Hủy</button>
+      </div>
+      <div class="text">
+        <h5 for="exampleTextarea">Transcript: </h5>
+        <textarea class="form-control overflow-auto " readonly id="exampleTextarea" rows="7"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
