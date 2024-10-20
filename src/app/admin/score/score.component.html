@@ -1,0 +1,37 @@
+<app-page-header
+  [title]="title"
+  [currentPage]="currentPage">
+</app-page-header>
+
+<div class="row">
+  <div class="col-12 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+            <tr>
+              <th style="width: 25%;"> Số câu đúng</th>
+              <th style="width: 25%;"> Điểm nghe</th>
+              <th style="width: 25%;"> Điểm đọc</th>
+              <th style="width: 25%;"> #</th>
+            </tr>
+            </thead>
+            <tbody>
+            <ng-container *ngFor="let item of listScore; trackBy: trackByFn">
+              <tr>
+                <td [tooltip]="'Số câu đúng ' + item?.totalQuestion">{{ item?.totalQuestion }}</td>
+                <td>{{item?.scoreListening}}</td>
+                <td>{{item?.scoreReading}}</td>
+                <td>
+                  <button class="btn btn-gradient-info btn-rounded btn-fw" (click)="editScore(item)">Sửa</button>
+                </td>
+              </tr>
+            </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

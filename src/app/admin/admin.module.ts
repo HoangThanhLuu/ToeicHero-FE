@@ -28,6 +28,7 @@ import {NzAvatarModule} from "ng-zorro-antd/avatar";
 import {NzImageModule} from "ng-zorro-antd/image";
 import { EditQuestionPart34Component } from './exam/edit-question-part34/edit-question-part34.component';
 import { EditPartComponent } from './exam/edit-part/edit-part.component';
+import { ScoreComponent } from './score/score.component';
 
 @NgModule({
     declarations: [
@@ -48,7 +49,8 @@ import { EditPartComponent } from './exam/edit-part/edit-part.component';
         QuestionComponent,
         EditQuestionPart1Component,
         EditQuestionPart34Component,
-        EditPartComponent
+        EditPartComponent,
+        ScoreComponent
     ],
     imports: [
         CommonModule,
