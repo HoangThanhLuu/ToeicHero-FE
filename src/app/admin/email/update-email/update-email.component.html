@@ -1,0 +1,40 @@
+<div class="col-12 grid-margin stretch-card mb-0">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title" [innerText]="title"></h4>
+      <form nz-form>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="5">Host</nz-form-label>
+          <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Nhập ít nhất 4 ký tự">
+            <input nz-input class="border" [ngModel]="'Input Host'" name="host" minlength="4"/>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="5">Port</nz-form-label>
+          <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Nhập ít nhất 4 ký tự">
+            <input nz-input class="border" [ngModel]="'Input Port'" name="port" minlength="6"/>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="5">Email</nz-form-label>
+          <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="Email không hợp lệ">
+            <input nz-input class="border" [ngModel]="'Input Email'" name="email" email />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="5">PassWord </nz-form-label>
+          <nz-form-control nzHasFeedback [nzSpan]="12">
+            <input nz-input class="border" type="password" [ngModel]="'Input Password'" name="password" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 16, offset: 8 }">
+            <button nz-button class="btn-add"> Thêm </button>
+          </nz-form-control>
+        </nz-form-item>
+
+      </form>
+    </div>
+  </div>
+</div>

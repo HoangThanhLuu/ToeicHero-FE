@@ -8,4 +8,18 @@ import { Component } from '@angular/core';
 export class SliderComponent {
   title: string = "Quản lý slider";
   currentPage: string = "Slider";
+
+
+  dataSet = [
+    {
+      image: '1',
+      position: 'first',
+      action: 'active'
+    },
+    {
+      image: '2',
+      position: 'second',
+      action: 'active'
+    }
+  ];
 }

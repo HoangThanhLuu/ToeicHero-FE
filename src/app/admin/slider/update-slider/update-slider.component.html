@@ -1,0 +1,28 @@
+<div class="col-12 grid-margin stretch-card mb-0">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title" [innerText]="title"></h4>
+      <form nz-form [formGroup]="validateForm" >
+        <nz-form-item>
+          <nz-form-label [nzSpan]="3">Vị trí </nz-form-label>
+          <nz-form-control nzHasFeedback [nzSpan]="5" >
+            <input nz-input class="border" name="position"/>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 20, offset: 4 }">
+            <button nz-button nzType="dashed" class="add-button" (click)="addField($event)">
+              <span nz-icon nzType="plus"></span>
+              Tải ảnh lên
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 16, offset: 8 }">
+            <button nz-button class="btn-add"> Thêm </button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+  </div>
+</div>
