@@ -11,8 +11,7 @@
         <h2 class="text-center"><i class="fa fa-line-chart"></i> Thống kê kết quả luyện thi</h2>
       </div>
       <div class="col-12">
-        <nz-table nzShowPagination
-                  nzShowSizeChanger #basicTable [nzData]="listMyExam">
+        <nz-table nzShowPagination nzShowSizeChanger #basicTable [nzData]="listMyExam">
           <thead>
           <tr>
             <th scope="row">Ngày làm</th>
@@ -30,8 +29,10 @@
             <td>{{formatTimeFromSeconds((Number(data?.timeToDoExam) - Number(data?.timeRemaining)))}}</td>
             <td>
               <div class="btn btn-group border-0 d-flex justify-content-between">
-                <button class="btn btn-outline-info me-2" (click)="openDetailExam()">Xem chi tiết</button>
-                <button class="btn btn-info">Làm lại</button>
+                <button class="btn btn-outline-info me-2" (click)="openDetailExam(data?.userExamHistoryId)">Xem chi
+                  tiết
+                </button>
+                <button class="btn btn-info d-none" (click)="doExamAgain(data?.examId)">Làm lại</button>
               </div>
             </td>
           </tr>

@@ -25,7 +25,7 @@
               <tr>
                 <td>{{ item.topicId }}</td>
                 <td>{{ item.topicName }}</td>
-                <td><img [src]="item.topicImage" style="height: 100px; width: 100px;" alt="Hình ảnh"></td>
+                <td><img nz-image [nzSrc]="item.topicImage" style="height: 100px; width: 100px;" [alt]="item?.topicName"></td>
                 <td>
                   <button class="btn btn-gradient-info btn-rounded btn-fw" (click)="editTopic(item)">Sửa
                   </button>

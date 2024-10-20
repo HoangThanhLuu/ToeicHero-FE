@@ -67,7 +67,6 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.socialAuthService.authState
             .subscribe((res) => {
               this.user = res;
-              console.log(res);
               if (res) {
                 if (res.provider == 'GOOGLE') {
                   const params = {
@@ -223,7 +222,6 @@ export class LoginComponent implements OnInit, OnDestroy {
           avatar: data?.photoUrl,
           provider: data?.provider,
         };
-        console.log(data);
         this.loginWithSocial(params);
       });
   }

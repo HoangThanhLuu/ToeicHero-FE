@@ -11,6 +11,7 @@ import {ResultComponent} from "./test/result/result.component";
 import {PracticeComponent} from "./test/practice/practice.component";
 import {ClientGuardGuard} from "../client-guard.guard";
 import {HistoryExamComponent} from "./history-exam/history-exam.component";
+import {HistoryExamDetailComponent} from "./history-exam/history-exam-detail/history-exam-detail.component";
 
 const routes: Routes = [
   {
@@ -60,7 +61,16 @@ const routes: Routes = [
       {
         path: 'my-exam',
         canActivate: [ClientGuardGuard],
-        component: HistoryExamComponent
+        children: [
+          {
+            path: '',
+            component: HistoryExamComponent
+          },
+          {
+            path: 'detail/:userExamHistoryId',
+            component: HistoryExamDetailComponent
+          }
+        ]
       }
     ]
   }

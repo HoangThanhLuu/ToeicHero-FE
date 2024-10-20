@@ -50,7 +50,11 @@ export class HistoryExamComponent implements OnInit {
 
   protected readonly Number = Number;
 
-  openDetailExam() {
-    this.toast.info('Chức năng đang phát triển');
+  openDetailExam(userExamHistoryId: any) {
+    window.location.href = `/my-exam/detail/${userExamHistoryId}`;
+  }
+
+  doExamAgain(examId: any) {
+    
   }
 }

@@ -27,6 +27,7 @@ export class ExamDetailComponent implements OnInit {
   selectedFile: any;
   selectPart: any;
   formData = new FormData();
+
   constructor(private toast: ToastrService,
               private http: HttpClient,
               private modal: NzModalService,
@@ -81,24 +82,14 @@ export class ExamDetailComponent implements OnInit {
     window.location.href = `/admin/question/list-by-part?pid=${item?.partId}`;
   }
 
-  importExel(item
-               :
-               any, index
-               :
-               number
-  ) {
+  importExel(item: any, index: number) {
     this.formData.delete('file');
     this.formData.delete('partId');
     this.formData.append('partId', item?.partId);
     this.fileInput.nativeElement.click();
   }
 
-  onFileChange($event
-                 :
-                 any, item
-                 :
-                 any
-  ) {
+  onFileChange($event: any, item: any) {
     const files = $event.target?.files;
     if (files && files.length > 0) {
       this.selectedFile = files[0];

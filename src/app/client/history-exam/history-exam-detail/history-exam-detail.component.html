@@ -1,1 +1,166 @@
-<p>history-exam-detail works!</p>
+<div class="container-fluid bg-info-test mb-5">
+  <div class="container mt-3 main-info-test py-2 px-4">
+    <div class="row">
+      <div class="col-12">
+        <nz-tag [nzMode]="'default'" [nzChecked]="true" [nzColor]="'#7E1E47'">
+          <span>#Toeic</span>
+        </nz-tag>
+      </div>
+      <div class="col-12">
+        <h1 class="">Kết quả: {{this.exam?.examName}}</h1>
+      </div>
+      <div class="col-12">
+        <p><i class="fa-regular fa-clock"></i> Thời gian làm bài: {{this.examHistory?.timeToDoExam / 60}} phút | 7 phần
+          thi | {{this.examHistory?.totalQuestion}} câu hỏi | {{this.examHistory?.examDate | date: 'EEEE, MMMM d, y'}}
+          | {{this.examHistory?.examDate | date: 'h:mm a'}}
+        </p>
+      </div>
+      <div class="col-12 mt-3">
+        <div class="row">
+          <nz-card class="col-4 bg-light-success shadow">
+            <div>
+              <p><i class="fa fa-check"></i>
+                Kết quả làm bài <span> {{Number(this.examHistory?.numberOfCorrectAnswer)}}
+                  / {{this.examHistory.totalQuestion}}</span>
+              </p>
+            </div>
+            <div>
+              <p><i class="fa fa-bullseye"></i>
+                Độ chính xác
+                (#đúng/#tổng)
+                <span> {{Number(this.examHistory?.numberOfCorrectAnswer) / (Number(this.examHistory?.numberOfWrongAnswer) + Number(this.examHistory?.numberOfCorrectAnswer)) * 100}}
+                  % </span>
+              </p>
+            </div>
+            <div>
+              <p>
+                <i class="fa fa-clock"></i>
+                Thời gian làm
+                bài
+                <span>  {{formatTimeFromSeconds((Number(this.examHistory?.timeToDoExam) - Number(this.examHistory?.timeRemaining)))}}
+                  phút </span>
+              </p>
+            </div>
+          </nz-card>
+          <div class="col-7 ms-2">
+            <div class="row">
+              <nz-card class="col-4 d-flex flex-column justify-content-center">
+                <div>
+                  <span nz-icon [nzType]="'check-circle'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"></span>
+                </div>
+                <div>
+                  <p class="text-success">Trả lời đúng</p>
+                </div>
+                <div>
+                  <p class="text-dark">{{this.examHistory?.numberOfCorrectAnswer}} Câu hỏi</p>
+                </div>
+              </nz-card>
+
+              <nz-card class="col-4 d-flex flex-column justify-content-center">
+                <div>
+                  <span nz-icon nzType="close-circle" nzTheme="twotone" [nzTwotoneColor]="'#f10729'"></span>
+                </div>
+                <div>
+                  <p class="text-danger">Trả lời sai</p>
+                </div>
+                <div>
+                  <p
+                    class="text-dark">{{Number(this.examHistory?.numberOfWrongAnswer) - Number(this.examHistory?.numberOfNotAnswer)}}
+                    Câu hỏi</p>
+                </div>
+              </nz-card>
+
+              <nz-card class="col-4 d-flex flex-column justify-content-center">
+                <div>
+                  <span nz-icon nzType="minus-circle" [nzTheme]="'twotone'" [nzTwotoneColor]="'#808080'"></span>
+                </div>
+                <div>
+                  <p class="text-dark">Bỏ qua</p>
+                </div>
+                <div>
+                  <p class="text-dark">{{this.examHistory?.numberOfNotAnswer}} Câu hỏi</p>
+                </div>
+              </nz-card>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+      <div class="col-5 mt-2">
+        <div class="row">
+          <nz-list nzBordered nzHeader="Phân tích chi tiết">
+            <nz-list-item>
+              <span nz-typography><mark>[Part 1]</mark></span>
+              {{this.examHistory?.numberOfCorrectAnswerPart1}} câu đúng
+            </nz-list-item>
+
+            <nz-list-item>
+              <span nz-typography><mark>[Part 2]</mark></span>
+              {{this.examHistory?.numberOfCorrectAnswerPart2}} câu đúng
+            </nz-list-item>
+
+            <nz-list-item>
+              <span nz-typography><mark>[Part 3]</mark></span>
+              {{this.examHistory?.numberOfCorrectAnswerPart3}} câu đúng
+            </nz-list-item>
+
+            <nz-list-item>
+              <span nz-typography><mark>[Part 4]</mark></span>
+              {{this.examHistory?.numberOfCorrectAnswerPart4}} câu đúng
+            </nz-list-item>
+
+            <nz-list-item>
+              <span nz-typography><mark>[Part 5]</mark></span>
+              {{this.examHistory?.numberOfCorrectAnswerPart5}} câu đúng
+            </nz-list-item>
+
+            <nz-list-item>
+              <span nz-typography><mark>[Part 6]</mark></span>
+              {{this.examHistory?.numberOfCorrectAnswerPart6}} câu đúng
+            </nz-list-item>
+
+            <nz-list-item>
+              <span nz-typography><mark>[Part 7]</mark></span>
+              {{this.examHistory?.numberOfCorrectAnswerPart7}} câu đúng
+            </nz-list-item>
+          </nz-list>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-12 fs-5 bg-light-success border-1">
+        <i class="fa fa-lightbulb-o"></i>
+        <span>
+                 Tips: Khi xem chi tiết đáp án, bạn có thể tạo và lưu highlight từ vựng, keywords và tạo note đề học và tra cứu khi có nhu cầu ôn lại đề thi này trong tương lai.
+              </span>
+      </div>
+      <nz-table nzShowPagination nzShowSizeChanger #basicTable [nzData]="listAnswer" class="mt-2">
+        <thead>
+        <tr>
+          <th>Câu hỏi</th>
+          <th>Đáp án bạn chọn</th>
+          <th>Đáp án đúng</th>
+          <th>Kết quả</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of basicTable.data">
+          <td>{{ data?.question?.questionNumber }}</td>
+          <td>{{ data?.selectedAnswer == '' ? 'Chưa trả lời' : data?.selectedAnswer}}</td>
+          <td>{{ data?.question?.correctAnswer}}</td>
+          <td>
+            <ng-container *ngIf="data?.isCorrect == true; else notCorrect">
+              <span nz-icon [nzType]="'check-circle'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"></span>
+            </ng-container>
+          </td>
+        </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </div>
+</div>
+
+<ng-template #notCorrect>
+  <span nz-icon nzType="close-circle" nzTheme="twotone" [nzTwotoneColor]="'#f10729'"></span>
+</ng-template>

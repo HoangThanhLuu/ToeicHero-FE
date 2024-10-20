@@ -14,9 +14,8 @@
       <a href="/list-test" class="nav-item nav-link" [ngClass]="{'active': activeNav=='test'}">Đề thi</a>
       <a href="/my-exam" class="nav-item nav-link" [ngClass]="{'active': activeNav=='my-exam'}">Kết quả</a>
       <a href="/profile" class="nav-item nav-link d-xl-none">Trang cá nhân</a>
-      <a href="/otp" class="nav-item nav-link">Liên hệ</a>
-      <a href="javascript:;" (click)="openLogin()" class="nav-item nav-link" [ngClass]="{'d-none': isLogin}">Đăng
-        nhập</a>
+      <a href="/otp" class="nav-item nav-link d-none">Liên hệ</a>
+      <a href="javascript:;" (click)="openLogin()" class="nav-item nav-link" [ngClass]="{'d-none': isLogin}">Đăng nhập</a>
     </div>
     <div class="nav-item dropdown" [ngClass]="{'d-none': !isLogin}">
       <a href="javascript:;" class="navbar-brand d-flex align-items-center">

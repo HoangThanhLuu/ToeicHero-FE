@@ -7,6 +7,7 @@ import {AuthService} from "../../../auth.service";
 import {GetHeaderService} from "../../../common/get-headers/get-header.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'app-change-password',
@@ -70,6 +71,7 @@ export class ChangePasswordComponent implements OnInit {
     if (this.validateParam()) {
       this.spinner.show().then(r => r);
       this.http.patch('/api/user/update-password', this.param)
+        .pipe(finalize(() => this.spinner.hide()))
         .subscribe((res: any) => {
           if (res?.success) {
             this.toast.success('Đổi mật khẩu thành công');
