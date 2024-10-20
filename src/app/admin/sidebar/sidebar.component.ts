@@ -33,6 +33,8 @@ export class SidebarComponent implements OnInit {
       this.navItemActive = 'score';
     } else if (url.includes('logout')) {
       this.navItemActive = 'logout';
+    } else if (url.includes('firebase')|| url.includes('update-firebase')) {
+      this.navItemActive = 'firebase';
     }
   }
 

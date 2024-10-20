@@ -14,7 +14,7 @@ import { AddTopicComponent } from './topic/add-topic/add-topic.component';
 import { UsersComponent } from './users/users.component'
 import {NzUploadModule} from "ng-zorro-antd/upload";
 import {NzIconModule} from "ng-zorro-antd/icon";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgxSpinnerModule} from "ngx-spinner";
 import { AddExamComponent } from './exam/add-exam/add-exam.component';
 import { AudioPlayerComponent } from './exam/audio-player/audio-player.component';
@@ -32,6 +32,24 @@ import { ScoreComponent } from './score/score.component';
 import {NzTableModule} from "ng-zorro-antd/table";
 import {NzPopconfirmModule} from "ng-zorro-antd/popconfirm";
 import {NzInputModule} from "ng-zorro-antd/input";
+import {EmailComponent} from "./email/email.component";
+import { FirebaseComponent } from './firebase/firebase.component';
+import {NzSwitchModule} from "ng-zorro-antd/switch";
+import { SliderComponent } from './slider/slider.component';
+import { TemplateEmailComponent } from './email/template-email/template-email.component';
+import { UpdateEmailComponent } from './email/update-email/update-email.component';
+import {NzFormModule} from "ng-zorro-antd/form";
+import { UpdateSliderComponent } from './slider/update-slider/update-slider.component';
+import { UpdateFirebaseComponent } from './firebase/update-firebase/update-firebase.component';
+import { TranscriptComponent } from './transcript/transcript.component';
+import { RevAiComponent } from './rev-ai/rev-ai.component';
+import { UpdateRevaiComponent } from './rev-ai/update-revai/update-revai.component';
+import { KommunicateComponent } from './kommunicate/kommunicate.component';
+import { UpdateKommunicateComponent } from './kommunicate/update-kommunicate/update-kommunicate.component';
+import { GeminiComponent } from './gemini/gemini.component';
+import { UpdateGeminiComponent } from './gemini/update-gemini/update-gemini.component';
+import { UpdateTemplateEmailComponent } from './email/template-email/update-template-email/update-template-email.component';
+
 
 @NgModule({
     declarations: [
@@ -53,24 +71,44 @@ import {NzInputModule} from "ng-zorro-antd/input";
         EditQuestionPart1Component,
         EditQuestionPart34Component,
         EditPartComponent,
-        ScoreComponent
+        ScoreComponent,
+        FirebaseComponent,
+        EmailComponent,
+        SliderComponent,
+        TemplateEmailComponent,
+        UpdateEmailComponent,
+        UpdateSliderComponent,
+        UpdateFirebaseComponent,
+        TranscriptComponent,
+        RevAiComponent,
+        UpdateRevaiComponent,
+        KommunicateComponent,
+        UpdateKommunicateComponent,
+        GeminiComponent,
+        UpdateGeminiComponent,
+        UpdateTemplateEmailComponent,
+
     ],
-    imports: [
-        CommonModule,
-        AdminRoutingModule,
-        NzUploadModule,
-        NzIconModule,
-        NgOptimizedImage,
-        FormsModule,
-        NgxSpinnerModule,
-        NzButtonModule,
-        TooltipModule,
-        NzAvatarModule,
-        NzImageModule,
-        NzTableModule,
-        NzPopconfirmModule,
-        NzInputModule,
-    ],
+  imports: [
+    CommonModule,
+    AdminRoutingModule,
+    NzUploadModule,
+    NzIconModule,
+    NgOptimizedImage,
+    FormsModule,
+    NgxSpinnerModule,
+    NzButtonModule,
+    TooltipModule,
+    NzAvatarModule,
+    NzImageModule,
+    NzTableModule,
+    NzPopconfirmModule,
+    NzInputModule,
+
+    NzSwitchModule,
+    NzFormModule,
+    ReactiveFormsModule,
+  ],
     exports: [
         PageHeaderComponent,
         AudioPlayerComponent

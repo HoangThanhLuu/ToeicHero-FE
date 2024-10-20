@@ -23,7 +23,12 @@
             </button>
           </div>
 
-          <nz-table #list [nzData]="listScore" nzBordered nzShowSizeChanger [nzLoading]="tblLoading">
+          <nz-table
+            #list
+            [nzData]="listScore"
+            nzBordered
+            nzShowPagination="false"
+             [nzLoading]="tblLoading">
             <thead>
             <tr>
               <th

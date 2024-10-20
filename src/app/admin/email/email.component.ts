@@ -1,33 +1,69 @@
-import { Component } from '@angular/core';
-import {BsModalService} from "ngx-bootstrap/modal";
-import {HttpClient} from "@angular/common/http";
-import {NzModalService} from "ng-zorro-antd/modal";
-import {NgxSpinnerService} from "ngx-spinner";
-import {ToastrService} from "ngx-toastr";
+import {Component, OnInit} from '@angular/core';
+
+interface ItemData {
+  id: string;
+  host: string;
+  port: string;
+  username: string;
+  password: string;
+  status: string;
+  k: string;
+}
 
 @Component({
   selector: 'app-email',
   templateUrl: './email.component.html',
   styleUrls: ['./email.component.scss']
 })
-export class EmailComponent {
+export class EmailComponent implements OnInit {
   title: string = "Quản lý email";
   currentPage: string = "Email";
-  listEmail :any =[];
 
-  constructor(
-              private http: HttpClient) {
+  editCache: { [key: string]: { edit: boolean; data: ItemData } } = {};
+  listOfData: ItemData[] = [];
+
+  startEdit(id: string): void {
+    this.editCache[id].edit = true;
+  }
+
+  cancelEdit(id: string): void {
+    const index = this.listOfData.findIndex(item => item.id === id);
+    this.editCache[id] = {
+      data: { ...this.listOfData[index] },
+      edit: false
+    };
+  }
+
+  saveEdit(id: string): void {
+    const index = this.listOfData.findIndex(item => item.id === id);
+    Object.assign(this.listOfData[index], this.editCache[id].data);
+    this.editCache[id].edit = false;
+  }
+
+  updateEditCache(): void {
+    this.listOfData.forEach(item => {
+      this.editCache[item.id] = {
+        edit: false,
+        data: { ...item }
+      };
+    });
   }
 
   ngOnInit(): void {
-    this.getListEmail();
+    const data = [];
+    for (let i = 0; i < 100; i++) {
+      const item: ItemData = {
+        host: `8080`,
+        id: `${i}`,
+        port: `300`,
+        username: ``,
+        password: `12345678`,
+        status: `active`,
+        k: ``
+      }
+      data.push(item);
+    }
+    this.listOfData = data;
+    this.updateEditCache();
   }
-
-  getListEmail() {
-    this.http.get('/api/admin/')
-      .subscribe((res: any) => {
-        this.listEmail = res.data;
-      });
-  }
-
 }
