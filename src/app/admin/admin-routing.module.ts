@@ -29,6 +29,10 @@ import {
 } from "./email/template-email/update-template-email/update-template-email.component";
 import {CrawlDataComponent} from "./crawl-data/crawl-data.component";
 import {CrawlConfigComponent} from "./crawl-data/crawl-config/crawl-config.component";
+import {KommunicateBotComponent} from "./kommunicate/kommunicate-bot/kommunicate-bot.component";
+import {
+  UpdateKommunicateBotComponent
+} from "./kommunicate/kommunicate-bot/update-kommunicate-bot/update-kommunicate-bot.component";
 
 const routes: Routes = [
   {
@@ -130,6 +134,12 @@ const routes: Routes = [
       }, {
         path: 'crawl-config',
         component: CrawlConfigComponent
+      }, {
+        path: 'kommunicate-bot',
+        component: KommunicateBotComponent
+      }, {
+        path: 'update-kommunicate-bot',
+        component: UpdateKommunicateBotComponent
       }
     ]
   },

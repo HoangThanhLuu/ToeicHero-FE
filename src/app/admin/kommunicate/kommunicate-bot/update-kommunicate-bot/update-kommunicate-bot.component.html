@@ -1,0 +1,26 @@
+<div class="col-12 grid-margin stretch-card mb-0">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title" [innerText]="title | translate"></h4>
+      <form class="forms-sample">
+        <div class="form-group mt-4">
+          <label> APPID: </label>
+          <div class="col-sm-11">
+            <input type="text" class="form-control" name="appid"  placeholder="Nhập AppId " [(ngModel)]="params.appId">
+          </div>
+        </div>
+        <div class="form-group mt-3">
+          <label> APIKEY: </label>
+          <div class="col-sm-11">
+            <input type="text" class="form-control" name="apikey" placeholder="Nhập APIKEY " [(ngModel)]="params.apiKey">
+          </div>
+        </div>
+        <div class="button mt-5">
+          <button class="btn btn-primary" (click)="addAccount()" > {{ isAdd? 'Thêm' : 'Sửa' }} </button>
+          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : isAdd}" (click)="close()"> Hủy </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

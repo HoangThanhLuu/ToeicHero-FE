@@ -56,14 +56,14 @@
       </a>
       <div class="collapse" id="exam-management">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item" [ngClass]="{'active' : navItemActive == 'addExam'}">
-            <a class="nav-link" href="admin/addExam">
-              <span class="menu-title"> Thêm đề thi </span>
-            </a>
-          </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'exam'}">
             <a class="nav-link" href="admin/exam">
               <span class="menu-title">Danh sách</span>
+            </a>
+          </li>
+          <li class="nav-item" [ngClass]="{'active' : navItemActive == 'addExam'}">
+            <a class="nav-link" href="admin/addExam">
+              <span class="menu-title"> Thêm đề thi </span>
             </a>
           </li>
         </ul>
@@ -145,7 +145,7 @@
         <ul class="nav flex-column sub-menu">
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'email'}">
             <a class="nav-link" href="admin/email">
-              <span class="menu-title"> Danh sách </span>
+              <span class="menu-title"> Danh sách Email</span>
             </a>
           </li>
 
@@ -154,21 +154,9 @@
               <span class="menu-title"> Thêm Email </span>
             </a>
           </li>
-        </ul>
-      </div>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#template-email-management" aria-expanded="false"
-         aria-controls="exam-management">
-        <span class="menu-title"> Template </span>
-        <i class="menu-arrow"></i>
-        <i class="mdi mdi-file-cloud menu-icon"></i>
-      </a>
-      <div class="collapse" id="template-email-management">
-        <ul class="nav flex-column sub-menu">
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'template-email'}">
             <a class="nav-link" href="admin/template-email">
-              <span class="menu-title"> Danh sách </span>
+              <span class="menu-title"> Danh sách Temlate </span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-template-email'}">
@@ -242,6 +230,15 @@
               <span class="menu-title"> Thêm Kommunicate </span>
             </a>
           </li>
+          <li class="nav-item" [ngClass]="{'active' : navItemActive == 'kommunicate-bot'}">
+            <a class="nav-link" href="admin/kommunicate-bot">
+              <span class="menu-title"> Kommunicate Bot </span>
+            </a>
+          </li> <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-kommunicate-bot'}">
+          <a class="nav-link" href="admin/update-kommunicate-bot">
+            <span class="menu-title"> Thêm Kommunicate Bot </span>
+          </a>
+        </li>
         </ul>
       </div>
     </li>

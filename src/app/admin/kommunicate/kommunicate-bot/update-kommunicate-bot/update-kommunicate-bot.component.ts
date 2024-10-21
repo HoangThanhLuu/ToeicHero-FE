@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {NgxSpinnerService} from "ngx-spinner";
@@ -6,45 +6,46 @@ import {BsModalRef} from "ngx-bootstrap/modal";
 import {TranslateService} from "@ngx-translate/core";
 
 @Component({
-  selector: 'app-update-kommunicate',
-  templateUrl: './update-kommunicate.component.html',
-  styleUrls: ['./update-kommunicate.component.scss']
+  selector: 'app-update-kommunicate-bot',
+  templateUrl: './update-kommunicate-bot.component.html',
+  styleUrls: ['./update-kommunicate-bot.component.scss']
 })
-export class UpdateKommunicateComponent implements OnInit {
-  @Input() title: string = "Thêm tài khoản Kommunicate: ";
+export class UpdateKommunicateBotComponent implements OnInit {
+  title: string = "Quản lý Bot Kommunicate";
+  currentPage: string = "Kommunicate";
   @Input() isAdd = true;
-  @Input() param: any = {
-    email: '',
-    password: ''
+  @Input() params: any = {
+    appId: '',
+    apiKey: ''
   };
-  @Output() added = new EventEmitter();
 
   constructor(private http: HttpClient,
               private toastr: ToastrService,
               private spinnerService: NgxSpinnerService,
               private bsModalRef: BsModalRef,
-              private  translate: TranslateService) {
+              private translate: TranslateService) {
   }
-  ngOnInit(): void {
+
+  ngOnInit() {
+  }
+
+  close() {
+    this.bsModalRef.hide();
   }
 
   addAccount(): void {
     this.spinnerService.show();
-    this.http.post('/api/kommunicate/account/update', this.param)
+    this.http.post('/api/kommunicate/bot/update', {appId: this.params.appId, apiKey: this.params.apiKey})
       .subscribe({
-        next: (res: any) =>{
+        next: (res: any) => {
           const msg = this.translate.instant(`KOMMUNICATE.${res?.message}`);
           this.toastr.success(msg);
           this.spinnerService.hide();
         },
         error: (res: any) => {
           const msg = this.translate.instant(`KOMMUNICATE.${res?.message}`);
-          this.toastr.error(msg);
           this.spinnerService.hide();
         }
       })
-  }
-  close() {
-    this.bsModalRef.hide();
   }
 }

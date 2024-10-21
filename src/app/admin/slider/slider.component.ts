@@ -77,7 +77,7 @@ export class SliderComponent implements OnInit {
           this.spin.hide().then();
         },
         error: () => {
-          this.toast.success('Thanh cong');
+          this.toast.error('That bai');
           this.spin.hide().then();
         }
       });
