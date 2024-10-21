@@ -2,5 +2,21 @@
   "PAGE_NOT_FOUND": "Page Not Found",
   "BACK_TO_HOME": "Back To Home",
   "COPY_RIGHT": "Copyright",
-  "RIGHT_RESERVED": "All Right Reserved!"
+  "RIGHT_RESERVED": "All Right Reserved!",
+  "EMAIL": {
+    "UPDATE_EMAIL_CONFIG_SUCCESS": "Cập nhật tài khoản email thành công!"
+  },
+  "KOMMUNICATE": {
+    "UPDATE_KOMMUNICATE_BOT_STATUS_SUCCESS": "Cập nhật Bot thành công",
+    "KOMMUNICATE_BOT_NOT_FOUND": "Không tìm thấy Bot Kommunicate ",
+    "ADD_KOMMUNICATE_BOT_SUCCESS": "Thêm Bot Kommunicate thành công",
+    "DELETE_KOMMUNICATE_BOT_SUCCESS": "Xoá Kommunicate thành công",
+    "UPDATE_KOMMUNICATE_BOT_SUCCESS": "Cập nhật Bot Kommunicate thành công",
+    "UPDATE_KOMMUNICATE_ACCOUNT_SUCCESS": "Cập nhật tài khoản Kommunicate thành công ",
+    "ADD_KOMMUNICATE_ACCOUNT_SUCCESS": "Thêm tài khoản Kommunicate thành công",
+    "DELETE_KOMMUNICATE_ACCOUNT_SUCCESS": "Xóa tài khoản Kommunicate thành công"
+
+  }
 }
+
+

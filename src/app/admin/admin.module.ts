@@ -53,6 +53,9 @@ import {NzPaginationModule} from "ng-zorro-antd/pagination";
 import { CrawlDataComponent } from './crawl-data/crawl-data.component';
 import { CrawlConfigComponent } from './crawl-data/crawl-config/crawl-config.component';
 import {NzModalModule} from "ng-zorro-antd/modal";
+import { KommunicateBotComponent } from './kommunicate/kommunicate-bot/kommunicate-bot.component';
+import { UpdateKommunicateBotComponent } from './kommunicate/kommunicate-bot/update-kommunicate-bot/update-kommunicate-bot.component';
+import {TranslateModule} from "@ngx-translate/core";
 
 @NgModule({
     declarations: [
@@ -92,30 +95,33 @@ import {NzModalModule} from "ng-zorro-antd/modal";
         UpdateTemplateEmailComponent,
         CrawlDataComponent,
         CrawlConfigComponent,
+        KommunicateBotComponent,
+        UpdateKommunicateBotComponent,
 
     ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    NzUploadModule,
-    NzIconModule,
-    NgOptimizedImage,
-    FormsModule,
-    NgxSpinnerModule,
-    NzButtonModule,
-    TooltipModule,
-    NzAvatarModule,
-    NzImageModule,
-    NzTableModule,
-    NzPopconfirmModule,
-    NzInputModule,
+    imports: [
+        CommonModule,
+        AdminRoutingModule,
+        NzUploadModule,
+        NzIconModule,
+        NgOptimizedImage,
+        FormsModule,
+        NgxSpinnerModule,
+        NzButtonModule,
+        TooltipModule,
+        NzAvatarModule,
+        NzImageModule,
+        NzTableModule,
+        NzPopconfirmModule,
+        NzInputModule,
 
-    NzSwitchModule,
-    NzFormModule,
-    ReactiveFormsModule,
-    NzPaginationModule,
-    NzModalModule,
-  ],
+        NzSwitchModule,
+        NzFormModule,
+        ReactiveFormsModule,
+        NzPaginationModule,
+        NzModalModule,
+        TranslateModule,
+    ],
     exports: [
         PageHeaderComponent,
         AudioPlayerComponent

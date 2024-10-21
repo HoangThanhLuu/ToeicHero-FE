@@ -7,4 +7,5 @@ import {Component, Input} from '@angular/core';
 })
 export class UpdateFirebaseComponent {
   @Input() title: string = "Thêm Firebase: ";
+  @Input() isAdd = true;
 }
