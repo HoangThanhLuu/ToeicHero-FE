@@ -40,7 +40,6 @@ $theme-colors: (
   "dark": $dark
 );
 @import "node_modules/@fortawesome/fontawesome-free/css/all.min.css";
-@import "node_modules/bootstrap/scss/bootstrap";
 
 * {
   margin: 0;
@@ -188,6 +187,7 @@ $theme-colors: (
 @import "node_modules/ng-zorro-antd/resizable/style/index.min.css";
 @import "node_modules/ng-zorro-antd/code-editor/style/index.min.css";
 @import "node_modules/ng-zorro-antd/graph/style/index.min.css";
+@import "ngx-toastr/toastr-bs5-alert";
 .fs-message{
   font-size: 0.8rem;
 }
