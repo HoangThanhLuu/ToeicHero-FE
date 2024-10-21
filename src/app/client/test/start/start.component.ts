@@ -1,7 +1,16 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
-import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
+import {
+  NzModalRef,
+  NzModalService
+} from "ng-zorro-antd/modal";
 import {BsModalService} from "ngx-bootstrap/modal";
 import {NgxSpinnerService} from "ngx-spinner";
 import {ActivatedRoute} from "@angular/router";
@@ -22,18 +31,18 @@ export class StartComponent implements OnInit, OnDestroy {
   buttonStates: { [key: number]: boolean } = {};
   currentExam: any;
   listPart: any = [];
-  selectedIndex: number = 0;
+  selectedIndex: number = 6;
   questionPart7Has2Answer: any = ['147', '149', '154', '156'];
   questionPart7Has3Answer: any = ['151', '166', '169'];
   questionPart7Has4Answer: any = ['158', '162', '172'];
   questionPart7Has2Paragraph: any = ['176', '181', '186', '191', '196'];
   selectedAnswer: { [key: number]: string } = {};
   param: any = {};
+
   constructor(private toast: ToastrService,
               private http: HttpClient,
               private modal: NzModalService,
               private bs: BsModalService,
-              private bsModalService: BsModalService,
               private spinnerService: NgxSpinnerService,
               private auth: AuthService,
               private route: ActivatedRoute) {
@@ -238,6 +247,18 @@ export class StartComponent implements OnInit, OnDestroy {
         });
       });
     });
+  }
+
+  changePart(event: any) {
+    if (event === 'next') {
+      this.nextPart();
+    } else {
+      this.previousPart();
+    }
+  }
+
+  selectedAnswerChange(event: any) {
+    this.changeStateButton(event.answer, event.questionId, '');
   }
 
   ngOnDestroy(): void {

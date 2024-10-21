@@ -33,7 +33,10 @@
           <div class="card col-2 me-2">
             <div class="card-body">
               <h5 class="card-title">{{item.examName}}</h5>
-              <h6 class="card-subtitle mb-2 text-muted"><i class="fa-solid fa-clock"></i> 120 phút</h6>
+              <h6 class="card-subtitle mb-2 text-muted">
+                <span><i class="fa-solid fa-clock"></i> 120 phút</span> |
+                <span><i class="fa-solid fa-user"></i> {{item?.numberOfUserDoExam}}</span>
+              </h6>
               <p class="card-text">7 phần thi | 200 câu hỏi</p>
               <nz-tag [nzColor]="'#7E1E47'">#toeic</nz-tag>
             </div>

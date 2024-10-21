@@ -5,6 +5,11 @@ import {ToastrService} from "ngx-toastr";
 import {AdminLibBaseCss2, AdminStyle} from "../admin.style";
 import {finalize} from "rxjs";
 import {NzModalService} from "ng-zorro-antd/modal";
+import {TranslateService} from "@ngx-translate/core";
+import {UpdateRevaiComponent} from "../rev-ai/update-revai/update-revai.component";
+import {BsModalService} from "ngx-bootstrap/modal";
+import {UpdateSliderComponent} from "./update-slider/update-slider.component";
+import {UpdateEmailComponent} from "../email/update-email/update-email.component";
 
 @Component({
   selector: 'app-slider',
@@ -24,11 +29,11 @@ export class SliderComponent implements OnInit {
 
 
   constructor(
-    private modalService: NzModalService,
+    private bsModalService: BsModalService,
     private spin: NgxSpinnerService,
     private toast: ToastrService,
     private http: HttpClient,
-   ) {
+    private  translate: TranslateService,) {
   }
 
 
@@ -72,12 +77,14 @@ export class SliderComponent implements OnInit {
         })
       )
       .subscribe({
-        next: () => {
-          this.toast.success('Thanh cong');
+        next: (res: any) => {
+          const msg = this.translate.instant(`SLIDER.${res?.message}`);
+          this.toast.success(msg);
           this.spin.hide().then();
         },
-        error: () => {
-          this.toast.error('That bai');
+        error: (res: any) => {
+          const msg = this.translate.instant(`SLIDER.${res?.message}`);
+          this.toast.success(msg);
           this.spin.hide().then();
         }
       });
@@ -92,16 +99,25 @@ export class SliderComponent implements OnInit {
       )
       .subscribe({
         next: (res: any) => {
-          this.toast.success('Thanh cong');
+          const msg = this.translate.instant(`SLIDER.${res?.message}`);
+          this.toast.success(msg);
         },
         error: (res) => {
-          this.toast.error(JSON.stringify(res));
-          console.log(res);
+          const msg = this.translate.instant(`SLIDER.${res?.message}`);
+          this.toast.success(msg);
           this.spin.hide().then();
         }
       });
   }
-
+  update(data: any) {
+    this.bsModalService.show(UpdateSliderComponent, {
+      class: 'modal-lg modal-dialog-centered',
+      initialState: {
+        title: 'Cập nhật tài khoản Rev-ai ',
+        isAdd: false,
+      }
+    });
+  }
   sizeChange(e: any): void {
     this.getListSlider(`api/slider/all?page=${this.page}&size=${e}`);
   }

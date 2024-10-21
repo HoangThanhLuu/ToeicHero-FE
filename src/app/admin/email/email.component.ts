@@ -7,6 +7,7 @@ import {ToastrService} from "ngx-toastr";
 import {finalize} from "rxjs";
 import {UpdateKommunicateComponent} from "../kommunicate/update-kommunicate/update-kommunicate.component";
 import {UpdateEmailComponent} from "./update-email/update-email.component";
+import {AddExamComponent} from "../exam/add-exam/add-exam.component";
 
 
 @Component({
@@ -72,7 +73,7 @@ export class EmailComponent implements OnInit {
       });
   }
   update(data: any) {
-    this.bsModalService.show(UpdateEmailComponent, {
+    const bsModalResult = this.bsModalService.show(UpdateEmailComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
         title: 'Cập nhật tài khoản Email ',
@@ -80,13 +81,28 @@ export class EmailComponent implements OnInit {
         params: {
           host: data.host,
           port: data.port,
-          email: data.email,
+          username: data.username,
           password: data.password
         }
       }
     });
-    console.log(data)
-    this.getListEmailConfig();
+    if (bsModalResult?.content?.added){
+      bsModalResult.content.added.subscribe(() => {
+        this.getListEmailConfig();
+      });
+    }
   }
-
+  openFormAdd() {
+    const bsModalRef = this.bsModalService.show(UpdateEmailComponent, {
+      class: 'modal-lg modal-dialog-centered',
+      initialState: {
+        title: 'Thêm Email Config'
+      }
+    });
+    if (bsModalRef && bsModalRef.content) {
+      bsModalRef.content.addSuccessEmit.subscribe(() => {
+        this.getListEmailConfig();
+      });
+    }
+  }
 }

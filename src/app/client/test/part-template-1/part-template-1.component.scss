@@ -1,0 +1,19 @@
+[nz-radio] {
+  display: block;
+  height: 32px;
+  line-height: 32px;
+}
+
+.nz-image {
+  object-fit: contain;
+  max-width: 100%;
+  height: 400px;
+}
+
+.part-content {
+  color: var(--primary-600);
+}
+
+.title {
+  color: var(--primary-800);
+}

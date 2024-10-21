@@ -1,29 +1,109 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {BsModalService} from "ngx-bootstrap/modal";
+import {HttpClient} from "@angular/common/http";
+import {NzModalService} from "ng-zorro-antd/modal";
+import {NgxSpinnerService} from "ngx-spinner";
+import {TranslateService} from "@ngx-translate/core";
+import {ToastrService} from "ngx-toastr";
+import {finalize} from "rxjs";
+import {UpdateKommunicateComponent} from "../kommunicate/update-kommunicate/update-kommunicate.component";
+import {UpdateRevaiComponent} from "./update-revai/update-revai.component";
+import {UpdateEmailComponent} from "../email/update-email/update-email.component";
 
 @Component({
   selector: 'app-rev-ai',
   templateUrl: './rev-ai.component.html',
   styleUrls: ['./rev-ai.component.scss']
 })
-export class RevAiComponent {
+export class RevAiComponent implements OnInit{
   title: string = "Quản lý tài khoản REV-AI";
   currentPage: string = "REV-AI";
+  listRevai: any = [];
+  private revaiIdToDelete: number | undefined;
+  isVisible: boolean =false
 
-  dataSet = [
-    {
-      name: 'OTP',
-      context: 'Chào mừng bạn đến với TOICUTE',
-      action: 'active'
-    },
-    {
-      name: 'Quên mật khẩu',
-      context: 'Chào mừng bạn đến với TOICUTE',
-      action: 'active'
-    },
-    {
-      name: 'Thông báo',
-      context: 'Chào mừng bạn đến với TOICUTE',
-      action: 'active'
+  constructor(
+    private bsModalService: BsModalService,
+    private http: HttpClient,
+    private modal: NzModalService,
+    private spinner: NgxSpinnerService,
+    private  translate: TranslateService,
+    private toast: ToastrService
+  ) {
+  }
+  ngOnInit(): void {
+    this.getListRevai();
+  }
+  getListRevai() {
+    this.http.get('/api/revai/account/all')
+      .subscribe((res: any) => {
+        this.listRevai = res;
+      });
+  }
+  handleOk(): void {
+    if (this.revaiIdToDelete) {
+      this.deleteRevai(this.revaiIdToDelete);
     }
-  ];
+    this.isVisible = false;
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
+  }
+  showConfirm(id: number): void {
+    this.revaiIdToDelete = id;
+    this.isVisible = true;
+  }
+  deleteRevai(id: number): void {
+    this.spinner.show().then()
+    this.http.delete(`/api/revai/account/delete/${id}`)
+      .pipe(
+        finalize(() => {
+          this.getListRevai();
+        })
+      )
+      .subscribe({
+        next: (res: any) => {
+          const msg = this.translate.instant(`REVAI.${res?.message}`);
+          this.toast.success(msg);
+          this.spinner.hide().then();
+        },
+        error: (res: any) => {
+          const msg = this.translate.instant(`REVAI.${res?.message}`);
+          this.toast.success(msg);
+          this.spinner.hide().then();
+        }
+      });
+  }
+  update(data: any) {
+    const bsModalResult = this.bsModalService.show(UpdateRevaiComponent, {
+      class: 'modal-lg modal-dialog-centered',
+      initialState: {
+        title: 'Cập nhật tài khoản Rev-ai ',
+        isAdd: false,
+        params: {
+          email: data.email,
+          password: data.password
+        }
+      }
+    });
+    if (bsModalResult?.content?.added){
+      bsModalResult.content.added.subscribe(() => {
+        this.getListRevai();
+      });
+    }
+  }
+  openFormAdd() {
+    const bsModalRef = this.bsModalService.show(UpdateRevaiComponent, {
+      class: 'modal-lg modal-dialog-centered',
+      initialState: {
+        title: 'Thêm Rev-AI'
+      }
+    });
+    if (bsModalRef && bsModalRef.content) {
+      bsModalRef.content.addSuccessEmit.subscribe(() => {
+        this.getListRevai();
+      });
+    }
+  }
 }

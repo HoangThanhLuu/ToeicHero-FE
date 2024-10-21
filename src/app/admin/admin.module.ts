@@ -56,6 +56,9 @@ import {NzModalModule} from "ng-zorro-antd/modal";
 import { KommunicateBotComponent } from './kommunicate/kommunicate-bot/kommunicate-bot.component';
 import { UpdateKommunicateBotComponent } from './kommunicate/kommunicate-bot/update-kommunicate-bot/update-kommunicate-bot.component';
 import {TranslateModule} from "@ngx-translate/core";
+import {NzToolTipModule} from "ng-zorro-antd/tooltip";
+import { ConfigRevaiComponent } from './rev-ai/config-revai/config-revai.component';
+import { UpdateConfigComponent } from './rev-ai/config-revai/update-config/update-config.component';
 
 @NgModule({
     declarations: [
@@ -97,6 +100,8 @@ import {TranslateModule} from "@ngx-translate/core";
         CrawlConfigComponent,
         KommunicateBotComponent,
         UpdateKommunicateBotComponent,
+        ConfigRevaiComponent,
+        UpdateConfigComponent,
 
     ],
     imports: [
@@ -121,6 +126,7 @@ import {TranslateModule} from "@ngx-translate/core";
         NzPaginationModule,
         NzModalModule,
         TranslateModule,
+        NzToolTipModule,
     ],
     exports: [
         PageHeaderComponent,

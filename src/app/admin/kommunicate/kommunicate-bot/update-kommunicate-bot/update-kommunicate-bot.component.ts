@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {NgxSpinnerService} from "ngx-spinner";
@@ -14,6 +14,8 @@ export class UpdateKommunicateBotComponent implements OnInit {
   title: string = "Quản lý Bot Kommunicate";
   currentPage: string = "Kommunicate";
   @Input() isAdd = true;
+  @Output() added = new EventEmitter();
+  @Output() addSuccessEmit = new EventEmitter();
   @Input() params: any = {
     appId: '',
     apiKey: ''
@@ -40,7 +42,10 @@ export class UpdateKommunicateBotComponent implements OnInit {
         next: (res: any) => {
           const msg = this.translate.instant(`KOMMUNICATE.${res?.message}`);
           this.toastr.success(msg);
+          this.addSuccessEmit.emit();
+          this.added.emit('updateOk');
           this.spinnerService.hide();
+          this.close();
         },
         error: (res: any) => {
           const msg = this.translate.instant(`KOMMUNICATE.${res?.message}`);

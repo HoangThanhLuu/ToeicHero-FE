@@ -34,7 +34,6 @@ export class TestComponent implements OnInit {
     '[Part 1] Tranh tả đồ vật',
     '[Part 1] Tranh tả cả người và vật',
   ]
-
   listTagPart2 = [
     '[Part 2] Câu hỏi WHAT',
     '[Part 2] Câu hỏi WHO',
@@ -127,12 +126,10 @@ export class TestComponent implements OnInit {
 
   constructor(private toast: ToastrService,
               private http: HttpClient,
-              private modal: NzModalService,
               private bsModalService: BsModalService,
               private spinnerService: NgxSpinnerService,
               private getHeaderService: GetHeaderService,
               private router: Router,
-              private auth: AuthService,
               private route: ActivatedRoute) {
   }
 

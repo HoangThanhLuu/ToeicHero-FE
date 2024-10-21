@@ -4,27 +4,27 @@
       <h4 class="card-title" [innerText]="title | translate"></h4>
       <form class="forms-sample">
         <div class="form-group mt-4">
+          <label> Username: </label>
+          <div class="col-sm-11">
+            <input type="text" class="form-control" name="username" placeholder="Nhập Username" [(ngModel)]="this.params.username" [readonly]="!isAdd" [disabled]="!isAdd">
+          </div>
+        </div>
+        <div class="form-group mt-3">
           <label> Host: </label>
           <div class="col-sm-11">
-            <input type="text" class="form-control" name="host"  placeholder="Nhập Host " [(ngModel)]="params.host">
+            <input type="text" class="form-control" name="host"  placeholder="Nhập Host " [(ngModel)]="this.params.host">
           </div>
         </div>
         <div class="form-group mt-3">
           <label> Port: </label>
           <div class="col-sm-11">
-            <input type="text" class="form-control" name="port" placeholder="Nhập Port " [(ngModel)]="params.port">
-          </div>
-        </div>
-        <div class="form-group mt-3">
-          <label> Email: </label>
-          <div class="col-sm-11">
-            <input type="text" class="form-control" name="email" placeholder="Nhập Email " [(ngModel)]="params.email">
+            <input type="text" class="form-control" name="port" placeholder="Nhập Port " [(ngModel)]="this.params.port">
           </div>
         </div>
         <div class="form-group mt-3">
           <label> Password: </label>
           <div class="col-sm-11">
-            <input type="text" class="form-control" name="password" placeholder="Nhập Password " [(ngModel)]="params.password">
+            <input type="text" class="form-control" name="password" placeholder="Nhập Password " [(ngModel)]="this.params.password">
           </div>
         </div>
         <div class="button mt-5">

@@ -1,10 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
 import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {BsModalService} from "ngx-bootstrap/modal";
 import {NgxSpinnerService} from "ngx-spinner";
-import {finalize} from "rxjs";
+import {
+  finalize,
+  forkJoin
+} from "rxjs";
 
 @Component({
   selector: 'app-list-test',
@@ -25,8 +31,30 @@ export class ListTestComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getListTopic();
-    this.getListExam();
+    const getListTopicObj = this.http.get('api/topic/list');
+    const getListExamObj = this.http.get('api/exam/list');
+    this.spinnerService.show();
+    forkJoin([getListTopicObj, getListExamObj])
+      .pipe(finalize(() => {
+        this.spinnerService.hide();
+      }))
+      .subscribe((res: any) => {
+        if (res[0]?.success && res[1]?.success) {
+          this.listTopic = res[0]?.data;
+          this.listTopic.unshift({
+            topicId: 0,
+            topicName: 'Tất cả'
+          });
+          this.listTopic.push({
+            topicId: -1,
+            topicName: 'Khác'
+          });
+          this.listExam = res[1]?.data;
+        } else {
+          this.toast.error(res[0]?.message);
+          this.toast.error(res[1]?.message);
+        }
+      });
   }
 
   getListTopic() {

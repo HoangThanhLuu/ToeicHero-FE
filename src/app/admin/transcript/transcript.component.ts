@@ -16,8 +16,8 @@ export class TranscriptComponent {
   imageSrc: string | undefined = "";
   formData = new FormData();
   param: any = {
-    topicName: '',
-    topicImage: '',
+    name: '',
+    image: '',
   };
   showBorderError: boolean = false;
   constructor(private http: HttpClient,

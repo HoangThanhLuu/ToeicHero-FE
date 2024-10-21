@@ -33,6 +33,8 @@ import {KommunicateBotComponent} from "./kommunicate/kommunicate-bot/kommunicate
 import {
   UpdateKommunicateBotComponent
 } from "./kommunicate/kommunicate-bot/update-kommunicate-bot/update-kommunicate-bot.component";
+import {ConfigRevaiComponent} from "./rev-ai/config-revai/config-revai.component";
+import {UpdateConfigComponent} from "./rev-ai/config-revai/update-config/update-config.component";
 
 const routes: Routes = [
   {
@@ -117,6 +119,12 @@ const routes: Routes = [
         path: 'update-revai',
         component: UpdateRevaiComponent
       }, {
+        path: 'update-config-revai',
+        component: UpdateConfigComponent
+      }, {
+        path: 'config-revai',
+        component: ConfigRevaiComponent
+      },{
         path: 'update-kommunicate',
         component: UpdateKommunicateComponent
       }, {

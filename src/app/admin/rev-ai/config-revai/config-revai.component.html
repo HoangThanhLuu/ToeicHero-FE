@@ -9,28 +9,26 @@
       <h4 class="card-title">
         <button class="btn btn-outline-primary btn-gradient-primary" (click)="openFormAdd()">Thêm mới</button>
       </h4>
-      <nz-table #borderedTable nzBordered [nzData]="listKommunicateBot">
+      <nz-table #borderedTable nzBordered [nzData]="listConfig">
         <thead>
         <tr>
           <th> Id </th>
-          <th> AppId </th>
-          <th> ApiKey </th>
-          <th> . </th>
-          <th> #</th>
+          <th> Access Token </th>
+          <th> Status </th>
+          <th> # </th>
         </tr>
         </thead>
         <tbody>
-        <ng-container *ngFor="let data of borderedTable.data;  let i = index; trackBy: trackByFn">
+        <ng-container *ngFor="let data of borderedTable.data">
           <tr>
             <td>{{ data.id }}</td>
-            <td>{{ data.appId }}</td>
-            <td>{{ data.apiKey }}</td>
+            <td>{{ data.accessToken }}</td>
             <td>
-              <nz-switch [(ngModel)]="data.status" [nzDisabled]="data.status" (ngModelChange)="onSwitchChange(data.appId)"></nz-switch>
+              <nz-switch [(ngModel)]="data.status" [nzDisabled]="data.status" (ngModelChange)="onSwitchChange(data.id)"></nz-switch>
             </td>
             <td>
               <button class="btn btn-success btn-rounded btn-sm me-2 " (click)="update(data)"> Sửa</button>
-              <button class="btn btn-danger btn-rounded btn-sm" [ngClass]="{'d-none': data.status}" (click) = "showConfirm(data.id)"> Xóa</button>
+              <button class="btn btn-danger btn-rounded btn-sm" [ngClass]="{'d-none': data.status}" (click)="showConfirm(data.id)"> Xóa</button>
               <nz-modal
                 [(nzVisible)]="isVisible"
                 nzTitle="Xác nhận"

@@ -6,7 +6,10 @@
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
-          <nz-table #fixedTable [nzData]="switchData"  nzTableLayout="fixed">
+          <h4 class="card-title">
+            <button class="btn btn-outline-primary btn-gradient-primary" (click)="openFormAdd()">Thêm mới</button>
+          </h4>
+          <nz-table #fixedTable [nzData]="listFirebase"  nzTableLayout="fixed">
                 <thead>
                 <tr>
                     <th> Project Id </th>
@@ -14,21 +17,33 @@
                     <th> Bucket name </th>
                     <th> File Json </th>
                     <th> Status </th>
-                    <th>#</th>
+                    <th> # </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr *ngFor="let data of fixedTable.data, let i = index">
                     <td>{{ data.projectId }}</td>
-                    <td nzEllipsis>{{ data.tokenKey }}</td>
+                    <td >{{ data.tokenKey }}</td>
                     <td>{{ data.bucketName }}</td>
-                    <td>{{ data.fileJson }}</td>
+                    <td nzEllipsis nz-tooltip="Click vào để xem rõ hơn.">{{ data.fileJson }}</td>
                     <td>
-                        <nz-switch [(ngModel)]="data.switchValue" (ngModelChange)="onSwitchChange($event, i)"></nz-switch>
+                      <nz-switch [(ngModel)]="data.status" [nzDisabled]="data.status" (ngModelChange)="onSwitchChange(data.id)"></nz-switch>
                     </td>
                     <td>
-                      <button class="btn btn-success btn-rounded btn-sm me-2 " > Sửa </button>
-                      <button class="btn btn-danger btn-rounded btn-sm" > Xóa </button>
+                      <button class="btn btn-success btn-rounded btn-sm me-2 " > Sửa</button>
+                      <button class="btn btn-danger btn-rounded btn-sm" [ngClass]="{'d-none': data.status}" (click)="showConfirm(data.id)"> Xóa</button>
+                      <nz-modal
+                        [(nzVisible)]="isVisible"
+                        nzTitle="Xác nhận"
+                        nzOkText="Có"
+                        nzCancelText="Hủy"
+                        (nzOnOk)="handleOk()"
+                        (nzOnCancel)="handleCancel()"
+                      >
+                        <ng-container *nzModalContent>
+                          <p> Bạn có chắc chắn muốn xóa không ??? </p>
+                        </ng-container>
+                      </nz-modal>
                     </td>
                 </tr>
 

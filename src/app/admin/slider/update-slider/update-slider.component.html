@@ -14,7 +14,7 @@
                 <h5 class="text-dark" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
                   Kéo và thả tập tin của bạn vào đây
                 </h5>
-                <p>hoặc</p>
+                <p> Hoặc </p>
                 <div class="upload-btn-wrapper">
                   <button class="btn btn-gradient-primary">Tải lên</button>
                   <input type="file" (change)="handleFileInput($event)" (drop)="handleDrop($event)"
@@ -26,10 +26,12 @@
           <div class="box-body" [ngClass]="{'d-none' : !isShowImage}">
             <img [src]="this.imageSrc" alt="" style="width: 200px; height: 200px;" class="ant-image-preview">
           </div>
+          <div class="button mt-5">
+            <button class="btn btn-gradient-primary" (click)="addNew()">Xác nhận</button>
+            <button class="btn btn-outline-primary ms-2" (click)="close()">Hủy</button>
+          </div>
         </div>
       </form>
-      <button class="btn btn-gradient-primary" (click)="addNew()">Xác nhận</button>
-      <button class="btn btn-secondary ms-2" (click)="close()">Hủy</button>
     </div>
   </div>
 </div>
