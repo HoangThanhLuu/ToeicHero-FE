@@ -216,7 +216,7 @@ input {
   color: #2143ef;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1000px) {
   .sign-up-container {
     left: 0;
     width: 100%;
