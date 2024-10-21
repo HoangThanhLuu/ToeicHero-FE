@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {NgxSpinnerService} from "ngx-spinner";
@@ -11,13 +11,14 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['./update-email.component.scss']
 })
 export class UpdateEmailComponent {
-
   @Input() title: string = "Thêm Email: ";
   @Input() isAdd = true;
+  @Output() added = new EventEmitter();
+  @Output() addSuccessEmit = new EventEmitter();
   @Input() params: any = {
+    username: '',
     host: '',
     port: '',
-    email: '',
     password:''
   };
 
@@ -28,20 +29,20 @@ export class UpdateEmailComponent {
               private translate: TranslateService) {
   }
 
-  ngOnInit() {
-  }
-
   close() {
     this.bsModalRef.hide();
   }
   addAccount(): void {
     this.spinnerService.show();
-    this.http.post('/api/email/config/update', {host: this.params.host, port: this.params.port, email: this.params.email, password: this.params.password})
+    this.http.post('/api/email/config/update', this.params)
       .subscribe({
         next: (res: any) => {
           const msg = this.translate.instant(`EMAIL.${res?.message}`);
           this.toastr.success(msg);
+          this.addSuccessEmit.emit();
+          this.added.emit('updateOk');
           this.spinnerService.hide();
+          this.close()
         },
         error: (res: any) => {
           const msg = this.translate.instant(`EMAIL.${res?.message}`);

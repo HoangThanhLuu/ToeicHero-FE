@@ -2,18 +2,18 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {NgxSpinnerService} from "ngx-spinner";
-import {BsModalRef} from "ngx-bootstrap/modal";
-import {AdminLibBaseCss3, AdminStyle2} from "../../admin.style";
-
+import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
+import {TranslateService} from "@ngx-translate/core";
 @Component({
   selector: 'app-update-slider',
   templateUrl: './update-slider.component.html',
-  styleUrls: ['./update-slider.component.scss', ...AdminLibBaseCss3, ...AdminStyle2,]
+  styleUrls: ['./update-slider.component.scss']
 })
 export class UpdateSliderComponent implements OnInit {
 
   @Input() title: string = "Cập nhật Slider: ";
   @Output() added = new EventEmitter();
+  @Input() isAdd = true;
   isShowImage: boolean = false;
   imageSrc: string | undefined = "";
   formData = new FormData();
@@ -22,7 +22,9 @@ export class UpdateSliderComponent implements OnInit {
   constructor(private http: HttpClient,
               private toastr: ToastrService,
               private spinnerService: NgxSpinnerService,
-              private bsModalRef: BsModalRef) {
+              private bsModalRef: BsModalRef,
+              private  translate: TranslateService,
+             ) {
   }
 
   ngOnInit() {
@@ -69,11 +71,13 @@ export class UpdateSliderComponent implements OnInit {
       .subscribe({
         next: (res: any) => {
           if (res?.success) {
-            this.toastr.success('Thành công');
+            const msg = this.translate.instant(`SLIDER.${res?.message}`);
+            this.toastr.success(msg);
             this.added.emit();
             this.bsModalRef.hide();
           } else {
-            this.toastr.error('Không thành công');
+            const msg = this.translate.instant(`SLIDER.${res?.message}`);
+            this.toastr.success(msg);
           }
           this.spinnerService.hide();
         },
@@ -84,4 +88,5 @@ export class UpdateSliderComponent implements OnInit {
         }
       });
   }
+
 }

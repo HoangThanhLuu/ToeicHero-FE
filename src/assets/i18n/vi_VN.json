@@ -4,19 +4,48 @@
   "COPY_RIGHT": "Copyright",
   "RIGHT_RESERVED": "All Right Reserved!",
   "EMAIL": {
-    "UPDATE_EMAIL_CONFIG_SUCCESS": "Cập nhật tài khoản email thành công!"
+    "UPDATE_EMAIL_CONFIG_SUCCESS": "Cập nhật tài khoản email thành công!",
+    "ADD_EMAIL_CONFIG_SUCCESS": "Thêm Email Config thành công!",
+    "EMAIL_CONFIG_NOT_FOUND": "Không tìm thấy Email!",
+    "UPDATE_EMAIL_CONFIG_STATUS_SUCCESS": "Cập nhật Email Config thành công!",
+    "DELETE_EMAIL_CONFIG_SUCCESS": "Xóa Email Config thành công!"
+
   },
   "KOMMUNICATE": {
-    "UPDATE_KOMMUNICATE_BOT_STATUS_SUCCESS": "Cập nhật Bot thành công",
-    "KOMMUNICATE_BOT_NOT_FOUND": "Không tìm thấy Bot Kommunicate ",
-    "ADD_KOMMUNICATE_BOT_SUCCESS": "Thêm Bot Kommunicate thành công",
-    "DELETE_KOMMUNICATE_BOT_SUCCESS": "Xoá Kommunicate thành công",
-    "UPDATE_KOMMUNICATE_BOT_SUCCESS": "Cập nhật Bot Kommunicate thành công",
-    "UPDATE_KOMMUNICATE_ACCOUNT_SUCCESS": "Cập nhật tài khoản Kommunicate thành công ",
-    "ADD_KOMMUNICATE_ACCOUNT_SUCCESS": "Thêm tài khoản Kommunicate thành công",
-    "DELETE_KOMMUNICATE_ACCOUNT_SUCCESS": "Xóa tài khoản Kommunicate thành công"
+    "UPDATE_KOMMUNICATE_BOT_STATUS_SUCCESS": "Cập nhật Bot thành công!",
+    "KOMMUNICATE_BOT_NOT_FOUND": "Không tìm thấy Bot Kommunicate1! ",
+    "ADD_KOMMUNICATE_BOT_SUCCESS": "Thêm Bot Kommunicate thành công!",
+    "DELETE_KOMMUNICATE_BOT_SUCCESS": "Xoá Kommunicate thành công!",
+    "UPDATE_KOMMUNICATE_BOT_SUCCESS": "Cập nhật Bot Kommunicate thành công!",
+    "UPDATE_KOMMUNICATE_ACCOUNT_SUCCESS": "Cập nhật tài khoản Kommunicate thành công! ",
+    "ADD_KOMMUNICATE_ACCOUNT_SUCCESS": "Thêm tài khoản Kommunicate thành công!",
+    "DELETE_KOMMUNICATE_ACCOUNT_SUCCESS": "Xóa tài khoản Kommunicate thành công!"
 
+  },
+  "FIREBASE": {
+    "ADD_CONFIG_FIREBASE_SUCCESS": "Thêm Firebase thành công!",
+    "ADD_CONFIG_FIREBASE_EXIST": "Firebase đã tồn tại!",
+    "ADD_CONFIG_FIREBASE_FAILED": "Thêm Firebase thất bại!",
+    "REMOVE_CONFIG_FIREBASE_SUCCESS": "Xóa Firebase thành công!",
+    "UPDATE_CONFIG_FIREBASE_SUCCESS": "Cập nhật Firebase thành công!"
+  },
+  "REVAI": {
+    "UPDATE_REV_AI_ACCOUNT_SUCCESS": "Cập nhật tài khoản Rev-AI thành công!",
+    "ADD_REV_AI_ACCOUNT_SUCCESS": "Thêm tài khoản Rev-AI thành công!",
+    "ACCOUNT_NOT_FOUND": "Tài khoản không tồn tại!",
+    "DELETE_ACCOUNT_SUCCESS": "Xóa tài khoản thành công!",
+    "ADD_CONFIG_REV_AI_SUCCESS": "Thêm Config Rev-AI thành công!",
+    "UPDATE_STATUS_REV_AI_SUCCESS": "Cập nhật Status thành công!",
+    "UPDATE_CONFIG_REV_AI_SUCCESS": "Cập nhật Config Rev-AI thành công!",
+    "DELETE_CONFIG_REV_AI_SUCCESS": "Xóa Config Rev-AI thành công!"
+  },
+  "SLIDER": {
+    "ADD_SLIDER_SUCCESS": "Thêm Slider thành công!",
+    "DELETE_SLIDER_FAIL": "Xóa Slider thất bại!",
+    "DELETE_SLIDER_SUCCESS": "Xóa Slider thành công!",
+    "UPDATE_SLIDER_POSITION_SUCCESS": "Cập nhật vị trí thành công!"
   }
+
 }
 
 

@@ -34,7 +34,7 @@
               </div>
             </td>
             <td>
-              <button class="btn btn-success btn-rounded btn-sm me-2 "> Sửa</button>
+              <button class="btn btn-success btn-rounded btn-sm me-2 " (click)="update(data)"> Sửa</button>
               <button nz-button class="btn btn-danger btn-rounded btn-sm " (click)="showConfirm(data.id)">Xóa</button>
               <nz-modal
                 [(nzVisible)]="isVisible"

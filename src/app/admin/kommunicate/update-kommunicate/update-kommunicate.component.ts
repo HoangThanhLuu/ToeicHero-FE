@@ -18,7 +18,7 @@ export class UpdateKommunicateComponent implements OnInit {
     password: ''
   };
   @Output() added = new EventEmitter();
-
+  @Output() addSuccessEmit = new EventEmitter();
   constructor(private http: HttpClient,
               private toastr: ToastrService,
               private spinnerService: NgxSpinnerService,
@@ -35,7 +35,10 @@ export class UpdateKommunicateComponent implements OnInit {
         next: (res: any) =>{
           const msg = this.translate.instant(`KOMMUNICATE.${res?.message}`);
           this.toastr.success(msg);
+          this.added.emit('updateOk');
+          this.addSuccessEmit.emit();
           this.spinnerService.hide();
+          this.close();
         },
         error: (res: any) => {
           const msg = this.translate.instant(`KOMMUNICATE.${res?.message}`);

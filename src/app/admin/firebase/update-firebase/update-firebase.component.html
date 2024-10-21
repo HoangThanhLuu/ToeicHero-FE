@@ -1,40 +1,44 @@
 <div class="col-12 grid-margin stretch-card mb-0">
   <div class="card">
     <div class="card-body">
-      <h4 class="card-title" [innerText]="title"></h4>
-      <form nz-form>
-        <nz-form-item>
-          <nz-form-label [nzSpan]="5">Project Id</nz-form-label>
-          <nz-form-control nzHasFeedback [nzSpan]="10" >
-            <input nz-input class="border" [ngModel]="'Input Id'" name="projectId" />
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-form-label [nzSpan]="5">Token key</nz-form-label>
-          <nz-form-control nzHasFeedback [nzSpan]="10" >
-            <input nz-input class="border" [ngModel]="'Input Token'" name="token"/>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-form-label [nzSpan]="5">Bucket Name</nz-form-label>
-          <nz-form-control nzHasFeedback [nzSpan]="10" >
-            <input nz-input class="border" [ngModel]="'Input Bucket'" name="bucket"/>
-          </nz-form-control>
-        </nz-form-item>
-
-        <nz-form-item>
-          <nz-form-label [nzSpan]="5">FileJson </nz-form-label>
-          <nz-form-control nzHasFeedback [nzSpan]="10">
-            <input nz-input class="border" [ngModel]="'Input Json'" name="json" />
-          </nz-form-control>
-        </nz-form-item>
-
-        <nz-form-item>
-          <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 16, offset: 8 }">
-            <button nz-button class="btn-add"> Thêm </button>
-          </nz-form-control>
-        </nz-form-item>
-
+      <h4 class="card-title" [innerText]="title | translate"></h4>
+      <form class="forms-sample">
+        <div class="form-group mt-4">
+          <label> Token Key: </label>
+          <div class="col-sm-11">
+            <input type="text" class="form-control" [ngClass]="{'error-input-custom': showBorderError}" id="exampleInputName1"
+                   name="tokenKey" placeholder="Nhập Token Key " [(ngModel)]="params.tokenKey">
+          </div>
+        </div>
+        <div class="form-group">
+          <label> File Json</label>
+          <div class="container-upload" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
+            <div class="upload-box">
+              <div class="content">
+                <div class="upload-icon" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
+                  <i class="mdi mdi-cloud-upload text-dark" style="height: 100px; width: 100px;"></i>
+                </div>
+                <h6 class="text-dark" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
+                  Kéo và thả tập tin Json vào đây
+                </h6>
+                <p> Hoặc </p>
+                <div class="upload-btn-wrapper">
+                  <button class="btn btn-gradient-primary">Tải lên file Json</button>
+                  <input type="file" (change)="handleFileInput($event)" (drop)="handleDrop($event)"
+                         (dragover)="allowDrop($event)"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="box-body" [ngClass]="{'d-none' : !isShowFile}">
+            <a [href]="fileUrl" target="_blank"> File here  </a>
+          </div>
+          <div class="button mt-5">
+            <button class="btn btn-gradient-primary" (click)="addFirebase()"> {{ isAdd ? 'Thêm' : 'Sửa' }}</button>
+            <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : isAdd}" (click)="close()"> Hủy</button>
+          </div>
+        </div>
       </form>
     </div>
   </div>
