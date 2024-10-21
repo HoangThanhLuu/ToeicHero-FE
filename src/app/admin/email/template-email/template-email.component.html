@@ -21,11 +21,12 @@
         <tr *ngFor="let data of borderedTable.data">
           <td>{{ data.id }}</td>
           <td>{{ data.name }}</td>
-          <td>{{ data.templateContent }}</td>
+          <td [innerHTML]="data.templateContent"></td>
           <td>{{ data.templateCode }}</td>
           <td>{{ data.subject }}</td>
           <td>
             <button class="btn btn-success btn-rounded btn-sm me-2 " > Sửa </button>
+            <button class="btn btn-primary btn-rounded btn-sm me-2" (click)="openDetail(data)" > Xem </button>
             <button class="btn btn-danger btn-rounded btn-sm" > Xóa </button>
           </td>
         </tr>

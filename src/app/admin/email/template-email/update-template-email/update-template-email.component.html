@@ -2,40 +2,21 @@
   <div class="card">
     <div class="card-body">
       <h4 class="card-title" [innerText]="title"></h4>
-      <form nz-form>
-        <nz-form-item>
-          <nz-form-label [nzSpan]="5">Project Id</nz-form-label>
-          <nz-form-control nzHasFeedback [nzSpan]="10" >
-            <input nz-input class="border" [ngModel]="'Input Id'" name="projectId" />
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-form-label [nzSpan]="5">Token key</nz-form-label>
-          <nz-form-control nzHasFeedback [nzSpan]="10" >
-            <input nz-input class="border" [ngModel]="'Input Token'" name="token"/>
-          </nz-form-control>
-        </nz-form-item>
-        <nz-form-item>
-          <nz-form-label [nzSpan]="5">Bucket Name</nz-form-label>
-          <nz-form-control nzHasFeedback [nzSpan]="10" >
-            <input nz-input class="border" [ngModel]="'Input Bucket'" name="bucket"/>
-          </nz-form-control>
-        </nz-form-item>
-
-        <nz-form-item>
-          <nz-form-label [nzSpan]="5">FileJson </nz-form-label>
-          <nz-form-control nzHasFeedback [nzSpan]="10">
-            <input nz-input class="border" [ngModel]="'Input Json'" name="json" />
-          </nz-form-control>
-        </nz-form-item>
-
-        <nz-form-item>
-          <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 16, offset: 8 }">
-            <button nz-button class="btn-add"> Thêm </button>
-          </nz-form-control>
-        </nz-form-item>
-
+      <form class="forms-sample">
+        <div class="form-group">
+          <label for="exampleInputName1">Tên bộ đề thi</label>
+          <input type="text" class="form-control" id="exampleInputName1"
+                 placeholder="Nhập tên bộ đề thi">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputName1">Template</label>
+          <editor apiKey="01d1ysvvu8ltpjkbz1sn01lv6t5mu5wz0x6duazjsk6n6r66"
+                  [init]="tinymceConfig"
+          ></editor>
+        </div>
       </form>
+      <button class="btn btn-gradient-primary">Xác nhận</button>
+      <button class="btn btn-secondary ms-2">Hủy</button>
     </div>
   </div>
 </div>
