@@ -10,7 +10,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {NgxSpinnerModule} from "ngx-spinner";
 import {FormsModule} from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {ModalModule} from "ngx-bootstrap/modal";
 import {ClientModule} from "./client/client.module";
 import {AdminModule} from "./admin/admin.module";
@@ -26,6 +26,8 @@ import {AuthServiceService} from "./auth-service.service";
 import {ClientGuardGuard} from "./client-guard.guard";
 import {SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider} from '@abacritt/angularx-social-login';
 import {FACEBOOK_APP_ID} from "./common/constant";
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
 registerLocaleData(en);
 @NgModule({
@@ -56,7 +58,15 @@ registerLocaleData(en);
     NzModalModule,
     NzAvatarModule,
     NzImageModule,
-    SocialLoginModule
+    SocialLoginModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) => new TranslateHttpLoader(http, './assets/i18n/', '.json'),
+        deps: [HttpClient],
+      },
+      defaultLanguage: 'vi_VN',
+    }),
   ],
   providers: [
     {provide: NZ_I18N, useValue: en},

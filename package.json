@@ -39,6 +39,8 @@
     "ngx-bootstrap": "^11.0.2",
     "ngx-owl-carousel-o": "^16.0.0",
     "ngx-scrollbar": "^13.0.3",
+    "@ngx-translate/core": "^15.0.0",
+    "@ngx-translate/http-loader": "^8.0.0",
     "ngx-spinner": "^16.0.2",
     "ngx-toastr": "^18.0.0",
     "ngx-wow": "^2.0.1",
