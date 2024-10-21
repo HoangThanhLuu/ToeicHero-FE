@@ -240,4 +240,15 @@ export class PracticeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     clearInterval(this.interval);
   }
+  changePart(event: any) {
+    if (event === 'next') {
+      this.nextPart();
+    } else {
+      this.previousPart();
+    }
+  }
+
+  selectedAnswerChange(event: any) {
+    this.changeStateButton(event.answer, event.questionId);
+  }
 }

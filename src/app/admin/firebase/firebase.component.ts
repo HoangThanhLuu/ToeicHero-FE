@@ -5,7 +5,6 @@ import {NgxSpinnerService} from "ngx-spinner";
 import {ToastrService} from "ngx-toastr";
 import {TranslateService} from "@ngx-translate/core";
 import {finalize} from "rxjs";
-import {UpdateEmailComponent} from "../email/update-email/update-email.component";
 import {UpdateFirebaseComponent} from "./update-firebase/update-firebase.component";
 
 interface TableItem {
@@ -28,6 +27,7 @@ export class FirebaseComponent implements OnInit{
   private idFirebaseToDelete: number | undefined;
   isVisible: boolean =false;
   showFullData: boolean = false;
+
 
   constructor(
     private bsModalService: BsModalService,

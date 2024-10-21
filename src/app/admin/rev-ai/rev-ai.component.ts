@@ -6,9 +6,8 @@ import {NgxSpinnerService} from "ngx-spinner";
 import {TranslateService} from "@ngx-translate/core";
 import {ToastrService} from "ngx-toastr";
 import {finalize} from "rxjs";
-import {UpdateKommunicateComponent} from "../kommunicate/update-kommunicate/update-kommunicate.component";
 import {UpdateRevaiComponent} from "./update-revai/update-revai.component";
-import {UpdateEmailComponent} from "../email/update-email/update-email.component";
+
 
 @Component({
   selector: 'app-rev-ai',
@@ -81,6 +80,7 @@ export class RevAiComponent implements OnInit{
       initialState: {
         title: 'Cập nhật tài khoản Rev-ai ',
         isAdd: false,
+        isPopup: true,
         params: {
           email: data.email,
           password: data.password

@@ -59,6 +59,8 @@ import {TranslateModule} from "@ngx-translate/core";
 import {NzToolTipModule} from "ng-zorro-antd/tooltip";
 import { ConfigRevaiComponent } from './rev-ai/config-revai/config-revai.component';
 import { UpdateConfigComponent } from './rev-ai/config-revai/update-config/update-config.component';
+import { TemplateEmailDetailComponent } from './email/template-email/template-email-detail/template-email-detail.component';
+import {EditorComponent} from "@tinymce/tinymce-angular";
 
 @NgModule({
     declarations: [
@@ -102,32 +104,34 @@ import { UpdateConfigComponent } from './rev-ai/config-revai/update-config/updat
         UpdateKommunicateBotComponent,
         ConfigRevaiComponent,
         UpdateConfigComponent,
+        TemplateEmailDetailComponent,
 
     ],
-    imports: [
-        CommonModule,
-        AdminRoutingModule,
-        NzUploadModule,
-        NzIconModule,
-        NgOptimizedImage,
-        FormsModule,
-        NgxSpinnerModule,
-        NzButtonModule,
-        TooltipModule,
-        NzAvatarModule,
-        NzImageModule,
-        NzTableModule,
-        NzPopconfirmModule,
-        NzInputModule,
+  imports: [
+    CommonModule,
+    AdminRoutingModule,
+    NzUploadModule,
+    NzIconModule,
+    NgOptimizedImage,
+    FormsModule,
+    NgxSpinnerModule,
+    NzButtonModule,
+    TooltipModule,
+    NzAvatarModule,
+    NzImageModule,
+    NzTableModule,
+    NzPopconfirmModule,
+    NzInputModule,
 
-        NzSwitchModule,
-        NzFormModule,
-        ReactiveFormsModule,
-        NzPaginationModule,
-        NzModalModule,
-        TranslateModule,
-        NzToolTipModule,
-    ],
+    NzSwitchModule,
+    NzFormModule,
+    ReactiveFormsModule,
+    NzPaginationModule,
+    NzModalModule,
+    TranslateModule,
+    NzToolTipModule,
+    EditorComponent,
+  ],
     exports: [
         PageHeaderComponent,
         AudioPlayerComponent
