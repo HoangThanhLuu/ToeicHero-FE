@@ -4,7 +4,7 @@
       {{ part?.partContent }}
     </p>
   </div>
-  <div class="col-5" [ngClass]="{'d-none': indexPart != 5}">
+  <div class="col-5" [ngClass]="{'d-none': indexPart == 5}">
     <app-audio-part [audioSource]="part?.partAudio"></app-audio-part>
   </div>
   <ng-container *ngFor="let item of part?.questions; let part1Index = index;">
@@ -35,7 +35,7 @@
         <nz-radio-group nzName="radiogroup"
                         class="col-12"
                         [(ngModel)]="selectedAnswer[item?.questionId]"
-                        (ngModelChange)="changeStateButton($event, item?.questionId, item?.partCode)">
+                        (ngModelChange)="changeStateButton($event, item?.questionId)">
           <label nz-radio nzValue="A">{{ item?.answerA }}</label>
           <label nz-radio nzValue="B">{{ item?.answerB }}</label>
           <label nz-radio nzValue="C">{{ item?.answerC }}</label>
