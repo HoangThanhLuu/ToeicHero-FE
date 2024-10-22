@@ -1,5 +1,8 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import {
+  RouterModule,
+  Routes
+} from '@angular/router';
 import {HomeComponent} from "./home/home.component";
 import {AdminComponent} from "./admin.component";
 import {ExamComponent} from "./exam/exam.component";
@@ -35,6 +38,8 @@ import {
 } from "./kommunicate/kommunicate-bot/update-kommunicate-bot/update-kommunicate-bot.component";
 import {ConfigRevaiComponent} from "./rev-ai/config-revai/config-revai.component";
 import {UpdateConfigComponent} from "./rev-ai/config-revai/update-config/update-config.component";
+import {CrawlComponent} from "./crawl-data/crawl/crawl.component";
+import {CrawlHistoryComponent} from "./crawl-data/crawl-history/crawl-history.component";
 
 const routes: Routes = [
   {
@@ -53,7 +58,7 @@ const routes: Routes = [
         path: 'exam',
         children: [
           {
-            path: '',
+            path: 'list',
             component: ExamComponent
           },
           {
@@ -63,7 +68,15 @@ const routes: Routes = [
         ]
       }, {
         path: 'topic',
-        component: TopicComponent
+        children: [
+          {
+            path: 'list',
+            component: TopicComponent
+          }, {
+            path: 'add',
+            component: AddTopicComponent
+          }
+        ]
       }, {
         path: 'users',
         component: UsersComponent
@@ -79,57 +92,118 @@ const routes: Routes = [
       }, {
         path: 'score',
         component: ScoreComponent
-      },{
-        path: 'addTopic',
-        component: AddTopicComponent
       }, {
         path: 'addExam',
         component: AddExamComponent
       }, {
         path: 'firebase',
-        component: FirebaseComponent
+        children: [
+          {
+            path: 'list',
+            component: FirebaseComponent
+          },
+          {
+            path: 'update',
+            component: UpdateFirebaseComponent
+          }
+        ]
       }, {
         path: 'email',
-        component: EmailComponent
+        children: [
+          {
+            path: 'account',
+            children: [
+              {
+                path: 'list',
+                component: EmailComponent
+              }, {
+                path: 'update',
+                component: UpdateEmailComponent
+              }
+            ]
+          }, {
+            path: 'template-email',
+            children: [
+              {
+                path: 'list',
+                component: TemplateEmailComponent
+              }, {
+                path: 'update',
+                component: UpdateTemplateEmailComponent
+              }
+            ]
+          }
+        ]
       }, {
         path: 'slider',
-        component: SliderComponent
-      }, {
-        path: 'template-email',
-        component: TemplateEmailComponent
-      }, {
-        path: 'update-template-email',
-        component: UpdateTemplateEmailComponent
-      }, {
-        path: 'update-email',
-        component: UpdateEmailComponent
-      }, {
-        path: 'update-slider',
-        component: UpdateSliderComponent
-      }, {
-        path: 'update-firebase',
-        component: UpdateFirebaseComponent
+        children: [
+          {
+            path: 'list',
+            component: SliderComponent
+          }, {
+            path: 'update',
+            component: UpdateSliderComponent
+          }
+        ]
       }, {
         path: 'transcript',
         component: TranscriptComponent
       }, {
         path: 'rev-ai',
-        component: RevAiComponent
-      }, {
-        path: 'update-revai',
-        component: UpdateRevaiComponent
-      }, {
-        path: 'update-config-revai',
-        component: UpdateConfigComponent
-      }, {
-        path: 'config-revai',
-        component: ConfigRevaiComponent
-      },{
-        path: 'update-kommunicate',
-        component: UpdateKommunicateComponent
+        children: [
+          {
+            path: 'account',
+            children: [
+              {
+                path: 'list',
+                component: RevAiComponent
+              }, {
+                path: 'update',
+                component: UpdateRevaiComponent
+              }
+            ]
+          },
+          {
+            path: 'config',
+            children: [
+              {
+                path: 'update',
+                component: UpdateConfigComponent
+              }, {
+                path: 'list',
+                component: ConfigRevaiComponent
+              }
+            ]
+          }
+        ]
       }, {
         path: 'kommunicate',
-        component: KommunicateComponent
+        children: [
+          {
+            path: 'account',
+            children: [
+              {
+                path: 'list',
+                component: KommunicateComponent
+              }, {
+                path: 'update',
+                component: UpdateKommunicateComponent
+              }
+            ]
+          },
+          {
+            path: 'bot',
+            children: [
+              {
+                path: 'list',
+                component: KommunicateBotComponent
+              }, {
+                path: 'update',
+                component: UpdateKommunicateBotComponent
+              }
+            ]
+          }
+        ]
       }, {
         path: 'gemini',
         component: GeminiComponent
@@ -137,17 +211,22 @@ const routes: Routes = [
         path: 'update-gemini',
         component: UpdateGeminiComponent
       }, {
-        path: 'crawl-data',
-        component: CrawlDataComponent
-      }, {
-        path: 'crawl-config',
-        component: CrawlConfigComponent
-      }, {
-        path: 'kommunicate-bot',
-        component: KommunicateBotComponent
-      }, {
-        path: 'update-kommunicate-bot',
-        component: UpdateKommunicateBotComponent
+        path: 'crawl',
+        children: [
+          {
+            path: 'list',
+            component: CrawlDataComponent
+          }, {
+            path: 'config',
+            component: CrawlConfigComponent
+          }, {
+            path: 'get',
+            component: CrawlComponent
+          }, {
+            path: 'history',
+            component: CrawlHistoryComponent
+          }
+        ]
       }
     ]
   },

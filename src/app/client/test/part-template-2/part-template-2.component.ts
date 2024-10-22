@@ -21,7 +21,7 @@ export class PartTemplate2Component {
   @Output() selectedAnswerChange = new EventEmitter<any>();
   @Output() changePart = new EventEmitter<any>();
 
-  changeStateButton(event: any, questionId: any) {
+  changeStateButton(event: any, questionId: any, partCode: any) {
     this.selectedAnswerChange.emit({
       questionId,
       answer: event

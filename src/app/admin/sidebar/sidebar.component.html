@@ -26,20 +26,21 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+      <a class="nav-link" data-bs-toggle="collapse"
+         href="javascript:;" (click)="stateMenu[0] = !stateMenu[0]">
         <span class="menu-title">Quản lý bộ đề thi</span>
         <i class="menu-arrow"></i>
         <i class="mdi mdi-database menu-icon"></i>
       </a>
-      <div class="collapse" id="ui-basic">
+      <div class="collapse" [ngClass]="{'show': stateMenu[0]}" id="ui-basic">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'topic'}">
-            <a class="nav-link" href="admin/topic">
+            <a class="nav-link" href="admin/topic/list">
               <span class="menu-title">Danh sách</span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'addTopic'}">
-            <a class="nav-link" href="admin/addTopic">
+            <a class="nav-link" href="admin/topic/add">
               <span class="menu-title"> Thêm bộ đề </span>
             </a>
           </li>
@@ -48,21 +49,21 @@
       </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#exam-management" aria-expanded="false"
-         aria-controls="exam-management">
+      <a class="nav-link" href="javascript:;" (click)="stateMenu[1] = !stateMenu[1]">
         <span class="menu-title">Quản lý đề thi</span>
         <i class="menu-arrow"></i>
         <i class="mdi mdi-book-open menu-icon"></i>
       </a>
-      <div class="collapse" id="exam-management">
+      <div class="collapse" [ngClass]="{'show': stateMenu[1]}" id="exam-management"
+      >
         <ul class="nav flex-column sub-menu">
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'exam'}">
-            <a class="nav-link" href="admin/exam">
+            <a class="nav-link" href="admin/exam/list">
               <span class="menu-title">Danh sách</span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'addExam'}">
-            <a class="nav-link" href="admin/addExam">
+            <a class="nav-link" href="admin/exam/add">
               <span class="menu-title"> Thêm đề thi </span>
             </a>
           </li>
@@ -82,22 +83,32 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#crawl-management" aria-expanded="false"
+      <a class="nav-link" data-bs-toggle="collapse" href="javascript:;" (click)="stateMenu[2] = !stateMenu[2]"
          aria-controls="exam-management">
         <span class="menu-title">Crawl Data</span>
         <i class="menu-arrow"></i>
         <i class="mdi mdi-database-plus menu-icon"></i>
       </a>
-      <div class="collapse" id="crawl-management">
+      <div class="collapse" [ngClass]="{'show': stateMenu[2]}" id="crawl-management">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'crawl-data'}">
-            <a class="nav-link" href="admin/crawl-data">
+            <a class="nav-link" href="admin/crawl/list">
               <span class="menu-title"> Danh sách </span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'crawl-config'}">
-            <a class="nav-link" href="admin/crawl-config">
+            <a class="nav-link" href="admin/crawl/config">
               <span class="menu-title"> Config </span>
+            </a>
+          </li>
+          <li class="nav-item" [ngClass]="{'active' : navItemActive == 'crawl-data-1'}">
+            <a class="nav-link" href="admin/crawl/get">
+              <span class="menu-title"> Crawl data </span>
+            </a>
+          </li>
+          <li class="nav-item" [ngClass]="{'active' : navItemActive == 'crawl-data-2'}">
+            <a class="nav-link" href="admin/crawl/history">
+              <span class="menu-title"> Lịch sử crawl data </span>
             </a>
           </li>
         </ul>
@@ -113,21 +124,21 @@
       </a>
       <div class="border-bottom"></div>
     <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#firebase-management" aria-expanded="false"
+      <a class="nav-link" href="javascript:void(0)" (click)="stateMenu[3] = !stateMenu[3]"
          aria-controls="exam-management">
         <span class="menu-title"> Firebase</span>
         <i class="menu-arrow"></i>
         <i class="mdi mdi-cloud-upload menu-icon"></i>
       </a>
-      <div class="collapse" id="firebase-management">
+      <div class="collapse" [ngClass]="{'show': stateMenu[3]}" id="firebase-management">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'firebase'}">
-            <a class="nav-link" href="admin/firebase">
+            <a class="nav-link" href="admin/firebase/list">
               <span class="menu-title"> Danh sách </span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-firebase'}">
-            <a class="nav-link" href="admin/update-firebase">
+            <a class="nav-link" href="admin/firebase/update">
               <span class="menu-title"> Update Firebase </span>
             </a>
           </li>
@@ -135,32 +146,31 @@
       </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#email-management" aria-expanded="false"
-         aria-controls="exam-management">
+      <a class="nav-link" href="javascript:void(0)" (click)="stateMenu[4] = !stateMenu[4]">
         <span class="menu-title"> Email </span>
         <i class="menu-arrow"></i>
         <i class="mdi mdi-email menu-icon"></i>
       </a>
-      <div class="collapse" id="email-management">
+      <div class="collapse" [ngClass]="{'show': stateMenu[4]}" id="email-management">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'email'}">
-            <a class="nav-link" href="admin/email">
+            <a class="nav-link" href="admin/email/account/list">
               <span class="menu-title"> Danh sách Email</span>
             </a>
           </li>
 
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-email'}">
-            <a class="nav-link" href="admin/update-email">
+            <a class="nav-link" href="admin/email/account/update">
               <span class="menu-title"> Thêm Email </span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'template-email'}">
-            <a class="nav-link" href="admin/template-email">
+            <a class="nav-link" href="admin/email/template-email/list">
               <span class="menu-title"> Danh sách Temlate </span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-template-email'}">
-            <a class="nav-link" href="admin/update-template-email">
+            <a class="nav-link" href="admin/email/template-email/update">
               <span class="menu-title"> Thêm Template </span>
             </a>
           </li>
@@ -168,21 +178,20 @@
       </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#slider-management" aria-expanded="false"
-         aria-controls="exam-management">
+      <a class="nav-link" href="javascript:void(0)" (click)="stateMenu[5] = !stateMenu[5]">
         <span class="menu-title"> Slider </span>
         <i class="menu-arrow"></i>
         <i class="mdi mdi-equal-box menu-icon"></i>
       </a>
-      <div class="collapse" id="slider-management">
+      <div class="collapse" [ngClass]="{'show': stateMenu[5]}" id="slider-management">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'slider'}">
-            <a class="nav-link" href="admin/slider">
+            <a class="nav-link" href="admin/slider/list">
               <span class="menu-title"> Danh sách </span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-silder'}">
-            <a class="nav-link" href="admin/update-slider">
+            <a class="nav-link" href="admin/slider/update">
               <span class="menu-title"> Thêm Slider </span>
             </a>
           </li>
@@ -190,31 +199,30 @@
       </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#revai-management" aria-expanded="false"
-         aria-controls="exam-management">
+      <a class="nav-link" href="javascript:void(0)" (click)="stateMenu[6] = !stateMenu[6]">
         <span class="menu-title"> Quản lý REV AI </span>
         <i class="menu-arrow"></i>
         <i class="mdi mdi-at menu-icon"></i>
       </a>
-      <div class="collapse" id="revai-management">
+      <div class="collapse" [ngClass]="{'show': stateMenu[6]}" id="revai-management">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'rev-ai'}">
-            <a class="nav-link" href="admin/rev-ai">
+            <a class="nav-link" href="admin/rev-ai/account/list">
               <span class="menu-title"> Danh sách </span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-revai'}">
-            <a class="nav-link" href="admin/update-revai">
+            <a class="nav-link" href="admin/rev-ai/account/update">
               <span class="menu-title"> Thêm REV-AI </span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'config-revai'}">
-            <a class="nav-link" href="admin/config-revai">
+            <a class="nav-link" href="admin/rev-ai/config/list">
               <span class="menu-title"> Config REV AI </span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-config-revai'}">
-            <a class="nav-link" href="admin/update-config-revai">
+            <a class="nav-link" href="admin/rev-ai/config/update">
               <span class="menu-title">Thêm Config REV AI </span>
             </a>
           </li>
@@ -222,44 +230,43 @@
       </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#kommunicate-management" aria-expanded="false"
-         aria-controls="exam-management">
+      <a class="nav-link" href="javascript:void(0)" (click)="stateMenu[7] = !stateMenu[7]">
         <span class="menu-title"> Quản lý Kommunicate </span>
         <i class="menu-arrow"></i>
         <i class="mdi mdi-earth menu-icon"></i>
       </a>
-     <div class="collapse" id="kommunicate-management">
+      <div class="collapse" [ngClass]="{'show': stateMenu[7]}" id="kommunicate-management">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'kommunicate'}">
-            <a class="nav-link" href="admin/kommunicate">
+            <a class="nav-link" href="admin/kommunicate/account/list">
               <span class="menu-title"> Danh sách </span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-kommunicate'}">
-            <a class="nav-link" href="admin/update-kommunicate">
+            <a class="nav-link" href="admin/kommunicate/account/update">
               <span class="menu-title"> Thêm Kommunicate </span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'kommunicate-bot'}">
-            <a class="nav-link" href="admin/kommunicate-bot">
+            <a class="nav-link" href="admin/kommunicate/bot/list">
               <span class="menu-title"> Kommunicate Bot </span>
             </a>
-          </li> <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-kommunicate-bot'}">
-          <a class="nav-link" href="admin/update-kommunicate-bot">
-            <span class="menu-title"> Thêm Kommunicate Bot </span>
-          </a>
-        </li>
+          </li>
+          <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-kommunicate-bot'}">
+            <a class="nav-link" href="admin/kommunicate/bot/update">
+              <span class="menu-title"> Thêm Kommunicate Bot </span>
+            </a>
+          </li>
         </ul>
       </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" data-bs-toggle="collapse" href="#gemini-management" aria-expanded="false"
-         aria-controls="exam-management">
+      <a class="nav-link" href="javascript:void(0)" (click)="stateMenu[8] = !stateMenu[8]">
         <span class="menu-title"> Quản lý Gemini </span>
         <i class="menu-arrow"></i>
         <i class="mdi mdi-widgets menu-icon"></i>
       </a>
-      <div class="collapse" id="gemini-management">
+      <div class="collapse" [ngClass]="{'show': stateMenu[8]}" id="gemini-management">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'gemini'}">
             <a class="nav-link" href="admin/gemini">

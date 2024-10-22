@@ -2,6 +2,7 @@ import {
   Component,
   Input
 } from '@angular/core';
+import {config} from "rxjs";
 import {
   AdminLibBaseCss4,
   AdminStyle3

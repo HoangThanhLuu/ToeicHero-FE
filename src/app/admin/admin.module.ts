@@ -61,6 +61,8 @@ import { ConfigRevaiComponent } from './rev-ai/config-revai/config-revai.compone
 import { UpdateConfigComponent } from './rev-ai/config-revai/update-config/update-config.component';
 import { TemplateEmailDetailComponent } from './email/template-email/template-email-detail/template-email-detail.component';
 import {EditorComponent} from "@tinymce/tinymce-angular";
+import { CrawlComponent } from './crawl-data/crawl/crawl.component';
+import { CrawlHistoryComponent } from './crawl-data/crawl-history/crawl-history.component';
 
 @NgModule({
     declarations: [
@@ -105,6 +107,8 @@ import {EditorComponent} from "@tinymce/tinymce-angular";
         ConfigRevaiComponent,
         UpdateConfigComponent,
         TemplateEmailDetailComponent,
+        CrawlComponent,
+        CrawlHistoryComponent,
 
     ],
   imports: [

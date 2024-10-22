@@ -74,8 +74,7 @@ export class UpdateSliderComponent implements OnInit {
             const msg = this.translate.instant(`SLIDER.${res?.message}`);
             this.toastr.success(msg);
             this.added.emit();
-            this.formData.delete('');
-
+            this.bsModalRef.hide();
           } else {
             const msg = this.translate.instant(`SLIDER.${res?.message}`);
             this.toastr.success(msg);

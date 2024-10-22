@@ -2,7 +2,6 @@ import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/c
 import {OwlOptions} from "ngx-owl-carousel-o";
 import {CarouselService} from "ngx-owl-carousel-o/lib/services/carousel.service";
 import {NgwWowService} from "ngx-wow";
-import {HttpClient} from "@angular/common/http";
 
 declare var $: any;
 
@@ -11,23 +10,12 @@ declare var $: any;
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.css']
 })
-export class CarouselComponent implements AfterViewInit, OnDestroy, OnInit {
-  listSilider: any =[];
-  constructor(private wowService: NgwWowService,
-              private http: HttpClient,) {
+export class CarouselComponent implements AfterViewInit, OnDestroy {
+  constructor(private wowService: NgwWowService) {
     this.wowService.init();
   }
- // images = ['assets/images/carousel-1.jpg', 'assets/images/carousel-4.jpg', 'assets/images/carousel-5.jpg'];
-  ngOnInit(): void {
-    this.getSLider();
-  }
-  getSLider(): void {
-    this.http.get('api/slider/all')
-      .subscribe( (res: any)=> {
-        this.listSilider = res.content;
-        console.log(res);
-    });
-  }
+  images = ['assets/images/carousel-1.jpg', 'assets/images/carousel-4.jpg', 'assets/images/carousel-5.jpg'];
+
   headerCarouselOptions: OwlOptions = {
     autoplay: true,
     smartSpeed: 1500,
@@ -52,8 +40,6 @@ export class CarouselComponent implements AfterViewInit, OnDestroy, OnInit {
 
   ngOnDestroy(): void {
   }
-
-
 
 
 }

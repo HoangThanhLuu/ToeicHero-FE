@@ -29,10 +29,10 @@
     </div>
     <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
       <owl-carousel-o [options]="headerCarouselOptions" class="header-carousel">
-        <ng-container *ngFor="let slide of listSilider">
+        <ng-container *ngFor="let slide of images">
           <ng-template carouselSlide>
             <div class="owl-carousel-item position-relative ">
-              <img class="img-fluid size" [src]="slide.image" alt="TOEICUTE" [title]="slide"/>
+              <img class="img-fluid" [src]="slide" alt="TOEICUTE" [title]="slide"/>
             </div>
           </ng-template>
         </ng-container>

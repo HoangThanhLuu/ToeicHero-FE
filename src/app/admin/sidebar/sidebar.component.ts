@@ -1,5 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {AdminLibBaseCss2, AdminStyle} from "../admin.style";
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  AdminLibBaseCss2,
+  AdminStyle
+} from "../admin.style";
 import {HttpClient} from "@angular/common/http";
 
 @Component({
@@ -10,12 +16,13 @@ import {HttpClient} from "@angular/common/http";
 export class SidebarComponent implements OnInit {
 
   navItemActive: string = 'dashboard';
+  stateMenu: boolean[] = Array(10).fill(false);
 
   constructor(private http: HttpClient) {
   }
 
   ngOnInit(): void {
-  this.getNavItems();
+    this.getNavItems();
 
   }
 
@@ -29,11 +36,11 @@ export class SidebarComponent implements OnInit {
       this.navItemActive = 'topic';
     } else if (url.includes('exam') || url.includes('question')) {
       this.navItemActive = 'exam';
-    }else if (url.includes('score')) {
+    } else if (url.includes('score')) {
       this.navItemActive = 'score';
     } else if (url.includes('logout')) {
       this.navItemActive = 'logout';
-    } else if (url.includes('firebase')|| url.includes('update-firebase')) {
+    } else if (url.includes('firebase') || url.includes('update-firebase')) {
       this.navItemActive = 'firebase';
     }
   }
