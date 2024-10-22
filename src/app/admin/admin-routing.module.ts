@@ -64,6 +64,10 @@ const routes: Routes = [
           {
             path: 'detail',
             component: ExamDetailComponent
+          },
+          {
+            path: 'add',
+            component: AddExamComponent
           }
         ]
       }, {
@@ -92,9 +96,6 @@ const routes: Routes = [
       }, {
         path: 'score',
         component: ScoreComponent
-      }, {
-        path: 'addExam',
-        component: AddExamComponent
       }, {
         path: 'firebase',
         children: [
