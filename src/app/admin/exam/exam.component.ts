@@ -52,7 +52,7 @@ export class ExamComponent implements OnInit {
   }
 
 
-  private getListExam() {
+  getListExam() {
     this.spinnerService.show();
     this.http.get('/api/admin/exam/list')
       .pipe(finalize(() => {

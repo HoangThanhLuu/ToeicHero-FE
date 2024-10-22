@@ -1,11 +1,11 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {AdminLibBaseCss2, AdminStyle} from "../admin.style";
-import {BsModalService} from "ngx-bootstrap/modal";
-import {AddTopicComponent} from "./add-topic/add-topic.component";
-import {HttpClient} from "@angular/common/http";
-import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
-import {NgxSpinnerService} from "ngx-spinner";
-import {ToastrService} from "ngx-toastr";
+import {AdminLibBaseCss2, AdminStyle} from '../admin.style';
+import {BsModalService} from 'ngx-bootstrap/modal';
+import {AddTopicComponent} from './add-topic/add-topic.component';
+import {HttpClient} from '@angular/common/http';
+import {NzModalRef, NzModalService} from 'ng-zorro-antd/modal';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-topic',
@@ -35,7 +35,7 @@ export class TopicComponent implements OnInit {
   getListTopic() {
     this.http.get('/api/admin/topic/list')
       .subscribe((res: any) => {
-        this.listTopic = res.data;
+        this.listTopic = res?.content;
       });
   }
 

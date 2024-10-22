@@ -43,6 +43,7 @@
     "ADD_SLIDER_SUCCESS": "Thêm Slider thành công!",
     "DELETE_SLIDER_FAIL": "Xóa Slider thất bại!",
     "DELETE_SLIDER_SUCCESS": "Xóa Slider thành công!",
-    "UPDATE_SLIDER_POSITION_SUCCESS": "Cập nhật vị trí thành công!"
+    "UPDATE_SLIDER_POSITION_SUCCESS": "Cập nhật vị trí thành công!",
+    "UPDATE_SLIDER_SUCCESS": "Cập nhật Slider thành công!"
   }
 }

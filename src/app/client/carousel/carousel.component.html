@@ -31,8 +31,8 @@
       <owl-carousel-o [options]="headerCarouselOptions" class="header-carousel">
         <ng-container *ngFor="let slide of listSilider">
           <ng-template carouselSlide>
-            <div class="owl-carousel-item position-relative ">
-              <img class="img-fluid size" [src]="slide.image" alt="TOEICUTE" [title]="slide"/>
+            <div class="owl-carousel-item position-relative">
+              <img [src]="slide.image" alt="TOEICUTE" [title]="slide" />
             </div>
           </ng-template>
         </ng-container>

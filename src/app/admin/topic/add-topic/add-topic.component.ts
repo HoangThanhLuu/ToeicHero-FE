@@ -1,5 +1,13 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {AdminLibBaseCss3, AdminStyle2} from "../../admin.style";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output
+} from '@angular/core';
+import {
+  AdminLibBaseCss3,
+  AdminStyle2
+} from "../../admin.style";
 import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {NgxSpinnerService} from "ngx-spinner";
@@ -24,6 +32,7 @@ export class AddTopicComponent {
     topicImage: '',
   };
   showBorderError: boolean = false;
+
   constructor(private http: HttpClient,
               private toastr: ToastrService,
               private spinnerService: NgxSpinnerService,
@@ -34,9 +43,11 @@ export class AddTopicComponent {
     const file = event.target.files[0];
     this.handleFiles(file);
   }
+
   close() {
     this.bsModalRef.hide();
   }
+
   handleFiles(file: any) {
     if (file) {
       const reader = new FileReader();
@@ -48,20 +59,23 @@ export class AddTopicComponent {
       reader.readAsDataURL(file);
     }
   }
+
   allowDrop(event: any) {
     event.preventDefault();
   }
+
   handleDrop(event: any) {
     event.preventDefault();
     const files = event.dataTransfer.files[0];
     this.handleFiles(files);
   }
+
   addNew(): void {
-    if(!this.param.topicName) {
+    if (!this.param.topicName) {
       this.toastr.error('Vui lòng nhập tên bộ đề thi');
       this.showBorderError = true;
       return;
-    }else{
+    } else {
       this.showBorderError = false;
     }
 
@@ -69,26 +83,18 @@ export class AddTopicComponent {
       this.toastr.error('Vui lòng chọn ảnh');
       return;
     }
-    this.spinnerService.show();
-    this.http.post<any>('/api/upload-file', this.formData)
+    this.spinnerService.show().then(r => r);
+    this.formData.append('topicName', this.param.topicName);
+    this.http.post<any>('/api/admin/topic/create-topic', this.formData)
       .subscribe((res: any) => {
         if (res?.success) {
-          this.param.topicImage = res?.data;
-          this.http.post<any>('/api/admin/topic/create-topic', this.param)
-            .subscribe((res: any) => {
-              if (res?.success) {
-                this.toastr.success(res?.message);
-                this.added.emit();
-                this.bsModalRef.hide();
-              } else {
-                this.toastr.error(res?.message);
-              }
-              this.spinnerService.hide();
-            });
+          this.toastr.success(res?.message);
+          this.added.emit();
+          this.bsModalRef.hide();
         } else {
           this.toastr.error(res?.message);
-          this.spinnerService.hide();
         }
+        this.spinnerService.hide().then(r => r);
       });
   }
 }
