@@ -26,7 +26,7 @@ export class UpdateRevaiComponent {
               private toastr: ToastrService,
               private spinnerService: NgxSpinnerService,
               private bsModalRef: BsModalRef,
-              private  translate: TranslateService) {
+              private translate: TranslateService) {
   }
   addAccount(): void {
     this.spinnerService.show();

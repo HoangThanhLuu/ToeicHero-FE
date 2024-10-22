@@ -94,14 +94,37 @@ export class LoginComponent implements OnInit, OnDestroy {
       return;
     }
     this.spinnerService.show();
+    const email = this.registerForm.get('email')?.value ?? '';
     this.http.post('/api/user/register', this.registerForm.value)
+      .pipe(
+        finalize(() => {
+          this.spinnerService.hide().then()
+        })
+      )
       .subscribe((res: any) => {
         if (res?.success) {
-          this.sendEmail(this.registerForm.value?.email);
+          this.showConfirmOTP(email);
         } else {
           this.toast.error(res?.message);
         }
       });
+  }
+
+  showConfirmOTP(email: string, switchTab: boolean = true) {
+    const modalRef = this.bs.show(OtpConfirmComponent,
+      {
+        class: 'modal-lg modal-dialog-centered',
+        ignoreBackdropClick: true,
+        initialState: {
+          email: email
+        }
+      });
+    if (modalRef && modalRef.content) {
+      modalRef.content.confirmed.subscribe(() => {
+        if (switchTab)
+          this.switchTab();
+      });
+    }
   }
 
   checkNotValidFormRegister() {
@@ -147,26 +170,14 @@ export class LoginComponent implements OnInit, OnDestroy {
     return false;
   }
 
-  sendEmail(email: any, switchTab = true) {
-    this.http.post('/api/user/send-email', {to: email})
+  sendEmail(email: any) {
+    this.http.post('/api/user/send-email', {
+      to: email,
+      templateCode: 'AUTHENTICATION_AFTER_REGISTER'
+    })
       .subscribe((res: any) => {
-        this.spinnerService.hide();
-        if (res.success == true) {
-          const modalRef = this.bs.show(OtpConfirmComponent,
-            {
-              class: 'modal-lg modal-dialog-centered',
-              ignoreBackdropClick: true,
-              initialState: {
-                otpCode: res?.data,
-                email: email
-              }
-            });
-          if (modalRef && modalRef.content) {
-            modalRef.content.confirmed.subscribe(() => {
-              if (switchTab)
-                this.switchTab();
-            });
-          }
+        if (res.success) {
+          this.toast.success('Tài khoản của bạn chưa được kích hoạt. Vui lòng kiểm tra email để kích hoạt tài khoản');
         } else {
           this.toast.error(res?.message);
         }
@@ -182,10 +193,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.http.post("/api/user/authenticate", this.loginForm)
       .pipe(finalize(() => this.spinnerService.hide()))
       .subscribe((res: any) => {
+        this.spinnerService.hide();
         if (!res?.success) {
           this.toast.error(res?.message);
           if (res?.data == 'INACTIVE') {
-            this.sendEmail(this.loginForm.email, false);
+            this.sendEmail(this.loginForm.email);
+            this.showConfirmOTP(this.loginForm.email, false);
           }
         } else {
           this.toast.success('Đăng nhập thành công');
