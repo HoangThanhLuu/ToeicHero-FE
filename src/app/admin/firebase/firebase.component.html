@@ -25,7 +25,7 @@
                     <td>{{ data.projectId }}</td>
                     <td >{{ data.tokenKey }}</td>
                     <td>{{ data.bucketName }}</td>
-                    <td nzEllipsis nz-tooltip="Click vào để xem rõ hơn.">{{ data.fileJson }}</td>
+                    <td nzEllipsis [popover]= "data.fileJson">{{ data.fileJson }}</td>
                     <td>
                       <nz-switch [(ngModel)]="data.status" [nzDisabled]="data.status" (ngModelChange)="onSwitchChange(data.id)"></nz-switch>
                     </td>

@@ -63,6 +63,7 @@ import { TemplateEmailDetailComponent } from './email/template-email/template-em
 import {EditorComponent} from "@tinymce/tinymce-angular";
 import { CrawlComponent } from './crawl-data/crawl/crawl.component';
 import { CrawlHistoryComponent } from './crawl-data/crawl-history/crawl-history.component';
+import {PopoverModule} from "ngx-bootstrap/popover";
 
 @NgModule({
     declarations: [
@@ -135,6 +136,7 @@ import { CrawlHistoryComponent } from './crawl-data/crawl-history/crawl-history.
     TranslateModule,
     NzToolTipModule,
     EditorComponent,
+    PopoverModule,
   ],
     exports: [
         PageHeaderComponent,

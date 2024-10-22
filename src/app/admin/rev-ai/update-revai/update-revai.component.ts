@@ -13,6 +13,7 @@ import {TranslateService} from "@ngx-translate/core";
 export class UpdateRevaiComponent {
   @Input() title: string = "Thêm tài khoản REV-AI: ";
   @Input() isAdd = true;
+  @Input() isPopup: boolean = false;
   @Output() added = new EventEmitter();
   @Output() addSuccessEmit = new EventEmitter();
   @Input() params: any = {
@@ -37,7 +38,9 @@ export class UpdateRevaiComponent {
           this.added.emit('updateOk');
           this.addSuccessEmit.emit();
           this.spinnerService.hide();
-          this.close();
+          if(this.isPopup) {
+            this.close();
+          }
         },
         error: (res: any) => {
           const msg = this.translate.instant(`REVAI.${res?.message}`);

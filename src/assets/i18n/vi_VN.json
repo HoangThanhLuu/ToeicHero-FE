@@ -8,8 +8,10 @@
     "ADD_EMAIL_CONFIG_SUCCESS": "Thêm Email Config thành công!",
     "EMAIL_CONFIG_NOT_FOUND": "Không tìm thấy Email!",
     "UPDATE_EMAIL_CONFIG_STATUS_SUCCESS": "Cập nhật Email Config thành công!",
-    "DELETE_EMAIL_CONFIG_SUCCESS": "Xóa Email Config thành công!"
-
+    "DELETE_EMAIL_CONFIG_SUCCESS": "Xóa Email Config thành công!",
+    "UPDATE_EMAIL_TEMPLATE_SUCCESS": "Cập nhật Template Email thành công!",
+    "ADD_EMAIL_TEMPLATE_SUCCESS": "Thêm Template Email thành công!",
+    "DELETE_EMAIL_TEMPLATE_SUCCESS": "Xóa Template Email thành công!"
   },
   "KOMMUNICATE": {
     "UPDATE_KOMMUNICATE_BOT_STATUS_SUCCESS": "Cập nhật Bot thành công!",
@@ -20,7 +22,6 @@
     "UPDATE_KOMMUNICATE_ACCOUNT_SUCCESS": "Cập nhật tài khoản Kommunicate thành công! ",
     "ADD_KOMMUNICATE_ACCOUNT_SUCCESS": "Thêm tài khoản Kommunicate thành công!",
     "DELETE_KOMMUNICATE_ACCOUNT_SUCCESS": "Xóa tài khoản Kommunicate thành công!"
-
   },
   "FIREBASE": {
     "ADD_CONFIG_FIREBASE_SUCCESS": "Thêm Firebase thành công!",

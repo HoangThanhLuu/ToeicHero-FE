@@ -1,12 +1,16 @@
 import {
-  Component,
-  Input
+  Component, EventEmitter,
+  Input, Output
 } from '@angular/core';
-import {config} from "rxjs";
 import {
   AdminLibBaseCss4,
   AdminStyle3
 } from "../../../admin.style";
+import {HttpClient} from "@angular/common/http";
+import {ToastrService} from "ngx-toastr";
+import {NgxSpinnerService} from "ngx-spinner";
+import {BsModalRef} from "ngx-bootstrap/modal";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-update-template-email',
@@ -15,6 +19,17 @@ import {
 })
 export class UpdateTemplateEmailComponent {
   @Input() title: string = "Thêm Tempalte-email: ";
+  @Input() isAdd = true;
+  @Output() added = new EventEmitter();
+
+
+  constructor(private http: HttpClient,
+              private toastr: ToastrService,
+              private spinnerService: NgxSpinnerService,
+              private bsModalRef: BsModalRef,
+              private translate: TranslateService) {
+  }
+
   userDarkMode: boolean = false;
   tinymceConfig = {
     selector: 'textarea',
@@ -80,4 +95,32 @@ export class UpdateTemplateEmailComponent {
     content_css: this.userDarkMode ? 'dark' : 'default',
     content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
   };
+
+  @Input() params: any = {
+    name: '',
+    templateContent: '',
+    templateCode: '',
+    subject: ''
+  };
+
+  doAction() {
+    this.spinnerService.show();
+    this.http.post('/api/email/template/update', this.params)
+      .subscribe({
+        next: (res: any) =>{
+          const msg = this.translate.instant(`EMAIL.${res?.message}`);
+          this.toastr.success(msg);
+          this.added.emit('Ok');
+          this.spinnerService.hide();
+        },
+        error: (res: any) => {
+          const msg = this.translate.instant(`EMAIL.${res?.message}`);
+          this.spinnerService.hide();
+        }
+      })
+    console.log(this.params);
+  }
+  close() {
+    this.bsModalRef.hide();
+  }
 }

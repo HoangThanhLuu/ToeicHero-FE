@@ -8,6 +8,7 @@ import {finalize} from "rxjs";
 import {UpdateKommunicateComponent} from "../kommunicate/update-kommunicate/update-kommunicate.component";
 import {UpdateEmailComponent} from "./update-email/update-email.component";
 import {AddExamComponent} from "../exam/add-exam/add-exam.component";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -27,6 +28,7 @@ export class EmailComponent implements OnInit {
     private http: HttpClient,
     private modal: NzModalService,
     private spinner: NgxSpinnerService,
+    private  translate: TranslateService,
     private toast: ToastrService
   ) {
   }
@@ -62,12 +64,14 @@ export class EmailComponent implements OnInit {
         })
       )
       .subscribe({
-        next: () => {
-          this.toast.success(' Xóa Thành công');
+        next: (res: any) => {
+          const msg = this.translate.instant(`EMAIL.${res?.message}`);
+          this.toast.success(msg);
           this.spinner.hide().then();
         },
-        error: () => {
-          this.toast.error('Xóa thất bại');
+        error: (res: any) => {
+          const msg = this.translate.instant(`EMAIL.${res?.message}`);
+          this.toast.success(msg);
           this.spinner.hide().then();
         }
       });

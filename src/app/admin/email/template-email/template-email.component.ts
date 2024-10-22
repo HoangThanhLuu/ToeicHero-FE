@@ -11,6 +11,8 @@ import {NgxSpinnerService} from "ngx-spinner";
 import {ToastrService} from "ngx-toastr";
 import {TranslateService} from "@ngx-translate/core";
 import {TemplateEmailDetailComponent} from "./template-email-detail/template-email-detail.component";
+import {UpdateTemplateEmailComponent} from "./update-template-email/update-template-email.component";
+import {finalize} from "rxjs";
 
 @Component({
   selector: 'app-template-email',
@@ -52,5 +54,55 @@ export class TemplateEmailComponent implements OnInit {
         templateContent: data.templateContent
       }
     });
+  }
+  update(data: any) {
+    const bsModalResult = this.bsModalService.show(UpdateTemplateEmailComponent, {
+      class: 'modal-lg modal-dialog-centered',
+      initialState: {
+        title: 'Chỉnh sửa Email Template',
+        isAdd: false,
+        params: {
+          name : data.name,
+          templateCode: data.templateCode,
+          subject: data.subject,
+          templateContent: data.templateContent
+        }
+      }
+    });
+
+  }
+  deleteTemplate(id: any){
+    this.spinner.show();
+    this.http.delete(`/api/email/template/delete/${id}`)
+      .pipe(
+        finalize(() => {
+          this.getListTemplateEmail();
+        })
+      )
+      .subscribe({
+        next: (res: any) => {
+          const msg = this.translate.instant(`EMAIL.${res?.message}`);
+          this.toastr.success(msg);
+          this.spinner.hide().then();
+        },
+        error: (res: any) => {
+          const msg = this.translate.instant(`EMAIL.${res?.message}`);
+          this.toastr.success(msg);
+          this.spinner.hide().then();
+        }
+      });
+  }
+  openFormAdd() {
+    const bsModalRef = this.bsModalService.show(UpdateTemplateEmailComponent, {
+      class: 'modal-lg modal-dialog-centered',
+      initialState: {
+        title: 'Thêm Template Email'
+      }
+    });
+    if (bsModalRef && bsModalRef.content) {
+      bsModalRef.content.added.subscribe(() => {
+        this.getListTemplateEmail();
+      });
+    }
   }
 }
