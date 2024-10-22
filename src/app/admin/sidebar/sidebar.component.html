@@ -1,9 +1,9 @@
-<nav class="sidebar sidebar-offcanvas mt-2" id="sidebar">
+<nav class="sidebar sidebar-offcanvas mt-2 overflow-auto" id="sidebar">
   <ul class="nav">
     <li class="nav-item nav-profile">
       <a href="#" class="nav-link">
         <div class="nav-profile-image">
-          <img src="assets/images/admin-avatar.jpg" alt="profile">
+          <img ngSrc="assets/images/admin-avatar.jpg" alt="profile" height="360" width="360">
           <span class="login-status online"></span>
         </div>
         <div class="nav-profile-text d-flex flex-column">
@@ -77,10 +77,26 @@
       </a>
     </li>
     <li class="nav-item" [ngClass]="{'active' : navItemActive == 'transcript'}">
-      <a class="nav-link" href="/admin/transcript">
+      <a class="nav-link" data-bs-toggle="collapse" href="javascript:;" (click)="stateMenu[9] = !stateMenu[9]"
+         aria-controls="exam-management">
         <span class="menu-title">Transcript</span>
+        <i class="menu-arrow"></i>
         <i class="mdi mdi-tooltip-text menu-icon"></i>
       </a>
+      <div class="collapse" [ngClass]="{'show': stateMenu[9]}">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item" [ngClass]="{'active' : navItemActive == 'crawl-data'}">
+            <a class="nav-link" href="admin/transcript/get">
+              <span class="menu-title"> Lấy transcript </span>
+            </a>
+          </li>
+          <li class="nav-item" [ngClass]="{'active' : navItemActive == 'crawl-config'}">
+            <a class="nav-link" href="admin/transcript/history">
+              <span class="menu-title"> Lịch sử </span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </li>
     <li class="nav-item">
       <a class="nav-link" data-bs-toggle="collapse" href="javascript:;" (click)="stateMenu[2] = !stateMenu[2]"
@@ -276,6 +292,37 @@
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-gemini'}">
             <a class="nav-link" href="admin/update-gemini">
               <span class="menu-title"> Thêm Gemini </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="javascript:void(0)" (click)="stateMenu[10] = !stateMenu[10]">
+        <span class="menu-title"> Quản lý tiny editor </span>
+        <i class="menu-arrow"></i>
+        <i class="mdi mdi-widgets menu-icon"></i>
+      </a>
+      <div class="collapse" [ngClass]="{'show': stateMenu[10]}">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item" [ngClass]="{'active' : navItemActive == 'tiny'}">
+            <a class="nav-link submenu text-wrap" href="admin/tiny/account/list">
+              <span class="menu-title"> Danh sách tài khoản tiny</span>
+            </a>
+          </li>
+          <li class="nav-item" [ngClass]="{'active' : navItemActive == 'tiny'}">
+            <a class="nav-link submenu text-wrap" href="admin/tiny/account/update">
+              <span class="menu-title"> Thêm tài khoản tiny editor</span>
+            </a>
+          </li>
+          <li class="nav-item" [ngClass]="{'active' : navItemActive == 'tiny-config'}">
+            <a class="nav-link submenu text-wrap" href="admin/tiny/config/list">
+              <span class="menu-title"> Danh sách config tiny editor  </span>
+            </a>
+          </li>
+          <li class="nav-item" [ngClass]="{'active' : navItemActive == 'tiny-config'}">
+            <a class="nav-link submenu text-wrap" href="admin/tiny/config/list">
+              <span class="menu-title"> Thêm mới config tiny editor  </span>
             </a>
           </li>
         </ul>

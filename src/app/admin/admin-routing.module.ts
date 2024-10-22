@@ -40,6 +40,12 @@ import {ConfigRevaiComponent} from "./rev-ai/config-revai/config-revai.component
 import {UpdateConfigComponent} from "./rev-ai/config-revai/update-config/update-config.component";
 import {CrawlComponent} from "./crawl-data/crawl/crawl.component";
 import {CrawlHistoryComponent} from "./crawl-data/crawl-history/crawl-history.component";
+import {HistoryTranscriptComponent} from "./transcript/history-transcript/history-transcript.component";
+import {TinyComponent} from "./tiny/tiny.component";
+import {UpdateTinyComponent} from "./tiny/update-tiny/update-tiny.component";
+import {ConfigTinyComponent} from "./tiny/config-tiny/config-tiny.component";
+import {UpdateTinyConfigComponent} from "./tiny/config-tiny/update-tiny-config/update-tiny-config.component";
+import {ProfileComponent} from "./profile/profile.component";
 
 const routes: Routes = [
   {
@@ -53,6 +59,10 @@ const routes: Routes = [
       }, {
         path: 'home',
         component: HomeComponent
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent
       },
       {
         path: 'exam',
@@ -148,7 +158,15 @@ const routes: Routes = [
         ]
       }, {
         path: 'transcript',
-        component: TranscriptComponent
+        children: [
+          {
+            path: 'get',
+            component: TranscriptComponent
+          }, {
+            path: 'history',
+            component: HistoryTranscriptComponent
+          }
+        ]
       }, {
         path: 'rev-ai',
         children: [
@@ -226,6 +244,34 @@ const routes: Routes = [
           }, {
             path: 'history',
             component: CrawlHistoryComponent
+          }
+        ]
+      }, {
+        path: 'tiny',
+        children: [
+          {
+            path: 'account',
+            children: [
+              {
+                path: 'list',
+                component: TinyComponent
+              }, {
+                path: 'update',
+                component: UpdateTinyComponent
+              }
+            ]
+          }, {
+            path: 'config',
+            children: [
+              {
+                path: 'list',
+                component: ConfigTinyComponent
+              },
+              {
+                path: 'update',
+                component: UpdateTinyConfigComponent
+              }
+            ]
           }
         ]
       }

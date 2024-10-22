@@ -64,6 +64,10 @@ import {EditorComponent} from "@tinymce/tinymce-angular";
 import { CrawlComponent } from './crawl-data/crawl/crawl.component';
 import { CrawlHistoryComponent } from './crawl-data/crawl-history/crawl-history.component';
 import {PopoverModule} from "ngx-bootstrap/popover";
+import { HistoryTranscriptComponent } from './transcript/history-transcript/history-transcript.component';
+import { UpdateTinyComponent } from './tiny/update-tiny/update-tiny.component';
+import { UpdateTinyConfigComponent } from './tiny/config-tiny/update-tiny-config/update-tiny-config.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
     declarations: [
@@ -110,6 +114,10 @@ import {PopoverModule} from "ngx-bootstrap/popover";
         TemplateEmailDetailComponent,
         CrawlComponent,
         CrawlHistoryComponent,
+        HistoryTranscriptComponent,
+        UpdateTinyComponent,
+        UpdateTinyConfigComponent,
+        ProfileComponent,
 
     ],
   imports: [
