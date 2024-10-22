@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {ToastrService} from 'ngx-toastr';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {BsModalRef} from 'ngx-bootstrap/modal';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-update-tiny-config',
@@ -6,5 +11,41 @@ import { Component } from '@angular/core';
   styleUrls: ['./update-tiny-config.component.scss']
 })
 export class UpdateTinyConfigComponent {
+  @Input() title: string = 'Thêm tài khoản Config Tiny : ';
+  @Input() isAdd = true;
+  @Input() isPopup: boolean = false;
+  @Output() added = new EventEmitter();
+  @Output() addSuccessEmit = new EventEmitter();
+  apiKey: string = '';
 
+  constructor(private http: HttpClient,
+              private toastr: ToastrService,
+              private spinnerService: NgxSpinnerService,
+              private bsModalRef: BsModalRef,
+              private  translate: TranslateService) {
+  }
+  addAccount(): void {
+    this.spinnerService.show();
+    this.http.post(`api/tiny-config/add?apiKey=${this.apiKey}`, this.apiKey)
+        .subscribe({
+          next: (res: any) =>{
+            const msg = this.translate.instant(`TINY.${res?.message}`);
+            this.toastr.success(msg);
+            this.added.emit('Ok');
+            this.addSuccessEmit.emit();
+            this.spinnerService.hide();
+            if(this.isPopup) {
+              this.close();
+            }
+          },
+          error: (res: any) => {
+            const msg = this.translate.instant(`TINY.${res?.message}`);
+            this.toastr.error(msg);
+            this.spinnerService.hide();
+          }
+        })
+  }
+  close() {
+    this.bsModalRef.hide();
+  }
 }

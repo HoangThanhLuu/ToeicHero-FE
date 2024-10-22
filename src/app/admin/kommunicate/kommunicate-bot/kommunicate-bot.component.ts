@@ -1,14 +1,12 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {HttpClient} from "@angular/common/http";
-import {NzModalService} from "ng-zorro-antd/modal";
-import {NgxSpinnerService} from "ngx-spinner";
-import {ToastrService} from "ngx-toastr";
-import {UpdateKommunicateComponent} from "../update-kommunicate/update-kommunicate.component";
-import {finalize} from "rxjs";
-import {TranslateService} from "@ngx-translate/core";
-import {UpdateKommunicateBotComponent} from "./update-kommunicate-bot/update-kommunicate-bot.component";
-import {UpdateEmailComponent} from "../../email/update-email/update-email.component";
+import {BsModalService} from 'ngx-bootstrap/modal';
+import {HttpClient} from '@angular/common/http';
+import {NzModalRef, NzModalService} from 'ng-zorro-antd/modal';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {ToastrService} from 'ngx-toastr';
+import {finalize} from 'rxjs';
+import {TranslateService} from '@ngx-translate/core';
+import {UpdateKommunicateBotComponent} from './update-kommunicate-bot/update-kommunicate-bot.component';
 
 @Component({
   selector: 'app-kommunicate-bot',
@@ -16,19 +14,17 @@ import {UpdateEmailComponent} from "../../email/update-email/update-email.compon
   styleUrls: ['./kommunicate-bot.component.scss']
 })
 export class KommunicateBotComponent implements OnInit {
-  title: string = "Quản lý Bot Kommunicate";
-  currentPage: string = "Kommunicate";
+  title: string = 'Quản lý Bot Kommunicate';
+  currentPage: string = 'Kommunicate';
   listKommunicateBot: any = [];
-  private botIdToDelete: number | undefined;
-  isVisible: boolean =false
 
   constructor(
     private bsModalService: BsModalService,
     private http: HttpClient,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
+    private modal: NzModalService,
     private  translate: TranslateService,
-    private bsModalRef: BsModalRef
   ) {
   }
   ngOnInit(): void {
@@ -70,12 +66,13 @@ export class KommunicateBotComponent implements OnInit {
       initialState: {
         title: 'Cập nhật Kommunicate Bot ',
         isAdd: false,
+        isPopup: true,
         params: {
           appId: data.appId,
           apiKey: data.apiKey
         }
       },
-      backdrop: "static"
+      backdrop: 'static'
     });
     if (bsModalResult?.content?.added){
       bsModalResult.content.added.subscribe(() => {
@@ -83,46 +80,50 @@ export class KommunicateBotComponent implements OnInit {
       });
     }
   }
-  handleOk(): void {
-    if (this.botIdToDelete) {
-      this.deleteBot(this.botIdToDelete);
-    }
-    this.isVisible = false;
-  }
-
-  handleCancel(): void {
-    this.isVisible = false;
-  }
-  showConfirm(id: number): void {
-    this.botIdToDelete = id;
-    this.isVisible = true;
-  }
   deleteBot(id: number) :void {
-    this.spinner.show().then()
-    this.http.delete(`/api/kommunicate/bot/delete/${id}`)
-      .pipe(
-        finalize(() => {
-          this.getListKommunicateBot();
-        })
-      )
-      .subscribe({
-        next: (res: any) => {
-          const msg = this.translate.instant(`KOMMUNICATE.${res?.message}`);
-          this.toastr.success(msg);
-          this.spinner.hide().then();
-        },
-        error: (res: any) => {
-          const msg = this.translate.instant(`KOMMUNICATE.${res?.message}`);
-          this.toastr.error(msg);
-          this.spinner.hide().then();
+    const confirmModal: NzModalRef = this.modal.create({
+      nzTitle: `Xác nhận`,
+      nzContent: `Bạn có muốn xóa Kommunicate Bot này không?`,
+      nzCentered: true,
+      nzFooter: [
+        {
+          label: 'Hủy',
+          onClick: () => confirmModal.destroy()
+        }, {
+          label: 'Đồng ý',
+          type: 'primary',
+          onClick: () => {
+            this.spinner.show().then()
+            this.http.delete(`/api/kommunicate/bot/delete/${id}`)
+              .pipe(
+                finalize(() => {
+                  this.getListKommunicateBot();
+                })
+              )
+              .subscribe({
+                next: (res: any) => {
+                  const msg = this.translate.instant(`KOMMUNICATE.${res?.message}`);
+                  this.toastr.success(msg);
+                  this.spinner.hide().then();
+                  confirmModal.destroy();
+                },
+                error: (res: any) => {
+                  const msg = this.translate.instant(`KOMMUNICATE.${res?.message}`);
+                  this.toastr.error(msg);
+                  this.spinner.hide().then();
+                }
+              });
+          }
         }
-      });
+      ]
+    });
   }
   openFormAdd() {
     const bsModalRef = this.bsModalService.show(UpdateKommunicateBotComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Thêm Bot Kommunicate'
+        title: 'Thêm Bot Kommunicate',
+        isPopup: true
       }
     });
     if (bsModalRef && bsModalRef.content) {

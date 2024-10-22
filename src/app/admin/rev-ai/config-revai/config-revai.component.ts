@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {finalize} from "rxjs";
-import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {HttpClient} from "@angular/common/http";
-import {NgxSpinnerService} from "ngx-spinner";
-import {ToastrService} from "ngx-toastr";
-import {TranslateService} from "@ngx-translate/core";
-import {UpdateConfigComponent} from "./update-config/update-config.component";
-import {UpdateEmailComponent} from "../../email/update-email/update-email.component";
+import {finalize} from 'rxjs';
+import {BsModalService} from 'ngx-bootstrap/modal';
+import {HttpClient} from '@angular/common/http';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {ToastrService} from 'ngx-toastr';
+import {TranslateService} from '@ngx-translate/core';
+import {UpdateConfigComponent} from './update-config/update-config.component';
+import {NzModalRef, NzModalService} from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-config-revai',
@@ -14,19 +14,18 @@ import {UpdateEmailComponent} from "../../email/update-email/update-email.compon
   styleUrls: ['./config-revai.component.scss']
 })
 export class ConfigRevaiComponent implements OnInit{
-  title: string = "Config Rev-Ai";
-  currentPage: string = "Config Rev-Ai";
+  title: string = 'Config Rev-Ai';
+  currentPage: string = 'Config Rev-Ai';
   listConfig: any = [];
-  private configIdToDelete: number | undefined;
-  isVisible: boolean =false
 
   constructor(
     private bsModalService: BsModalService,
     private http: HttpClient,
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
+    private modal: NzModalService,
     private  translate: TranslateService,
-    private bsModalRef: BsModalRef
+
   ) {
   }
   ngOnInit(): void {
@@ -72,7 +71,7 @@ export class ConfigRevaiComponent implements OnInit{
           accessToken: data.accessToken
         }
       },
-      backdrop: "static"
+      backdrop: 'static'
 
     });
     if (bsModalResult?.content?.added){
@@ -81,40 +80,44 @@ export class ConfigRevaiComponent implements OnInit{
       });
     }
   }
-  handleOk(): void {
-    if (this.configIdToDelete) {
-      this.deleteConfigRev(this.configIdToDelete);
-    }
-    this.isVisible = false;
-  }
-
-  handleCancel(): void {
-    this.isVisible = false;
-  }
-  showConfirm(id: number): void {
-    this.configIdToDelete = id;
-    this.isVisible = true;
-  }
   deleteConfigRev(id: number) :void {
-    this.spinner.show().then()
-    this.http.delete(`/api/revai/config/delete/${id}`)
-      .pipe(
-        finalize(() => {
-          this.getListConfigRevai();
-        })
-      )
-      .subscribe({
-        next: (res: any) => {
-          const msg = this.translate.instant(`REVAI.${res?.message}`);
-          this.toastr.success(msg);
-          this.spinner.hide().then();
-        },
-        error: (res: any) => {
-          const msg = this.translate.instant(`REVAI.${res?.message}`);
-          this.toastr.error(msg);
-          this.spinner.hide().then();
+    const confirmModal: NzModalRef = this.modal.create({
+      nzTitle: `Xác nhận`,
+      nzContent: `Bạn có muốn xóa Config RevAI này không?`,
+      nzCentered: true,
+      nzFooter: [
+        {
+          label: 'Hủy',
+          onClick: () => confirmModal.destroy()
+        }, {
+          label: 'Đồng ý',
+          type: 'primary',
+          onClick: () => {
+            this.spinner.show().then()
+            this.http.delete(`/api/revai/config/delete/${id}`)
+              .pipe(
+                finalize(() => {
+                  this.getListConfigRevai();
+                })
+              )
+              .subscribe({
+                next: (res: any) => {
+                  const msg = this.translate.instant(`REVAI.${res?.message}`);
+                  this.toastr.success(msg);
+                  this.spinner.hide().then();
+                  confirmModal.destroy();
+                },
+                error: (res: any) => {
+                  const msg = this.translate.instant(`REVAI.${res?.message}`);
+                  this.toastr.error(msg);
+                  this.spinner.hide().then();
+                }
+              });
+          }
         }
-      });
+      ]
+    });
+
   }
   openFormAdd() {
     const bsModalRef = this.bsModalService.show(UpdateConfigComponent, {

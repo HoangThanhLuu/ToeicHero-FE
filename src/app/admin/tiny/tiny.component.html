@@ -1,0 +1,44 @@
+<app-page-header
+  [title]="title"
+  [currentPage]="currentPage">
+</app-page-header>
+
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">
+        <button class="btn btn-outline-primary btn-gradient-primary" >Thêm mới</button>
+      </h4>
+      <nz-table #borderedTable nzBordered [nzData]="listTiny">
+        <thead>
+        <tr>
+          <th> Id </th>
+          <th> Username </th>
+          <th> Password </th>
+          <th> # </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of borderedTable.data">
+          <td>{{ data.tinyAccountId }}</td>
+          <td>{{ data.username }}</td>
+          <td>{{ data.password }}</td>
+          <td>
+            <button class="btn btn-success btn-rounded btn-sm me-2 " (click)="update(data)" > Sửa </button>
+            <button class="btn btn-danger btn-rounded btn-sm" (click)="deleteTiny(data.tinyAccountId)"> Xóa </button>
+          </td>
+        </tr>
+        </tbody>
+      </nz-table>
+      <div class="col-md-12 d-flex justify-content-end mt-3">
+        <nz-pagination (nzPageIndexChange)="pageIndexChange($event)"
+                       (nzPageSizeChange)="sizeChange($event)"
+                       [(nzPageIndex)]="page"
+                       [nzShowSizeChanger]="true"
+                       [nzTotal]="totalElement"
+                       [(nzPageSize)]="size"
+        ></nz-pagination>
+      </div>
+    </div>
+  </div>
+</div>

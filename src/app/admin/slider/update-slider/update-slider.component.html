@@ -23,12 +23,19 @@
               </div>
             </div>
           </div>
+
           <div class="box-body" [ngClass]="{'d-none' : !isShowImage}">
-            <img [src]="this.imageSrc" alt="" style="width: 200px; height: 200px;" class="ant-image-preview">
+            <div class="image-container" >
+              <img [src]="this.imageSrc" alt="" style="width: 200px; height: 200px;" class="ant-image-preview">
+              <nz-badge [nzCount]="iconTemplate" class="icon-badge" (click)="closeImg(imageSrc)">
+                <ng-template #iconTemplate><i class="mdi mdi-close-circle"></i></ng-template>
+              </nz-badge>
+            </div>
           </div>
+
           <div class="button mt-5">
             <button class="btn btn-gradient-primary" (click)="addNew()">Xác nhận</button>
-            <button class="btn btn-outline-primary ms-2" (click)="close()">Hủy</button>
+            <button class="btn btn-outline-primary-2 ms-2" (click)="close()">Hủy</button>
           </div>
         </div>
       </form>

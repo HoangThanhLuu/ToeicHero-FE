@@ -14,6 +14,7 @@ export class UpdateKommunicateBotComponent implements OnInit {
   title: string = "Quản lý Bot Kommunicate";
   currentPage: string = "Kommunicate";
   @Input() isAdd = true;
+  @Input() isPopup: boolean = false;
   @Output() added = new EventEmitter();
   @Output() addSuccessEmit = new EventEmitter();
   @Input() params: any = {
@@ -45,7 +46,9 @@ export class UpdateKommunicateBotComponent implements OnInit {
           this.addSuccessEmit.emit();
           this.added.emit('updateOk');
           this.spinnerService.hide();
-          this.close();
+          if(this.isPopup) {
+            this.close();
+          }
         },
         error: (res: any) => {
           const msg = this.translate.instant(`KOMMUNICATE.${res?.message}`);

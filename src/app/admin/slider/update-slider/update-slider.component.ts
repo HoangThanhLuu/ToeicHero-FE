@@ -11,16 +11,18 @@ import {NgxSpinnerService} from "ngx-spinner";
 import {BsModalRef} from "ngx-bootstrap/modal";
 import {TranslateService} from "@ngx-translate/core";
 import {finalize} from "rxjs";
+import {AdminLibBaseCss3, AdminStyle2} from "../../admin.style";
 
 @Component({
   selector: 'app-update-slider',
   templateUrl: './update-slider.component.html',
-  styleUrls: ['./update-slider.component.scss']
+  styleUrls: ['./update-slider.component.scss',...AdminLibBaseCss3, ...AdminStyle2]
 })
 export class UpdateSliderComponent implements OnInit {
 
   @Input() title: string = "Cập nhật Slider: ";
   @Output() added = new EventEmitter();
+  @Output() addSuccessEmit = new EventEmitter();
   @Input() isAdd = true;
   @Input() idSlider: number = 0;
   @Input() isShowImage: boolean = false;
@@ -63,7 +65,11 @@ export class UpdateSliderComponent implements OnInit {
       reader.readAsDataURL(file);
     }
   }
-
+  closeImg(imageSrc: string | undefined) {
+    if (imageSrc) {
+      this.isShowImage = false;
+    }
+  }
   allowDrop(event: any) {
     event.preventDefault();
   }
@@ -96,6 +102,7 @@ export class UpdateSliderComponent implements OnInit {
             const msg = this.translate.instant(`SLIDER.${res?.message}`);
             this.toastr.success(msg);
             this.added.emit();
+            this.addSuccessEmit.emit();
             this.formData.delete('file');
           } else {
             const msg = this.translate.instant(`SLIDER.${res?.message}`);

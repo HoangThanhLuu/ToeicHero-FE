@@ -1,14 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {BsModalService} from "ngx-bootstrap/modal";
-import {HttpClient} from "@angular/common/http";
-import {NzModalService} from "ng-zorro-antd/modal";
-import {NgxSpinnerService} from "ngx-spinner";
-import {ToastrService} from "ngx-toastr";
-import {finalize} from "rxjs";
-import {UpdateKommunicateComponent} from "../kommunicate/update-kommunicate/update-kommunicate.component";
-import {UpdateEmailComponent} from "./update-email/update-email.component";
-import {AddExamComponent} from "../exam/add-exam/add-exam.component";
-import {TranslateService} from "@ngx-translate/core";
+import {BsModalService} from 'ngx-bootstrap/modal';
+import {HttpClient} from '@angular/common/http';
+import {NzModalRef, NzModalService} from 'ng-zorro-antd/modal';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {ToastrService} from 'ngx-toastr';
+import {finalize} from 'rxjs';
+import {UpdateEmailComponent} from './update-email/update-email.component';
+import {TranslateService} from '@ngx-translate/core';
 
 
 @Component({
@@ -17,11 +15,9 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['./email.component.scss']
 })
 export class EmailComponent implements OnInit {
-  title: string = "Quản lý email";
-  currentPage: string = "Email";
+  title: string = 'Quản lý email';
+  currentPage: string = 'Email';
   listEmailConfig: any = [];
-  private emailIdToDelete: number | undefined;
-  isVisible: boolean =false
 
   constructor(
     private bsModalService: BsModalService,
@@ -41,40 +37,42 @@ export class EmailComponent implements OnInit {
         this.listEmailConfig = res;
       });
   }
-  handleOk(): void {
-    if (this.emailIdToDelete) {
-      this.deleteEmail(this.emailIdToDelete);
-    }
-    this.isVisible = false;
-  }
-
-  handleCancel(): void {
-    this.isVisible = false;
-  }
-  showConfirm(id: number): void {
-    this.emailIdToDelete = id;
-    this.isVisible = true;
-  }
   deleteEmail(id: number): void {
-    this.spinner.show().then()
-    this.http.delete(`/api/email/config/delete/${id}`)
-      .pipe(
-        finalize(() => {
-          this.listEmailConfig();
-        })
-      )
-      .subscribe({
-        next: (res: any) => {
-          const msg = this.translate.instant(`EMAIL.${res?.message}`);
-          this.toast.success(msg);
-          this.spinner.hide().then();
-        },
-        error: (res: any) => {
-          const msg = this.translate.instant(`EMAIL.${res?.message}`);
-          this.toast.success(msg);
-          this.spinner.hide().then();
+    const confirmModal: NzModalRef = this.modal.create({
+      nzTitle: `Xác nhận`,
+      nzContent: `Bạn có muốn xóa slider này không?`,
+      nzCentered: true,
+      nzFooter: [
+        {
+          label: 'Hủy',
+          onClick: () => confirmModal.destroy()
+        }, {
+          label: 'Đồng ý',
+          type: 'primary',
+          onClick: () => {
+            this.spinner.show().then()
+            this.http.delete(`/api/email/config/delete/${id}`)
+              .pipe(
+                finalize(() => {
+                  this.listEmailConfig();
+                })
+              )
+              .subscribe({
+                next: (res: any) => {
+                  const msg = this.translate.instant(`EMAIL.${res?.message}`);
+                  this.toast.success(msg);
+                  this.spinner.hide().then();
+                },
+                error: (res: any) => {
+                  const msg = this.translate.instant(`EMAIL.${res?.message}`);
+                  this.toast.success(msg);
+                  this.spinner.hide().then();
+                }
+              });
+          }
         }
-      });
+      ]
+    });
   }
   update(data: any) {
     const bsModalResult = this.bsModalService.show(UpdateEmailComponent, {

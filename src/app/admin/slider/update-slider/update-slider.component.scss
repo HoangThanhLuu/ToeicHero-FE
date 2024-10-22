@@ -64,12 +64,30 @@
   }
 }
 .btn-gradient-primary{
-  background: var(--primary-600);
-  color: white;
+  background: var(--primary-600) !important;
+  color: white !important;
   border-radius: 8px;
+}
+.btn-outline-primary-2{
+  color: #7E1E47 !important;
+  border-color: #7E1E47 !important;
+
+}
+.btn-outline-primary-2:hover {
+  background-color: var(--primary-600) !important;
+  color: white !important;
 }
 .text{
   padding-top: 10px;
 }
+.image-container {
+  position: relative;
+  display: inline-block;
+}
 
+.icon-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 

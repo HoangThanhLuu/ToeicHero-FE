@@ -13,6 +13,7 @@ import {TranslateService} from "@ngx-translate/core";
 export class UpdateKommunicateComponent implements OnInit {
   @Input() title: string = "Thêm tài khoản Kommunicate: ";
   @Input() isAdd = true;
+  @Input() isPopup: boolean =false;
   @Input() param: any = {
     email: '',
     password: ''
@@ -38,7 +39,9 @@ export class UpdateKommunicateComponent implements OnInit {
           this.added.emit('updateOk');
           this.addSuccessEmit.emit();
           this.spinnerService.hide();
-          this.close();
+          if(this.isPopup) {
+            this.close();
+          }
         },
         error: (res: any) => {
           const msg = this.translate.instant(`KOMMUNICATE.${res?.message}`);

@@ -132,11 +132,12 @@ import { PartTemplate3Component } from './test/part-template-3/part-template-3.c
     NzToolTipModule,
   ],
   providers: [],
-  exports: [
-    HeaderComponent,
-    NavbarComponent,
-    FooterComponent
-  ],
+    exports: [
+        HeaderComponent,
+        NavbarComponent,
+        FooterComponent,
+        PageHeaderComponent
+    ],
   bootstrap: [ClientComponent]
 })
 export class ClientModule {

@@ -1,10 +1,10 @@
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
-import {CommonModule, NgOptimizedImage} from "@angular/common";
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {AdminComponent} from './admin.component';
 import {HomeComponent} from './home/home.component';
 import {NavbarComponent} from './navbar/navbar.component';
 
-import {AdminRoutingModule} from "./admin-routing.module";
+import {AdminRoutingModule} from './admin-routing.module';
 import {FooterAdminComponent} from './footer/footer.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ExamComponent } from './exam/exam.component';
@@ -12,33 +12,33 @@ import { TopicComponent } from './topic/topic.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { AddTopicComponent } from './topic/add-topic/add-topic.component';
 import { UsersComponent } from './users/users.component'
-import {NzUploadModule} from "ng-zorro-antd/upload";
-import {NzIconModule} from "ng-zorro-antd/icon";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {NgxSpinnerModule} from "ngx-spinner";
+import {NzUploadModule} from 'ng-zorro-antd/upload';
+import {NzIconModule} from 'ng-zorro-antd/icon';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgxSpinnerModule} from 'ngx-spinner';
 import { AddExamComponent } from './exam/add-exam/add-exam.component';
 import { AudioPlayerComponent } from './exam/audio-player/audio-player.component';
 import { EditExamComponent } from './exam/edit-exam/edit-exam.component';
 import { ExamDetailComponent } from './exam/exam-detail/exam-detail.component';
-import {NzButtonModule} from "ng-zorro-antd/button";
-import {TooltipModule} from "ngx-bootstrap/tooltip";
+import {NzButtonModule} from 'ng-zorro-antd/button';
+import {TooltipModule} from 'ngx-bootstrap/tooltip';
 import { QuestionComponent } from './exam/question/question.component';
 import { EditQuestionPart1Component } from './exam/edit-question-part1/edit-question-part1.component';
-import {NzAvatarModule} from "ng-zorro-antd/avatar";
-import {NzImageModule} from "ng-zorro-antd/image";
+import {NzAvatarModule} from 'ng-zorro-antd/avatar';
+import {NzImageModule} from 'ng-zorro-antd/image';
 import { EditQuestionPart34Component } from './exam/edit-question-part34/edit-question-part34.component';
 import { EditPartComponent } from './exam/edit-part/edit-part.component';
 import { ScoreComponent } from './score/score.component';
-import {NzTableModule} from "ng-zorro-antd/table";
-import {NzPopconfirmModule} from "ng-zorro-antd/popconfirm";
-import {NzInputModule} from "ng-zorro-antd/input";
-import {EmailComponent} from "./email/email.component";
+import {NzTableModule} from 'ng-zorro-antd/table';
+import {NzPopconfirmModule} from 'ng-zorro-antd/popconfirm';
+import {NzInputModule} from 'ng-zorro-antd/input';
+import {EmailComponent} from './email/email.component';
 import { FirebaseComponent } from './firebase/firebase.component';
-import {NzSwitchModule} from "ng-zorro-antd/switch";
+import {NzSwitchModule} from 'ng-zorro-antd/switch';
 import { SliderComponent } from './slider/slider.component';
 import { TemplateEmailComponent } from './email/template-email/template-email.component';
 import { UpdateEmailComponent } from './email/update-email/update-email.component';
-import {NzFormModule} from "ng-zorro-antd/form";
+import {NzFormModule} from 'ng-zorro-antd/form';
 import { UpdateSliderComponent } from './slider/update-slider/update-slider.component';
 import { UpdateFirebaseComponent } from './firebase/update-firebase/update-firebase.component';
 import { TranscriptComponent } from './transcript/transcript.component';
@@ -49,25 +49,30 @@ import { UpdateKommunicateComponent } from './kommunicate/update-kommunicate/upd
 import { GeminiComponent } from './gemini/gemini.component';
 import { UpdateGeminiComponent } from './gemini/update-gemini/update-gemini.component';
 import { UpdateTemplateEmailComponent } from './email/template-email/update-template-email/update-template-email.component';
-import {NzPaginationModule} from "ng-zorro-antd/pagination";
+import {NzPaginationModule} from 'ng-zorro-antd/pagination';
 import { CrawlDataComponent } from './crawl-data/crawl-data.component';
 import { CrawlConfigComponent } from './crawl-data/crawl-config/crawl-config.component';
-import {NzModalModule} from "ng-zorro-antd/modal";
+import {NzModalModule} from 'ng-zorro-antd/modal';
 import { KommunicateBotComponent } from './kommunicate/kommunicate-bot/kommunicate-bot.component';
 import { UpdateKommunicateBotComponent } from './kommunicate/kommunicate-bot/update-kommunicate-bot/update-kommunicate-bot.component';
-import {TranslateModule} from "@ngx-translate/core";
-import {NzToolTipModule} from "ng-zorro-antd/tooltip";
+import {TranslateModule} from '@ngx-translate/core';
+import {NzToolTipModule} from 'ng-zorro-antd/tooltip';
 import { ConfigRevaiComponent } from './rev-ai/config-revai/config-revai.component';
 import { UpdateConfigComponent } from './rev-ai/config-revai/update-config/update-config.component';
 import { TemplateEmailDetailComponent } from './email/template-email/template-email-detail/template-email-detail.component';
-import {EditorComponent} from "@tinymce/tinymce-angular";
+import {EditorComponent} from '@tinymce/tinymce-angular';
 import { CrawlComponent } from './crawl-data/crawl/crawl.component';
 import { CrawlHistoryComponent } from './crawl-data/crawl-history/crawl-history.component';
-import {PopoverModule} from "ngx-bootstrap/popover";
+import {PopoverModule} from 'ngx-bootstrap/popover';
 import { HistoryTranscriptComponent } from './transcript/history-transcript/history-transcript.component';
 import { UpdateTinyComponent } from './tiny/update-tiny/update-tiny.component';
 import { UpdateTinyConfigComponent } from './tiny/config-tiny/update-tiny-config/update-tiny-config.component';
 import { ProfileComponent } from './profile/profile.component';
+import {NzBadgeModule} from 'ng-zorro-antd/badge';
+import {TinyComponent} from './tiny/tiny.component';
+import {ConfigTinyComponent} from './tiny/config-tiny/config-tiny.component';
+import { UpdateProfileComponent } from './profile/update-profile/update-profile.component';
+import { ChangePasswordComponent } from './profile/change-password/change-password.component';
 
 @NgModule({
     declarations: [
@@ -115,10 +120,13 @@ import { ProfileComponent } from './profile/profile.component';
         CrawlComponent,
         CrawlHistoryComponent,
         HistoryTranscriptComponent,
+        TinyComponent,
         UpdateTinyComponent,
         UpdateTinyConfigComponent,
         ProfileComponent,
-
+        ConfigTinyComponent,
+        UpdateProfileComponent,
+        ChangePasswordComponent
     ],
   imports: [
     CommonModule,
@@ -145,6 +153,8 @@ import { ProfileComponent } from './profile/profile.component';
     NzToolTipModule,
     EditorComponent,
     PopoverModule,
+    NzBadgeModule,
+
   ],
     exports: [
         PageHeaderComponent,

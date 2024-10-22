@@ -7,7 +7,7 @@
     <div class="card">
         <div class="card-body">
           <h4 class="card-title">
-            <button class="btn btn-outline-primary btn-gradient-primary" (click)="openFormAdd()">Thêm mới</button>
+            <button class="btn btn-outline-primary btn-gradient-primary-2" (click)="openFormAdd()">Thêm mới</button>
           </h4>
           <nz-table #fixedTable [nzData]="listFirebase"  nzTableLayout="fixed">
                 <thead>
@@ -31,19 +31,7 @@
                     </td>
                     <td>
                       <button class="btn btn-success btn-rounded btn-sm me-2 " > Sửa</button>
-                      <button class="btn btn-danger btn-rounded btn-sm" [ngClass]="{'d-none': data.status}" (click)="showConfirm(data.id)"> Xóa</button>
-                      <nz-modal
-                        [(nzVisible)]="isVisible"
-                        nzTitle="Xác nhận"
-                        nzOkText="Có"
-                        nzCancelText="Hủy"
-                        (nzOnOk)="handleOk()"
-                        (nzOnCancel)="handleCancel()"
-                      >
-                        <ng-container *nzModalContent>
-                          <p> Bạn có chắc chắn muốn xóa không ??? </p>
-                        </ng-container>
-                      </nz-modal>
+                      <button class="btn btn-danger btn-rounded btn-sm" [ngClass]="{'d-none': data.status}" (click)="deleteFirebase(data.id)"> Xóa</button>
                     </td>
                 </tr>
 

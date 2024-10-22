@@ -13,6 +13,7 @@ import {TranslateService} from "@ngx-translate/core";
 export class UpdateFirebaseComponent {
   @Input() title: string = "Thêm Firebase: ";
   @Input() isAdd = true;
+  @Input() isPopup: boolean = false;
   @Output() addSuccessEmit = new EventEmitter();
   imageSrc: string | undefined = "";
   isShowFile: boolean = false;
@@ -54,6 +55,9 @@ export class UpdateFirebaseComponent {
           this.addSuccessEmit.emit();
           this.spinnerService.hide();
           console.log(res);
+          if(this.isPopup){
+            this.close();
+          }
         },
         error: (res: any) => {
           const msg = this.translate.instant(`FIREBASE.${res?.message}`);

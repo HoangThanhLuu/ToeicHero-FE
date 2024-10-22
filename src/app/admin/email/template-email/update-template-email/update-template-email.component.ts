@@ -118,7 +118,6 @@ export class UpdateTemplateEmailComponent {
           this.spinnerService.hide();
         }
       })
-    console.log(this.params);
   }
   close() {
     this.bsModalRef.hide();

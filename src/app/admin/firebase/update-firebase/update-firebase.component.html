@@ -32,7 +32,7 @@
             </div>
           </div>
           <div class="box-body" [ngClass]="{'d-none' : !isShowFile}">
-            <a [href]="fileUrl" target="_blank"> File here  </a>
+            <a [href]="fileUrl" target="_blank" [download]="formData.get('file')"> File here  </a>
           </div>
           <div class="button mt-5">
             <button class="btn btn-gradient-primary" (click)="addFirebase()"> {{ isAdd ? 'Thêm' : 'Sửa' }}</button>

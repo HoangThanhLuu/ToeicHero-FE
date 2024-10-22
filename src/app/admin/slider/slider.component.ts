@@ -135,7 +135,19 @@ export class SliderComponent implements OnInit {
       });
     }
   }
-
+  openFormAdd() {
+    const bsModalRef = this.bsModalService.show(UpdateSliderComponent, {
+      class: 'modal-lg modal-dialog-centered',
+      initialState: {
+        title: 'Thêm Slider'
+      }
+    });
+    if (bsModalRef && bsModalRef.content) {
+      bsModalRef.content.addSuccessEmit.subscribe(() => {
+        this.getListSlider(`api/slider/all?page=${this.page}&size=${this.size}`);
+      });
+    }
+  }
   sizeChange(e: any): void {
     this.getListSlider(`api/slider/all?page=${this.page}&size=${e}`);
   }

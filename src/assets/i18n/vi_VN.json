@@ -46,6 +46,15 @@
     "DELETE_SLIDER_SUCCESS": "Xóa Slider thành công!",
     "UPDATE_SLIDER_POSITION_SUCCESS": "Cập nhật vị trí thành công!",
     "UPDATE_SLIDER_SUCCESS": "Cập nhật Slider thành công!"
+  },
+  "TINY": {
+    "UPDATE_TINY_ACCOUNT_SUCCESS": "Cập nhật tài khoản Tiny thành công!",
+    "CREATE_TINY_ACCOUNT_SUCCESS": "Tạo tài khoản Tiny thành công!",
+    "DELETE_TINY_ACCOUNT_SUCCESS": "Xóa tài khoản Tiny thành công!",
+    "ADD_TINY_CONFIG_SUCCESS": "Thêm Tiny Config thành công!",
+    "UPDATE_TINY_CONFIG_SUCCESS": "Cập nhật Tiny Config thành công!",
+    "UPDATE_TINY_CONFIG_STATUS_SUCCESS": "Cập nhật trạng thái Tiny Config thành công!",
+    "DELETE_TINY_CONFIG_SUCCESS": "Xóa Tiny Config thành công!"
   }
 
 }
