@@ -1,10 +1,6 @@
 .mt-6 {
-    margin-top: 6rem;
+  margin-top: 6rem;
 }
-.sidebar {
-  max-height: 100vh;
-}
-
 .submenu {
   padding: 0.75rem 0.25rem 0.75rem 2rem !important;
 }
