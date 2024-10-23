@@ -4,6 +4,7 @@ import {ToastrService} from "ngx-toastr";
 import {NgxSpinnerService} from "ngx-spinner";
 import {BsModalRef} from "ngx-bootstrap/modal";
 import {AdminLibBaseCss3, AdminStyle2} from "../../admin.style";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-edit-exam',
@@ -26,7 +27,11 @@ export class EditExamComponent implements OnInit {
     topicId: '',
   }
 
-  constructor(private http: HttpClient, private toastr: ToastrService, private spinnerService: NgxSpinnerService, private bsModalRef: BsModalRef) {
+  constructor(private http: HttpClient,
+              private toastr: ToastrService,
+              private spinnerService: NgxSpinnerService,
+              private translate: TranslateService,
+              private bsModalRef: BsModalRef) {
   }
 
   ngOnInit(): void {
@@ -49,7 +54,8 @@ export class EditExamComponent implements OnInit {
 
   ediExam() {
     if (!this.formModel.examName) {
-      this.toastr.error('Tên đề thi không được để trống!');
+      const msg = this.translate.instant(`EXAM.EXAM_NAME_INVALID`);
+      this.toastr.error(msg)
       return;
     }
     this.spinnerService.show();
@@ -57,11 +63,17 @@ export class EditExamComponent implements OnInit {
       .subscribe((res: any) => {
         this.spinnerService.hide();
         if (res?.success) {
-          this.toastr.success(res?.message);
+          const msg = this.translate.instant(`EXAM.${res?.message}`);
+          if (res?.success) {
+            this.toastr.success(msg);
+          } else {
+            this.toastr.error(msg);
+          }
           this.editSuccessEmit.emit();
           this.bsModalRef.hide();
         } else {
-          this.toastr.error(res?.message);
+          const msg = this.translate.instant(`EXAM.${res?.message}`);
+          this.toastr.error(msg);
         }
       });
   }

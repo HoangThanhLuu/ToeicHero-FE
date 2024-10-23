@@ -87,6 +87,7 @@ export class UpdateProfileComponent implements OnInit{
       const reader = new FileReader();
       reader.onload = (e) => {
         this.avatarSrc = `${e.target?.result}`;
+        this.formData.delete('file');
         this.formData.append('file', file);
       };
       reader.readAsDataURL(file);

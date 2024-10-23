@@ -10,7 +10,7 @@
                    name="tokenKey" placeholder="Nhập Token Key " [(ngModel)]="params.tokenKey">
           </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" [ngClass]="{'d-none' : !isAdd}">
           <label> File Json</label>
           <div class="container-upload" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
             <div class="upload-box">
@@ -34,10 +34,11 @@
           <div class="box-body" [ngClass]="{'d-none' : !isShowFile}">
             <a [href]="fileUrl" target="_blank" [download]="formData.get('file')"> File here  </a>
           </div>
-          <div class="button mt-5">
-            <button class="btn btn-gradient-primary" (click)="addFirebase()"> {{ isAdd ? 'Thêm' : 'Sửa' }}</button>
-            <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : isAdd}" (click)="close()"> Hủy</button>
-          </div>
+        </div>
+        <div class="button mt-5">
+          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : !isAdd}" (click)="addFirebase()"> Thêm </button>
+          <button class="btn btn-primary" [ngClass]="{'d-none' : isAdd}" (click)="modifyFirebase()"> Sửa </button>
+          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : isAdd}" (click)="close()"> Hủy</button>
         </div>
       </form>
     </div>

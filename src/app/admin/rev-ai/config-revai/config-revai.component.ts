@@ -66,6 +66,7 @@ export class ConfigRevaiComponent implements OnInit{
       initialState: {
         title: 'Cập nhật Config REV-AI ',
         isAdd: false,
+        isPopup : true,
         params: {
           id: data.id,
           accessToken: data.accessToken
@@ -123,7 +124,8 @@ export class ConfigRevaiComponent implements OnInit{
     const bsModalRef = this.bsModalService.show(UpdateConfigComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Thêm Rev-AI Config'
+        title: 'Thêm Rev-AI Config',
+        isPopup: true
       }
     });
     if (bsModalRef && bsModalRef.content) {

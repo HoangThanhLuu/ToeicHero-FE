@@ -6,29 +6,48 @@
 <div class="col-lg-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
-      <nz-table #borderedTable nzBordered [nzData]="dataSet">
-        <thead>
-        <tr>
-          <th> Id </th>
-          <th> Tên đề thi </th>
-          <th> Thời gian </th>
-          <th> Trạng thái </th>
-          <th> # </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let data of borderedTable.data">
-          <td>{{ data.id }}</td>
-          <td>{{ data.name }}</td>
-          <td>{{ data.time }}</td>
-          <td>{{ data.action }}</td>
-          <td>
-            <button class="btn btn-success btn-rounded btn-sm me-2 " > Sửa </button>
-            <button class="btn btn-danger btn-rounded btn-sm" > Xóa </button>
-          </td>
-        </tr>
-        </tbody>
-      </nz-table>
+      <nz-form-item>
+        <nz-form-label [nzSpan]="1">Lọc</nz-form-label>
+        <nz-form-control [nzSpan]="5" nzHasFeedback>
+          <nz-select name="select-status" [(ngModel)]="params.status" (ngModelChange)="onChange($event)">
+            <nz-option *ngFor="let status of listStatus" [nzValue]="status.value" [nzLabel]="status.label"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
+          <tr>
+            <th> Id</th>
+            <th> Tên đề thi</th>
+            <th> Thời gian bắt đầu crawl</th>
+            <th> Thời gian hoàn thành crawl</th>
+            <th> Trạng thái</th>
+            <th> Đường link</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of listCrawl">
+            <td>{{ data.id }}</td>
+            <td>{{ data.examName }}</td>
+            <td>{{ data.startTime | date : formatDate: timeZone }}</td>
+            <td>{{ data.endTime | date : formatDate: timeZone}}</td>
+            <td>{{ data.jobStatus }}</td>
+            <td>{{ data.jobLink }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-2 d-flex flex-row-reverse">
+        <nz-pagination
+          [(nzPageIndex)]="this.params.page"
+          [nzTotal]="totalElements"
+          nzShowSizeChanger
+          [(nzPageSize)]="this.params.size"
+          (nzPageIndexChange)="changePage($event)"
+          (nzPageSizeChange)="changeSize($event)"
+        ></nz-pagination>
+      </div>
     </div>
   </div>
 </div>

@@ -12,6 +12,7 @@ import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {NgxSpinnerService} from "ngx-spinner";
 import {BsModalRef} from "ngx-bootstrap/modal";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-add-topic',
@@ -36,6 +37,7 @@ export class AddTopicComponent {
   constructor(private http: HttpClient,
               private toastr: ToastrService,
               private spinnerService: NgxSpinnerService,
+              private translate: TranslateService,
               private bsModalRef: BsModalRef) {
   }
 
@@ -88,11 +90,17 @@ export class AddTopicComponent {
     this.http.post<any>('/api/admin/topic/create-topic', this.formData)
       .subscribe((res: any) => {
         if (res?.success) {
-          this.toastr.success(res?.message);
+          const msg = this.translate.instant(`TOPIC.${res?.message}`);
+          if (res?.success) {
+            this.toastr.success(msg);
+          } else {
+            this.toastr.error(msg);
+          }
           this.added.emit();
           this.bsModalRef.hide();
         } else {
-          this.toastr.error(res?.message);
+          const msg = this.translate.instant(`TOPIC.${res?.message}`);
+          this.toastr.error(msg);
         }
         this.spinnerService.hide().then(r => r);
       });

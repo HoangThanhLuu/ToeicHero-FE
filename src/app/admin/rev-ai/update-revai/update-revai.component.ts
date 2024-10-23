@@ -20,6 +20,7 @@ export class UpdateRevaiComponent {
     email: '',
     password: ''
   };
+  showBorderError: any = [];
 
 
   constructor(private http: HttpClient,
@@ -29,6 +30,20 @@ export class UpdateRevaiComponent {
               private translate: TranslateService) {
   }
   addAccount(): void {
+    if(!this.params.email) {
+      this.toastr.error('Vui lòng nhập Email');
+      this.showBorderError[0] = true;
+      return;
+    }else{
+      this.showBorderError[0] = false;
+    }
+    if(!this.params.password) {
+      this.toastr.error('Vui lòng nhập Password');
+      this.showBorderError[1] = true;
+      return;
+    }else{
+      this.showBorderError[1] = false;
+    }
     this.spinnerService.show();
     this.http.post('/api/revai/account/update', this.params)
       .subscribe({
@@ -38,6 +53,10 @@ export class UpdateRevaiComponent {
           this.added.emit('updateOk');
           this.addSuccessEmit.emit();
           this.spinnerService.hide();
+          this.params = {
+            email: '',
+            password: ''
+          }
           if(this.isPopup) {
             this.close();
           }

@@ -6,6 +6,7 @@ import {NgxSpinnerService} from "ngx-spinner";
 import {forkJoin, from, of, tap} from 'rxjs';
 import {concatMap, toArray} from 'rxjs/operators';
 import {BsModalRef} from "ngx-bootstrap/modal";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-add-exam',
@@ -31,7 +32,11 @@ export class AddExamComponent implements OnInit {
     audioPart4: '',
   }
 
-  constructor(private http: HttpClient, private toastr: ToastrService, private spinnerService: NgxSpinnerService, private bsModalRef: BsModalRef) {
+  constructor(private http: HttpClient,
+              private toastr: ToastrService,
+              private spinnerService: NgxSpinnerService,
+              private translate: TranslateService,
+              private bsModalRef: BsModalRef) {
   }
 
   ngOnInit(): void {
@@ -95,10 +100,18 @@ export class AddExamComponent implements OnInit {
         this.spinnerService.hide();
         if (res?.success) {
           this.addSuccessEmit.emit();
-          this.toastr.success(res?.message);
+          const msg = this.translate.instant(`EXAM.${res?.message}`);
+          if (res?.success) {
+            this.toastr.success(msg);
+          } else {
+            this.toastr.error(msg);
+          }
           this.bsModalRef.hide();
-        } else
-          this.toastr.error(res?.message);
+        } else{
+          const msg = this.translate.instant(`EXAM.${res?.message}`);
+          this.toastr.error(msg);
+        }
+
       });
     // if not upload file
     if (uploadObservables.length === 0) {
@@ -106,11 +119,19 @@ export class AddExamComponent implements OnInit {
         .subscribe((res: any) => {
           this.spinnerService.hide();
           if (res?.success) {
+            const msg = this.translate.instant(`EXAM.${res?.message}`);
+            if (res?.success) {
+              this.toastr.success(msg);
+            } else {
+              this.toastr.error(msg);
+            }
             this.addSuccessEmit.emit();
-            this.toastr.success(res?.message);
             this.bsModalRef.hide();
-          } else
-            this.toastr.error(res?.message);
+          } else{
+            const msg = this.translate.instant(`EXAM.${res?.message}`);
+            this.toastr.error(msg);
+          }
+
         });
     }
 

@@ -13,7 +13,9 @@ import {TranslateService} from "@ngx-translate/core";
 export class UpdateConfigComponent {
   @Input() title: string = "Cập nhật Config: ";
   @Input() isAdd = true;
+  @Input() isPopup: boolean = false;
   formData = new FormData();
+  showBorderError: any = [];
   @Input() params: any = {
     id: '',
     accessToken: ''
@@ -28,6 +30,13 @@ export class UpdateConfigComponent {
   }
 
   addAccount(): void {
+    if(!this.params.accessToken) {
+      this.toastr.error('Vui lòng nhập Access Token');
+      this.showBorderError = true;
+      return;
+    }else{
+      this.showBorderError = false;
+    }
     this.formData.append('accessToken', this.params.accessToken);
     this.spinnerService.show();
     this.http.post('/api/revai/config/add', this.formData)
@@ -36,7 +45,13 @@ export class UpdateConfigComponent {
           const msg = this.translate.instant(`REVAI.${res?.message}`);
           this.toastr.success(msg);
           this.spinnerService.hide();
-          this.close();
+          this.params = {
+            id: '',
+            accessToken: ''
+          };
+          if(this.isPopup){
+            this.close();
+          }
         },
         error: (res: any) => {
           const msg = this.translate.instant(`REVAI.${res?.message}`);

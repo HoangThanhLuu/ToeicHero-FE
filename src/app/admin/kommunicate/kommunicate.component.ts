@@ -80,6 +80,7 @@ export class KommunicateComponent implements OnInit{
       initialState: {
         title: 'Cập nhật Kommunicate Account ',
         isAdd: false,
+        isPopup: true,
         param: {
           email: data.email,
           password: data.password
@@ -97,7 +98,7 @@ export class KommunicateComponent implements OnInit{
       class: 'modal-lg modal-dialog-centered',
       initialState: {
         title: 'Thêm Kommunicate',
-
+        isPopup: true
       }
     });
     if (bsModalRef && bsModalRef.content) {

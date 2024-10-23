@@ -26,10 +26,10 @@
 
           <div class="box-body" [ngClass]="{'d-none' : !isShowImage}">
             <div class="image-container" >
-              <img [src]="this.imageSrc" alt="" style="width: 200px; height: 200px;" class="ant-image-preview">
-              <nz-badge [nzCount]="iconTemplate" class="icon-badge" (click)="closeImg(imageSrc)">
-                <ng-template #iconTemplate><i class="mdi mdi-close-circle"></i></ng-template>
+              <nz-badge [nzCount]="iconTemplate" (click)="deleteImg()">
+                <img [src]="this.imageSrc" alt="" style="width: 200px; height: 200px;" class="ant-image-preview">
               </nz-badge>
+              <ng-template #iconTemplate><i class="mdi mdi-close-circle"></i></ng-template>
             </div>
           </div>
 

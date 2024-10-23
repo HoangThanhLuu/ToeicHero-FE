@@ -54,9 +54,46 @@
     "ADD_TINY_CONFIG_SUCCESS": "Thêm Tiny Config thành công!",
     "UPDATE_TINY_CONFIG_SUCCESS": "Cập nhật Tiny Config thành công!",
     "UPDATE_TINY_CONFIG_STATUS_SUCCESS": "Cập nhật trạng thái Tiny Config thành công!",
-    "DELETE_TINY_CONFIG_SUCCESS": "Xóa Tiny Config thành công!"
-  }
+    "DELETE_TINY_CONFIG_SUCCESS": "Xóa Tiny Config thành công!",
+    "DUPLUCATE_KEY": "Key đã tồn tại!"
+  },
+  "CRAWL": {
+    "UPDATE_CONFIG_SUCCESS": "Cập nhật Config thành công!",
+    "ADD_CONFIG_SUCCESS": "Thêm Config thành công!",
+    "REMOVE_CONFIG_SUCCESS": "Xóa Config thành công!",
+    "URL_CRAWL_NOT_MATCH": "URL không trùng khớp với URL của Study4!",
+    "CRAWL_CONFIG_NOT_FOUND": "Chưa thiết lập email !",
+    "PART_NOT_MATCH": "Vui lòng chọn tài khoản khác hoặc xem lại đường dẫn!",
+    "CRAWL_SUCCESS": "Crawl thành công!"
+  },
+  "TOPIC": {
+    "CREATE_TOPIC_SUCCESS": "Tạo Topic thành công!",
+    "DELETE_TOPIC_SUCCESS": "Xóa Topic thành công!",
+    "GET_ALL_TOPIC_SUCCESS": "Đã lấy danh sách Topic thành công!"
+  },
+  "EXAM": {
+    "EXAM_NOT_FOUND": "Không tìm thấy đề thi!",
+    "GET_ALL_EXAM_SUCCESS": "Đã lấy danh sách đề thi thành công!",
+    "CREATE_EXAM_SUCCESS": "Tạo đề thi thành công!",
+    "UPDATE_EXAM_SUCCESS": "Cập nhật đề thi thành công!",
+    "GET_EXAM_SUCCESS": "Đã tìm thấy đề thi!",
+    "EXAM_NAME_INVALID": "Tên đề thi không được để trống!"
+  },
+  "USER": {
+    "ACCOUNT_NOT_ACTIVE": "Tài khoản chưa được kích hoạt!",
+    "ACCOUNT_BLOCKED": "Tài khoản đã bị khóa!",
+    "LOGIN_SUCCESS": "Đăng nhập thành công!",
+    "REGISTER_SUCCESS": "Đăng ký thành công!",
+    "GET_ALL_USER_SUCCESS": "Đã lấy danh sách người dùng!",
+    "UPDATE_USER_SUCCESS": "Cập nhật người dùng thành công!",
+    "UPDATE_PASSWORD_SUCCESS": "Cập nhật mật khẩu thành công!",
+    "UPDATE_AVATAR_SUCCESS": "Cập nhật Avatar thành công!",
+    "SEND_EMAIL_SUCCESS": "Đã gửi Email thành công!",
+    "PASSWORD_NOT_MATCH": "Mật khẩu không trùng khớp!",
+    "UPDATE_PROFILE_SUCCESS": "Cập nhật Profile thành công!",
+    "EMAIL_PASS_INVALID": "Email hoặc mật khẩu không được bỏ trống!"
 
+  }
 }
 
 

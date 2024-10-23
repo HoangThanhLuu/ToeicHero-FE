@@ -6,6 +6,7 @@ import {HttpClient} from '@angular/common/http';
 import {NzModalRef, NzModalService} from 'ng-zorro-antd/modal';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ToastrService} from 'ngx-toastr';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-topic',
@@ -25,6 +26,7 @@ export class TopicComponent implements OnInit {
               private http: HttpClient,
               private modal: NzModalService,
               private spinner: NgxSpinnerService,
+              private translate: TranslateService,
               private toast: ToastrService) {
   }
 
@@ -79,10 +81,16 @@ export class TopicComponent implements OnInit {
               this.http.delete<any>(`/api/admin/topic/delete/${topic?.topicId}`)
                 .subscribe((res: any) => {
                     if(res?.success) {
-                      this.toast.success(res?.message);
+                      const msg = this.translate.instant(`TOPIC.${res?.message}`);
+                      if (res?.success) {
+                        this.toast.success(msg);
+                      } else {
+                        this.toast.error(msg);
+                      }
                       this.getListTopic();
                     }else{
-                      this.toast.error(res?.message);
+                      const msg = this.translate.instant(`TOPIC.${res?.message}`);
+                      this.toast.error(msg);
                     }
                     this.spinner.hide();
                   confirmModal.destroy();

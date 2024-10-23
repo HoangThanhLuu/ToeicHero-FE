@@ -41,13 +41,12 @@ export class TinyComponent implements OnInit{
       .subscribe((res: any) => {
         this.listTiny = res?.content;
         this.totalElement = res.totalElements;
-        console.log(res)
       });
   }
   deleteTiny(id: string ): void {
     const confirmModal: NzModalRef = this.modal.create({
       nzTitle: `Xác nhận`,
-      nzContent: `Bạn có muốn xóa slider này không?`,
+      nzContent: `Bạn có muốn xóa Tiny này không?`,
       nzCentered: true,
       nzFooter: [
         {

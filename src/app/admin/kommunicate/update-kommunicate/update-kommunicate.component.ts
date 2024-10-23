@@ -20,6 +20,7 @@ export class UpdateKommunicateComponent implements OnInit {
   };
   @Output() added = new EventEmitter();
   @Output() addSuccessEmit = new EventEmitter();
+  showBorderError: any = [];
   constructor(private http: HttpClient,
               private toastr: ToastrService,
               private spinnerService: NgxSpinnerService,
@@ -30,6 +31,20 @@ export class UpdateKommunicateComponent implements OnInit {
   }
 
   addAccount(): void {
+    if(!this.param.email) {
+      this.toastr.error('Vui lòng nhập Email');
+      this.showBorderError[0] = true;
+      return;
+    }else{
+      this.showBorderError[0] = false;
+    }
+    if(!this.param.password) {
+      this.toastr.error('Vui lòng nhập Password');
+      this.showBorderError[1] = true;
+      return;
+    }else{
+      this.showBorderError[1] = false;
+    }
     this.spinnerService.show();
     this.http.post('/api/kommunicate/account/update', this.param)
       .subscribe({
@@ -39,6 +54,10 @@ export class UpdateKommunicateComponent implements OnInit {
           this.added.emit('updateOk');
           this.addSuccessEmit.emit();
           this.spinnerService.hide();
+          this.param = {
+            email: '',
+            password: ''
+          }
           if(this.isPopup) {
             this.close();
           }

@@ -16,7 +16,11 @@ export class UpdateTinyConfigComponent {
   @Input() isPopup: boolean = false;
   @Output() added = new EventEmitter();
   @Output() addSuccessEmit = new EventEmitter();
-  apiKey: string = '';
+  @Input() params = {
+    tinyConfigId: '',
+    apiKey: ''
+  };
+  showBorderError: any = [];
 
   constructor(private http: HttpClient,
               private toastr: ToastrService,
@@ -25,21 +29,38 @@ export class UpdateTinyConfigComponent {
               private  translate: TranslateService) {
   }
   addAccount(): void {
+    if(!this.params.apiKey) {
+      this.toastr.error('Vui lòng nhập Access API Key');
+      this.showBorderError[0] = true;
+      return;
+    }else{
+      this.showBorderError[0] = false;
+    }
+    const url = `/api/tiny-config/${this.isAdd ? 'add' : `update/${this.params.tinyConfigId}`}?apiKey=${this.params.apiKey}`;
     this.spinnerService.show();
-    this.http.post(`api/tiny-config/add?apiKey=${this.apiKey}`, this.apiKey)
+    this.http.post(url, {})
         .subscribe({
           next: (res: any) =>{
-            const msg = this.translate.instant(`TINY.${res?.message}`);
-            this.toastr.success(msg);
+            if(res.success){
+              const msg = this.translate.instant(`TINY.${res?.message}`);
+              this.toastr.success(msg);
+            }else {
+              const msg = this.translate.instant(`TINY.DUPLUCATE_KEY`);
+              this.toastr.error(msg);
+            }
             this.added.emit('Ok');
             this.addSuccessEmit.emit();
             this.spinnerService.hide();
+            this.params = {
+              tinyConfigId: '',
+              apiKey: ''
+            }
             if(this.isPopup) {
               this.close();
             }
           },
           error: (res: any) => {
-            const msg = this.translate.instant(`TINY.${res?.message}`);
+            const msg = this.translate.instant(`TINY.DUPLUCATE_KEY`);
             this.toastr.error(msg);
             this.spinnerService.hide();
           }

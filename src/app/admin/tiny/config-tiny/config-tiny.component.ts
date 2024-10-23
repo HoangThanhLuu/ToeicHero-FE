@@ -107,7 +107,7 @@ export class ConfigTinyComponent implements OnInit{
         title: 'Cập nhật Tiny Config ',
         isAdd: false,
         isPopup: true,
-        apiKey: data.apiKey
+        params: JSON.parse(JSON.stringify(data))
       },
       backdrop: 'static'
     });

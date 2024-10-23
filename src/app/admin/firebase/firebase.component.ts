@@ -7,6 +7,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {finalize} from 'rxjs';
 import {UpdateFirebaseComponent} from './update-firebase/update-firebase.component';
 import {NzModalRef, NzModalService} from 'ng-zorro-antd/modal';
+import {UpdateKommunicateComponent} from "../kommunicate/update-kommunicate/update-kommunicate.component";
 
 
 
@@ -112,4 +113,24 @@ export class FirebaseComponent implements OnInit{
       });
     }
   }
+  update(data: any) {
+    const bsModalResult = this.bsModalService.show(UpdateFirebaseComponent, {
+      class: 'modal-lg modal-dialog-centered',
+      initialState: {
+        title: 'Cập nhật Firebase ',
+        isAdd: false,
+        isPopup: true,
+        params: {
+          id: data.id,
+          tokenKey: data.tokenKey
+        }
+      }
+    });
+    if (bsModalResult?.content?.modified){
+      bsModalResult.content.modified.subscribe(() => {
+        this.getListFirebase();
+      });
+    }
+  }
+  protected readonly JSON = JSON;
 }

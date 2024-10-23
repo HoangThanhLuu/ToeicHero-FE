@@ -1,32 +1,113 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {ToastrService} from "ngx-toastr";
+import {NgxSpinnerService} from "ngx-spinner";
+import {BsModalService} from "ngx-bootstrap/modal";
+import {TranslateService} from "@ngx-translate/core";
+import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
+import {finalize} from "rxjs";
+import {UpdateConfigCrawlComponent} from "./update-config-crawl/update-config-crawl.component";
+import {UpdateKommunicateComponent} from "../../kommunicate/update-kommunicate/update-kommunicate.component";
 
 @Component({
   selector: 'app-crawl-config',
   templateUrl: './crawl-config.component.html',
   styleUrls: ['./crawl-config.component.scss']
 })
-export class CrawlConfigComponent {
+export class CrawlConfigComponent implements OnInit{
   title: string = "Crawl Config";
   currentPage: string = "Config";
 
-  dataSet = [
-    {
-      id: '1',
-      email: 'lethithanhtuyet1822@gmail.com',
-      token:'_ym_uid=1693896319292407001; csrftoken=9ffuwmTq296Q2jb0IcPRJUzUGfJlsykbkuUAtgm1u5SwljPTVu7zWoYzoAQRIcQb; sessionid=ell5ltuwsz24mwlut8hdj9ptpv6o335f; _fbc=fb.1.1699674812686.IwAR1meZZ-y20KiBJFyLHGrsPLa1MLZYF4NwyPRYA7vvraT6jtzvyf54kVug0; _fbp=fb.1.1699674812688.1026620336; _ym_d=1711944608; _gid=GA1.2.943165795.1712056173; cf_clearance=u8vX.63VhQpXGi_QxGowI0.Ihgr8NzcIS6JYYY_2T0w-1712056175-1.0.1.1-xPXUd.MzQHB1lpfd33qkcgWlVrxTxZ.AAZVoXsutd7nKEB60yNBOaw5z2OTsFKz7ShX5QGS5CukFs3WSVb38LQ; _ym_isad=2; _ga=GA1.1.1827084423.1693896316; _ga_64Z8KN7V8D=GS1.1.1712128487.18.1.1712129362.0.0.0',
-      agent_user: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-    },
-    {
-      id: '2',
-      email: 'lethithanhtuyet1822@gmail.com',
-      token:'_ym_uid=1693896319292407001; csrftoken=9ffuwmTq296Q2jb0IcPRJUzUGfJlsykbkuUAtgm1u5SwljPTVu7zWoYzoAQRIcQb; sessionid=ell5ltuwsz24mwlut8hdj9ptpv6o335f; _fbc=fb.1.1699674812686.IwAR1meZZ-y20KiBJFyLHGrsPLa1MLZYF4NwyPRYA7vvraT6jtzvyf54kVug0; _fbp=fb.1.1699674812688.1026620336; _ym_d=1711944608; _gid=GA1.2.943165795.1712056173; cf_clearance=u8vX.63VhQpXGi_QxGowI0.Ihgr8NzcIS6JYYY_2T0w-1712056175-1.0.1.1-xPXUd.MzQHB1lpfd33qkcgWlVrxTxZ.AAZVoXsutd7nKEB60yNBOaw5z2OTsFKz7ShX5QGS5CukFs3WSVb38LQ; _ym_isad=2; _ga=GA1.1.1827084423.1693896316; _ga_64Z8KN7V8D=GS1.1.1712128487.18.1.1712129362.0.0.0',
-      agent_user: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-    },
-    {
-      id: '3',
-      email: 'lethithanhtuyet1822@gmail.com',
-      token:'_ym_uid=1693896319292407001; csrftoken=9ffuwmTq296Q2jb0IcPRJUzUGfJlsykbkuUAtgm1u5SwljPTVu7zWoYzoAQRIcQb; sessionid=ell5ltuwsz24mwlut8hdj9ptpv6o335f; _fbc=fb.1.1699674812686.IwAR1meZZ-y20KiBJFyLHGrsPLa1MLZYF4NwyPRYA7vvraT6jtzvyf54kVug0; _fbp=fb.1.1699674812688.1026620336; _ym_d=1711944608; _gid=GA1.2.943165795.1712056173; cf_clearance=u8vX.63VhQpXGi_QxGowI0.Ihgr8NzcIS6JYYY_2T0w-1712056175-1.0.1.1-xPXUd.MzQHB1lpfd33qkcgWlVrxTxZ.AAZVoXsutd7nKEB60yNBOaw5z2OTsFKz7ShX5QGS5CukFs3WSVb38LQ; _ym_isad=2; _ga=GA1.1.1827084423.1693896316; _ga_64Z8KN7V8D=GS1.1.1712128487.18.1.1712129362.0.0.0',
-      agent_user: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+
+  listConfigCrawl:any =[];
+  constructor(private http: HttpClient,
+              private toastr: ToastrService,
+              private spinner: NgxSpinnerService,
+              private bsModalService: BsModalService,
+              private modal : NzModalService,
+              private translate: TranslateService) {
+  }
+  getListConfigCrawl() {
+    this.http.get('/api/admin/crawl/all-config')
+      .subscribe((res: any) => {
+        this.listConfigCrawl = res;
+      });
+  }
+
+  ngOnInit(): void {
+    this.getListConfigCrawl();
+  }
+  deleteFirebase(id: number) :void {
+    const confirmModal: NzModalRef = this.modal.create({
+      nzTitle: `Xác nhận`,
+      nzContent: `Bạn có muốn xóa Config này không?`,
+      nzCentered: true,
+      nzFooter: [
+        {
+          label: 'Hủy',
+          onClick: () => confirmModal.destroy()
+        }, {
+          label: 'Đồng ý',
+          type: 'primary',
+          onClick: () => {
+            this.spinner.show().then()
+            this.http.delete(`/api/admin/crawl/remove-config/${id}`)
+              .pipe(
+                finalize(() => {
+                  this.getListConfigCrawl();
+                })
+              )
+              .subscribe({
+                next: (res: any) => {
+                  const msg = this.translate.instant(`CRAWL.${res?.message}`);
+                  this.toastr.success(msg);
+                  this.spinner.hide().then();
+                  confirmModal.destroy();
+                },
+                error: (res: any) => {
+                  const msg = this.translate.instant(`CRAWL.${res?.message}`);
+                  this.toastr.error(msg);
+                  this.spinner.hide().then();
+                }
+              });
+          }
+        }
+      ]
+    });
+  }
+  update(data: any) {
+    const bsModalResult = this.bsModalService.show(UpdateConfigCrawlComponent, {
+      class: 'modal-lg modal-dialog-centered',
+      initialState: {
+        title: 'Cập nhật Config Crawl',
+        isAdd: false,
+        isPopup: true,
+        params: {
+          id: data.id,
+          email: data.email,
+          token: data.token,
+          agentUser: data.agentUser
+        }
+      }
+    });
+    if (bsModalResult?.content?.added){
+      bsModalResult.content.added.subscribe(() => {
+        this.getListConfigCrawl();
+      });
     }
-  ];
+  }
+  openFormAdd() {
+    const bsModalRef = this.bsModalService.show(UpdateConfigCrawlComponent, {
+      class: 'modal-lg modal-dialog-centered',
+      initialState: {
+        title: 'Thêm Config Crawl',
+        isPopup: true
+      }
+    });
+    if (bsModalRef && bsModalRef.content) {
+      bsModalRef.content.addSuccessEmit.subscribe(() => {
+        this.getListConfigCrawl();
+      });
+    }
+  }
 }

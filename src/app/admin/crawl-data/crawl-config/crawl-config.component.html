@@ -7,7 +7,10 @@
   <div class="card">
     <div class="card-body">
       <div style="overflow-x: auto;">
-      <nz-table #borderedTable nzBordered [nzData]="dataSet">
+        <h4 class="card-title">
+          <button class="btn btn-outline-primary btn-gradient-primary-2" (click)="openFormAdd()">Thêm mới</button>
+        </h4>
+      <nz-table #borderedTable nzBordered [nzData]="listConfigCrawl">
         <thead>
         <tr>
           <th> Id </th>
@@ -22,10 +25,10 @@
           <td>{{ data.id }}</td>
           <td>{{ data.email }}</td>
           <td>{{ data.token }}</td>
-          <td>{{ data.agent_user }}</td>
+          <td>{{ data.agentUser }}</td>
           <td>
-            <button class="btn btn-success btn-rounded btn-sm  " > Sửa </button>
-            <button class="btn btn-danger btn-rounded btn-sm mt-2" > Xóa </button>
+            <button class="btn btn-success btn-rounded btn-sm" (click)="update(data)" > Sửa </button>
+            <button class="btn btn-danger btn-rounded btn-sm mt-2" (click)="deleteFirebase(data.id)"> Xóa </button>
           </td>
         </tr>
         </tbody>

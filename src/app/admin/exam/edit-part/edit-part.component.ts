@@ -8,6 +8,7 @@ import {ActivatedRoute} from "@angular/router";
 import {concatMap} from "rxjs/operators";
 import {finalize, from} from "rxjs";
 import {AdminLibBaseCss3, AdminStyle2} from "../../admin.style";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-edit-part',
@@ -34,6 +35,7 @@ export class EditPartComponent implements OnInit {
               private modal: NzModalService,
               private bsModalRef: BsModalRef,
               private spinnerService: NgxSpinnerService,
+              private translate: TranslateService,
               private route: ActivatedRoute) {
   }
 
@@ -88,11 +90,17 @@ export class EditPartComponent implements OnInit {
       )
       .subscribe((res: any) => {
         if (res?.success) {
-          this.toast.success(res?.message);
+          const msg = this.translate.instant(`EXAM.${res?.message}`);
+          if (res?.success) {
+            this.toast.success(msg);
+          } else {
+            this.toast.error(msg);
+          }
           this.editPartSuccess.emit();
           this.bsModalRef.hide();
         } else {
-          this.toast.error(res?.message);
+          const msg = this.translate.instant(`EXAM.${res?.message}`);
+          this.toast.error(msg);
         }
       });
   }

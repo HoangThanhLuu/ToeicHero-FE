@@ -103,7 +103,8 @@ export class RevAiComponent implements OnInit {
     const bsModalRef = this.bsModalService.show(UpdateRevaiComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Thêm Rev-AI'
+        title: 'Thêm Rev-AI',
+        isPopup: true
       }
     });
     if (bsModalRef && bsModalRef.content) {

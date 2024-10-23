@@ -13,6 +13,7 @@ import {
   SocialUser
 } from "@abacritt/angularx-social-login";
 import {finalize} from "rxjs";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-login',
@@ -42,6 +43,7 @@ export class LoginComponent implements OnInit, OnDestroy {
               private bsModalRef: BsModalRef,
               private spinnerService: NgxSpinnerService,
               private socialAuthService: SocialAuthService,
+              private translate: TranslateService,
               private toast: ToastrService) {
     this.registerForm = this.formBuilder.group({
         email: ['', [Validators.required, Validators.email, Validators.pattern("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")]],
@@ -105,7 +107,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         if (res?.success) {
           this.showConfirmOTP(email);
         } else {
-          this.toast.error(res?.message);
+          const msg = this.translate.instant(`USER.${res?.message}`);
+          this.toast.error(msg);
         }
       });
   }
@@ -177,16 +180,23 @@ export class LoginComponent implements OnInit, OnDestroy {
     })
       .subscribe((res: any) => {
         if (res.success) {
-          this.toast.success('Tài khoản của bạn chưa được kích hoạt. Vui lòng kiểm tra email để kích hoạt tài khoản');
+          const msg = this.translate.instant(`USER.${res?.message}`);
+          if (res?.success) {
+            this.toast.success(msg);
+          } else {
+            this.toast.error(msg);
+          }
         } else {
-          this.toast.error(res?.message);
+          const msg = this.translate.instant(`USER.${res?.message}`);
+          this.toast.error(msg);
         }
       });
   }
 
   login() {
     if (this.isNotValidInputLogin()) {
-      this.toast.error('Email hoặc mật khẩu không được bỏ trống');
+      const msg = this.translate.instant(`USER.EMAIL_PASS_INVALID`);
+      this.toast.error(msg);
       return;
     }
     this.spinnerService.show();
@@ -195,13 +205,19 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe((res: any) => {
         this.spinnerService.hide();
         if (!res?.success) {
-          this.toast.error(res?.message);
+          const msg = this.translate.instant(`USER.${res?.message}`);
+          this.toast.error(msg);
           if (res?.data == 'INACTIVE') {
             this.sendEmail(this.loginForm.email);
             this.showConfirmOTP(this.loginForm.email, false);
           }
         } else {
-          this.toast.success('Đăng nhập thành công');
+          const msg = this.translate.instant(`USER.${res?.message}`);
+          if (res?.success) {
+            this.toast.success(msg);
+          } else {
+            this.toast.error(msg);
+          }
           const roles = res?.data?.roles;
           localStorage.setItem('token', res?.data?.token);
           localStorage.setItem('tokenValid', 'true');
@@ -245,7 +261,12 @@ export class LoginComponent implements OnInit, OnDestroy {
       .pipe(finalize(() => this.spinnerService.hide()))
       .subscribe((res: any) => {
         if (res?.success) {
-          this.toast.success('Đăng nhập thành công');
+          const msg = this.translate.instant(`USER.${res?.message}`);
+          if (res?.success) {
+            this.toast.success(msg);
+          } else {
+            this.toast.error(msg);
+          }
           localStorage.setItem('token', res?.data);
           localStorage.setItem('tokenValid', 'true');
           if (!this.isNotDirect) {
@@ -256,7 +277,8 @@ export class LoginComponent implements OnInit, OnDestroy {
             window.location.reload();
           }
         } else {
-          this.toast.error(res?.message);
+          const msg = this.translate.instant(`USER.${res?.message}`);
+          this.toast.error(msg);
         }
       });
   }
