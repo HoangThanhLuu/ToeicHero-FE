@@ -106,6 +106,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe((res: any) => {
         if (res?.success) {
           this.showConfirmOTP(email);
+		  this.registerForm.reset();
         } else {
           const msg = this.translate.instant(`USER.${res?.message}`);
           this.toast.error(msg);
