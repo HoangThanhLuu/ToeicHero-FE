@@ -65,10 +65,10 @@ export class UpdateSliderComponent implements OnInit {
       reader.readAsDataURL(file);
     }
   }
-  closeImg(imageSrc: string | undefined) {
-    if (imageSrc) {
-      this.isShowImage = false;
-    }
+  deleteImg() {
+    this.formData.delete('file');
+    this.isShowImage = false;
+    this.imageSrc = '';
   }
   allowDrop(event: any) {
     event.preventDefault();

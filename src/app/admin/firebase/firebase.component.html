@@ -25,12 +25,12 @@
                     <td>{{ data.projectId }}</td>
                     <td >{{ data.tokenKey }}</td>
                     <td>{{ data.bucketName }}</td>
-                    <td nzEllipsis [popover]= "data.fileJson">{{ data.fileJson }}</td>
+                    <td nzEllipsis [popover]= "JSON.parse(data.fileJson) | json">{{ JSON.parse(data.fileJson) | json }}</td>
                     <td>
                       <nz-switch [(ngModel)]="data.status" [nzDisabled]="data.status" (ngModelChange)="onSwitchChange(data.id)"></nz-switch>
                     </td>
                     <td>
-                      <button class="btn btn-success btn-rounded btn-sm me-2 " > Sửa</button>
+                      <button class="btn btn-success btn-rounded btn-sm me-2 " (click)="update(data)"> Sửa</button>
                       <button class="btn btn-danger btn-rounded btn-sm" [ngClass]="{'d-none': data.status}" (click)="deleteFirebase(data.id)"> Xóa</button>
                     </td>
                 </tr>

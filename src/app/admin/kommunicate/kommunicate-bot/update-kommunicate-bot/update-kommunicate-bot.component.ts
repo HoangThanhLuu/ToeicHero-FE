@@ -13,6 +13,7 @@ import {TranslateService} from "@ngx-translate/core";
 export class UpdateKommunicateBotComponent implements OnInit {
   title: string = "Quản lý Bot Kommunicate";
   currentPage: string = "Kommunicate";
+  showBorderError: any = [];
   @Input() isAdd = true;
   @Input() isPopup: boolean = false;
   @Output() added = new EventEmitter();
@@ -37,8 +38,22 @@ export class UpdateKommunicateBotComponent implements OnInit {
   }
 
   addAccount(): void {
+    if(!this.params.appId) {
+      this.toastr.error('Vui lòng nhập AppId');
+      this.showBorderError[0] = true;
+      return;
+    }else{
+      this.showBorderError[0] = false;
+    }
+    if(!this.params.apiKey) {
+      this.toastr.error('Vui lòng nhập APIKey');
+      this.showBorderError[1] = true;
+      return;
+    }else{
+      this.showBorderError[1] = false;
+    }
     this.spinnerService.show();
-    this.http.post('/api/kommunicate/bot/update', {appId: this.params.appId, apiKey: this.params.apiKey})
+    this.http.post('/api/kommunicate/bot/update', this.params)
       .subscribe({
         next: (res: any) => {
           const msg = this.translate.instant(`KOMMUNICATE.${res?.message}`);
@@ -46,6 +61,10 @@ export class UpdateKommunicateBotComponent implements OnInit {
           this.addSuccessEmit.emit();
           this.added.emit('updateOk');
           this.spinnerService.hide();
+          this.params = {
+            appId: '',
+            apiKey: ''
+          };
           if(this.isPopup) {
             this.close();
           }

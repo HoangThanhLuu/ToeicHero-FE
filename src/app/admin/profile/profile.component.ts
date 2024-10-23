@@ -8,8 +8,8 @@ import {AuthService} from "../../auth.service";
 import {GetHeaderService} from "../../common/get-headers/get-header.service";
 import {catchError, finalize, switchMap, tap} from "rxjs/operators";
 import {of} from "rxjs";
-import {UpdateProfileComponent} from "../../client/profile/update-profile/update-profile.component";
-import {ChangePasswordComponent} from "../../client/profile/change-password/change-password.component";
+import {UpdateProfileComponent} from "./update-profile/update-profile.component";
+import {ChangePasswordComponent} from "./change-password/change-password.component";
 
 
 @Component({

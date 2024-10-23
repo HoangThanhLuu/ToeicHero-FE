@@ -13,14 +13,16 @@ import {TranslateService} from "@ngx-translate/core";
 export class UpdateFirebaseComponent {
   @Input() title: string = "Thêm Firebase: ";
   @Input() isAdd = true;
+  @Input() ismodify = false;
   @Input() isPopup: boolean = false;
+  @Output() modified = new EventEmitter();
   @Output() addSuccessEmit = new EventEmitter();
-  imageSrc: string | undefined = "";
   isShowFile: boolean = false;
   showBorderError: boolean = false;
   formData = new FormData();
   fileUrl: string | null = null;
   @Input() params: any = {
+    id:'',
     tokenKey: ''
   };
 
@@ -40,11 +42,10 @@ export class UpdateFirebaseComponent {
     }else{
       this.showBorderError = false;
     }
-
-    if (!this.formData.has('file')) {
-      this.toastr.error('Vui lòng chọn file');
-      return;
-    }
+      if (!this.formData.has('file')) {
+        this.toastr.error('Vui lòng chọn file');
+        return;
+      }
     this.spinnerService.show();
     this.formData.append('tokenKey', this.params.tokenKey);
     this.http.post('/api/firebase/config/add',this.formData )
@@ -54,7 +55,6 @@ export class UpdateFirebaseComponent {
           this.toastr.success(msg);
           this.addSuccessEmit.emit();
           this.spinnerService.hide();
-          console.log(res);
           if(this.isPopup){
             this.close();
           }
@@ -65,9 +65,30 @@ export class UpdateFirebaseComponent {
           console.log(res);
         }
       })
-
+    this.formData.delete('tokenKey');
+    this.formData.delete('file');
   }
-
+  modifyFirebase(){
+    this.formData.append('tokenKey', this.params.tokenKey);
+    this.spinnerService.show().then();
+    this.http.patch(`/api/firebase/config/update/${this.params.id}`, this.formData)
+      .subscribe({
+        next: (res: any) => {
+          const msg = this.translate.instant(`FIREBASE.${res?.message}`);
+          this.toastr.success(msg);
+          this.modified.emit();
+          this.spinnerService.hide();
+          if(this.isPopup){
+            this.close();
+          }
+        },
+        error: (res: any) => {
+          const msg = this.translate.instant(`FIREBASE.${res?.message}`);
+          this.spinnerService.hide();
+          console.log(res);
+        }
+      })
+  }
 
   handleFileInput(event: any) {
     const file = event.target.files[0];

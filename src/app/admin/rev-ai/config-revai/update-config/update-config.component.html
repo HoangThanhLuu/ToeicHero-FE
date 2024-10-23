@@ -6,7 +6,9 @@
         <div class="form-group mt-3">
           <label> Access Token: </label>
           <div class="col-sm-11">
-            <input type="text" class="form-control" name="AccessToken" placeholder="Nhập AccessToken " [(ngModel)]="this.params.accessToken">
+            <input type="text" class="form-control" name="AccessToken" placeholder="Nhập AccessToken "
+                   [ngClass]="{'error-input-custom': showBorderError}" id="accesstoken"
+                   [(ngModel)]="this.params.accessToken">
           </div>
         </div>
         <div class="button mt-5">

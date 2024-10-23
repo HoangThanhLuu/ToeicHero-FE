@@ -6,21 +6,23 @@ import {BsModalRef} from "ngx-bootstrap/modal";
 import {TranslateService} from "@ngx-translate/core";
 
 @Component({
-  selector: 'app-update-tiny',
-  templateUrl: './update-tiny.component.html',
-  styleUrls: ['./update-tiny.component.scss']
+  selector: 'app-update-config-crawl',
+  templateUrl: './update-config-crawl.component.html',
+  styleUrls: ['./update-config-crawl.component.scss']
 })
-export class UpdateTinyComponent {
-  @Input() title: string = "Thêm tài khoản Tiny: ";
+export class UpdateConfigCrawlComponent {
+  @Input() title: string = 'Thêm tài khoản Config Crawl : ';
   @Input() isAdd = true;
   @Input() isPopup: boolean = false;
+  showBorderError: boolean = false;
   @Output() added = new EventEmitter();
   @Output() addSuccessEmit = new EventEmitter();
-  @Input() params: any = {
-    username: '',
-    password: ''
+  @Input() params = {
+    id: '',
+    token: '',
+    email: '',
+    agentUser: ''
   };
-  showBorderError: any = [];
 
   constructor(private http: HttpClient,
               private toastr: ToastrService,
@@ -29,39 +31,35 @@ export class UpdateTinyComponent {
               private  translate: TranslateService) {
   }
   addAccount(): void {
-    if(!this.params.username) {
-      this.toastr.error('Vui lòng nhập Username');
-      this.showBorderError[0] = true;
+    if(!this.params.email) {
+      this.toastr.error('Vui lòng nhập Email');
+      this.showBorderError = true;
       return;
     }else{
-      this.showBorderError[0] = false;
+      this.showBorderError = false;
     }
-    if(!this.params.password) {
-      this.toastr.error('Vui lòng nhập Password');
-      this.showBorderError[1] = true;
+    if(!this.params.token) {
+      this.toastr.error('Vui lòng nhập Token');
+      this.showBorderError = true;
       return;
     }else{
-      this.showBorderError[1] = false;
+      this.showBorderError = false;
     }
     this.spinnerService.show();
-    this.http.post('/api/tiny-account/update', this.params)
+    this.http.post('/api/admin/crawl/update-config', this.params)
       .subscribe({
         next: (res: any) =>{
-          const msg = this.translate.instant(`TINY.${res?.message}`);
+          const msg = this.translate.instant(`CRAWL.${res?.message}`);
           this.toastr.success(msg);
-          this.added.emit('updateOk');
+          this.added.emit('Ok');
           this.addSuccessEmit.emit();
           this.spinnerService.hide();
-          this.params = {
-            username: '',
-            password: ''
-          }
           if(this.isPopup) {
             this.close();
           }
         },
         error: (res: any) => {
-          const msg = this.translate.instant(`TINY.${res?.message}`);
+          const msg = this.translate.instant(`CRAWL.${res?.message}`);
           this.toastr.error(msg);
           this.spinnerService.hide();
         }

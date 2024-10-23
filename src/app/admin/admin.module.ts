@@ -62,7 +62,6 @@ import { UpdateConfigComponent } from './rev-ai/config-revai/update-config/updat
 import { TemplateEmailDetailComponent } from './email/template-email/template-email-detail/template-email-detail.component';
 import {EditorComponent} from '@tinymce/tinymce-angular';
 import { CrawlComponent } from './crawl-data/crawl/crawl.component';
-import { CrawlHistoryComponent } from './crawl-data/crawl-history/crawl-history.component';
 import {PopoverModule} from 'ngx-bootstrap/popover';
 import { HistoryTranscriptComponent } from './transcript/history-transcript/history-transcript.component';
 import { UpdateTinyComponent } from './tiny/update-tiny/update-tiny.component';
@@ -73,6 +72,8 @@ import {TinyComponent} from './tiny/tiny.component';
 import {ConfigTinyComponent} from './tiny/config-tiny/config-tiny.component';
 import { UpdateProfileComponent } from './profile/update-profile/update-profile.component';
 import { ChangePasswordComponent } from './profile/change-password/change-password.component';
+import { UpdateConfigCrawlComponent } from './crawl-data/crawl-config/update-config-crawl/update-config-crawl.component';
+import {NzSelectModule} from "ng-zorro-antd/select";
 
 @NgModule({
     declarations: [
@@ -118,7 +119,6 @@ import { ChangePasswordComponent } from './profile/change-password/change-passwo
         UpdateConfigComponent,
         TemplateEmailDetailComponent,
         CrawlComponent,
-        CrawlHistoryComponent,
         HistoryTranscriptComponent,
         TinyComponent,
         UpdateTinyComponent,
@@ -126,7 +126,8 @@ import { ChangePasswordComponent } from './profile/change-password/change-passwo
         ProfileComponent,
         ConfigTinyComponent,
         UpdateProfileComponent,
-        ChangePasswordComponent
+        ChangePasswordComponent,
+        UpdateConfigCrawlComponent
     ],
   imports: [
     CommonModule,
@@ -154,6 +155,7 @@ import { ChangePasswordComponent } from './profile/change-password/change-passwo
     EditorComponent,
     PopoverModule,
     NzBadgeModule,
+    NzSelectModule,
 
   ],
     exports: [

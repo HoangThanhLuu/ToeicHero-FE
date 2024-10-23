@@ -39,7 +39,6 @@ import {
 import {ConfigRevaiComponent} from "./rev-ai/config-revai/config-revai.component";
 import {UpdateConfigComponent} from "./rev-ai/config-revai/update-config/update-config.component";
 import {CrawlComponent} from "./crawl-data/crawl/crawl.component";
-import {CrawlHistoryComponent} from "./crawl-data/crawl-history/crawl-history.component";
 import {HistoryTranscriptComponent} from "./transcript/history-transcript/history-transcript.component";
 import {TinyComponent} from "./tiny/tiny.component";
 import {UpdateTinyComponent} from "./tiny/update-tiny/update-tiny.component";
@@ -241,9 +240,6 @@ const routes: Routes = [
           }, {
             path: 'get',
             component: CrawlComponent
-          }, {
-            path: 'history',
-            component: CrawlHistoryComponent
           }
         ]
       }, {
