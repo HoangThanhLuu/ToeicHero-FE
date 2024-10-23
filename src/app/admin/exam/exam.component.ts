@@ -81,7 +81,7 @@ export class ExamComponent implements OnInit {
     const bsModalRef = this.bsModalService.show(EditExamComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Thêm đề thi',
+        title: 'Sửa đề thi',
         param: {
           examId: item.examId,
           examName: item.examName,

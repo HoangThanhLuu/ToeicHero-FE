@@ -4,16 +4,16 @@
 >
   <app-page-header [nextItem]="'Danh sách bài thi'"></app-page-header>
 </div>
-<div class="container mb-5" id="contact">
+<div class="container-fluid mb-5" id="contact">
   <div class="container">
     <div class="row">
       <div class="col-12">
         <h2 class="text-center">Thư viện đề thi</h2>
       </div>
     </div>
-    <div class="row g-2 justify-content-start">
+    <div class="d-flex col-12 justify-content-center">
       <ng-container *ngFor="let item of listTopic; let i = index; trackBy: trackByIndexTopic">
-        <button class="col-2 btn btn-outline-primary me-1"
+        <button class="btn btn-outline-primary me-1 btn-md"
                 [ngClass]="{'active': i === currentIndexTopic}"
                 (click)="changeTopic(i)"
         > {{item.topicName}}
@@ -21,14 +21,14 @@
       </ng-container>
     </div>
   </div>
-  <div class="container mt-5">
+  <div class="container mt-3">
     <ng-container *ngIf="listExam.length !== 0; else noData">
       <div class="row">
         <div class="col-12">
           <h2 class="text-center">Danh sách đề thi</h2>
         </div>
       </div>
-      <div class="row g-2 justify-content-start">
+      <div class="row g-3 justify-content-center">
         <ng-container *ngFor="let item of listExam; let i = index; trackBy: trackByIndexExam">
           <div class="card col-2 me-2">
             <div class="card-body">

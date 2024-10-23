@@ -47,7 +47,7 @@ export class EditExamComponent implements OnInit {
     this.http.get('/api/admin/topic/list')
       .subscribe((res: any) => {
         if (res?.success) {
-          this.listTopic = res?.data;
+          this.listTopic = res?.content;
         }
       })
   }

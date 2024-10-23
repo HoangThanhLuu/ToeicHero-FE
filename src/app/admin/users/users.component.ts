@@ -12,11 +12,6 @@ import {ToastrService} from "ngx-toastr";
   ]
 })
 export class UsersComponent implements OnInit {
-
-  selectedState: string = 'In Active';
-  showOptions: boolean = false;
-  currentStateClass: string = '';
-
   listUser: any = [];
   title = 'Quản lý tài khoản';
   currentPage = 'Tài khoản';
@@ -31,10 +26,6 @@ export class UsersComponent implements OnInit {
           this.listUser = res?.data;
         }
       });
-  }
-
-  toggleDropdown() {
-    this.showOptions = !this.showOptions;
   }
 
   changeState(userId: any, status: string) {

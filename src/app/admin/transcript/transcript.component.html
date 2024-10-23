@@ -3,9 +3,17 @@
     <div class="card-body">
       <h4 class="card-title" [innerText]="title"></h4>
       <form class="forms-sample">
+        <div class="form-group row">
+          <label>Chọn model lấy transcript</label>
+          <nz-select name="model" [(ngModel)]="param.model" (ngModelChange)="changeModel($event)">
+            <nz-option *ngFor="let model of models" [nzValue]="model" [nzLabel]="model"></nz-option>
+          </nz-select>
+        </div>
         <div class="form-group">
           <label for="exampleInputName1">Tên bộ transcript</label>
-          <input type="text" class="form-control" [ngClass]="{'error-input-custom': showBorderError}" id="exampleInputName1"
+          <input type="text" class="form-control" [ngClass]="{'error-input-custom': showBorderError}"
+                 id="exampleInputName1"
+                 name="name"
                  [(ngModel)]="param.name" placeholder="Nhập tên transcript">
         </div>
         <div class="form-group">
@@ -28,18 +36,14 @@
               </div>
             </div>
           </div>
-          <div class="box-body" [ngClass]="{'d-none' : !isShowImage}">
-            <img [src]="this.imageSrc" alt="" style="width: 200px; height: 200px;" class="ant-image-preview">
+          <div class="box-body" [ngClass]="{'d-none' : !isShow}">
+            <a href="/download" [download]="fileSrc" [ngClass]="{'d-none': !isShow}">File here</a>
           </div>
         </div>
       </form>
       <div class="mt-3">
-        <button class="btn btn-gradient-primary" (click)="addNew()">Xác nhận</button>
+        <button class="btn btn-gradient-primary" (click)="getTranscript()">Xác nhận</button>
         <button class="btn btn-outline-primary ms-2" (click)="close()">Hủy</button>
-      </div>
-      <div class="text">
-        <h5 for="exampleTextarea">Transcript: </h5>
-        <textarea class="form-control overflow-auto " readonly id="exampleTextarea" rows="7"></textarea>
       </div>
     </div>
   </div>
