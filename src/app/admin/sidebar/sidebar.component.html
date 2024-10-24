@@ -36,7 +36,7 @@
         <ul class="nav flex-column sub-menu">
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'topic'}">
             <a class="nav-link" href="admin/topic/list">
-              <span class="menu-title">Danh sách</span>
+              <span class="menu-title">Danh sách bộ đề</span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'addTopic'}">
@@ -59,7 +59,7 @@
         <ul class="nav flex-column sub-menu">
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'exam'}">
             <a class="nav-link" href="admin/exam/list">
-              <span class="menu-title">Danh sách</span>
+              <span class="menu-title">Danh sách đề</span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'addExam'}">
@@ -130,7 +130,7 @@
     <li class="nav-item">
       <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" aria-expanded="false"
          aria-controls="general-pages">
-        <span class="menu-title"> Hệ thống </span>
+        <span class="menu-title"> Quản lý Hệ thống </span>
         <i class="mdi mdi-home-assistant menu-icon"></i>
       </a>
       <div class="border-bottom"></div>
@@ -145,12 +145,17 @@
         <ul class="nav flex-column sub-menu">
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'firebase'}">
             <a class="nav-link" href="admin/firebase/list">
-              <span class="menu-title"> Danh sách </span>
+              <span class="menu-title"> Danh sách Firebase</span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-firebase'}">
             <a class="nav-link" href="admin/firebase/update">
-              <span class="menu-title"> Update Firebase </span>
+              <span class="menu-title"> Thêm Firebase </span>
+            </a>
+          </li>
+          <li class="nav-item" [ngClass]="{'active' : navItemActive == 'history-upload'}">
+            <a class="nav-link" href="admin/firebase/history">
+              <span class="menu-title"> Lịch sử upload </span>
             </a>
           </li>
         </ul>
@@ -198,7 +203,7 @@
         <ul class="nav flex-column sub-menu">
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'slider'}">
             <a class="nav-link" href="admin/slider/list">
-              <span class="menu-title"> Danh sách </span>
+              <span class="menu-title"> Danh sách Slider</span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-silder'}">
@@ -211,7 +216,7 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" href="javascript:void(0)" (click)="stateMenu[6] = !stateMenu[6]">
-        <span class="menu-title"> Quản lý REV AI </span>
+        <span class="menu-title"> REV AI </span>
         <i class="menu-arrow"></i>
         <i class="mdi mdi-at menu-icon"></i>
       </a>
@@ -219,7 +224,7 @@
         <ul class="nav flex-column sub-menu">
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'rev-ai'}">
             <a class="nav-link" href="admin/rev-ai/account/list">
-              <span class="menu-title"> Danh sách </span>
+              <span class="menu-title"> Danh sách REV-AI</span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-revai'}">
@@ -242,7 +247,7 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" href="javascript:void(0)" (click)="stateMenu[7] = !stateMenu[7]">
-        <span class="menu-title"> Quản lý Kommunicate </span>
+        <span class="menu-title"> Kommunicate </span>
         <i class="menu-arrow"></i>
         <i class="mdi mdi-earth menu-icon"></i>
       </a>
@@ -250,7 +255,7 @@
         <ul class="nav flex-column sub-menu">
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'kommunicate'}">
             <a class="nav-link" href="admin/kommunicate/account/list">
-              <span class="menu-title"> Danh sách </span>
+              <span class="menu-title"> Danh sách tài khoản</span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-kommunicate'}">
@@ -260,7 +265,7 @@
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'kommunicate-bot'}">
             <a class="nav-link" href="admin/kommunicate/bot/list">
-              <span class="menu-title"> Kommunicate Bot </span>
+              <span class="menu-title"> Danh sách Kommunicate Bot </span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-kommunicate-bot'}">
@@ -273,7 +278,7 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" href="javascript:void(0)" (click)="stateMenu[8] = !stateMenu[8]">
-        <span class="menu-title"> Quản lý Gemini </span>
+        <span class="menu-title"> Gemini </span>
         <i class="menu-arrow"></i>
         <i class="mdi mdi-widgets menu-icon"></i>
       </a>
@@ -281,7 +286,7 @@
         <ul class="nav flex-column sub-menu">
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'gemini'}">
             <a class="nav-link" href="admin/gemini">
-              <span class="menu-title"> Danh sách </span>
+              <span class="menu-title"> Danh sách Gemini</span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'update-gemini'}">
@@ -294,7 +299,7 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" href="javascript:void(0)" (click)="stateMenu[10] = !stateMenu[10]">
-        <span class="menu-title"> Quản lý tiny editor </span>
+        <span class="menu-title"> Tiny Editor </span>
         <i class="menu-arrow"></i>
         <i class="mdi mdi-widgets menu-icon"></i>
       </a>
@@ -302,22 +307,22 @@
         <ul class="nav flex-column sub-menu">
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'tiny'}">
             <a class="nav-link submenu text-wrap" href="admin/tiny/account/list">
-              <span class="menu-title"> Danh sách tài khoản tiny</span>
+              <span class="menu-title"> Danh sách Tiny</span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'tiny'}">
             <a class="nav-link submenu text-wrap" href="admin/tiny/account/update">
-              <span class="menu-title"> Thêm tài khoản tiny editor</span>
+              <span class="menu-title"> Thêm Tiny editor</span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'tiny-config'}">
             <a class="nav-link submenu text-wrap" href="admin/tiny/config/list">
-              <span class="menu-title"> Danh sách config tiny editor  </span>
+              <span class="menu-title"> Danh sách Config Tiny  </span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'tiny-config'}">
             <a class="nav-link submenu text-wrap" href="admin/tiny/config/update">
-              <span class="menu-title"> Thêm mới config tiny editor  </span>
+              <span class="menu-title"> Thêm Config Tiny </span>
             </a>
           </li>
         </ul>

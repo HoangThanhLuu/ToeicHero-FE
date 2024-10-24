@@ -12,6 +12,7 @@ import {PracticeComponent} from "./test/practice/practice.component";
 import {ClientGuardGuard} from "../client-guard.guard";
 import {HistoryExamComponent} from "./history-exam/history-exam.component";
 import {HistoryExamDetailComponent} from "./history-exam/history-exam-detail/history-exam-detail.component";
+import {ResetPasswordComponent} from "./login/reset-password/reset-password.component";
 
 const routes: Routes = [
   {
@@ -71,6 +72,10 @@ const routes: Routes = [
             component: HistoryExamDetailComponent
           }
         ]
+      },
+      {
+        path: 'reset-password/:otp',
+        component: ResetPasswordComponent
       }
     ]
   }

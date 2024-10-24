@@ -1,0 +1,51 @@
+<div class="col-12 grid-margin stretch-card mb-0">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title" [innerText]="title"></h4>
+      <form class="forms-sample">
+        <div class="form-group mt-4">
+          <label> Topic Name: </label>
+          <div class="col-sm-11">
+            <input type="email" class="form-control" name="name"  placeholder="Nhập tên Topic " id="name"
+                   [(ngModel)]="this.params.topicName" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Hình ảnh</label>
+          <div class="container-upload" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
+            <div class="upload-box">
+              <div class="content">
+                <div class="upload-icon" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
+                  <i class="mdi mdi-cloud-upload text-dark" style="height: 100px; width: 100px;"></i>
+                </div>
+                <h5 class="text-dark" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
+                  Kéo và thả hình ảnh vào đây
+                </h5>
+                <p> Hoặc </p>
+                <div class="upload-btn-wrapper">
+                  <button class="btn btn-gradient-primary">Tải lên</button>
+                  <input type="file" (change)="handleFileInput($event)" (drop)="handleDrop($event)"
+                         (dragover)="allowDrop($event)"/>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="box-body" [ngClass]="{'d-none' : !isShowImage}">
+            <div class="image-container" >
+              <nz-badge [nzCount]="iconTemplate" (click)="deleteImg()">
+                <img [src]="this.imageSrc" alt="" style="width: 200px; height: 200px;" class="ant-image-preview">
+              </nz-badge>
+              <ng-template #iconTemplate><i class="mdi mdi-close-circle"></i></ng-template>
+            </div>
+          </div>
+
+          <div class="button mt-5">
+            <button class="btn btn-gradient-primary" (click)="modifiTopic()">Xác nhận</button>
+            <button class="btn btn-outline-primary-2 ms-2" (click)="close()">Hủy</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -85,7 +85,6 @@ export class UpdateFirebaseComponent {
         error: (res: any) => {
           const msg = this.translate.instant(`FIREBASE.${res?.message}`);
           this.spinnerService.hide();
-          console.log(res);
         }
       })
   }

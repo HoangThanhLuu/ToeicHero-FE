@@ -7,6 +7,7 @@ import {NzModalRef, NzModalService} from 'ng-zorro-antd/modal';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ToastrService} from 'ngx-toastr';
 import {TranslateService} from "@ngx-translate/core";
+import {UpdateTopicComponent} from "./update-topic/update-topic.component";
 
 @Component({
   selector: 'app-topic',
@@ -59,11 +60,6 @@ export class TopicComponent implements OnInit {
     return item.topicId;
   }
 
-
-  editTopic(topicId: any) {
-
-  }
-
   deleteTopic(topic: any) {
     const confirmModal: NzModalRef = this.modal.create({
       nzTitle: `Xác nhận`,
@@ -100,4 +96,25 @@ export class TopicComponent implements OnInit {
       ]
     });
   }
+  editTopic(data: any) {
+    const bsModalResult = this.bsModalService.show(UpdateTopicComponent, {
+      class: 'modal-lg modal-dialog-centered',
+      initialState: {
+        title: 'Cập nhật Topic',
+        isPopup: true,
+        isShowImage: true,
+        imageSrc: data.topicImage,
+        params: {
+          topicId: data.topicId,
+          topicName: data.topicName
+        }
+      }
+    });
+    if (bsModalResult?.content?.modified){
+      bsModalResult.content.modified.subscribe(() => {
+        this.getListTopic();
+      });
+    }
+  }
+
 }

@@ -2,42 +2,46 @@
   [title]="title"
   [currentPage]="currentPage">
 </app-page-header>
-
-<div class="row">
-  <div class="col-12 grid-margin">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">
-          <button class="btn btn-block btn-lg btn-gradient-primary-2" (click)="addTopic()">Thêm mới</button>
-        </h4>
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-            <tr>
-              <th style="width: 15%;"> Mã bộ đề thi</th>
-              <th style="width: 40%;"> Tên bộ đề thi</th>
-              <th style="width: 30%;"> Hình ảnh</th>
-              <th style="width: 15%;"> #</th>
-            </tr>
-            </thead>
-            <tbody>
-            <ng-container *ngFor="let item of listTopic; trackBy: trackByFn">
+<nz-water-mark nzContent="Toeicute">
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">
+            <button class="btn btn-block btn-lg btn-gradient-primary-2" (click)="addTopic()">Thêm mới</button>
+          </h4>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
               <tr>
-                <td>{{ item.topicId }}</td>
-                <td>{{ item.topicName }}</td>
-                <td><img nz-image [nzSrc]="item.topicImage" style="height: 100px; width: 100px;" [alt]="item?.topicName"></td>
-                <td>
-                  <button class="btn btn-gradient-info btn-rounded btn-fw" (click)="editTopic(item)">Sửa
-                  </button>
-                  <button class="btn btn-gradient-danger btn-rounded btn-fw" (click)="deleteTopic(item)">Xóa
-                  </button>
-                </td>
+                <th style="width: 15%;"> Mã bộ đề thi</th>
+                <th style="width: 40%;"> Tên bộ đề thi</th>
+                <th style="width: 30%;"> Hình ảnh</th>
+                <th style="width: 15%;"> #</th>
               </tr>
-            </ng-container>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+              <ng-container *ngFor="let item of listTopic; trackBy: trackByFn">
+                <tr>
+                  <td>{{ item.topicId }}</td>
+                  <td>{{ item.topicName }}</td>
+                  <td>
+                    <img nz-image [nzSrc]="item.topicImage" style="height: 100px; width: 100px;"
+                         [alt]="item?.topicName">
+                  </td>
+                  <td>
+                    <button class="btn btn-gradient-info btn-rounded btn-fw" (click)="editTopic(item)">Sửa
+                    </button>
+                    <button class="btn btn-gradient-danger btn-rounded btn-fw" (click)="deleteTopic(item)">Xóa
+                    </button>
+                  </td>
+                </tr>
+              </ng-container>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</nz-water-mark>

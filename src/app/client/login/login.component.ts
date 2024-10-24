@@ -14,6 +14,8 @@ import {
 } from "@abacritt/angularx-social-login";
 import {finalize} from "rxjs";
 import {TranslateService} from "@ngx-translate/core";
+import {UpdateKommunicateComponent} from "../../admin/kommunicate/update-kommunicate/update-kommunicate.component";
+import {ForgotPasswordComponent} from "./forgot-password/forgot-password.component";
 
 @Component({
   selector: 'app-login',
@@ -285,6 +287,17 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+
+  }
+  forgetPassword() {
+    const bsModalResult = this.bs.show(ForgotPasswordComponent, {
+      class: 'modal-lg modal-dialog-centered',
+      initialState: {
+        param: {
+          email: this.loginForm.email
+        }
+      }
+    });
 
   }
 }

@@ -64,6 +64,8 @@ import {NzToolTipModule} from "ng-zorro-antd/tooltip";
 import { PartTemplate1Component } from './test/part-template-1/part-template-1.component';
 import { PartTemplate2Component } from './test/part-template-2/part-template-2.component';
 import { PartTemplate3Component } from './test/part-template-3/part-template-3.component';
+import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +96,8 @@ import { PartTemplate3Component } from './test/part-template-3/part-template-3.c
     PartTemplate1Component,
     PartTemplate2Component,
     PartTemplate3Component,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     NgbModule,

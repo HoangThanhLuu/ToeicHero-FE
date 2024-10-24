@@ -15,35 +15,86 @@
     "UPDATE_KOMMUNICATE_BOT_STATUS_SUCCESS": "update Bot Success!",
     "KOMMUNICATE_BOT_NOT_FOUND": "Kommunicate Bot not found! ",
     "ADD_KOMMUNICATE_BOT_SUCCESS": "Add Kommunicate Bot successfully!",
-    "DELETE_KOMMUNICATE_BOT_SUCCESS": "Xoá Kommunicate thành công!",
-    "UPDATE_KOMMUNICATE_BOT_SUCCESS": "Cập nhật Bot Kommunicate thành công!",
-    "UPDATE_KOMMUNICATE_ACCOUNT_SUCCESS": "Cập nhật tài khoản Kommunicate thành công! ",
-    "ADD_KOMMUNICATE_ACCOUNT_SUCCESS": "Thêm tài khoản Kommunicate thành công!",
-    "DELETE_KOMMUNICATE_ACCOUNT_SUCCESS": "Xóa tài khoản Kommunicate thành công!"
+    "DELETE_KOMMUNICATE_BOT_SUCCESS": "Successfully deleted Kommunicate bot!",
+    "UPDATE_KOMMUNICATE_BOT_SUCCESS": "Successfully updated Kommunicate bot!",
+    "UPDATE_KOMMUNICATE_ACCOUNT_SUCCESS": "Successfully updated Kommunicate account!",
+    "ADD_KOMMUNICATE_ACCOUNT_SUCCESS": "Successfully added Kommunicate account!",
+    "DELETE_KOMMUNICATE_ACCOUNT_SUCCESS": "Successfully deleted Kommunicate account!"
 
   },
   "FIREBASE": {
-    "ADD_CONFIG_FIREBASE_SUCCESS": "Thêm Firebase thành công!",
-    "ADD_CONFIG_FIREBASE_EXIST": "Firebase đã tồn tại!",
-    "ADD_CONFIG_FIREBASE_FAILED": "Thêm Firebase thất bại!",
-    "REMOVE_CONFIG_FIREBASE_SUCCESS": "Xóa Firebase thành công!",
-    "UPDATE_CONFIG_FIREBASE_SUCCESS": "Cập nhật Firebase thành công!"
+
+    "ADD_CONFIG_FIREBASE_SUCCESS": "Successfully added Firebase!",
+    "ADD_CONFIG_FIREBASE_EXIST": "Firebase already exists!",
+    "ADD_CONFIG_FIREBASE_FAILED": "Failed to add Firebase!",
+    "REMOVE_CONFIG_FIREBASE_SUCCESS": "Successfully removed Firebase!",
+    "UPDATE_CONFIG_FIREBASE_SUCCESS": "Successfully updated Firebase!"
   },
   "REVAI": {
-    "UPDATE_REV_AI_ACCOUNT_SUCCESS": "Cập nhật tài khoản Rev-AI thành công!",
-    "ADD_REV_AI_ACCOUNT_SUCCESS": "Thêm tài khoản Rev-AI thành công!",
-    "ACCOUNT_NOT_FOUND": "Tài khoản không tồn tại!",
-    "DELETE_ACCOUNT_SUCCESS": "Xóa tài khoản thành công!",
-    "ADD_CONFIG_REV_AI_SUCCESS": "Thêm Config Rev-AI thành công!",
-    "UPDATE_STATUS_REV_AI_SUCCESS": "Cập nhật Status thành công!",
-    "UPDATE_CONFIG_REV_AI_SUCCESS": "Cập nhật Config Rev-AI thành công!",
-    "DELETE_CONFIG_REV_AI_SUCCESS": "Xóa Config Rev-AI thành công!"
+    "UPDATE_REV_AI_ACCOUNT_SUCCESS": "Successfully updated Rev-AI account!",
+    "ADD_REV_AI_ACCOUNT_SUCCESS": "Successfully added Rev-AI account!",
+    "ACCOUNT_NOT_FOUND": "Account not found!",
+    "DELETE_ACCOUNT_SUCCESS": "Successfully deleted account!",
+    "ADD_CONFIG_REV_AI_SUCCESS": "Successfully added Rev-AI config!",
+    "UPDATE_STATUS_REV_AI_SUCCESS": "Successfully updated Status!",
+    "UPDATE_CONFIG_REV_AI_SUCCESS": "Successfully updated Rev-AI config!",
+    "DELETE_CONFIG_REV_AI_SUCCESS": "Successfully deleted Rev-AI config!"
   },
   "SLIDER": {
-    "ADD_SLIDER_SUCCESS": "Thêm Slider thành công!",
-    "DELETE_SLIDER_FAIL": "Xóa Slider thất bại!",
-    "DELETE_SLIDER_SUCCESS": "Xóa Slider thành công!",
-    "UPDATE_SLIDER_POSITION_SUCCESS": "Cập nhật vị trí thành công!",
-    "UPDATE_SLIDER_SUCCESS": "Cập nhật Slider thành công!"
+    "ADD_SLIDER_SUCCESS": "Slider added successfully!",
+    "DELETE_SLIDER_FAIL": "Failed to delete Slider!",
+    "DELETE_SLIDER_SUCCESS": "Slider deleted successfully!",
+    "UPDATE_SLIDER_POSITION_SUCCESS": "Position updated successfully!",
+    "UPDATE_SLIDER_SUCCESS": "Slider updated successfully!"
+  },
+  "TINY": {
+
+    "UPDATE_TINY_ACCOUNT_SUCCESS": "Successfully updated Tiny account!",
+    "CREATE_TINY_ACCOUNT_SUCCESS": "Successfully created Tiny account!",
+    "DELETE_TINY_ACCOUNT_SUCCESS": "Successfully deleted Tiny account!",
+    "ADD_TINY_CONFIG_SUCCESS": "Successfully added Tiny Config!",
+    "UPDATE_TINY_CONFIG_SUCCESS": "Successfully updated Tiny Config!",
+    "UPDATE_TINY_CONFIG_STATUS_SUCCESS": "Successfully updated status of Tiny Config!",
+    "DELETE_TINY_CONFIG_SUCCESS": "Successfully deleted Tiny Config!",
+    "DUPLICATE_KEY": "Key already exists!"
+  },
+  "CRAWL": {
+    "UPDATE_CONFIG_SUCCESS": "Successfully updated Config!",
+    "ADD_CONFIG_SUCCESS": "Successfully added Config!",
+    "REMOVE_CONFIG_SUCCESS": "Successfully removed Config!",
+    "URL_CRAWL_NOT_MATCH": "URL does not match Study4 URL!",
+    "CRAWL_CONFIG_NOT_FOUND": "Email not set up!",
+    "PART_NOT_MATCH": "Please select another account or review the path!",
+    "CRAWL_SUCCESS": "Crawl successful!"
+  },
+  "TOPIC": {
+    "CREATE_TOPIC_SUCCESS": "Topic created successfully!",
+    "DELETE_TOPIC_SUCCESS": "Topic deleted successfully!",
+    "GET_ALL_TOPIC_SUCCESS": "Successfully retrieved list of topics!"
+  },
+  "EXAM": {
+    "EXAM_NOT_FOUND": "Exam not found!",
+    "GET_ALL_EXAM_SUCCESS": "Successfully retrieved list of exams!",
+    "CREATE_EXAM_SUCCESS": "Exam created successfully!",
+    "UPDATE_EXAM_SUCCESS": "Exam updated successfully!",
+    "GET_EXAM_SUCCESS": "Exam found!",
+    "EXAM_NAME_INVALID": "Exam name cannot be empty!"
+  },
+  "USER": {
+    "ACCOUNT_NOT_ACTIVE": "Account not activated!",
+    "ACCOUNT_BLOCKED": "Account has been blocked!",
+    "LOGIN_SUCCESS": "Login successful!",
+    "REGISTER_SUCCESS": "Registration successful!",
+    "GET_ALL_USER_SUCCESS": "Successfully retrieved list of users!",
+    "UPDATE_USER_SUCCESS": "User updated successfully!",
+    "UPDATE_PASSWORD_SUCCESS": "Password updated successfully!",
+    "UPDATE_AVATAR_SUCCESS": "Avatar updated successfully!",
+    "SEND_EMAIL_SUCCESS": "Email sent successfully!",
+    "SEND_EMAIL_FAILED": "Failed to send Email. Please try again later!",
+    "PASSWORD_NOT_MATCH": "Passwords do not match!",
+    "UPDATE_PROFILE_SUCCESS": "Profile updated successfully!",
+    "EMAIL_PASS_INVALID": "Email or password cannot be empty!",
+    "EMAIL_NOT_REGISTERED": "This account has not been registered!"
+
   }
 }

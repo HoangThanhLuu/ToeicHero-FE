@@ -74,6 +74,9 @@ import { UpdateProfileComponent } from './profile/update-profile/update-profile.
 import { ChangePasswordComponent } from './profile/change-password/change-password.component';
 import { UpdateConfigCrawlComponent } from './crawl-data/crawl-config/update-config-crawl/update-config-crawl.component';
 import {NzSelectModule} from "ng-zorro-antd/select";
+import { UpdateTopicComponent } from './topic/update-topic/update-topic.component';
+import {NzWaterMarkModule} from "ng-zorro-antd/water-mark";
+import { HistoryUploadFirebaseComponent } from './firebase/history-upload-firebase/history-upload-firebase.component';
 
 @NgModule({
     declarations: [
@@ -127,37 +130,40 @@ import {NzSelectModule} from "ng-zorro-antd/select";
         ConfigTinyComponent,
         UpdateProfileComponent,
         ChangePasswordComponent,
-        UpdateConfigCrawlComponent
+        UpdateConfigCrawlComponent,
+        UpdateTopicComponent,
+        HistoryUploadFirebaseComponent
     ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    NzUploadModule,
-    NzIconModule,
-    NgOptimizedImage,
-    FormsModule,
-    NgxSpinnerModule,
-    NzButtonModule,
-    TooltipModule,
-    NzAvatarModule,
-    NzImageModule,
-    NzTableModule,
-    NzPopconfirmModule,
-    NzInputModule,
+    imports: [
+        CommonModule,
+        AdminRoutingModule,
+        NzUploadModule,
+        NzIconModule,
+        NgOptimizedImage,
+        FormsModule,
+        NgxSpinnerModule,
+        NzButtonModule,
+        TooltipModule,
+        NzAvatarModule,
+        NzImageModule,
+        NzTableModule,
+        NzPopconfirmModule,
+        NzInputModule,
 
-    NzSwitchModule,
-    NzFormModule,
-    ReactiveFormsModule,
-    NzPaginationModule,
-    NzModalModule,
-    TranslateModule,
-    NzToolTipModule,
-    EditorComponent,
-    PopoverModule,
-    NzBadgeModule,
-    NzSelectModule,
+        NzSwitchModule,
+        NzFormModule,
+        ReactiveFormsModule,
+        NzPaginationModule,
+        NzModalModule,
+        TranslateModule,
+        NzToolTipModule,
+        EditorComponent,
+        PopoverModule,
+        NzBadgeModule,
+        NzSelectModule,
+        NzWaterMarkModule,
 
-  ],
+    ],
     exports: [
         PageHeaderComponent,
         AudioPlayerComponent

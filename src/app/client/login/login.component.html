@@ -48,7 +48,7 @@
       <span>Hoặc sử dụng tài khoản của bạn đã đăng ký </span>
       <input type="email" placeholder="Email" name="email" [(ngModel)]="loginForm.email" required/>
       <input type="password" placeholder="Mật khẩu " name="password" [(ngModel)]="loginForm.password" required/>
-      <a href="javascript:;">Quên mật khẩu </a>
+      <a href="javascript:;" (click)="forgetPassword()">Quên mật khẩu </a>
       <button (click)="login()">Đăng nhập</button>
       <span class="mt-3 d-sm-none">Chưa có tài khoản bấm <a href="javascript:;" (click)="switchTab()"
                                                             class="text-decoration-underline">Đăng ký</a></span>
