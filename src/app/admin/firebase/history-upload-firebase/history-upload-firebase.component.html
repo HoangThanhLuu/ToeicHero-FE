@@ -35,7 +35,7 @@
             <th> Kích thước file</th>
             <th> Ngày Upload</th>
             <th> Đường Link</th>
-            <th> # </th>
+            <th> #</th>
           </tr>
           </thead>
           <tbody>
@@ -43,7 +43,7 @@
             <td>{{ data.id }}</td>
             <td>{{ data.fileName }}</td>
             <td>{{ data.fileType }}</td>
-            <td>{{ data.fileSize}}kb</td>
+            <td>{{ data.fileSize }}kb</td>
             <td>{{ data.uploadDate | date : formatDate: timeZone }}</td>
             <td>
               <ng-container *ngIf="isAudio(data.fileType)">
@@ -63,8 +63,15 @@
               </ng-container>
             </td>
             <td>
-              <button class="btn btn-danger btn-rounded btn-sm d-flex justify-content-center" (click)="deleteHistoryUpload(data.id)"> Xóa </button>
+              <button class="btn btn-danger btn-rounded btn-sm d-flex justify-content-center"
+                      (click)="deleteHistoryUpload(data.id)"> Xóa
+              </button>
             </td>
+          </tr>
+          <tr class="bg-light">
+            <td [colSpan]="3" class="text-end fw-bold">Tổng cộng:</td>
+            <td class="fw-bold">{{totalSize}}MB</td>
+            <td colspan="3"></td>
           </tr>
           </tbody>
         </table>

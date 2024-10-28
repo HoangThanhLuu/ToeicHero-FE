@@ -20,6 +20,7 @@ export class HistoryUploadFirebaseComponent implements OnInit {
   listUpload: any = [];
   formatDate = CONSTANT.formatDate;
   timeZone = CONSTANT.timeZone;
+  totalSize = 0;
   params: any = {
     page: 1,
     size: 10,
@@ -67,6 +68,7 @@ export class HistoryUploadFirebaseComponent implements OnInit {
       .subscribe((res: any) => {
         this.listUpload = res.data.result.content;
         this.totalElements = res.data.result.totalElements;
+        this.totalSize = res. data.totalSize;
       });
   }
 
