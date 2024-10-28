@@ -1,1 +1,84 @@
-<p>history-upload-firebase works!</p>
+<app-page-header
+  [title]="title"
+  [currentPage]="currentPage">
+</app-page-header>
+
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <div class="d-flex w-100">
+        <nz-form-item nz-col="6" class="me-3">
+          <nz-form-label>Lọc theo kiểu file</nz-form-label>
+          <nz-form-control>
+            <nz-select name="select-type" [(ngModel)]="params.type" (ngModelChange)="onChangeType($event)">
+              <nz-option *ngFor="let type of listType" [nzValue]="type.value" [nzLabel]="type.label"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-col="6">
+          <nz-form-label>Sắp xếp theo ngày</nz-form-label>
+          <nz-form-control>
+            <nz-select name="select-sort" [(ngModel)]="params.sort" (ngModelChange)="onChangeSort($event)">
+              <nz-option *ngFor="let sort of listSort" [nzValue]="sort.value" [nzLabel]="sort.label"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+          <thead>
+          <tr>
+            <th> Id</th>
+            <th> Tên File</th>
+            <th> Kiểu file</th>
+            <th> Kích thước file</th>
+            <th> Ngày Upload</th>
+            <th> Đường Link</th>
+            <th> # </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of listUpload">
+            <td>{{ data.id }}</td>
+            <td>{{ data.fileName }}</td>
+            <td>{{ data.fileType }}</td>
+            <td>{{ data.fileSize}}kb</td>
+            <td>{{ data.uploadDate | date : formatDate: timeZone }}</td>
+            <td>
+              <ng-container *ngIf="isAudio(data.fileType)">
+                <audio controls>
+                  <source [src]="data.fileUrl" type="audio/mpeg">
+                  Your browser does not support the audio tag.
+                </audio>
+              </ng-container>
+              <ng-container *ngIf="isImage(data.fileType)">
+                <img
+                  nz-image
+                  width="80px"
+                  height="80px"
+                  [nzSrc]="data.fileUrl"
+                  alt=""
+                />
+              </ng-container>
+            </td>
+            <td>
+              <button class="btn btn-danger btn-rounded btn-sm d-flex justify-content-center" (click)="deleteHistoryUpload(data.id)"> Xóa </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-2 d-flex flex-row-reverse">
+        <nz-pagination
+          [(nzPageIndex)]="this.params.page"
+          [nzTotal]="totalElements"
+          nzShowSizeChanger
+          [(nzPageSize)]="this.params.size"
+          (nzPageIndexChange)="changePage($event)"
+          (nzPageSizeChange)="changeSize($event)"
+        ></nz-pagination>
+      </div>
+    </div>
+  </div>
+</div>

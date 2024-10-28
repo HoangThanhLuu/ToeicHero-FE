@@ -27,6 +27,10 @@ export class CrawlDataComponent implements OnInit {
     {
       value: 'IN_PROGRESS',
       label: 'Đang xử lý'
+    },
+    {
+      value: 'FAILED',
+      label: 'Thất bại'
     }
   ];
   params: any = {
