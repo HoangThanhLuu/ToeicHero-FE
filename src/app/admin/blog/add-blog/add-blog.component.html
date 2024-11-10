@@ -1,0 +1,70 @@
+<div class="col-12 grid-margin stretch-card mb-0">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title" [innerText]="title | translate"></h4>
+      <form class="forms-sample">
+        <div class="form-group mt-3">
+          <label> Tác giả: </label>
+          <div class="col-sm-11">
+            <input type="text" class="form-control"
+                   [ngClass]="{'error-input-custom': showBorderError[0]}" id="author"
+                   name="author" placeholder="Nhập tác giả " [(ngModel)]="params.author">
+          </div>
+        </div>
+        <div class="form-group mt-2">
+          <label> Tiêu đề: </label>
+          <div class="col-sm-11">
+            <input type="text" class="form-control"
+                   [ngClass]="{'error-input-custom': showBorderError[1]}" id="title"
+                   name="title" placeholder="Nhập tiêu đề " [(ngModel)]="params.title">
+          </div>
+        </div>
+        <div class="form-group mt-2">
+          <label> Tóm tắt: </label>
+          <div class="col-sm-11">
+            <input type="text" class="form-control" id="summary"
+                   name="summary" placeholder="Nhập tóm tắt " [(ngModel)]="params.summary">
+          </div>
+        </div>
+        <div class="form-group mt-2">
+          <label> Nội dung: </label>
+          <div class="col-sm-11">
+            <textarea type="text" class="form-control"
+                      [ngClass]="{'error-input-custom': showBorderError[2]}" id="content"
+                   name="content" placeholder="Nhập nội dung" [(ngModel)]="params.content"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label> Ảnh </label>
+          <div class="container-upload" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
+            <div class="upload-box">
+              <div class="content">
+                <div class="upload-icon" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
+                  <i class="mdi mdi-cloud-upload text-dark" style="height: 100px; width: 100px;"></i>
+                </div>
+                <h6 class="text-dark" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
+                  Kéo và thả ảnh vào đây
+                </h6>
+                <p> Hoặc </p>
+                <div class="upload-btn-wrapper">
+                  <button class="btn btn-gradient-primary">Tải ảnh lên </button>
+                  <input type="file" (change)="handleFileInput($event)" (drop)="handleDrop($event)"
+                         (dragover)="allowDrop($event)"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="box-body" [ngClass]="{'d-none' : !isShowImage}">
+            <img [src]="this.imageSrc" alt="" style="width: 200px; height: 200px;" class="ant-image-preview"/>
+          </div>
+        </div>
+        <div class="button mt-5">
+          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : !isAdd}" (click)="addBlog()"> Thêm </button>
+          <button class="btn btn-primary" [ngClass]="{'d-none' : isAdd}" (click)="modifyBlog()"> Sửa </button>
+          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : isAdd}" (click)="close()"> Hủy</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
