@@ -12,3 +12,15 @@
     </nz-form-item>
   </nz-comment-content>
 </nz-comment>
+<ng-template #commentTemplateRef let-cmt="comment">
+  <nz-comment [nzAuthor]="cmt?.user?.fullName">
+    <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="cmt?.user?.avatar"></nz-avatar>
+    <nz-comment-content>
+      <p>{{ cmt?.content }}</p>
+    </nz-comment-content>
+    <nz-comment-action>Reply to</nz-comment-action>
+    <ng-container *ngIf="cmt?.numberOfReplies > 0">
+    </ng-container>
+  </nz-comment>
+</ng-template>
+<ng-template [ngTemplateOutlet]="commentTemplateRef" [ngTemplateOutletContext]="{ comment: listCmt }"></ng-template>

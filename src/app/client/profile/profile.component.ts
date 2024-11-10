@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {ToastrService} from "ngx-toastr";
-import {HttpClient} from "@angular/common/http";
-import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
-import {BsModalService} from "ngx-bootstrap/modal";
-import {NgxSpinnerService} from "ngx-spinner";
-import {ChangePasswordComponent} from "./change-password/change-password.component";
-import {UpdateProfileComponent} from "./update-profile/update-profile.component";
+import {ToastrService} from 'ngx-toastr';
+import {HttpClient} from '@angular/common/http';
+import {NzModalRef, NzModalService} from 'ng-zorro-antd/modal';
+import {BsModalService} from 'ngx-bootstrap/modal';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {ChangePasswordComponent} from './change-password/change-password.component';
+import {UpdateProfileComponent} from './update-profile/update-profile.component';
 import {switchMap, tap, catchError, finalize} from 'rxjs/operators';
 import {of} from 'rxjs';
-import {ProfileService} from "../../common/profile.service";
+import {ProfileService} from '../../common/profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -16,7 +16,9 @@ import {ProfileService} from "../../common/profile.service";
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  currentUser: any;
+  currentUser: any = {
+
+  };
   avatarSrc: string = '';
   formData = new FormData();
   showDropdown = false;

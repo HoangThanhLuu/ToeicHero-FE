@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({
@@ -6,11 +6,21 @@ import {HttpClient} from "@angular/common/http";
 })
 export class ProfileService {
   currentUser: any;
+  paramUser: any = {
+    fullName: '',
+    email: '',
+    avatar: '/assets/images/default-avatar.jpg',
+    password: '',
+    phone: '',
+    address: '',
+    userId: '',
+  };
+
   constructor(private http: HttpClient) {
     this.getProfile();
   }
 
-  getProfile(){
+  getProfile() {
     this.http.get('/api/user/get-profile')
       .subscribe((res: any) => {
         if (res?.success) {
@@ -21,6 +31,10 @@ export class ProfileService {
             userId: res?.data?.userId,
           };
           this.currentUser = profile;
+          this.paramUser = {
+            ...this.paramUser,
+            ...profile,
+          };
         }
       });
   }

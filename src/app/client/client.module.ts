@@ -6,7 +6,6 @@ import {
 import {ClientComponent} from './client.component';
 import {HomeComponent} from './home/home.component';
 import {ClientRoutingModule} from "./client-routing.module";
-import {HeaderComponent} from './header/header.component';
 import {LoginComponent} from './login/login.component';
 import {FooterComponent} from './footer/footer.component';
 import {
@@ -61,22 +60,21 @@ import {NzTableModule} from "ng-zorro-antd/table";
 import {HistoryExamDetailComponent} from './history-exam/history-exam-detail/history-exam-detail.component';
 import {GoogleSigninButtonModule} from "@abacritt/angularx-social-login";
 import {NzToolTipModule} from "ng-zorro-antd/tooltip";
-import { PartTemplate1Component } from './test/part-template-1/part-template-1.component';
-import { PartTemplate2Component } from './test/part-template-2/part-template-2.component';
-import { PartTemplate3Component } from './test/part-template-3/part-template-3.component';
-import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
-import { BlogComponent } from './blog/blog.component';
-import { DetailBlogComponent } from './blog/detail-blog/detail-blog.component';
+import {PartTemplate1Component} from './test/part-template-1/part-template-1.component';
+import {PartTemplate2Component} from './test/part-template-2/part-template-2.component';
+import {PartTemplate3Component} from './test/part-template-3/part-template-3.component';
+import {ForgotPasswordComponent} from './login/forgot-password/forgot-password.component';
+import {ResetPasswordComponent} from './login/reset-password/reset-password.component';
+import {BlogComponent} from './blog/blog.component';
+import {DetailBlogComponent} from './blog/detail-blog/detail-blog.component';
 import {NzPaginationModule} from "ng-zorro-antd/pagination";
 import {NzCommentModule} from "ng-zorro-antd/comment";
-import { CommentComponent } from './comment/comment.component';
+import {CommentComponent} from './comment/comment.component';
 
 @NgModule({
   declarations: [
     ClientComponent,
     HomeComponent,
-    HeaderComponent,
     LoginComponent,
     FooterComponent,
     NavbarComponent,
@@ -107,51 +105,50 @@ import { CommentComponent } from './comment/comment.component';
     DetailBlogComponent,
     CommentComponent,
   ],
-    imports: [
-        NgbModule,
-        CommonModule,
-        ClientRoutingModule,
-        FormsModule,
-        FontAwesomeModule,
-        CarouselModule,
-        NgOptimizedImage,
-        ReactiveFormsModule,
-        NzAvatarModule,
-        NgxSpinnerModule,
-        NzTagModule,
-        NzEmptyModule,
-        NzTabsModule,
-        NzCheckboxModule,
-        NzGridModule,
-        NzButtonModule,
-        NzRadioModule,
-        NzImageModule,
-        NzDividerModule,
-        NzCardModule,
-        NzIconModule,
-        NzListModule,
-        NzTypographyModule,
-        NzFormModule,
-        NzDatePickerModule,
-        NzSelectModule,
-        NzInputNumberModule,
-        NzInputModule,
-        NzTimePickerModule,
-        TooltipModule,
-        NzCollapseModule,
-        NzTableModule,
-        GoogleSigninButtonModule,
-        NzToolTipModule,
-        NzPaginationModule,
-        NzCommentModule,
-    ],
+  imports: [
+    NgbModule,
+    CommonModule,
+    ClientRoutingModule,
+    FormsModule,
+    FontAwesomeModule,
+    CarouselModule,
+    NgOptimizedImage,
+    ReactiveFormsModule,
+    NzAvatarModule,
+    NgxSpinnerModule,
+    NzTagModule,
+    NzEmptyModule,
+    NzTabsModule,
+    NzCheckboxModule,
+    NzGridModule,
+    NzButtonModule,
+    NzRadioModule,
+    NzImageModule,
+    NzDividerModule,
+    NzCardModule,
+    NzIconModule,
+    NzListModule,
+    NzTypographyModule,
+    NzFormModule,
+    NzDatePickerModule,
+    NzSelectModule,
+    NzInputNumberModule,
+    NzInputModule,
+    NzTimePickerModule,
+    TooltipModule,
+    NzCollapseModule,
+    NzTableModule,
+    GoogleSigninButtonModule,
+    NzToolTipModule,
+    NzPaginationModule,
+    NzCommentModule,
+  ],
   providers: [],
-    exports: [
-        HeaderComponent,
-        NavbarComponent,
-        FooterComponent,
-        PageHeaderComponent
-    ],
+  exports: [
+    NavbarComponent,
+    FooterComponent,
+    PageHeaderComponent
+  ],
   bootstrap: [ClientComponent]
 })
 export class ClientModule {
