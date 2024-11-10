@@ -67,6 +67,11 @@
         <ng-template [ngTemplateOutlet]="commentTemplateRef"
                      [ngTemplateOutletContext]="{ comment: c }"></ng-template>
       </ng-container>
+      <ng-container *ngIf="cmt?.totalPage > cmt?.page">
+        <button (click)="getListCommentByParent(cmt?.commentId, cmt?.page, cmt?.size)" nz-button>
+          Xem thêm
+        </button>
+      </ng-container>
     </ng-container>
   </nz-comment>
 </ng-template>
@@ -81,5 +86,15 @@
 <ng-container *ngFor="let cmt of listCmt">
   <ng-template [ngTemplateOutlet]="commentTemplateRef" [ngTemplateOutletContext]="{ comment: cmt }"></ng-template>
 </ng-container>
-
-
+<nz-pagination
+  [nzPageIndex]="params.page"
+  [nzTotal]="params.total"
+  [nzPageSize]="params.size"
+  [nzShowTotal]="rangeTemplate"
+  nzShowSizeChanger
+  (nzPageIndexChange)="pageIndexChange($event)"
+  (nzPageSizeChange)="pageSizeChange($event)"
+></nz-pagination>
+<ng-template #rangeTemplate let-range="range" let-total>
+  {{ range[0] }}-{{ range[1] }} of {{ total }} items
+</ng-template>

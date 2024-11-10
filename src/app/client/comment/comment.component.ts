@@ -24,7 +24,8 @@ export class CommentComponent implements OnInit {
     content: '',
     parentId: '',
     page: 1,
-    size: 10
+    size: 10,
+    total: 0
   };
   listCmt: Comment[] = [];
   submitting: boolean = false;
@@ -54,11 +55,13 @@ export class CommentComponent implements OnInit {
               ...item,
               showReply: false,
               contentReply: '',
+              totalPage: res.totalPages,
               page: 0,
               size: 10,
               replies: []
             };
           });
+          this.params.total = res.totalElements;
         }
       });
   }
@@ -136,9 +139,20 @@ export class CommentComponent implements OnInit {
             });
             comment.replies = [...comment.replies, ...replies];
             comment.page++;
+            comment.totalPage = res.totalPages;
           }
         }
       });
+  }
+
+  pageIndexChange($event: number) {
+    this.params.page = $event;
+    this.getCmtByExam();
+  }
+
+  pageSizeChange($event: number) {
+    this.params.size = $event;
+    this.getCmtByExam();
   }
 }
 
@@ -156,6 +170,7 @@ export interface Comment {
   size: number;
   parent: Comment;
   replies: Comment[];
+  totalPage: number;
 }
 
 export interface User {
