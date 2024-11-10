@@ -90,8 +90,11 @@
   [nzPageIndex]="params.page"
   [nzTotal]="params.total"
   [nzPageSize]="params.size"
+  [nzShowTotal]="rangeTemplate"
   nzShowSizeChanger
   (nzPageIndexChange)="pageIndexChange($event)"
   (nzPageSizeChange)="pageSizeChange($event)"
 ></nz-pagination>
-
+<ng-template #rangeTemplate let-range="range" let-total>
+  {{ range[0] }}-{{ range[1] }} of {{ total }} items
+</ng-template>

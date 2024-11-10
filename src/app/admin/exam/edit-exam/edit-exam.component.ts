@@ -44,10 +44,10 @@ export class EditExamComponent implements OnInit {
   }
 
   private getListTopic() {
-    this.http.get('/api/admin/topic/list')
+    this.http.get('/api/admin/topic/all')
       .subscribe((res: any) => {
         if (res?.success) {
-          this.listTopic = res?.content;
+          this.listTopic = res?.data;
         }
       })
   }
