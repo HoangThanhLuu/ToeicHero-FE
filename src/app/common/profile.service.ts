@@ -15,6 +15,7 @@ export class ProfileService {
     address: '',
     userId: '',
   };
+  isLogin: boolean = false;
 
   constructor(private http: HttpClient) {
     this.getProfile();
@@ -24,6 +25,7 @@ export class ProfileService {
     this.http.get('/api/user/get-profile')
       .subscribe((res: any) => {
         if (res?.success) {
+          this.isLogin = true;
           const profile = {
             avatar: res?.data?.avatar,
             email: res?.data?.email,
@@ -35,6 +37,8 @@ export class ProfileService {
             ...this.paramUser,
             ...profile,
           };
+        } else {
+          this.isLogin = false;
         }
       });
   }

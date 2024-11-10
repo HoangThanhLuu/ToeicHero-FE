@@ -1,26 +1,85 @@
-<nz-comment>
-  <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="profileService.currentUser?.avatar"></nz-avatar>
-  <nz-comment-content>
-    <nz-form-item>
-      <textarea [(ngModel)]="params.content" nz-input rows="4"></textarea>
-    </nz-form-item>
-    <nz-form-item>
-      <button nz-button nzType="primary" [nzLoading]="submitting" [disabled]="!params.content"
-              (click)="checkLoginBeforeCmt()">
-        Bình luận
-      </button>
-    </nz-form-item>
-  </nz-comment-content>
-</nz-comment>
+<ng-template #doComment let-cmt="comment">
+  <nz-comment>
+    <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="cmt?.avatar"></nz-avatar>
+    <nz-comment-content>
+      <nz-form-item>
+        <textarea [(ngModel)]="cmt.content" nz-input [rows]="cmt?.rows"></textarea>
+      </nz-form-item>
+      <nz-form-item>
+        <button nz-button nzType="primary" [nzLoading]="cmt?.submitting" [disabled]="!cmt?.content"
+                (click)="checkLoginBeforeCmt(cmt.content, cmt.parentId)">
+          Bình luận
+        </button>
+      </nz-form-item>
+    </nz-comment-content>
+  </nz-comment>
+</ng-template>
+
+
 <ng-template #commentTemplateRef let-cmt="comment">
-  <nz-comment [nzAuthor]="cmt?.user?.fullName">
+  <nz-comment [nzAuthor]="cmt?.user?.fullName" [nzDatetime]="formatDistance(cmt?.createdAt)">
     <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="cmt?.user?.avatar"></nz-avatar>
     <nz-comment-content>
       <p>{{ cmt?.content }}</p>
     </nz-comment-content>
-    <nz-comment-action>Reply to</nz-comment-action>
+    <nz-comment-action>
+        <span
+          nz-tooltip
+          nzTitle="Like"
+          nz-icon
+          nzType="like"
+          [nzTheme]="likes > 0 ? 'twotone' : 'outline'"
+        ></span>
+      <span class="count like">{{ likes }}</span>
+    </nz-comment-action>
+    <nz-comment-action>
+        <span
+          nz-tooltip
+          nzTitle="Dislike"
+          nz-icon
+          nzType="dislike"
+          [nzTheme]="dislikes > 0 ? 'twotone' : 'outline'"
+        ></span>
+      <span class="count dislike">{{ dislikes }}</span>
+    </nz-comment-action>
+    <nz-comment-action>
+      <span (click)="reply(cmt)">
+        Trả lời
+      </span>
+    </nz-comment-action>
     <ng-container *ngIf="cmt?.numberOfReplies > 0">
+      <nz-comment-action>
+      <span (click)="getListCommentByParent(cmt?.commentId, cmt?.page, cmt?.size)">
+        Xem trả lời
+      </span>
+      </nz-comment-action>
+    </ng-container>
+    <ng-container *ngIf="cmt?.showReply">
+      <ng-template [ngTemplateOutlet]="doComment" [ngTemplateOutletContext]="{comment: {
+        parentId: cmt?.commentId,
+        avatar: cmt?.user?.avatar,
+        content: cmt?.contentReply,
+        submitting: cmt?.submitting,
+        rows: 2}}"></ng-template>
+    </ng-container>
+    <ng-container *ngIf="cmt?.replies?.length > 0">
+      <ng-container *ngFor="let c of cmt?.replies">
+        <ng-template [ngTemplateOutlet]="commentTemplateRef"
+                     [ngTemplateOutletContext]="{ comment: c }"></ng-template>
+      </ng-container>
     </ng-container>
   </nz-comment>
 </ng-template>
-<ng-template [ngTemplateOutlet]="commentTemplateRef" [ngTemplateOutletContext]="{ comment: listCmt }"></ng-template>
+
+<ng-template [ngTemplateOutlet]="doComment" [ngTemplateOutletContext]="{comment: {
+  avatar: profileService.currentUser?.avatar,
+  content: params.content,
+  submitting: this.submitting,
+  rows: 4
+}}"></ng-template>
+
+<ng-container *ngFor="let cmt of listCmt">
+  <ng-template [ngTemplateOutlet]="commentTemplateRef" [ngTemplateOutletContext]="{ comment: cmt }"></ng-template>
+</ng-container>
+
+

@@ -10,7 +10,7 @@ import {GetHeaderService} from "../../../common/get-headers/get-header.service";
 import {finalize} from "rxjs";
 
 @Component({
-  selector: 'app-change-password',
+  selector: 'app-change-password-admin',
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.scss']
 })
