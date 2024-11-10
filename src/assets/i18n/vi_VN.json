@@ -98,7 +98,12 @@
     "UPDATE_PROFILE_SUCCESS": "Cập nhật Profile thành công!",
     "EMAIL_PASS_INVALID": "Email hoặc mật khẩu không được bỏ trống!",
     "EMAIL_NOT_REGISTERED": "Tài khoản này chưa được đăng ký!"
-
+  },
+  "BLOG": {
+    "CREATE_BLOG_SUCCESS" : "Tạo bài viết thành công",
+    "BLOG_NOT_FOUND" : "Bài viết không tìm thấy",
+    "UPDATE_BLOG_SUCCESS" : "Cập nhật bài viết thành công",
+    "DELETE_BLOG_SUCCESS" : "Xóa bài viết thành công"
   }
 }
 

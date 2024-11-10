@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
 import {GetHeaderService} from "../../../common/get-headers/get-header.service";
@@ -21,6 +21,7 @@ export class UpdateProfileComponent implements OnInit {
   avatarSrc: string = '';
   formData = new FormData();
   @Output() close = new EventEmitter();
+  @Input() isPopup: boolean = false;
 
   constructor(private toast: ToastrService,
               private formBuilder: FormBuilder,
@@ -59,7 +60,7 @@ export class UpdateProfileComponent implements OnInit {
                 email: res?.data?.email,
                 fullName: res?.data?.fullName,
                 address: res?.data.address,
-                phone: res?.data.phone
+                phone: res?.data.phone,
               };
               localStorage.setItem('profile', JSON.stringify(profile));
               this.currentProfile = profile;

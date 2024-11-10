@@ -32,6 +32,7 @@ import {FACEBOOK_APP_ID} from "./common/constant";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
+import {TinyServiceService} from "./common/tiny-service.service";
 
 registerLocaleData(en);
 @NgModule({
@@ -102,7 +103,8 @@ registerLocaleData(en);
         }
       } as SocialAuthServiceConfig,
     },
-    provideAnimations()
+    provideAnimations(),
+    TinyServiceService
   ],
   exports: [FontAwesomeModule],
   bootstrap: [AppComponent],

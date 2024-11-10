@@ -106,6 +106,9 @@ export class UpdateSliderComponent implements OnInit {
             this.formData.delete('file');
             this.imageSrc = '';
             this.isShowImage = false;
+            if(this.isPopup){
+              this.close();
+            }
           } else {
             const msg = this.translate.instant(`SLIDER.${res?.message}`);
             this.toastr.success(msg);

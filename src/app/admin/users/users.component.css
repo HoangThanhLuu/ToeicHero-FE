@@ -1,0 +1,11 @@
+.btn-gradient-primary{
+  background: var(--primary-600) !important;
+  color: white !important;
+}
+.btn-outline-danger{
+  border-color: var(--primary-600) !important;
+}
+.btn-outline-danger:hover{
+  background-color: var(--primary-300) !important;
+  color: white !important;
+}

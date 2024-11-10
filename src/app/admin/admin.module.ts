@@ -80,6 +80,8 @@ import { HistoryUploadFirebaseComponent } from './firebase/history-upload-fireba
 import { TranscriptDetailComponent } from './transcript/transcript-detail/transcript-detail.component';
 import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
 import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
+import { BlogComponent } from './blog/blog.component';
+import { AddBlogComponent } from './blog/add-blog/add-blog.component';
 
 @NgModule({
     declarations: [
@@ -136,7 +138,9 @@ import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
         UpdateConfigCrawlComponent,
         UpdateTopicComponent,
         HistoryUploadFirebaseComponent,
-        TranscriptDetailComponent
+        TranscriptDetailComponent,
+        BlogComponent,
+        AddBlogComponent
     ],
   imports: [
     CommonModule,

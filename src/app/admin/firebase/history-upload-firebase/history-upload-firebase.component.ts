@@ -7,11 +7,12 @@ import {TranslateService} from "@ngx-translate/core";
 import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
 import {finalize} from "rxjs";
 import {DatePipe} from "@angular/common";
+import {AdminLibBaseCss3, AdminStyle2} from "../../admin.style";
 
 @Component({
   selector: 'app-history-upload-firebase',
   templateUrl: './history-upload-firebase.component.html',
-  styleUrls: ['./history-upload-firebase.component.scss']
+  styleUrls: ['./history-upload-firebase.component.scss', ...AdminLibBaseCss3, ...AdminStyle2]
 })
 export class HistoryUploadFirebaseComponent implements OnInit {
   title: string = "History Upload Firebase";
@@ -56,7 +57,7 @@ export class HistoryUploadFirebaseComponent implements OnInit {
       value: 'asc',
       label: 'Tăng dần'
     }
-  ]
+  ];
 
   constructor(private http: HttpClient,
               private toastr: ToastrService,

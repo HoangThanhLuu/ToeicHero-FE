@@ -19,11 +19,19 @@
           </nz-form-control>
         </nz-form-item>
         <div class="mt-5">
-          <button class="btn btn-primary" (click)="getData()"> Crawl </button>
-          <button class="btn btn-outline-primary ms-2" > Hủy </button>
+          <button class="btn btn-gradient-primary-2" (click)="getData()"> Crawl </button>
         </div>
       </form>
-
+      <div class="">
+        <div class="d-flex flex-row-reverse mb-2">
+          <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon"
+                  title="Làm mới"
+                  (click)="getListCrawl()"
+          >
+            <i class="mdi mdi-refresh text-danger"></i>
+          </button>
+        </div>
+      </div>
       <div class="table-responsive mt-3">
         <h4 class="card-title text-center">Danh Crawl trong tuần này</h4>
         <div class="d-flex flex-row-reverse">
@@ -36,21 +44,37 @@
             <th> Thời gian bắt đầu crawl</th>
             <th> Thời gian hoàn thành crawl</th>
             <th> Trạng thái</th>
+            <th> Mô tả </th>
             <th> Đường link</th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let data of listCrawl">
             <td>{{ data.id }}</td>
-            <td>{{ data.examName }}</td>
+            <td [popover]= "data.examName" >{{ data.examName }}</td>
             <td>{{ data.startTime | date : formatDate: timeZone }}</td>
             <td>{{ data.endTime | date : formatDate: timeZone}}</td>
-            <td>{{ data.jobStatus }}</td>
-            <td>{{ data.jobLink }}</td>
+            <td>{{ data.jobStatus | translate}}</td>
+            <td [popover]= "data.description"> {{ data.description | translate}}</td>
+            <td [popover]= "data.jobLink">{{ data.jobLink }}</td>
           </tr>
           </tbody>
         </table>
       </div>
+      <div class="mt-2 d-flex flex-row-reverse">
+        <nz-pagination
+          [(nzPageIndex)]="this.pagination.page"
+          [nzTotal]="pagination.total"
+          [nzShowTotal]="rangeTemplate"
+          nzShowSizeChanger
+          [(nzPageSize)]="this.pagination.size"
+          (nzPageIndexChange)="changePage($event)"
+          (nzPageSizeChange)="changeSize($event)"
+        ></nz-pagination>
+      </div>
     </div>
   </div>
 </div>
+<ng-template #rangeTemplate let-range="range" let-total>
+  {{ range[0] }}-{{ range[1] }} of {{ total }} items
+</ng-template>

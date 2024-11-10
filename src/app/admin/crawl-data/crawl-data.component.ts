@@ -50,11 +50,7 @@ export class CrawlDataComponent implements OnInit {
   rangeDate: Array<Date> = [new Date(new Date().setDate(new Date().getDate() - 7)), new Date()];
 
 
-  constructor(private http: HttpClient,
-              private toastr: ToastrService,
-              private spinnerService: NgxSpinnerService,
-              private bsModalRef: BsModalRef,
-              private translate: TranslateService) {
+  constructor(private http: HttpClient,) {
   }
 
   getListCrawl() {
@@ -70,10 +66,8 @@ export class CrawlDataComponent implements OnInit {
   }
 
   onChange(event: any) {
-    this.params = {
-      page: 1,
-      size: 10
-    };
+    this.params.size = 10;
+    this.params.page = 1;
     this.params.status = event;
     this.getListCrawl();
   }
@@ -88,12 +82,16 @@ export class CrawlDataComponent implements OnInit {
     this.params.page = 1;
     this.getListCrawl();
   }
+
   onChangeDate(date: any) {
     this.params.dateFrom = this.getFormatDate(date[0], this.formatDate2);
     this.params.dateTo = this.getFormatDate(date[1], this.formatDate2);
     this.getListCrawl();
   }
+
   getFormatDate(value: Date, formatString: string) {
     return new DatePipe('en_US').transform(value, formatString, this.timeZone);
   }
+
+  protected readonly JSON = JSON;
 }

@@ -45,7 +45,15 @@
       </div>
 
       <div class="table-responsive">
-        <table class="table table-bordered table-striped table-hover">
+        <div class="d-flex flex-row-reverse mb-2">
+          <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon"
+                  title="Làm mới"
+                  (click)="getListHistoryUpload()"
+          >
+            <i class="mdi mdi-refresh text-danger"></i>
+          </button>
+        </div>
+        <table class="table table-bordered table-striped table-hover layout-auto">
           <thead>
           <tr>
             <th> Id</th>
@@ -60,7 +68,7 @@
           <tbody>
           <tr *ngFor="let data of listUpload">
             <td>{{ data.id }}</td>
-            <td>{{ data.fileName }}</td>
+            <td style="max-width: 150px;" class="text-truncate">{{ data.fileName }}</td>
             <td>{{ data.fileType }}</td>
             <td>{{ data.fileSize }}kb</td>
             <td>{{ data.uploadDate | date : formatDate: timeZone }}</td>
@@ -74,10 +82,10 @@
               <ng-container *ngIf="isImage(data.fileType)">
                 <img
                   nz-image
-                  width="80px"
-                  height="80px"
+                  width="120px"
+                  height="100px"
                   [nzSrc]="data.fileUrl"
-                  alt=""
+                  alt="toeic"
                 />
               </ng-container>
             </td>

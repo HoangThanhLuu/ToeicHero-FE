@@ -45,6 +45,7 @@ export class UpdateConfigComponent {
           const msg = this.translate.instant(`REVAI.${res?.message}`);
           this.toastr.success(msg);
           this.spinnerService.hide();
+          this.added.emit('updateOk');
           this.params = {
             id: '',
             accessToken: ''

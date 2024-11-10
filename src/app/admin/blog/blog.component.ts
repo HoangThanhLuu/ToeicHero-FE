@@ -127,7 +127,7 @@ export class BlogComponent implements OnInit{
         isAdd: false,
         isPopup: true,
         params: {
-          id: data.blogId,
+          blogId: data.blogId,
           author: data.author,
           content: data.content,
           title: data.title,

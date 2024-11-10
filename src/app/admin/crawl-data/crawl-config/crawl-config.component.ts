@@ -7,7 +7,6 @@ import {TranslateService} from "@ngx-translate/core";
 import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
 import {finalize} from "rxjs";
 import {UpdateConfigCrawlComponent} from "./update-config-crawl/update-config-crawl.component";
-import {UpdateKommunicateComponent} from "../../kommunicate/update-kommunicate/update-kommunicate.component";
 
 @Component({
   selector: 'app-crawl-config',

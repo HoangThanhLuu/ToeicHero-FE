@@ -5,38 +5,68 @@
 <div class="container-fluid stretch-card">
   <div class="card">
     <div class="card-body">
-      <h4 class="card-title">Quản lý tài khoản người dùng</h4>
+      <div nz-row>
+        <nz-form-item nz-col nzSpan="6" class="me-3">
+          <nz-form-label><i class="fa-solid fa-filter me-2"></i> Lọc theo trạng thái</nz-form-label>
+          <nz-form-control>
+            <nz-select name="select-status" [(ngModel)]="params.status" (ngModelChange)="onChange($event)">
+              <nz-option *ngFor="let status of listStatus" [nzValue]="status.value"
+                         [nzLabel]="status.label"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
       <table class="table">
         <thead>
         <tr>
-          <th>Mã người dùng</th>
-          <th>Tên người dùng</th>
-          <th>Email</th>
-          <th>Trạng thái</th>
-          <th>#</th>
+          <th> ID </th>
+          <th> Tên người dùng </th>
+          <th> Avatar </th>
+          <th> Email </th>
+          <th> Số điện thoại </th>
+          <th> Địa chỉ </th>
+          <th> Trạng thái </th>
+          <th> # </th>
         </tr>
         </thead>
         <tbody>
         <ng-container *ngFor="let item of listUser">
           <tr>
-            <td>{{item?.userId}}</td>
-            <td>{{item?.fullName}}</td>
+            <td>{{item?.user_id}}</td>
+            <td>{{item?.full_name}}</td>
+            <td><img nz-image [nzSrc]="item?.avatar" class="border-none" style="height: 60px; width: 60px;" [alt]="item?.avatar"></td>
             <td>{{item?.email}}</td>
+            <td>{{item?.phone}}</td>
+            <td>{{item?.address}}</td>
             <td>
               <label class="badge badge-gradient-{{this.getCssStatus(item?.status)}}">{{item?.status}}</label>
             </td>
             <td>
               <ng-container *ngIf="item?.status == 'ACTIVE'">
-                <button class="btn btn-outline-danger text-capitalize" (click)="changeState(item?.userId,'BLOCKED')">block</button>
+                <button class="btn btn-sm btn-outline-danger " (click)="changeState(item?.user_id,'BLOCKED')"> BLOCK </button>
               </ng-container>
               <ng-container *ngIf="item?.status == 'BLOCKED'">
-                <button class="btn btn-secondary text-capitalize" (click)="changeState(item?.userId,'ACTIVE')">un block</button>
+                <button class="btn btn-sm btn-gradient-primary" (click)="changeState(item?.user_id,'ACTIVE')">UN BLOCK</button>
               </ng-container>
             </td>
           </tr>
         </ng-container>
         </tbody>
       </table>
+      <div class="mt-2 d-flex flex-row-reverse">
+        <nz-pagination
+          [(nzPageIndex)]="this.params.page"
+          [nzTotal]="totalElements"
+          [nzShowTotal]="rangeTemplate"
+          nzShowSizeChanger
+          [(nzPageSize)]="this.params.size"
+          (nzPageIndexChange)="changePage($event)"
+          (nzPageSizeChange)="changeSize($event)"
+        ></nz-pagination>
+      </div>
     </div>
   </div>
 </div>
+<ng-template #rangeTemplate let-range="range" let-total>
+  {{ range[0] }}-{{ range[1] }} of {{ total }} items
+</ng-template>

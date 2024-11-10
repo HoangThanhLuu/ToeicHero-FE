@@ -107,14 +107,14 @@
       </a>
       <div class="collapse" [ngClass]="{'show': stateMenu[2]}" id="crawl-management">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item" [ngClass]="{'active' : navItemActive == 'crawl-config'}">
-            <a class="nav-link" href="admin/crawl/config">
-              <span class="menu-title"> Config </span>
-            </a>
-          </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'crawl-data-1'}">
             <a class="nav-link" href="admin/crawl/get">
               <span class="menu-title"> Crawl data </span>
+            </a>
+          </li>
+          <li class="nav-item" [ngClass]="{'active' : navItemActive == 'crawl-config'}">
+            <a class="nav-link" href="admin/crawl/config">
+              <span class="menu-title"> Config </span>
             </a>
           </li>
           <li class="nav-item" [ngClass]="{'active' : navItemActive == 'crawl-data'}">
@@ -126,6 +126,28 @@
       </div>
     </li>
 
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="javascript:;" (click)="stateMenu[11] = !stateMenu[11]"
+         aria-controls="blog-management">
+        <span class="menu-title">Blog</span>
+        <i class="menu-arrow"></i>
+        <i class="mdi mdi mdi-clipboard-text menu-icon"></i>
+      </a>
+      <div class="collapse" [ngClass]="{'show': stateMenu[11]}" id="blog-management">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item" [ngClass]="{'active' : navItemActive == 'get'}">
+            <a class="nav-link" href="admin/blog/get">
+              <span class="menu-title"> Danh sách Blog </span>
+            </a>
+          </li>
+          <li class="nav-item" [ngClass]="{'active' : navItemActive == 'add'}">
+            <a class="nav-link" href="admin/blog/add">
+              <span class="menu-title"> Thêm mới </span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </li>
     <div class="border-bottom"></div>
     <li class="nav-item">
       <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" aria-expanded="false"
@@ -134,6 +156,12 @@
         <i class="mdi mdi-home-assistant menu-icon"></i>
       </a>
       <div class="border-bottom"></div>
+    <li class="nav-item" >
+      <a class="nav-link" target="_blank" href="http://localhost:8080/api/applications">
+        <span class="menu-title"> Quản lý Admin </span>
+        <i class="mdi mdi mdi-android menu-icon"></i>
+      </a>
+    </li>
     <li class="nav-item">
       <a class="nav-link" href="javascript:void(0)" (click)="stateMenu[3] = !stateMenu[3]"
          aria-controls="exam-management">

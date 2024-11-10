@@ -46,6 +46,8 @@ import {ConfigTinyComponent} from "./tiny/config-tiny/config-tiny.component";
 import {UpdateTinyConfigComponent} from "./tiny/config-tiny/update-tiny-config/update-tiny-config.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {HistoryUploadFirebaseComponent} from "./firebase/history-upload-firebase/history-upload-firebase.component";
+import {BlogComponent} from "./blog/blog.component";
+import {AddBlogComponent} from "./blog/add-blog/add-blog.component";
 
 const routes: Routes = [
   {
@@ -275,6 +277,19 @@ const routes: Routes = [
                 component: UpdateTinyConfigComponent
               }
             ]
+          }
+        ]
+      },
+      {
+        path: 'blog',
+        children: [
+          {
+            path: 'get',
+            component: BlogComponent
+          },
+          {
+            path: 'add',
+            component: AddBlogComponent
           }
         ]
       }
