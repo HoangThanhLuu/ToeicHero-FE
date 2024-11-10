@@ -54,7 +54,7 @@ export class EmailComponent implements OnInit {
             this.http.delete(`/api/email/config/delete/${id}`)
               .pipe(
                 finalize(() => {
-                  this.listEmailConfig();
+                  this.getListEmailConfig();
                 })
               )
               .subscribe({

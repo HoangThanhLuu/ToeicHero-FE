@@ -6,7 +6,6 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import {TranslateService} from '@ngx-translate/core';
 import {ToastrService} from 'ngx-toastr';
 import {finalize} from "rxjs";
-import {UpdateSliderComponent} from "../slider/update-slider/update-slider.component";
 import {UpdateTinyComponent} from "./update-tiny/update-tiny.component";
 
 

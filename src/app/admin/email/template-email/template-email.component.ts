@@ -2,7 +2,7 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-import { BsModalService} from 'ngx-bootstrap/modal';
+import {BsModalService} from 'ngx-bootstrap/modal';
 import {HttpClient} from '@angular/common/http';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ToastrService} from 'ngx-toastr';
@@ -51,6 +51,7 @@ export class TemplateEmailComponent implements OnInit {
       }
     });
   }
+
   update(data: any) {
     const bsModalResult = this.bsModalService.show(UpdateTemplateEmailComponent, {
       class: 'modal-lg modal-dialog-centered',
@@ -58,7 +59,7 @@ export class TemplateEmailComponent implements OnInit {
         title: 'Chỉnh sửa Email Template',
         isAdd: false,
         params: {
-          name : data.name,
+          name: data.name,
           templateCode: data.templateCode,
           subject: data.subject,
           templateContent: data.templateContent
@@ -66,8 +67,14 @@ export class TemplateEmailComponent implements OnInit {
       }
     });
 
+    if (bsModalResult && bsModalResult.content) {
+      bsModalResult.content.added.subscribe(() => {
+        this.getListTemplateEmail();
+      });
+    }
   }
-  deleteTemplate(id: any){
+
+  deleteTemplate(id: any) {
     const confirmModal: NzModalRef = this.modal.create({
       nzTitle: `Xác nhận`,
       nzContent: `Bạn có muốn xóa slider này không?`,
@@ -104,6 +111,7 @@ export class TemplateEmailComponent implements OnInit {
       ]
     });
   }
+
   openFormAdd() {
     const bsModalRef = this.bsModalService.show(UpdateTemplateEmailComponent, {
       class: 'modal-lg modal-dialog-centered',
