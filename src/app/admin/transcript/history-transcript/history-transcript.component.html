@@ -1,1 +1,127 @@
-<p>history-transcript works!</p>
+<app-page-header
+  [title]="title"
+  [currentPage]="currentPage">
+</app-page-header>
+
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <div nz-row>
+        <nz-form-item nz-col nzSpan="6" class="me-3">
+          <nz-form-label>Lọc theo trạng thái</nz-form-label>
+          <nz-form-control>
+            <nz-select name="select-type" [(ngModel)]="pagination.type" (ngModelChange)="onChangeType($event)">
+              <nz-option *ngFor="let type of listType" [nzValue]="type.value" [nzLabel]="type.label"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-col nzSpan="6" class="me-3">
+          <nz-form-label>Sắp xếp theo ngày</nz-form-label>
+          <nz-form-control>
+            <nz-select name="select-sort" [(ngModel)]="pagination.sort" (ngModelChange)="onChangeSort($event)">
+              <nz-option *ngFor="let sort of listSort" [nzValue]="sort.value" [nzLabel]="sort.label"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-col nzSpan="6" class="me-3">
+          <nz-form-label>Chọn ngày</nz-form-label>
+          <nz-form-control>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa-regular fa-clock"></i></span>
+              <input
+                class="form-control txt-event-date"
+                placeholder="dd-MM-yyyy"
+                name="drp"
+                [(ngModel)]="rangeDate"
+                bsDaterangepicker readonly
+                [bsConfig]="{ isAnimated: true, adaptivePosition: true  }"
+                [outsideClick]="true"
+                [maxDate]="maxDate"
+                (bsValueChange)="onChangeDate($event)"
+              />
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
+      <div class="table-responsive mt-3">
+        <h4 class="card-title text-center">Danh sách bộ transcript</h4>
+        <div class="d-flex flex-row-reverse">
+          <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon"
+                  title="Làm mới"
+                  (click)="getListTranscript()"
+          >
+            <i class="mdi mdi-refresh text-danger"></i>
+          </button>
+        </div>
+        <table class="table table-bordered table-striped table-hover mt-2">
+          <thead>
+          <tr>
+            <th> Id</th>
+            <th> Tên bộ transcript</th>
+            <th> Audio</th>
+            <th> Transcript</th>
+            <th> Translate</th>
+            <th> Trạng thái</th>
+            <th> Thời gian</th>
+            <th> #</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of list">
+            <td>{{ data.id }}</td>
+            <td style="max-width: 150px;">{{ data.transcriptName }}</td>
+            <td>
+              <audio style="max-width: 250px;" controls>
+                <source [src]="data.transcriptAudio" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            </td>
+            <td class="text-truncate" style="max-width: 150px;"
+                [title]="data.transcriptContent">{{ data.transcriptContent }}
+            </td>
+            <td class="text-truncate" style="max-width: 150px;"
+                [title]="data.transcriptContentTranslate">{{ data.transcriptContentTranslate }}
+            </td>
+            <td style="max-width: 100px;">{{ data.status | translate }}</td>
+            <td>{{ data.createdAt | date : formatDate : timeZone }}</td>
+            <td>
+              <button type="button" class="btn btn-outline-secondary btn-icon" title="Chi tiết" (click)="view(data)">
+                <i class="mdi mdi-call-made text-primary"></i>
+              </button>
+              <button type="button" class="btn btn-outline-secondary btn-icon" title="Tải xuống"
+                      (click)="download(data.id)">
+                <i class="mdi mdi-download text-success"></i>
+              </button>
+              <button type="button" class="btn btn-outline-secondary btn-icon" title="Dịch"
+                      (click)="translateContent(data.id)">
+                <i class="mdi mdi-google-translate text-dark"></i>
+              </button>
+            </td>
+          </tr>
+          <ng-container *ngIf="list.length === 0">
+            <tr>
+              <td colspan="8" class="text-center">Không có dữ liệu</td>
+            </tr>
+          </ng-container>
+          </tbody>
+        </table>
+      </div>
+      <div class="mt-2 d-flex flex-row">
+        <nz-pagination
+          [(nzPageIndex)]="this.pagination.page"
+          [nzTotal]="pagination.total"
+          [nzShowTotal]="rangeTemplate"
+          nzShowSizeChanger
+          [(nzPageSize)]="this.pagination.size"
+          (nzPageIndexChange)="changePage($event)"
+          (nzPageSizeChange)="changeSize($event)"
+        ></nz-pagination>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #rangeTemplate let-range="range" let-total>
+  {{ range[0] }}-{{ range[1] }} of {{ total }} items
+</ng-template>

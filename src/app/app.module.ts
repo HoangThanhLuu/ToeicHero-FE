@@ -6,7 +6,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {RouterOutlet} from "@angular/router";
 import {AppRoutingModule} from "./app-routing.module";
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {
+  BrowserAnimationsModule,
+  provideAnimations
+} from '@angular/platform-browser/animations';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {NgxSpinnerModule} from "ngx-spinner";
 import {FormsModule} from '@angular/forms';
@@ -28,6 +31,7 @@ import {SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider, Faceboo
 import {FACEBOOK_APP_ID} from "./common/constant";
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
 
 registerLocaleData(en);
 @NgModule({
@@ -46,6 +50,7 @@ registerLocaleData(en);
     NgxSpinnerModule,
     FormsModule,
     HttpClientModule,
+    BsDatepickerModule.forRoot(),
     ModalModule.forRoot(),
     ClientModule,
     AdminModule,
@@ -96,7 +101,8 @@ registerLocaleData(en);
         onError: (err) => {
         }
       } as SocialAuthServiceConfig,
-    }
+    },
+    provideAnimations()
   ],
   exports: [FontAwesomeModule],
   bootstrap: [AppComponent],

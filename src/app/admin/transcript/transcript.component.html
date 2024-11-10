@@ -43,10 +43,9 @@
       </form>
       <div class="mt-3">
         <button class="btn btn-gradient-primary" (click)="getTranscript()">Xác nhận</button>
-        <button class="btn btn-outline-secondary ms-2" (click)="close()">Hủy</button>
       </div>
       <div class="table-responsive mt-3">
-        <h4 class="card-title text-center">Danh sách bộ transcript hôm nay</h4>
+        <h4 class="card-title text-center">Danh sách bộ transcript trong tuần này</h4>
         <div class="d-flex flex-row-reverse">
           <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon"
                   title="Làm mới"
@@ -83,7 +82,7 @@
             <td style="max-width: 100px;">{{ data.status | translate }}</td>
             <td>{{ data.createdAt | date : formatDate : timeZone }}</td>
             <td>
-              <button type="button" class="btn btn-outline-secondary btn-icon" title="Chi tiết" (click)="view(data.id)">
+              <button type="button" class="btn btn-outline-secondary btn-icon" title="Chi tiết" (click)="view(data)">
                 <i class="mdi mdi-call-made text-primary"></i>
               </button>
               <button type="button" class="btn btn-outline-secondary btn-icon" title="Tải xuống" (click)="download(data.id)">

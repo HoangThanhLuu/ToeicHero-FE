@@ -6,13 +6,17 @@ import {
 import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {NgxSpinnerService} from "ngx-spinner";
-import {BsModalRef} from "ngx-bootstrap/modal";
+import {
+  BsModalRef,
+  BsModalService
+} from "ngx-bootstrap/modal";
 import {CONSTANT} from "../../common/constant";
 import {TranslateService} from "@ngx-translate/core";
 import {
   AdminLibBaseCss2,
   AdminStyle
 } from "../admin.style";
+import {TranscriptDetailComponent} from "./transcript-detail/transcript-detail.component";
 
 @Component({
   selector: 'app-transcript',
@@ -43,7 +47,7 @@ export class TranscriptComponent implements OnInit {
               private toastr: ToastrService,
               private spinnerService: NgxSpinnerService,
               private translate: TranslateService,
-              private bsModalRef: BsModalRef) {
+              private bsModal: BsModalService) {
   }
 
   ngOnInit(): void {
@@ -53,10 +57,6 @@ export class TranscriptComponent implements OnInit {
   handleFileInput(event: any) {
     const file = event.target.files[0];
     this.handleFiles(file);
-  }
-
-  close() {
-    this.bsModalRef.hide();
   }
 
   handleFiles(file: any) {
@@ -113,10 +113,8 @@ export class TranscriptComponent implements OnInit {
             this.formData.delete('name');
             this.isShow = false;
             this.fileSrc = "";
-
             this.getListTranscript();
             this.toastr.success(msg);
-            this.bsModalRef.hide();
           } else {
             this.toastr.error(msg);
           }
@@ -140,7 +138,6 @@ export class TranscriptComponent implements OnInit {
           this.toastr.error();
         }
       });
-
   }
 
   changePage($event: number) {
@@ -158,8 +155,16 @@ export class TranscriptComponent implements OnInit {
 
   }
 
-  view(id: any) {
-
+  view(data: any) {
+    this.bsModal.show(TranscriptDetailComponent, {
+      initialState: {
+        param: {
+          transcript: data.transcriptContent,
+          translate: data.transcriptContentTranslate
+        }
+      },
+      class: 'modal-lg modal-dialog-centered modal-dialog-scrollable'
+    });
   }
 
   translateContent(id: number) {

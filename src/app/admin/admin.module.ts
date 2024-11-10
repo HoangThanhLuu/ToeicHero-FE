@@ -77,6 +77,9 @@ import {NzSelectModule} from "ng-zorro-antd/select";
 import { UpdateTopicComponent } from './topic/update-topic/update-topic.component';
 import {NzWaterMarkModule} from "ng-zorro-antd/water-mark";
 import { HistoryUploadFirebaseComponent } from './firebase/history-upload-firebase/history-upload-firebase.component';
+import { TranscriptDetailComponent } from './transcript/transcript-detail/transcript-detail.component';
+import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
+import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
 
 @NgModule({
     declarations: [
@@ -132,38 +135,40 @@ import { HistoryUploadFirebaseComponent } from './firebase/history-upload-fireba
         ChangePasswordComponent,
         UpdateConfigCrawlComponent,
         UpdateTopicComponent,
-        HistoryUploadFirebaseComponent
+        HistoryUploadFirebaseComponent,
+        TranscriptDetailComponent
     ],
-    imports: [
-        CommonModule,
-        AdminRoutingModule,
-        NzUploadModule,
-        NzIconModule,
-        NgOptimizedImage,
-        FormsModule,
-        NgxSpinnerModule,
-        NzButtonModule,
-        TooltipModule,
-        NzAvatarModule,
-        NzImageModule,
-        NzTableModule,
-        NzPopconfirmModule,
-        NzInputModule,
+  imports: [
+    CommonModule,
+    AdminRoutingModule,
+    NzUploadModule,
+    NzIconModule,
+    NgOptimizedImage,
+    FormsModule,
+    NgxSpinnerModule,
+    NzButtonModule,
+    TooltipModule,
+    NzAvatarModule,
+    NzImageModule,
+    NzTableModule,
+    NzPopconfirmModule,
+    NzInputModule,
 
-        NzSwitchModule,
-        NzFormModule,
-        ReactiveFormsModule,
-        NzPaginationModule,
-        NzModalModule,
-        TranslateModule,
-        NzToolTipModule,
-        EditorComponent,
-        PopoverModule,
-        NzBadgeModule,
-        NzSelectModule,
-        NzWaterMarkModule,
-
-    ],
+    NzSwitchModule,
+    NzFormModule,
+    ReactiveFormsModule,
+    NzPaginationModule,
+    NzModalModule,
+    TranslateModule,
+    NzToolTipModule,
+    EditorComponent,
+    PopoverModule,
+    NzBadgeModule,
+    NzSelectModule,
+    NzWaterMarkModule,
+    NzDatePickerModule,
+    BsDatepickerModule,
+  ],
     exports: [
         PageHeaderComponent,
         AudioPlayerComponent
