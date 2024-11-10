@@ -1,10 +1,8 @@
-import {Component} from '@angular/core';
-import {BsModalService} from "ngx-bootstrap/modal";
-import {HttpClient} from "@angular/common/http";
-import {NzModalService} from "ng-zorro-antd/modal";
-import {ToastrService} from "ngx-toastr";
-import {AdminLibBaseCss2, AdminStyle} from "../admin.style";
-import {NzTableFilterFn, NzTableFilterList, NzTableSortFn, NzTableSortOrder} from "ng-zorro-antd/table";
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {ToastrService} from 'ngx-toastr';
+import {AdminLibBaseCss2, AdminStyle} from '../admin.style';
+import {NzTableFilterFn, NzTableFilterList, NzTableSortFn, NzTableSortOrder} from 'ng-zorro-antd/table';
 
 @Component({
   selector: 'app-score',
@@ -14,9 +12,9 @@ import {NzTableFilterFn, NzTableFilterList, NzTableSortFn, NzTableSortOrder} fro
     ...AdminStyle
   ]
 })
-export class ScoreComponent {
-  title: string = "Quản lý tính điểm đề thi";
-  currentPage: string = "Tính điểm đề thi";
+export class ScoreComponent implements OnInit{
+  title: string = 'Quản lý tính điểm đề thi';
+  currentPage: string = 'Tính điểm đề thi';
   listScore: any = [];
   listOfColumns: ColumnItem[] = [];
   editCache: { [key: number]: { edit: boolean; data: DataItem } } = {};
@@ -24,9 +22,7 @@ export class ScoreComponent {
   showSaveAllBtn: boolean = false;
   formData: FormData = new FormData();
 
-  constructor(private bsModalService: BsModalService,
-              private http: HttpClient,
-              private modal: NzModalService,
+  constructor(private http: HttpClient,
               private toast: ToastrService) {
   }
 
@@ -36,7 +32,7 @@ export class ScoreComponent {
 
   getListScore() {
     this.tblLoading = true;
-    this.http.get('/api/admin/score/list')
+    this.http.get('/api/score/list')
       .subscribe({
         next: (res: any) => {
           this.listScore = res.data;
@@ -122,7 +118,7 @@ export class ScoreComponent {
   saveEdit(item: any) {
     this.tblLoading = true;
     const newData = this.editCache[item?.calculateScoreId].data;
-    this.http.patch('/api/admin/score/update', newData)
+    this.http.patch('/api/score/update', newData)
       .subscribe({
         next: (res: any) => {
           if (res?.success) {
@@ -150,7 +146,7 @@ export class ScoreComponent {
         listUpdate.push(this.editCache[id].data);
       }
     }
-    this.http.patch('/api/admin/score/update-all', listUpdate)
+    this.http.patch('/api/score/update-all', listUpdate)
       .subscribe({
         next: (res: any) => {
           if (res?.success) {
@@ -175,7 +171,7 @@ export class ScoreComponent {
 
   importFileScoreExcel() {
     this.tblLoading = true;
-    this.http.post('/api/admin/score/import-file-score', this.formData)
+    this.http.post('/api/score/import-file-score', this.formData)
       .subscribe({
         next: (res: any) => {
           if (res?.success) {

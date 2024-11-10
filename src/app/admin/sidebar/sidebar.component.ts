@@ -47,3 +47,22 @@ export class SidebarComponent implements OnInit {
 
 
 }
+
+export interface MenuGroup {
+  menuGroupId: number;
+  path: string;
+  displayName: string;
+  roles: string;
+  icon: string;
+  priority: number;
+  active: boolean;
+  expanded: boolean;
+  leftMenuItems: LeftMenuItem[];
+}
+
+export interface LeftMenuItem {
+  leftMenuId: number;
+  displayName: string;
+  path: string;
+  roles: string;
+}

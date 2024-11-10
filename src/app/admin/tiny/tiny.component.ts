@@ -5,8 +5,8 @@ import {NzModalRef, NzModalService} from 'ng-zorro-antd/modal';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {TranslateService} from '@ngx-translate/core';
 import {ToastrService} from 'ngx-toastr';
-import {finalize} from "rxjs";
-import {UpdateTinyComponent} from "./update-tiny/update-tiny.component";
+import {finalize} from 'rxjs';
+import {UpdateTinyComponent} from './update-tiny/update-tiny.component';
 
 
 @Component({
