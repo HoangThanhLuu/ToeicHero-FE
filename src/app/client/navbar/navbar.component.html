@@ -11,19 +11,19 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <div class="navbar-nav ms-auto p-4 p-lg-0">
       <a href="" class="nav-item nav-link" [ngClass]="{'active': activeNav=='home'}">Trang chủ</a>
-      <a href="/blog" class="nav-item nav-link" [ngClass]="{'active': activeNav=='blog'}">Blog</a>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="javascript:void(0)" role="button" data-bs-toggle="dropdown"
            aria-expanded="false">
           Luyện tập
         </a>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="/list-test"> Luyện theo Part</a></li>
-          <li><a class="dropdown-item" href="javascript:void(0)"> Luyện nói </a></li>
+          <li><a class="dropdown-item" href="/list-test"> Luyện đề</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0)"> Luyện nghe </a></li>
         </ul>
       </li>
       <a href="/list-test" class="nav-item nav-link" [ngClass]="{'active': activeNav=='test'}">Thi</a>
       <a href="/my-exam" class="nav-item nav-link" [ngClass]="{'active': activeNav=='my-exam'}">Kết quả</a>
+      <a href="/blog" class="nav-item nav-link" [ngClass]="{'active': activeNav=='blog'}">Blog</a>
       <a href="/profile" class="nav-item nav-link d-xl-none">Trang cá nhân</a>
       <a href="/otp" class="nav-item nav-link d-none">Liên hệ</a>
       <a href="javascript:void(0)" (click)="openLogin()" class="nav-item nav-link" [ngClass]="{'d-none': isLogin}">Đăng

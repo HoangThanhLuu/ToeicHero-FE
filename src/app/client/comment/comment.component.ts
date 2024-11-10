@@ -40,7 +40,6 @@ export class CommentComponent implements OnInit{
       .subscribe({
         next: (res: any) => {
           this.listCmt = res.content;
-          console.log(this.listCmt);
         }
       })
   }
