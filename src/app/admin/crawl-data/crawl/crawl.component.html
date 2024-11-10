@@ -23,6 +23,34 @@
           <button class="btn btn-outline-primary ms-2" > Hủy </button>
         </div>
       </form>
+
+      <div class="table-responsive mt-3">
+        <h4 class="card-title text-center">Danh Crawl trong tuần này</h4>
+        <div class="d-flex flex-row-reverse">
+        </div>
+        <table class="table table-bordered table-striped table-hover mt-2">
+          <thead>
+          <tr>
+            <th> Id</th>
+            <th> Tên đề thi</th>
+            <th> Thời gian bắt đầu crawl</th>
+            <th> Thời gian hoàn thành crawl</th>
+            <th> Trạng thái</th>
+            <th> Đường link</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let data of listCrawl">
+            <td>{{ data.id }}</td>
+            <td>{{ data.examName }}</td>
+            <td>{{ data.startTime | date : formatDate: timeZone }}</td>
+            <td>{{ data.endTime | date : formatDate: timeZone}}</td>
+            <td>{{ data.jobStatus }}</td>
+            <td>{{ data.jobLink }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

@@ -6,6 +6,7 @@ import {BsModalService} from "ngx-bootstrap/modal";
 import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
 import {TranslateService} from "@ngx-translate/core";
 import {finalize} from "rxjs";
+import {CONSTANT} from "../../../common/constant";
 
 
 @Component({
@@ -21,7 +22,14 @@ export class CrawlComponent implements OnInit {
   }
   emails: any = [];
   showBorderError: boolean = false;
-
+  pagination = {
+    page: 1,
+    size: 10,
+    total: 0
+  };
+  listCrawl: any = [];
+  formatDate = CONSTANT.formatDate;
+  timeZone = CONSTANT.timeZone;
   constructor(private http: HttpClient,
               private toastr: ToastrService,
               private spinner: NgxSpinnerService,
@@ -30,16 +38,16 @@ export class CrawlComponent implements OnInit {
               private translate: TranslateService) {
   }
 
-  getListConfigCrawl() {
-    this.http.get('/api/admin/crawl/all-config')
+  getListCrawl() {
+    this.http.get(`/api/admin/crawl/all-job?page=${this.pagination.page - 1}&size=${this.pagination.size}`)
       .subscribe((res: any) => {
-        this.emails = res.map((item: { email: any; }) => item.email);
-        this.params.email = this.emails[0];
+        this.listCrawl = res.content;
+        this.pagination.total = res.totalElements;
       });
   }
 
   ngOnInit(): void {
-    this.getListConfigCrawl();
+    this.getListCrawl();
   }
 
   getData() {

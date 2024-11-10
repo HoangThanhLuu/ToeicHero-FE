@@ -237,14 +237,16 @@ const routes: Routes = [
         path: 'crawl',
         children: [
           {
-            path: 'list',
-            component: CrawlDataComponent
-          }, {
-            path: 'config',
-            component: CrawlConfigComponent
-          }, {
             path: 'get',
             component: CrawlComponent
+          },
+           {
+            path: 'config',
+            component: CrawlConfigComponent
+          },
+          {
+            path: 'list',
+            component: CrawlDataComponent
           }
         ]
       }, {

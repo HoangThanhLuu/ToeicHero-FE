@@ -3,10 +3,10 @@ import {CONSTANT} from "../../../common/constant";
 import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {NgxSpinnerService} from "ngx-spinner";
-import {BsModalRef} from "ngx-bootstrap/modal";
 import {TranslateService} from "@ngx-translate/core";
 import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
 import {finalize} from "rxjs";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-history-upload-firebase',
@@ -19,19 +19,25 @@ export class HistoryUploadFirebaseComponent implements OnInit {
   totalElements = 0;
   listUpload: any = [];
   formatDate = CONSTANT.formatDate;
+  formatDate2 = 'dd-MM-yyyy';
   timeZone = CONSTANT.timeZone;
   totalSize = 0;
+  maxDate: Date = new Date();
+  rangeDate: Array<Date> = [new Date(new Date().setDate(new Date().getDate() - 7)), new Date()];
+
   params: any = {
     page: 1,
     size: 10,
     sort: 'desc',
-    type: 'all'
+    type: 'all',
+    dateFrom: '',
+    dateTo: ''
   };
   listType = [
     {
       value: 'all',
       label: 'Tất cả'
-   },
+    },
     {
       value: 'audio',
       label: 'Audio'
@@ -41,7 +47,7 @@ export class HistoryUploadFirebaseComponent implements OnInit {
       label: 'Hình ảnh'
     },
   ];
-  listSort =[
+  listSort = [
     {
       value: 'desc',
       label: 'Giảm dần'
@@ -64,11 +70,11 @@ export class HistoryUploadFirebaseComponent implements OnInit {
   }
 
   getListHistoryUpload() {
-    this.http.get(`api/firebase/history/all?page=${this.params.page-1}&size=${this.params.size}&sort=${this.params.sort}&type=${this.params.type}`)
+    this.http.get(`api/firebase/history/all?page=${this.params.page - 1}&size=${this.params.size}&sort=${this.params.sort}&type=${this.params.type}&dateFrom=${this.params.dateFrom}&dateTo=${this.params.dateTo}&sort=${this.params.sort}`)
       .subscribe((res: any) => {
         this.listUpload = res.data.result.content;
         this.totalElements = res.data.result.totalElements;
-        this.totalSize = res. data.totalSize;
+        this.totalSize = res.data.totalSize;
       });
   }
 
@@ -82,24 +88,28 @@ export class HistoryUploadFirebaseComponent implements OnInit {
     this.params.page = 1;
     this.getListHistoryUpload();
   }
+
   onChangeType(event: any) {
     this.params.page = 1;
     this.params.size = 10;
     this.params.type = event;
     this.getListHistoryUpload();
   }
+
   onChangeSort(event: any) {
     this.params.sort = event;
     this.getListHistoryUpload();
   }
-  isAudio(fileType: string){
+
+  isAudio(fileType: string) {
     return fileType.startsWith('audio');
   }
 
   isImage(fileType: string) {
     return fileType.startsWith('image');
   }
-  deleteHistoryUpload(id: number){
+
+  deleteHistoryUpload(id: number) {
     const confirmModal: NzModalRef = this.modal.create({
       nzTitle: `Xác nhận`,
       nzContent: `Bạn có muốn xóa File Upload này không?`,
@@ -136,7 +146,15 @@ export class HistoryUploadFirebaseComponent implements OnInit {
         }
       ]
     });
+  }
 
+  onChangeDate(date: any) {
+    this.params.dateFrom = this.getFormatDate(date[0], this.formatDate2);
+    this.params.dateTo = this.getFormatDate(date[1], this.formatDate2);
+    this.getListHistoryUpload();
+  }
 
+  getFormatDate(value: Date, formatString: string) {
+    return new DatePipe('en_US').transform(value, formatString, this.timeZone);
   }
 }

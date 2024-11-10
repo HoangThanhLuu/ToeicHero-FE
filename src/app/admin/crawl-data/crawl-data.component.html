@@ -6,14 +6,36 @@
 <div class="col-lg-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
-      <nz-form-item>
-        <nz-form-label [nzSpan]="1">Lọc</nz-form-label>
-        <nz-form-control [nzSpan]="5" nzHasFeedback>
-          <nz-select name="select-status" [(ngModel)]="params.status" (ngModelChange)="onChange($event)">
-            <nz-option *ngFor="let status of listStatus" [nzValue]="status.value" [nzLabel]="status.label"></nz-option>
-          </nz-select>
-        </nz-form-control>
-      </nz-form-item>
+      <div nz-row>
+        <nz-form-item nz-col nzSpan="6" class="me-3">
+          <nz-form-label > <i class="fa-solid fa-filter me-2"></i> Lọc theo trạng thái </nz-form-label>
+          <nz-form-control>
+            <nz-select name="select-status" [(ngModel)]="params.status" (ngModelChange)="onChange($event)">
+              <nz-option *ngFor="let status of listStatus" [nzValue]="status.value" [nzLabel]="status.label"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-col nzSpan="6" class="me-3">
+          <nz-form-label>Lọc theo ngày</nz-form-label>
+          <nz-form-control>
+            <div class="input-group ">
+              <span class="input-group-text"><i class="fa-regular fa-clock"></i></span>
+              <input
+                class="form-control txt-event-date"
+                placeholder="dd-MM-yyyy"
+                name="drp"
+                [(ngModel)]="rangeDate"
+                bsDaterangepicker readonly
+                [bsConfig]="{ isAnimated: true, adaptivePosition: true  }"
+                [outsideClick]="true"
+                [maxDate]="maxDate"
+                (bsValueChange)="onChangeDate($event)"
+              />
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+
       <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
           <thead>
@@ -23,6 +45,7 @@
             <th> Thời gian bắt đầu crawl</th>
             <th> Thời gian hoàn thành crawl</th>
             <th> Trạng thái</th>
+            <th> Mô tả </th>
             <th> Đường link</th>
           </tr>
           </thead>
@@ -32,7 +55,8 @@
             <td>{{ data.examName }}</td>
             <td>{{ data.startTime | date : formatDate: timeZone }}</td>
             <td>{{ data.endTime | date : formatDate: timeZone}}</td>
-            <td>{{ data.jobStatus }}</td>
+            <td>{{ data.jobStatus  | translate}}</td>
+            <td> {{ data.description | translate}}</td>
             <td>{{ data.jobLink }}</td>
           </tr>
           </tbody>
@@ -42,6 +66,7 @@
         <nz-pagination
           [(nzPageIndex)]="this.params.page"
           [nzTotal]="totalElements"
+          [nzShowTotal]="rangeTemplate"
           nzShowSizeChanger
           [(nzPageSize)]="this.params.size"
           (nzPageIndexChange)="changePage($event)"
@@ -51,3 +76,6 @@
     </div>
   </div>
 </div>
+<ng-template #rangeTemplate let-range="range" let-total>
+  {{ range[0] }}-{{ range[1] }} of {{ total }} items
+</ng-template>
