@@ -26,13 +26,12 @@
                    name="summary" placeholder="Nhập tóm tắt " [(ngModel)]="params.summary">
           </div>
         </div>
-        <div class="form-group mt-2">
-          <label> Nội dung: </label>
-          <div class="col-sm-11">
-            <textarea type="text" class="form-control"
-                      [ngClass]="{'error-input-custom': showBorderError[2]}" id="content"
-                   name="content" placeholder="Nhập nội dung" [(ngModel)]="params.content"></textarea>
-          </div>
+        <div class="form-group">
+          <label > Nội dung </label>
+          <editor apiKey="01d1ysvvu8ltpjkbz1sn01lv6t5mu5wz0x6duazjsk6n6r66"
+                  [(ngModel)]="params.content"
+                  [init]="tinymceConfig"
+          ></editor>
         </div>
         <div class="form-group">
           <label> Ảnh </label>

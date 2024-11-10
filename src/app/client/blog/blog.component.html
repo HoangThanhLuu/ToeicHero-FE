@@ -1,0 +1,52 @@
+<div class="container">
+  <h2 class="text-center text-uppercase mt-3 mb-2">Cải thiện kỹ năng Tiếng Anh mỗi ngày:
+    <br/>Khám phá những bí quyết và tips hữu ích!</h2>
+  <div class="row">
+    <div class="col-9">
+      <div class="d-flex flex-column">
+        <ng-container *ngFor="let post of listBlog">
+          <div class="d-flex g-2" (click)="blogDetail(post.blogId)">
+            <img [nzSrc]="post.thumbnail" class="border-0" nz-image
+                 style="height: 100px; width: 100px; object-fit: contain;" alt="toeicute"/>
+            <div class="d-flex flex-column justify-content-center ms-3">
+              <h4 class="text-capitalize fw-bold pointer">{{ post.title }}</h4>
+              <span class="fs-5">{{ post.summary }}</span>
+              <small class="fs-6">Ngày đăng: {{ post.createdAt | date : formatDate: timeZone }} | Tác
+                giả: {{ post.author }}</small>
+            </div>
+          </div>
+          <hr/>
+        </ng-container>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="d-flex flex-row justify-content-center">Bài viết mới nhất</h5>
+          <hr/>
+          <ng-container *ngFor="let data of listBlog">
+            <div class="d-flex g-2" (click)="blogDetail(data.blogId)">
+              <img [nzSrc]="data.thumbnail" class="border-0" nz-image
+                   style="height: 50px; width: 50px; object-fit: contain;" alt="toeicute"/>
+              <div class="d-flex flex-column justify-content-center ms-2">
+                <h6 class="text-capitalize fw-bold pointer">{{ data.title }}</h6>
+                <small class="fs-6">{{ data.createdAt | date : formatDate: timeZone }} </small>
+              </div>
+            </div>
+            <hr/>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mt-2 d-flex flex-row-reverse mb-3">
+    <nz-pagination
+      [(nzPageIndex)]="this.params.page"
+      [nzTotal]="totalElements"
+      nzShowSizeChanger
+      [(nzPageSize)]="this.params.size"
+      (nzPageIndexChange)="changePage($event)"
+      (nzPageSizeChange)="changeSize($event)"
+    ></nz-pagination>
+  </div>
+</div>

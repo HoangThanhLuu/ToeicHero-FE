@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-9">
+      <div class="d-flex flex-column">
+        <ng-container *ngIf=" detailBlog">
+          <h1 class="d-flex flex-row justify-content-center mt-3">{{ detailBlog?.title }}</h1>
+          <div class="d-flex g-2">
+            <img src="./assets/images/logo.jpg" class="rounded-circle d-none d-lg-block"
+                 width="50" height="50" style="object-fit: contain;">
+            <div class="d-flex flex-column justify-content-center ms-3">
+              <h6>{{ detailBlog?.author }}</h6>
+              <small>{{ detailBlog?.createdAt | date : formatDate: timeZone }}</small>
+            </div>
+          </div>
+          <hr/>
+          <div [innerHTML]="detailBlog?.content"></div>
+        </ng-container>
+      </div>
+    </div>
+    <div class="col-3 mt-3">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="d-flex flex-row justify-content-center">Bài viết mới nhất</h5>
+          <hr/>
+          <ng-container *ngFor="let data of listBlog">
+            <div class="d-flex g-2" (click)="blogDetail(data.blogId)">
+              <img [nzSrc]="data.thumbnail" class="border-0" nz-image
+                   style="height: 50px; width: 50px; object-fit: contain;" alt="toeicute"/>
+              <div class="d-flex flex-column justify-content-center ms-2">
+                <h6 class="text-capitalize fw-bold pointer">{{ data.title }}</h6>
+                <small class="fs-6">{{ data.createdAt | date : formatDate: timeZone }} </small>
+              </div>
+            </div>
+            <hr/>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

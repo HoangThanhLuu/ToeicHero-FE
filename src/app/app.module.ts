@@ -33,6 +33,7 @@ import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
 import {TinyServiceService} from "./common/tiny-service.service";
+import {ProfileService} from "./common/profile.service";
 
 registerLocaleData(en);
 @NgModule({
@@ -104,7 +105,8 @@ registerLocaleData(en);
       } as SocialAuthServiceConfig,
     },
     provideAnimations(),
-    TinyServiceService
+    TinyServiceService,
+    ProfileService
   ],
   exports: [FontAwesomeModule],
   bootstrap: [AppComponent],

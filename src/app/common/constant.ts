@@ -6,5 +6,6 @@ export const FACEBOOK_APP_ID = isDevMode() ? '826944865787994' : '35077977099789
 
 export const CONSTANT = {
     formatDate: 'dd-MM-yyyy H:mm:ss',
+    formatDate2: 'dd-MM-yyyy ',
     timeZone: '+0700'
 }

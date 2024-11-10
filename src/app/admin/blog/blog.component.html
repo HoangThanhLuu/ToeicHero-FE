@@ -24,7 +24,6 @@
         <tr>
           <th> Tác giả </th>
           <th> Tiêu đề </th>
-          <th> Nội dung </th>
           <th> Tóm tắt </th>
           <th> Hình ảnh </th>
           <th> Ngày tạo </th>
@@ -36,15 +35,15 @@
         <ng-container *ngFor="let data of borderedTable.data">
           <tr>
             <td>{{ data.author }}</td>
-            <td>{{ data.title }}</td>
-            <td nzEllipsis [popover]="data.content">{{ data.content }}</td>
+            <td nzEllipsis [popover]="data.title">{{ data.title }}</td>
             <td>{{ data.summary }}</td>
             <td><img nz-image [nzSrc]="data.thumbnail" style="height: 100px; width: 100px;" [alt]="data?.thumbnail"></td>
             <td>{{ data.createdAt | date : formatDate: timeZone }}</td>
             <td>{{ data.updatedAt | date : formatDate: timeZone }}</td>
             <td>
               <button class="btn btn-success btn-rounded btn-sm me-2 " (click)="update(data)"> Sửa</button>
-              <button class="btn btn-danger btn-rounded btn-sm" (click)="deleteBlog(data.blogId)"> Xóa</button>
+              <button class="btn btn-primary btn-rounded btn-sm me-2" (click)="openDetail(data)" > Xem</button>
+              <button class="btn btn-danger btn-rounded btn-sm mt-2" (click)="deleteBlog(data.blogId)"> Xóa</button>
             </td>
           </tr>
         </ng-container>

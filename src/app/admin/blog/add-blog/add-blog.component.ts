@@ -4,11 +4,13 @@ import {ToastrService} from "ngx-toastr";
 import {NgxSpinnerService} from "ngx-spinner";
 import {BsModalRef} from "ngx-bootstrap/modal";
 import {TranslateService} from "@ngx-translate/core";
+import {AdminLibBaseCss3, AdminStyle2} from "../../admin.style";
+import {TinyServiceService} from "../../../common/tiny-service.service";
 
 @Component({
   selector: 'app-add-blog',
   templateUrl: './add-blog.component.html',
-  styleUrls: ['./add-blog.component.scss']
+  styleUrls: ['./add-blog.component.scss',...AdminLibBaseCss3, ...AdminStyle2]
 })
 export class AddBlogComponent implements OnInit{
   @Input() title: string = "Thêm Blog: ";
@@ -21,6 +23,7 @@ export class AddBlogComponent implements OnInit{
   showBorderError: any = [];
   formData = new FormData();
   fileImage: string | null = null;
+  tinymceConfig: any;
   params: any ={
     blogId: '',
     author: '',
@@ -36,7 +39,9 @@ export class AddBlogComponent implements OnInit{
               private toastr: ToastrService,
               private spinnerService: NgxSpinnerService,
               private bsModalRef: BsModalRef,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private tinyService: TinyServiceService) {
+    this.tinymceConfig = tinyService.getTinyConfig();
   }
 
   ngOnInit(): void {

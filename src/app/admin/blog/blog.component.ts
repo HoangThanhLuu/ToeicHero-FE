@@ -8,11 +8,13 @@ import {ToastrService} from "ngx-toastr";
 import {AddBlogComponent} from "./add-blog/add-blog.component";
 import {finalize} from "rxjs";
 import {CONSTANT} from "../../common/constant";
+import {DetailBlogComponent} from "./detail-blog/detail-blog.component";
 
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
   styleUrls: ['./blog.component.scss']
+
 })
 export class BlogComponent implements OnInit{
   title: string = 'Quản lý Blog';
@@ -36,7 +38,7 @@ export class BlogComponent implements OnInit{
       label: 'Tăng dần'
     }
   ];
-
+  content: string = '';
   constructor(
     private bsModalService: BsModalService,
     private http: HttpClient,
@@ -147,6 +149,15 @@ export class BlogComponent implements OnInit{
     this.params.sort = event;
     this.getBlog();
   }
-
+  openDetail(data: any) {
+    this.bsModalService.show(DetailBlogComponent, {
+      class: 'modal-lg modal-dialog-centered',
+      initialState: {
+        content: data.content
+      }
+    });
+  }
   protected readonly JSON = JSON;
+
+
 }

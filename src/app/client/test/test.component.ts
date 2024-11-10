@@ -1,14 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
-import {NzModalService} from "ng-zorro-antd/modal";
 import {BsModalService} from "ngx-bootstrap/modal";
 import {NgxSpinnerService} from "ngx-spinner";
-import {GetHeaderService} from "../../common/get-headers/get-header.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {finalize} from "rxjs";
-import {AuthService} from "../../auth.service";
 import {LoginComponent} from "../login/login.component";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-test',
@@ -123,12 +121,13 @@ export class TestComponent implements OnInit {
     '[Part 7] Dạng bài: List/ Menu: Danh sách/ Thực đơn'
   ]
   colorTag = '#ede7ea';
+  data: any[] = [];
+  examId: number = 0;
 
   constructor(private toast: ToastrService,
               private http: HttpClient,
               private bsModalService: BsModalService,
               private spinnerService: NgxSpinnerService,
-              private getHeaderService: GetHeaderService,
               private router: Router,
               private route: ActivatedRoute) {
   }
@@ -137,8 +136,8 @@ export class TestComponent implements OnInit {
     // get exam from url
     this.spinnerService.show();
     this.route.params.subscribe(params => {
-      const examId = params['examId'];
-      this.http.get(`/api/exam/find-by-id/${examId}`)
+      this.examId = params['examId'];
+      this.http.get(`/api/exam/find-by-id/${this.examId}`)
         .pipe(finalize(() => {
           this.spinnerService.hide();
         }))
@@ -181,10 +180,7 @@ export class TestComponent implements OnInit {
   }
 
   startFullTest() {
-    const headers = this.getHeaderService.getHeaderAuthentication();
-    this.http.get('/api/user/get-profile', {
-      headers
-    })
+    this.http.get('/api/user/get-profile')
       .subscribe((res: any) => {
         if (res?.success) {
           window.location.href = `${window.location.href}/start`;
@@ -209,10 +205,7 @@ export class TestComponent implements OnInit {
       this.startFullTest();
       return;
     }
-    const headers = this.getHeaderService.getHeaderAuthentication();
-    this.http.get('/api/user/get-profile', {
-      headers
-    })
+    this.http.get('/api/user/get-profile')
       .subscribe((res: any) => {
         if (res?.success) {
           const listPart = this.checkOptionsOne.filter(item => item.checked).map(item => item.value);
@@ -232,4 +225,6 @@ export class TestComponent implements OnInit {
         }
       });
   }
+
+
 }

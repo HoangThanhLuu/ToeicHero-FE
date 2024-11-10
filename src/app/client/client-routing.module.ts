@@ -13,6 +13,8 @@ import {ClientGuardGuard} from "../client-guard.guard";
 import {HistoryExamComponent} from "./history-exam/history-exam.component";
 import {HistoryExamDetailComponent} from "./history-exam/history-exam-detail/history-exam-detail.component";
 import {ResetPasswordComponent} from "./login/reset-password/reset-password.component";
+import {BlogComponent} from "./blog/blog.component";
+import {DetailBlogComponent} from "./blog/detail-blog/detail-blog.component";
 
 const routes: Routes = [
   {
@@ -32,7 +34,20 @@ const routes: Routes = [
       }, {
         path: 'list-test',
         component: ListTestComponent
-      }, {
+      },
+      {
+        path: 'blog',
+        component: BlogComponent
+      },
+      {
+        path: 'detail-blog/:blogId',
+        children: [
+          {
+            path: '',
+            component: DetailBlogComponent
+          }
+        ],
+      },{
         path: 'profile',
         canActivate: [ClientGuardGuard],
         component: ProfileComponent

@@ -4,12 +4,11 @@ import {HttpClient} from "@angular/common/http";
 import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
 import {BsModalService} from "ngx-bootstrap/modal";
 import {NgxSpinnerService} from "ngx-spinner";
-import {GetHeaderService} from "../../common/get-headers/get-header.service";
 import {ChangePasswordComponent} from "./change-password/change-password.component";
 import {UpdateProfileComponent} from "./update-profile/update-profile.component";
-import {AuthService} from "../../auth.service";
 import {switchMap, tap, catchError, finalize} from 'rxjs/operators';
 import {of} from 'rxjs';
+import {ProfileService} from "../../common/profile.service";
 
 @Component({
   selector: 'app-profile',
@@ -27,39 +26,10 @@ export class ProfileComponent implements OnInit {
               private modal: NzModalService,
               private bsModalService: BsModalService,
               private spinner: NgxSpinnerService,
-              private auth: AuthService,
-              private getHeaderService: GetHeaderService) {
+              public profileService: ProfileService) {
   }
 
   ngOnInit(): void {
-    const token = this.auth.getToken();
-    const isLogin = token ? !this.auth.isTokenExpired(token) : false;
-
-    if (isLogin) {
-      const profile = localStorage.getItem('profile');
-      if (profile) {
-        this.currentUser = JSON.parse(profile);
-        this.avatarSrc = this.currentUser?.avatar;
-      } else {
-        const headers = this.getHeaderService.getHeaderAuthentication();
-        this.http.get('/api/user/get-profile', {
-          headers
-        })
-          .subscribe((res: any) => {
-            if (res?.success) {
-              const profile = {
-                avatar: res?.data?.avatar,
-                email: res?.data?.email,
-                fullName: res?.data?.fullName,
-                userId: res?.data?.userId,
-              };
-              localStorage.setItem('profile', JSON.stringify(profile));
-              this.currentUser = profile;
-              this.avatarSrc = this.currentUser?.avatar;
-            }
-          });
-      }
-    }
   }
 
   openFormEditInfo() {

@@ -82,6 +82,7 @@ import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
 import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
 import { BlogComponent } from './blog/blog.component';
 import { AddBlogComponent } from './blog/add-blog/add-blog.component';
+import { DetailBlogComponent } from './blog/detail-blog/detail-blog.component';
 
 @NgModule({
     declarations: [
@@ -139,8 +140,8 @@ import { AddBlogComponent } from './blog/add-blog/add-blog.component';
         UpdateTopicComponent,
         HistoryUploadFirebaseComponent,
         TranscriptDetailComponent,
-        BlogComponent,
-        AddBlogComponent
+        AddBlogComponent,
+        BlogComponent
     ],
   imports: [
     CommonModule,
@@ -175,7 +176,7 @@ import { AddBlogComponent } from './blog/add-blog/add-blog.component';
   ],
     exports: [
         PageHeaderComponent,
-        AudioPlayerComponent
+        AudioPlayerComponent,
     ]
 })
 export class AdminModule {

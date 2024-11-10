@@ -9,9 +9,9 @@
               <div class="dropdown" (mouseenter)="showDropdown = true" (mouseleave)="showDropdown = false">
                 <a href="javascript:;" class="dropdown-toggle" role="button"
                    data-bs-toggle="dropdown" aria-expanded="false">
-                  <img [nzSrc]="avatarSrc"
+                  <img [nzSrc]="this.profileService.currentUser.avatar"
                        nz-image
-                       tooltip="click vào để xem ảnh đại diện" [alt]="currentUser?.email"
+                       tooltip="click vào để xem ảnh đại diện" [alt]="this.profileService.currentUser?.fullName"
                        class="p-1 bg-primary rounded-circle nav-link dropdown-toggle" role="button"
                        data-bs-toggle="dropdown"
                        aria-expanded="false"

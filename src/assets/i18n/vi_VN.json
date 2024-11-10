@@ -104,6 +104,10 @@
     "BLOG_NOT_FOUND" : "Bài viết không tìm thấy",
     "UPDATE_BLOG_SUCCESS" : "Cập nhật bài viết thành công",
     "DELETE_BLOG_SUCCESS" : "Xóa bài viết thành công"
+  },
+  "CMT": {
+    "USER_NOT_LOGIN": "Bạn chưa đăng nhập!",
+    "CREATE_COMMENT_SUCCESS": "Bình luận thành công!"
   }
 }
 

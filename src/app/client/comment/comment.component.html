@@ -1,0 +1,14 @@
+<nz-comment>
+  <nz-avatar nz-comment-avatar nzIcon="user" [nzSrc]="profileService.currentUser?.avatar"></nz-avatar>
+  <nz-comment-content>
+    <nz-form-item>
+      <textarea [(ngModel)]="params.content" nz-input rows="4"></textarea>
+    </nz-form-item>
+    <nz-form-item>
+      <button nz-button nzType="primary" [nzLoading]="submitting" [disabled]="!params.content"
+              (click)="checkLoginBeforeCmt()">
+        Bình luận
+      </button>
+    </nz-form-item>
+  </nz-comment-content>
+</nz-comment>
