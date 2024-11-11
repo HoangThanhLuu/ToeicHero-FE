@@ -23,10 +23,7 @@ export class UserActivityComponent implements OnInit {
   };
 
   constructor(private http: HttpClient,
-              private spinner: NgxSpinnerService,
-              private translate: TranslateService) {
-    this.translate.setDefaultLang('en_US');
-    this.translate.use('en_US');
+              private spinner: NgxSpinnerService) {
   }
 
   ngOnInit(): void {
