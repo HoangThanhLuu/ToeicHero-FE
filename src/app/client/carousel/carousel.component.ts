@@ -1,14 +1,11 @@
 import {
-  AfterViewInit,
   Component,
   OnDestroy,
   OnInit,
-  ViewChild
 } from '@angular/core';
-import {OwlOptions} from "ngx-owl-carousel-o";
-import {CarouselService} from "ngx-owl-carousel-o/lib/services/carousel.service";
-import {NgwWowService} from "ngx-wow";
-import {HttpClient} from "@angular/common/http";
+import {OwlOptions} from 'ngx-owl-carousel-o';
+import {NgwWowService} from 'ngx-wow';
+import {HttpClient} from '@angular/common/http';
 
 declare var $: any;
 
@@ -17,8 +14,8 @@ declare var $: any;
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.css']
 })
-export class CarouselComponent implements AfterViewInit, OnDestroy, OnInit {
-  listSilider: any = [];
+export class CarouselComponent implements OnDestroy, OnInit {
+  listSlider: any = [];
 
   constructor(private wowService: NgwWowService,
               private http: HttpClient,) {
@@ -28,14 +25,13 @@ export class CarouselComponent implements AfterViewInit, OnDestroy, OnInit {
   images = ['assets/images/carousel-1.jpg', 'assets/images/carousel-4.jpg', 'assets/images/carousel-5.jpg'];
 
   ngOnInit(): void {
-    this.getSLider();
+    this.getSlider();
   }
 
-  getSLider(): void {
+  getSlider(): void {
     this.http.get('api/slider/all')
       .subscribe((res: any) => {
-        this.listSilider = res.content;
-        console.log(res);
+        this.listSlider = res.content;
       });
   }
 
@@ -48,18 +44,6 @@ export class CarouselComponent implements AfterViewInit, OnDestroy, OnInit {
     nav: true,
     navText: ['<i class="bi bi-chevron-left"></i>', '<i class="bi bi-chevron-right"></i>'],
   };
-
-  ngAfterViewInit(): void {
-    // $('.header-carousel').owlCarousel({
-    //   autoplay: true,
-    //   smartSpeed: 1500,
-    //   items: 1,
-    //   dots: false,
-    //   loop: true,
-    //   nav: true,
-    //   navText: ['<i class="bi bi-chevron-left"></i>', '<i class="bi bi-chevron-right"></i>']
-    // });
-  }
 
   ngOnDestroy(): void {
   }

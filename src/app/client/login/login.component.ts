@@ -1,8 +1,22 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output
+} from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators
+} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {matchpassword} from "./matchpassword.validator";
-import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
+import {
+  BsModalRef,
+  BsModalService
+} from "ngx-bootstrap/modal";
 import {OtpConfirmComponent} from "./otp-confirm/otp-confirm.component";
 import {ToastrService} from "ngx-toastr";
 import {NgxSpinnerService} from "ngx-spinner";
@@ -16,6 +30,7 @@ import {finalize} from "rxjs";
 import {TranslateService} from "@ngx-translate/core";
 import {UpdateKommunicateComponent} from "../../admin/kommunicate/update-kommunicate/update-kommunicate.component";
 import {ForgotPasswordComponent} from "./forgot-password/forgot-password.component";
+import {ProfileService} from "../../common/profile.service";
 
 @Component({
   selector: 'app-login',
@@ -34,14 +49,16 @@ export class LoginComponent implements OnInit, OnDestroy {
   registerForm: FormGroup;
   loginForm = {
     email: '',
-    password: ''
+    password: '',
+    captcha: ''
   };
+  captchaImg: any;
 
 
   constructor(private formBuilder: FormBuilder,
               private http: HttpClient,
               private bs: BsModalService,
-              private modal: NzModalService,
+              private profileService: ProfileService,
               private bsModalRef: BsModalRef,
               private spinnerService: NgxSpinnerService,
               private socialAuthService: SocialAuthService,
@@ -60,30 +77,37 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.spinnerService.show().then(r => r);
-    this.http.get('/api/user/is-login')
-      .pipe(finalize(() => this.spinnerService.hide()))
+    if (this.profileService.isLogin) {
+      this.bsModalRef.hide();
+      window.location.href = '/home';
+    } else {
+      this.socialAuthService.authState
+        .subscribe((res) => {
+          this.user = res;
+          if (res) {
+            if (res.provider == 'GOOGLE') {
+              const params = {
+                email: res?.email,
+                fullName: res?.name,
+                avatar: res?.photoUrl,
+                provider: res?.provider,
+              };
+              this.loginWithSocial(params);
+            }
+          }
+        });
+      this.getCaptcha();
+    }
+  }
+
+  getCaptcha() {
+    this.http.get('/api/user/get-captcha', {responseType: 'blob'})
       .subscribe((res: any) => {
-        if (res?.success && res?.data) {
-          this.bsModalRef.hide();
-          window.location.href = '/home';
-        } else {
-          this.socialAuthService.authState
-            .subscribe((res) => {
-              this.user = res;
-              if (res) {
-                if (res.provider == 'GOOGLE') {
-                  const params = {
-                    email: res?.email,
-                    fullName: res?.name,
-                    avatar: res?.photoUrl,
-                    provider: res?.provider,
-                  };
-                  this.loginWithSocial(params);
-                }
-              }
-            });
-        }
+        const reader = new FileReader();
+        reader.readAsDataURL(res);
+        reader.onloadend = () => {
+          this.captchaImg = reader.result;
+        };
       });
   }
 
@@ -97,7 +121,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.toast.error(this.message);
       return;
     }
-    this.spinnerService.show();
+    this.spinnerService.show().then();
     const email = this.registerForm.get('email')?.value ?? '';
     this.http.post('/api/user/register', this.registerForm.value)
       .pipe(
@@ -108,7 +132,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       .subscribe((res: any) => {
         if (res?.success) {
           this.showConfirmOTP(email);
-		  this.registerForm.reset();
+          this.registerForm.reset();
         } else {
           const msg = this.translate.instant(`USER.${res?.message}`);
           this.toast.error(msg);
@@ -202,11 +226,11 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.toast.error(msg);
       return;
     }
-    this.spinnerService.show();
+    this.spinnerService.show().then();
     this.http.post("/api/user/authenticate", this.loginForm)
       .pipe(finalize(() => this.spinnerService.hide()))
       .subscribe((res: any) => {
-        this.spinnerService.hide();
+        this.spinnerService.hide().then();
         if (!res?.success) {
           const msg = this.translate.instant(`USER.${res?.message}`);
           this.toast.error(msg);
@@ -289,6 +313,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
 
   }
+
   forgetPassword() {
     const bsModalResult = this.bs.show(ForgotPasswordComponent, {
       class: 'modal-lg modal-dialog-centered',
@@ -298,7 +323,6 @@ export class LoginComponent implements OnInit, OnDestroy {
         }
       }
     });
-
   }
 }
 
