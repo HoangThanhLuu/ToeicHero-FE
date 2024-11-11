@@ -1,5 +1,6 @@
 import {
   Component,
+  Input,
   OnInit
 } from '@angular/core';
 import {CONSTANT} from "../../../common/constant";
@@ -21,6 +22,7 @@ import {BsModalService} from "ngx-bootstrap/modal";
   styleUrls: ['./history-transcript.component.scss', ...AdminLibBaseCss3, ...AdminStyle2]
 })
 export class HistoryTranscriptComponent implements OnInit {
+  @Input() isShowPageHeader: boolean = true;
   title: string = "Lịch sử transcript";
   currentPage: string = "History transcript";
   list: any = [];

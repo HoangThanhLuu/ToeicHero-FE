@@ -14,38 +14,29 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./sidebar.component.css', ...AdminStyle, ...AdminLibBaseCss2]
 })
 export class SidebarComponent implements OnInit {
-
-  navItemActive: string = 'dashboard';
-  stateMenu: boolean[] = Array(10).fill(false);
-
+  listMenu: MenuGroup[] = [];
+  listMemberMenu: MenuGroup[] = [];
+  listSystemMenu: MenuGroup[] = [];
+  listMenuGroupBlank: number[] = [9];
   constructor(private http: HttpClient) {
   }
 
   ngOnInit(): void {
-    this.getNavItems();
-
+    this.getMenus();
   }
 
-  private getNavItems(): void {
-    const url = window.location.href;
-    if (url.includes('dashboard') || url.includes('home')) {
-      this.navItemActive = 'dashboard';
-    } else if (url.includes('users')) {
-      this.navItemActive = 'users';
-    } else if (url.includes('topic')) {
-      this.navItemActive = 'topic';
-    } else if (url.includes('exam') || url.includes('question')) {
-      this.navItemActive = 'exam';
-    } else if (url.includes('score')) {
-      this.navItemActive = 'score';
-    } else if (url.includes('logout')) {
-      this.navItemActive = 'logout';
-    } else if (url.includes('firebase') || url.includes('update-firebase')) {
-      this.navItemActive = 'firebase';
-    }
+  getMenus(): void {
+    this.http.get<MenuGroup[]>('api/left-menu/get')
+      .subscribe(data => {
+        this.listMenu = data;
+        this.listMemberMenu = data.filter(menu => menu.type === 'MEMBER');
+        this.listSystemMenu = data.filter(menu => menu.type === 'SYSTEM');
+      });
   }
 
-
+  expendMenu(menu: MenuGroup) {
+    menu.expanded = !menu.expanded;
+  }
 }
 
 export interface MenuGroup {
@@ -55,9 +46,11 @@ export interface MenuGroup {
   roles: string;
   icon: string;
   priority: number;
+  haveChild: boolean;
+  type: string;
   active: boolean;
   expanded: boolean;
-  leftMenuItems: LeftMenuItem[];
+  leftMenus: LeftMenuItem[];
 }
 
 export interface LeftMenuItem {

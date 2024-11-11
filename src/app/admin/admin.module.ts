@@ -89,6 +89,8 @@ import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
 import {BlogComponent} from './blog/blog.component';
 import {AddBlogComponent} from './blog/add-blog/add-blog.component';
 import {SafeHtmlPipe} from "../common/pipe/safe-html.pipe";
+import { UserActivityComponent } from './users/user-activity/user-activity.component';
+import {NzSpinModule} from "ng-zorro-antd/spin";
 
 @NgModule({
   declarations: [
@@ -147,7 +149,8 @@ import {SafeHtmlPipe} from "../common/pipe/safe-html.pipe";
     HistoryUploadFirebaseComponent,
     TranscriptDetailComponent,
     AddBlogComponent,
-    BlogComponent
+    BlogComponent,
+    UserActivityComponent
   ],
   imports: [
     CommonModule,
@@ -179,7 +182,8 @@ import {SafeHtmlPipe} from "../common/pipe/safe-html.pipe";
     NzWaterMarkModule,
     NzDatePickerModule,
     BsDatepickerModule,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    NzSpinModule
   ],
   exports: [
     PageHeaderComponent,

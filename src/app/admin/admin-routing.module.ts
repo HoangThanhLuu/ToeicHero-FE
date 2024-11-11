@@ -3,51 +3,52 @@ import {
   RouterModule,
   Routes
 } from '@angular/router';
-import {HomeComponent} from "./home/home.component";
-import {AdminComponent} from "./admin.component";
-import {ExamComponent} from "./exam/exam.component";
-import {TopicComponent} from "./topic/topic.component";
-import {UsersComponent} from "./users/users.component";
-import {ExamDetailComponent} from "./exam/exam-detail/exam-detail.component";
-import {QuestionComponent} from "./exam/question/question.component";
-import {ScoreComponent} from "./score/score.component";
-import {AddTopicComponent} from "./topic/add-topic/add-topic.component";
-import {AddExamComponent} from "./exam/add-exam/add-exam.component";
-import {EmailComponent} from "./email/email.component";
-import {FirebaseComponent} from "./firebase/firebase.component";
-import {SliderComponent} from "./slider/slider.component";
-import {TemplateEmailComponent} from "./email/template-email/template-email.component";
-import {UpdateEmailComponent} from "./email/update-email/update-email.component";
-import {UpdateSliderComponent} from "./slider/update-slider/update-slider.component";
-import {UpdateFirebaseComponent} from "./firebase/update-firebase/update-firebase.component";
-import {TranscriptComponent} from "./transcript/transcript.component";
-import {RevAiComponent} from "./rev-ai/rev-ai.component";
-import {UpdateRevaiComponent} from "./rev-ai/update-revai/update-revai.component";
-import {UpdateKommunicateComponent} from "./kommunicate/update-kommunicate/update-kommunicate.component";
-import {KommunicateComponent} from "./kommunicate/kommunicate.component";
-import {GeminiComponent} from "./gemini/gemini.component";
-import {UpdateGeminiComponent} from "./gemini/update-gemini/update-gemini.component";
+import {HomeComponent} from './home/home.component';
+import {AdminComponent} from './admin.component';
+import {ExamComponent} from './exam/exam.component';
+import {TopicComponent} from './topic/topic.component';
+import {UsersComponent} from './users/users.component';
+import {ExamDetailComponent} from './exam/exam-detail/exam-detail.component';
+import {QuestionComponent} from './exam/question/question.component';
+import {ScoreComponent} from './score/score.component';
+import {AddTopicComponent} from './topic/add-topic/add-topic.component';
+import {AddExamComponent} from './exam/add-exam/add-exam.component';
+import {EmailComponent} from './email/email.component';
+import {FirebaseComponent} from './firebase/firebase.component';
+import {SliderComponent} from './slider/slider.component';
+import {TemplateEmailComponent} from './email/template-email/template-email.component';
+import {UpdateEmailComponent} from './email/update-email/update-email.component';
+import {UpdateSliderComponent} from './slider/update-slider/update-slider.component';
+import {UpdateFirebaseComponent} from './firebase/update-firebase/update-firebase.component';
+import {TranscriptComponent} from './transcript/transcript.component';
+import {RevAiComponent} from './rev-ai/rev-ai.component';
+import {UpdateRevaiComponent} from './rev-ai/update-revai/update-revai.component';
+import {UpdateKommunicateComponent} from './kommunicate/update-kommunicate/update-kommunicate.component';
+import {KommunicateComponent} from './kommunicate/kommunicate.component';
+import {GeminiComponent} from './gemini/gemini.component';
+import {UpdateGeminiComponent} from './gemini/update-gemini/update-gemini.component';
 import {
   UpdateTemplateEmailComponent
-} from "./email/template-email/update-template-email/update-template-email.component";
-import {CrawlDataComponent} from "./crawl-data/crawl-data.component";
-import {CrawlConfigComponent} from "./crawl-data/crawl-config/crawl-config.component";
-import {KommunicateBotComponent} from "./kommunicate/kommunicate-bot/kommunicate-bot.component";
+} from './email/template-email/update-template-email/update-template-email.component';
+import {CrawlDataComponent} from './crawl-data/crawl-data.component';
+import {CrawlConfigComponent} from './crawl-data/crawl-config/crawl-config.component';
+import {KommunicateBotComponent} from './kommunicate/kommunicate-bot/kommunicate-bot.component';
 import {
   UpdateKommunicateBotComponent
-} from "./kommunicate/kommunicate-bot/update-kommunicate-bot/update-kommunicate-bot.component";
-import {ConfigRevaiComponent} from "./rev-ai/config-revai/config-revai.component";
-import {UpdateConfigComponent} from "./rev-ai/config-revai/update-config/update-config.component";
-import {CrawlComponent} from "./crawl-data/crawl/crawl.component";
-import {HistoryTranscriptComponent} from "./transcript/history-transcript/history-transcript.component";
-import {TinyComponent} from "./tiny/tiny.component";
-import {UpdateTinyComponent} from "./tiny/update-tiny/update-tiny.component";
-import {ConfigTinyComponent} from "./tiny/config-tiny/config-tiny.component";
-import {UpdateTinyConfigComponent} from "./tiny/config-tiny/update-tiny-config/update-tiny-config.component";
-import {ProfileComponent} from "./profile/profile.component";
-import {HistoryUploadFirebaseComponent} from "./firebase/history-upload-firebase/history-upload-firebase.component";
-import {BlogComponent} from "./blog/blog.component";
-import {AddBlogComponent} from "./blog/add-blog/add-blog.component";
+} from './kommunicate/kommunicate-bot/update-kommunicate-bot/update-kommunicate-bot.component';
+import {ConfigRevaiComponent} from './rev-ai/config-revai/config-revai.component';
+import {UpdateConfigComponent} from './rev-ai/config-revai/update-config/update-config.component';
+import {CrawlComponent} from './crawl-data/crawl/crawl.component';
+import {HistoryTranscriptComponent} from './transcript/history-transcript/history-transcript.component';
+import {TinyComponent} from './tiny/tiny.component';
+import {UpdateTinyComponent} from './tiny/update-tiny/update-tiny.component';
+import {ConfigTinyComponent} from './tiny/config-tiny/config-tiny.component';
+import {UpdateTinyConfigComponent} from './tiny/config-tiny/update-tiny-config/update-tiny-config.component';
+import {ProfileComponent} from './profile/profile.component';
+import {HistoryUploadFirebaseComponent} from './firebase/history-upload-firebase/history-upload-firebase.component';
+import {BlogComponent} from './blog/blog.component';
+import {AddBlogComponent} from './blog/add-blog/add-blog.component';
+import {UserActivityComponent} from './users/user-activity/user-activity.component';
 
 const routes: Routes = [
   {
@@ -94,8 +95,12 @@ const routes: Routes = [
           }
         ]
       }, {
-        path: 'users',
+        path: 'users-management',
         component: UsersComponent
+      },
+      {
+        path: 'users-activity',
+        component: UserActivityComponent
       },
       {
         path: 'question',

@@ -44,68 +44,7 @@
       <div class="mt-3">
         <button class="btn btn-gradient-primary" (click)="getTranscript()">Xác nhận</button>
       </div>
-      <div class="table-responsive mt-3">
-        <h4 class="card-title text-center">Danh sách bộ transcript trong tuần này</h4>
-        <div class="d-flex flex-row-reverse">
-          <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon"
-                  title="Làm mới"
-                  (click)="getListTranscript()"
-          >
-            <i class="mdi mdi-refresh text-danger"></i>
-          </button>
-        </div>
-        <table class="table table-bordered table-striped table-hover mt-2">
-          <thead>
-          <tr>
-            <th> Id</th>
-            <th> Tên bộ transcript</th>
-            <th> Audio</th>
-            <th> Transcript</th>
-            <th> Translate</th>
-            <th> Trạng thái</th>
-            <th> Thời gian</th>
-            <th> #</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let data of list">
-            <td>{{ data.id }}</td>
-            <td style="max-width: 150px;">{{ data.transcriptName }}</td>
-            <td>
-              <audio style="max-width: 250px;" controls>
-                <source [src]="data.transcriptAudio" type="audio/mpeg">
-                Your browser does not support the audio element.
-              </audio>
-            </td>
-            <td class="text-truncate" style="max-width: 150px;" [title]="data.transcriptContent">{{ data.transcriptContent }}</td>
-            <td class="text-truncate" style="max-width: 150px;" [title]="data.transcriptContentTranslate">{{ data.transcriptContentTranslate }}</td>
-            <td style="max-width: 100px;">{{ data.status | translate }}</td>
-            <td>{{ data.createdAt | date : formatDate : timeZone }}</td>
-            <td>
-              <button type="button" class="btn btn-outline-secondary btn-icon" title="Chi tiết" (click)="view(data)">
-                <i class="mdi mdi-call-made text-primary"></i>
-              </button>
-              <button type="button" class="btn btn-outline-secondary btn-icon" title="Tải xuống" (click)="download(data.id)">
-                <i class="mdi mdi-download text-success"></i>
-              </button>
-              <button type="button" class="btn btn-outline-secondary btn-icon" title="Dịch" (click)="translateContent(data.id)">
-                <i class="mdi mdi-google-translate text-dark"></i>
-              </button>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="mt-2 d-flex flex-row-reverse">
-        <nz-pagination
-          [(nzPageIndex)]="this.pagination.page"
-          [nzTotal]="pagination.total"
-          nzShowSizeChanger
-          [(nzPageSize)]="this.pagination.pageSize"
-          (nzPageIndexChange)="changePage($event)"
-          (nzPageSizeChange)="changeSize($event)"
-        ></nz-pagination>
-      </div>
+      <app-history-transcript [isShowPageHeader]="false"></app-history-transcript>
     </div>
   </div>
 </div>

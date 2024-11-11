@@ -1,12 +1,13 @@
 <app-page-header
   [title]="title"
+  [ngClass]="{'d-none': !isShowPageHeader}"
   [currentPage]="currentPage">
 </app-page-header>
 
 <div class="col-lg-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
-      <div nz-row>
+      <div nz-row [ngClass]="{'d-none': !isShowPageHeader}">
         <nz-form-item nz-col nzSpan="6" class="me-3">
           <nz-form-label>Lọc theo trạng thái</nz-form-label>
           <nz-form-control>
@@ -83,7 +84,15 @@
             <td class="text-truncate" style="max-width: 150px;"
                 [title]="data.transcriptContentTranslate">{{ data.transcriptContentTranslate }}
             </td>
-            <td style="max-width: 100px;">{{ data.status | translate }}</td>
+            <td style="max-width: 100px;">
+              <ng-container *ngIf="data.status === 'IN_PROGRESS'">
+                <nz-spin nzTip="data.status | translate"></nz-spin>
+              </ng-container>
+              <ng-container *ngIf="data.status !== 'IN_PROGRESS'">
+                {{ data.status | translate }}
+              </ng-container>
+            </td>
+
             <td>{{ data.createdAt | date : formatDate : timeZone }}</td>
             <td>
               <button type="button" class="btn btn-outline-secondary btn-icon" title="Chi tiết" (click)="view(data)">
