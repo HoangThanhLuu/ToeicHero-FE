@@ -16,9 +16,6 @@ import {ProfileService} from '../../common/profile.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  currentUser: any = {
-
-  };
   avatarSrc: string = '';
   formData = new FormData();
   showDropdown = false;

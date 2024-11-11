@@ -22,6 +22,8 @@ export class ProfileService {
   }
 
   getProfile() {
+    const token = localStorage.getItem('token');
+    if (!token) return;
     this.http.get('/api/user/get-profile')
       .subscribe((res: any) => {
         if (res?.success) {
