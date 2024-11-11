@@ -1,1 +1,92 @@
-<p>user-activity works!</p>
+<app-page-header
+  [title]="title"
+  [currentPage]="currentPage">
+</app-page-header>
+
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <nz-table #borderedTable nzBordered
+                [nzData]="listAction"
+                [nzShowPagination]=false>
+        <thead>
+        <tr>
+          <th> User Name</th>
+          <th> Action</th>
+          <th> Create Date</th>
+          <th> Ip Adress</th>
+          <th> Old Data</th>
+          <th> New Data</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let data of borderedTable.data">
+          <tr>
+            <td>{{ data?.userAccount?.email }}</td>
+            <td>{{ data.action }}</td>
+            <td>{{ data.createdAt | date : formatDate: timeZone }}</td>
+            <td>{{ data.lastIpAddress }}</td>
+            <td>
+              <ng-container *ngIf="data?.oldData">
+                <ng-container *ngIf="data.action == 'UPDATE_AVATAR'">
+                  <img [src]="data.oldData"
+                       width="60px"
+                       height="60px" alt="Image"/>
+                </ng-container>
+                <ng-container *ngIf="data.action != 'UPDATE_AVATAR'">
+                  <ng-container *ngFor="let item of parsedOldData(data.oldData); let i = index">
+                    <ng-container *ngIf="!isLastElement(i, parsedOldData(data.oldData))">
+                      <div>{{ i === 0 ? 'FullName' : i === 1 ? 'Phone' : 'City' }}: {{ item }}</div>
+                    </ng-container>
+                    <ng-container *ngIf="isLastElement(i, parsedOldData(data.oldData))">
+                      <img [src]="item"
+                           width="60px"
+                           height="60px" alt="Image"/>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+              </ng-container>
+            </td>
+            <td>
+              <ng-container *ngIf="data?.newData">
+                <ng-container *ngIf="data.action == 'UPDATE_AVATAR'">
+                  <img [src]="data.newData"
+                       width="60px"
+                       height="60px" alt="Image"/>
+                </ng-container>
+                <ng-container *ngIf="data.action != 'UPDATE_AVATAR'">
+                  <ng-container *ngFor="let item of parsedNewData(data.newData); let i = index">
+                    <ng-container *ngIf="!isLastElement(i, parsedNewData(data.newData))">
+                      <div>{{ i === 0 ? 'FullName' : i === 1 ? 'Phone' : 'City' }}: {{ item }}</div>
+                    </ng-container>
+                    <ng-container *ngIf="isLastElement(i, parsedNewData(data.newData))">
+                      <img [src]="item"
+                           width="60px"
+                           height="60px" alt="Image"/>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+              </ng-container>
+            </td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </nz-table>
+    </div>
+    <div class="mt-2 d-flex flex-row-reverse">
+      <nz-pagination
+        [(nzPageIndex)]="this.params.page"
+        [nzTotal]="totalElements"
+        [nzShowTotal]="rangeTemplate"
+        nzShowSizeChanger
+        [(nzPageSize)]="this.params.size"
+        (nzPageIndexChange)="changePage($event)"
+        (nzPageSizeChange)="changeSize($event)"
+      ></nz-pagination>
+    </div>
+  </div>
+</div>
+<ng-template #rangeTemplate let-range="range" let-total>
+  {{ range[0] }}-{{ range[1] }} of {{ total }} items
+</ng-template>
+
