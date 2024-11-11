@@ -1,10 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {NzModalService} from "ng-zorro-antd/modal";
-import {BsModalService} from "ngx-bootstrap/modal";
 import {NgxSpinnerService} from "ngx-spinner";
 import {AuthService} from "../../../auth.service";
-import {GetHeaderService} from "../../../common/get-headers/get-header.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 import {finalize} from "rxjs";
@@ -14,7 +11,7 @@ import {finalize} from "rxjs";
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.scss']
 })
-export class ChangePasswordComponent implements OnInit {
+export class ChangePasswordComponent {
 
   changePasswordForm: FormGroup;
   param: any = {
@@ -25,12 +22,9 @@ export class ChangePasswordComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private http: HttpClient,
-              private modal: NzModalService,
               private toast: ToastrService,
-              private bsModalService: BsModalService,
               private spinner: NgxSpinnerService,
-              private auth: AuthService,
-              private getHeaderService: GetHeaderService) {
+              private auth: AuthService) {
 
     this.changePasswordForm = this.formBuilder.group({
       currentPassword: ['', Validators.required],
@@ -39,31 +33,27 @@ export class ChangePasswordComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-
-  }
-
   validateParam() {
-    const {currentPassword, newPassword, confirmPassword} = this.param;
+    const { currentPassword, newPassword, confirmPassword } = this.param;
+
     if (newPassword !== confirmPassword) {
       this.toast.error('Mật khẩu mới và mật khẩu xác nhận không trùng khớp');
       return false;
     }
-    // check new password and confirm password length >= 8
-    if (currentPassword.length < 8) {
-      this.toast.error('Mật khẩu hiện tại phải có độ dài lớn hơn hoặc bằng 8 ký tự');
-      return false;
+
+    const passwords = [
+      { key: 'Mật khẩu hiện tại', value: currentPassword },
+      { key: 'Mật khẩu mới', value: newPassword },
+      { key: 'Mật khẩu xác nhận', value: confirmPassword }
+    ];
+
+    for (const { key, value } of passwords) {
+      if (value.length < 8) {
+        this.toast.error(`${key} phải có độ dài lớn hơn hoặc bằng 8 ký tự`);
+        return false;
+      }
     }
 
-    if (newPassword.length < 8) {
-      this.toast.error('Mật khẩu mới phải có độ dài lớn hơn hoặc bằng 8 ký tự');
-      return false;
-    }
-
-    if (confirmPassword.length < 8) {
-      this.toast.error('Mật khẩu xác nhận phải có độ dài lớn hơn hoặc bằng 8 ký tự');
-      return false;
-    }
     return true;
   }
 

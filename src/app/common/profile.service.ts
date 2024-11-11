@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient} from '@angular/common/http';
+import {Profile} from './model/Profile';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
-  currentUser: any;
-  paramUser: any = {
+  currentUser: Profile = new Profile();
+  paramUser: Profile = {
     fullName: '',
     email: '',
     avatar: '/assets/images/default-avatar.jpg',
@@ -28,20 +29,22 @@ export class ProfileService {
       .subscribe((res: any) => {
         if (res?.success) {
           this.isLogin = true;
-          const profile = {
-            avatar: res?.data?.avatar,
-            email: res?.data?.email,
-            fullName: res?.data?.fullName,
-            userId: res?.data?.userId,
+          const p: Profile = {
+            fullName: res.data.fullName,
+            email: res.data.email,
+            avatar: res.data.avatar,
+            password: '',
+            phone: res.data.phone,
+            address: res.data.address,
+            userId: res.data._id,
           };
-          this.currentUser = profile;
-          this.paramUser = {
-            ...this.paramUser,
-            ...profile,
-          };
+          this.currentUser = p;
+          this.paramUser = JSON.parse(JSON.stringify(p));
         } else {
           this.isLogin = false;
         }
       });
   }
 }
+
+

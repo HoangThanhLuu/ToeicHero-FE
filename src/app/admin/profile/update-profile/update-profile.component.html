@@ -9,7 +9,7 @@
         </div>
         <div class="grid-65">
           <span class="photo" title="Thay đổi ảnh đại diện của bạn!">
-            <img nz-image [nzSrc]="avatarSrc" class="avatar" [alt]="currentProfile?.fullName"/>
+            <img nz-image [nzSrc]="profileService.currentUser.avatar" class="avatar" [alt]="profileService.currentUser.fullName"/>
           </span>
           <input type="file" class="btn" (change)="handleFileInput($event)"/>
         </div>
@@ -19,7 +19,7 @@
           <label for="fname">Họ tên</label>
         </div>
         <div class="grid-65">
-          <input type="text" id="fname" tabindex="1" formControlName="fullName" [ngModel]="currentUser?.fullName"/>
+          <input type="text" id="fname" tabindex="1" formControlName="fullName" [value]="profileService.currentUser.fullName"/>
         </div>
       </fieldset>
       <!-- Email -->
@@ -28,7 +28,7 @@
           <label for="email"> Email</label>
         </div>
         <div class="grid-65">
-          <input type="email" class="border-none" readonly id="email" tabindex="2" [value]="currentUser?.email"/>
+          <input type="email" class="border-none" readonly id="email" tabindex="2" [value]="profileService.currentUser.email"/>
         </div>
       </fieldset>
       <!-- Phone -->
@@ -37,7 +37,7 @@
           <label for="email">Số điện thoại </label>
         </div>
         <div class="grid-65">
-          <input type="email" id="phone" tabindex="3" formControlName="phone" [ngModel]="currentUser?.phone"/>
+          <input type="email" id="phone" tabindex="3" formControlName="phone" [value]="profileService.currentUser.phone"/>
         </div>
       </fieldset>
 
@@ -47,7 +47,7 @@
           <label for="location">Địa chỉ</label>
         </div>
         <div class="grid-65">
-          <input type="text" id="location" tabindex="4" formControlName="address" [ngModel]="currentUser?.address"/>
+          <input type="text" id="location" tabindex="4" formControlName="address" [value]="profileService.currentUser.address"/>
         </div>
       </fieldset>
 

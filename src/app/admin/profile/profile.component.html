@@ -7,25 +7,25 @@
             <div class="d-flex flex-column align-items-center text-center">
               <input type="file" name="" id="" class="d-none" (change)="handleFileInput($event)" #fileInput>
               <div class="dropdown" (mouseenter)="showDropdown = true" (mouseleave)="showDropdown = false">
-                <a href="javascript:;" class="dropdown-toggle" role="button"
+                <a href="javascript:void(0)" class="dropdown-toggle" role="button"
                    data-bs-toggle="dropdown" aria-expanded="false">
-                  <img [nzSrc]="avatarSrc"
+                  <img [nzSrc]="profileService.currentUser.avatar"
                        nz-image
-                       tooltip="click vào để xem ảnh đại diện" [alt]="currentUser?.email"
+                       tooltip="click vào để xem ảnh đại diện" [alt]="profileService.currentUser.email"
                        class="p-1 bg-primary rounded-circle nav-link dropdown-toggle" role="button"
                        data-bs-toggle="dropdown"
                        aria-expanded="false"
                        width="110" height="110" style="object-fit: contain;">
                 </a>
                 <ul class="dropdown-menu" [ngClass]="{'show': showDropdown}">
-                  <li><a class="dropdown-item" (click)="triggerFileInput(fileInput)" href="javascript:;">Đổi ảnh đại
+                  <li><a class="dropdown-item" (click)="triggerFileInput(fileInput)" href="javascript:void(0)">Đổi ảnh đại
                     diện</a></li>
-                  <li><a class="dropdown-item" href="javascript:;" (click)="logout()">Đăng xuất</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0)" (click)="logout()">Đăng xuất</a></li>
                 </ul>
               </div>
 
               <div class="mt-3">
-                <h4>{{currentUser?.fullName}}</h4>
+                <h4>{{profileService.currentUser.fullName}}</h4>
                 <button class="btn btn-primary" (click)="openFormEditInfo()">Thay đổi thông tin</button>
                 <button class="btn btn-outline-primary ms-2" (click)="openFormChangePassword()">Thay đổi mật khẩu
                 </button>
@@ -103,7 +103,7 @@
                 <h6 class="mb-0">Email</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                <input type="text" disabled class="form-control" [value]="currentUser?.email">
+                <input type="text" disabled class="form-control" name="email" [value]="currentUser?.email">
               </div>
             </div>
 
@@ -112,7 +112,7 @@
                 <h6 class="mb-0">Họ tên</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                <input type="text" disabled class="form-control" [(ngModel)]="currentUser.fullName">
+                <input type="text" disabled class="form-control" name="fullName" [(ngModel)]="currentUser.fullName">
               </div>
             </div>
 
@@ -121,7 +121,7 @@
                 <h6 class="mb-0">Số điện thoại</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                <input type="text" disabled class="form-control" [(ngModel)]="currentUser.phone">
+                <input type="text" disabled class="form-control" name="phone" [(ngModel)]="currentUser.phone">
               </div>
             </div>
           </div>

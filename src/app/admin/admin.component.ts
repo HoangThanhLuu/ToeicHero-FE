@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
 import {NgxSpinnerService} from "ngx-spinner";
 import {finalize} from "rxjs";
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-admin',
@@ -19,7 +20,10 @@ export class AdminComponent implements OnInit {
 
   constructor(private http: HttpClient,
               private modal: NzModalService,
-              private spinner: NgxSpinnerService) {
+              private spinner: NgxSpinnerService,
+              private translate: TranslateService) {
+    this.translate.setDefaultLang('en_US');
+    this.translate.use('en_US');
   }
 
   ngOnInit(): void {

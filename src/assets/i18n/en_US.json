@@ -95,6 +95,7 @@
     "UPDATE_PROFILE_SUCCESS": "Profile updated successfully!",
     "EMAIL_PASS_INVALID": "Email or password cannot be empty!",
     "EMAIL_NOT_REGISTERED": "This account has not been registered!"
-
-  }
+  },
+  "LOGIN": "Login",
+  "UPDATE_PASSWORD": "Update Password"
 }

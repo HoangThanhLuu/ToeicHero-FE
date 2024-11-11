@@ -4,12 +4,11 @@ import {HttpClient} from "@angular/common/http";
 import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
 import {BsModalService} from "ngx-bootstrap/modal";
 import {NgxSpinnerService} from "ngx-spinner";
-import {AuthService} from "../../auth.service";
-import {GetHeaderService} from "../../common/get-headers/get-header.service";
 import {catchError, finalize, switchMap, tap} from "rxjs/operators";
 import {of} from "rxjs";
 import {UpdateProfileComponent} from "./update-profile/update-profile.component";
 import {ChangePasswordComponent} from "./change-password/change-password.component";
+import {ProfileService} from '../../common/profile.service';
 
 
 @Component({
@@ -17,7 +16,7 @@ import {ChangePasswordComponent} from "./change-password/change-password.compone
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit{
+export class ProfileComponent implements OnInit {
   currentUser: any;
   avatarSrc: string = '';
   formData = new FormData();
@@ -28,39 +27,12 @@ export class ProfileComponent implements OnInit{
               private modal: NzModalService,
               private bsModalService: BsModalService,
               private spinner: NgxSpinnerService,
-              private auth: AuthService,
-              private getHeaderService: GetHeaderService) {
+              protected profileService: ProfileService) {
   }
-  ngOnInit(): void {
-    const token = this.auth.getToken();
-    const isLogin = token ? !this.auth.isTokenExpired(token) : false;
 
-    if (isLogin) {
-      const profile = localStorage.getItem('profile');
-      if (profile) {
-        this.currentUser = JSON.parse(profile);
-        this.avatarSrc = this.currentUser?.avatar;
-      } else {
-        const headers = this.getHeaderService.getHeaderAuthentication();
-        this.http.get('/api/user/get-profile', {
-          headers
-        })
-          .subscribe((res: any) => {
-            if (res?.success) {
-              const profile = {
-                avatar: res?.data?.avatar,
-                email: res?.data?.email,
-                fullName: res?.data?.fullName,
-                userId: res?.data?.userId,
-              };
-              localStorage.setItem('profile', JSON.stringify(profile));
-              this.currentUser = profile;
-              this.avatarSrc = this.currentUser?.avatar;
-            }
-          });
-      }
-    }
+  ngOnInit(): void {
   }
+
   handleFileInput($event: any) {
     const file = $event.target.files[0];
     this.handleFiles(file);
@@ -77,6 +49,7 @@ export class ProfileComponent implements OnInit{
       reader.readAsDataURL(file);
     }
   }
+
   uploadAvatar() {
     const confirmModal: NzModalRef = this.modal.create({
       nzTitle: `Xác nhận`,
@@ -129,6 +102,7 @@ export class ProfileComponent implements OnInit{
   triggerFileInput(fileInput: any) {
     fileInput.click();
   }
+
   openFormEditInfo() {
     const bsModalRef = this.bsModalService.show(UpdateProfileComponent, {
       class: 'modal-lg modal-dialog-centered',
@@ -145,7 +119,8 @@ export class ProfileComponent implements OnInit{
       class: 'modal-lg modal-dialog-centered',
     });
   }
-    logout() {
+
+  logout() {
     localStorage.removeItem('token');
     localStorage.setItem('tokenValid', 'false');
     localStorage.removeItem('profile');

@@ -1,11 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {NzModalService} from "ng-zorro-antd/modal";
 import {NgxSpinnerService} from "ngx-spinner";
-import {TranslateService} from "@ngx-translate/core";
-import {ToastrService} from "ngx-toastr";
 import {CONSTANT} from "../../common/constant";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-blog',
@@ -25,11 +21,7 @@ export class BlogComponent implements OnInit{
   };
   constructor(
     private http: HttpClient,
-    private modal: NzModalService,
     private spinner: NgxSpinnerService,
-    private  translate: TranslateService,
-    private router: Router,
-    private toast: ToastrService
   ) {
   }
 

@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
 import {NgxSpinnerService} from "ngx-spinner";
-import {GetHeaderService} from "../../../common/get-headers/get-header.service";
 import {finalize} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 
@@ -19,8 +18,7 @@ export class HistoryExamDetailComponent implements OnInit {
   constructor(private toast: ToastrService,
               private http: HttpClient,
               private activatedRoute: ActivatedRoute,
-              private spinnerService: NgxSpinnerService,
-              private getHeaderService: GetHeaderService) {
+              private spinnerService: NgxSpinnerService) {
   }
 
   ngOnInit(): void {

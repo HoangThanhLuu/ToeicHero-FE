@@ -16,7 +16,7 @@ import {DetailBlogComponent} from "./detail-blog/detail-blog.component";
   styleUrls: ['./blog.component.scss']
 
 })
-export class BlogComponent implements OnInit{
+export class BlogComponent implements OnInit {
   title: string = 'Quản lý Blog';
   currentPage: string = 'Blog';
   listBlog: any = [];
@@ -39,27 +39,29 @@ export class BlogComponent implements OnInit{
     }
   ];
   content: string = '';
+
   constructor(
     private bsModalService: BsModalService,
     private http: HttpClient,
     private modal: NzModalService,
     private spinner: NgxSpinnerService,
-    private  translate: TranslateService,
-    private toast: ToastrService
-  ) {
+    private translate: TranslateService,
+    private toast: ToastrService) {
   }
 
   ngOnInit(): void {
-       this.getBlog();
-    }
+    this.getBlog();
+  }
+
   getBlog() {
-    this.http.get(`/api/blog/all?page=${this.params.page-1}&size=${this.params.size}&sort=${this.params.sort}`)
+    this.http.get(`/api/blog/all?page=${this.params.page - 1}&size=${this.params.size}&sort=${this.params.sort}`)
       .subscribe((res: any) => {
         this.listBlog = res.content;
         this.totalElements = res.totalElements;
       });
   }
-  deleteBlog(id: number) :void {
+
+  deleteBlog(id: number): void {
     const confirmModal: NzModalRef = this.modal.create({
       nzTitle: `Xác nhận`,
       nzContent: `Bạn có muốn xóa Blog này không?`,
@@ -97,6 +99,7 @@ export class BlogComponent implements OnInit{
       ]
     });
   }
+
   changePage(event: number) {
     this.params.page = event;
     this.getBlog();
@@ -107,6 +110,7 @@ export class BlogComponent implements OnInit{
     this.params.page = 1;
     this.getBlog();
   }
+
   openFormAdd() {
     const bsModalRef = this.bsModalService.show(AddBlogComponent, {
       class: 'modal-lg modal-dialog-centered',
@@ -121,6 +125,7 @@ export class BlogComponent implements OnInit{
       });
     }
   }
+
   update(data: any) {
     const bsModalResult = this.bsModalService.show(AddBlogComponent, {
       class: 'modal-lg modal-dialog-centered',
@@ -139,16 +144,18 @@ export class BlogComponent implements OnInit{
         }
       }
     });
-    if (bsModalResult?.content?.modified){
+    if (bsModalResult?.content?.modified) {
       bsModalResult.content.modified.subscribe(() => {
         this.getBlog();
       });
     }
   }
+
   onChangeSort(event: any) {
     this.params.sort = event;
     this.getBlog();
   }
+
   openDetail(data: any) {
     this.bsModalService.show(DetailBlogComponent, {
       class: 'modal-lg modal-dialog-centered',
@@ -157,6 +164,7 @@ export class BlogComponent implements OnInit{
       }
     });
   }
+
   protected readonly JSON = JSON;
 
 

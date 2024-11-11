@@ -77,7 +77,7 @@
 </ng-template>
 
 <ng-template [ngTemplateOutlet]="doComment" [ngTemplateOutletContext]="{comment: {
-  avatar: profileService.currentUser?.avatar,
+  avatar: profileService.currentUser.avatar,
   content: params.content,
   submitting: this.submitting,
   rows: 4

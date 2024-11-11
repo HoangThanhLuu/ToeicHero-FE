@@ -2,10 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {finalize} from "rxjs";
 import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
-import {BsModalService} from "ngx-bootstrap/modal";
 import {NgxSpinnerService} from "ngx-spinner";
-import {GetHeaderService} from "../../../common/get-headers/get-header.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {CONSTANT} from "../../../common/constant";
 
 @Component({
@@ -26,10 +24,7 @@ export class DetailBlogComponent implements OnInit{
   };
   constructor(private toast: ToastrService,
               private http: HttpClient,
-              private bsModalService: BsModalService,
               private spinnerService: NgxSpinnerService,
-              private getHeaderService: GetHeaderService,
-              private router: Router,
               private route: ActivatedRoute) {
   }
   ngOnInit(): void {

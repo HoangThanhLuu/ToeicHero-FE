@@ -108,7 +108,9 @@
   "CMT": {
     "USER_NOT_LOGIN": "Bạn chưa đăng nhập!",
     "CREATE_COMMENT_SUCCESS": "Bình luận thành công!"
-  }
+  },
+  "LOGIN": "Đăng nhập",
+  "UPDATE_PASSWORD": "Thay đổi mật khẩu"
 }
 
 
