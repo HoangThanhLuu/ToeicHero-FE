@@ -22,11 +22,8 @@ export class ChatbotComponent {
   ]);
 
   params: Params = new Params();
-  listChat: Chat[] = [
-    new Chat('Hello', 'Hi, how can I help you?'),
-    new Chat('What is your name?', 'My name is Chatbot'),
-    new Chat('What is your name', `"**English grammar:**\n\n**Pronouns:**\n\n* Pronouns are words that replace nouns.\n\n* **Personal pronouns** refer to specific people or things. They include:\n    * **Subject pronouns:** I, you, he, she, it, we, they\n    * **Object pronouns:** me, you, him, her, it, us, them\n    * **Possessive pronouns:** my, your, his, her, its, our, their\n    * **Reflexive pronouns:** myself, yourself, himself, herself, itself, ourselves, yourselves, themselves\n\n**Usage of pronouns:**\n\n* Personal pronouns are used to avoid repeating nouns.\n* Subject pronouns are used as the subject of a sentence.\n* Object pronouns are used as the object of a verb or preposition.\n* Possessive pronouns are used to indicate ownership.\n* Reflexive pronouns are used when the subject and object of a verb are the same.\n\n**Answer to the question:**\n\nThe correct answer is **B. his**.\n\nIn this sentence, the pronoun replaces the noun \"Ken Nakata.\" Since \"Ken Nakata\" is a male, we use the possessive pronoun \"his.\""`)
-  ];
+  listChat: Chat[] = [];
+  listTranslate: Chat[] = [];
 
   constructor(
     private http: HttpClient,
@@ -36,39 +33,103 @@ export class ChatbotComponent {
   }
 
   chat() {
-    if (this.params.prompt) {
-      this.mappingModel.get(this.selectedModel)?.();
+    if (this.params.prompt.trim()) {
+      if (this.isChatbot) {
+        this.mappingModel.get(this.selectedModel)?.apply(this);
+      } else {
+        this.translate();
+      }
     }
   }
 
-  chatGPTChat() {
-    console.log('chatGPTChat')
-  }
-
-  geminiChat() {
-    console.log('geminiChat')
-  }
-
-  palm2Chat() {
-    this.addMessage(this.params.prompt, `"**English grammar:**\n\n**Pronouns:**\n\n* Pronouns are words that replace nouns.\n\n* **Personal pronouns** refer to specific people or things. They include:\n    * **Subject pronouns:** I, you, he, she, it, we, they\n    * **Object pronouns:** me, you, him, her, it, us, them\n    * **Possessive pronouns:** my, your, his, her, its, our, their\n    * **Reflexive pronouns:** myself, yourself, himself, herself, itself, ourselves, yourselves, themselves\n\n**Usage of pronouns:**\n\n* Personal pronouns are used to avoid repeating nouns.\n* Subject pronouns are used as the subject of a sentence.\n* Object pronouns are used as the object of a verb or preposition.\n* Possessive pronouns are used to indicate ownership.\n* Reflexive pronouns are used when the subject and object of a verb are the same.\n\n**Answer to the question:**\n\nThe correct answer is **B. his**.\n\nIn this sentence, the pronoun replaces the noun \"Ken Nakata.\" Since \"Ken Nakata\" is a male, we use the possessive pronoun \"his.\""`);
-  }
-
-  llamasChat() {
+  translate() {
     this.isLoading = true;
-    this.http.post(`/api/llm/ask`, {input: this.params.prompt})
+    this.http.post('api/translate', this.params.prompt)
       .subscribe({
         next: (res: any) => {
-          if (res?.success) {
-            this.addMessage(this.params.prompt, res?.data);
+          if (res?.success && res?.data) {
+            this.addTranslate(this.params.prompt, res?.data);
           } else {
-            this.addMessage(this.params.prompt, CONSTANT.error);
+            this.addTranslate(this.params.prompt, CONSTANT.error);
           }
           this.params.prompt = '';
           this.isLoading = false;
         },
-        error: (_) => {
-          this.toastr.error('error')
+        error: _ => {
+          this.toastr.error(CONSTANT.error);
+          this.addTranslate(this.params.prompt, CONSTANT.error);
+          this.isLoading = false;
+        }
+      });
+  }
+
+  addTranslate(question: string, answer: string) {
+    this.listTranslate = [...this.listTranslate, new Chat(question, answer)];
+    this.cdr.detectChanges();
+    this.scrollToBottom();
+  }
+
+  chatGPTChat() {
+    this.payChat('api/gpt/ask');
+  }
+
+  geminiChat() {
+    this.payChat('api/vertex/gemini/ask');
+  }
+
+  palm2Chat() {
+    this.freeChat('api/vertex/palm2/ask');
+  }
+
+  llamasChat() {
+    this.freeChat('api/llm/ask');
+  }
+
+  payChat(url: string) {
+    this.isLoading = true;
+    this.http.post(url, this.params)
+      .subscribe({
+        next: (res: any) => {
+          if (res?.success) {
+            this.addMsg(this.params.prompt);
+            this.addMsg(res?.data, 'assistant');
+            this.addMessage(this.params.prompt, res?.data);
+          } else {
+            this.addMessage(this.params.prompt, CONSTANT.error);
+          }
+          this.isLoading = false;
+          this.params.prompt = '';
+        },
+        error: _ => {
+          this.toastr.error(CONSTANT.error);
           this.addMessage(this.params.prompt, CONSTANT.error);
+          this.isLoading = false;
+        }
+      });
+  }
+
+  freeChat(url: string) {
+    this.isLoading = true;
+    this.http.post(url, {input: this.params.prompt})
+      .subscribe({
+        next: (res: any) => {
+          this.addMsg(this.params.prompt);
+          if (res?.success) {
+            this.addMessage(this.params.prompt, res?.data);
+            this.addMsg(res?.data, 'assistant');
+          } else {
+            this.addMessage(this.params.prompt, CONSTANT.error);
+            this.addMsg(CONSTANT.error, 'assistant');
+          }
+          this.params.prompt = '';
+          this.isLoading = false;
+        },
+        error: _ => {
+          this.addMsg(this.params.prompt);
+          this.addMsg(CONSTANT.error, 'assistant');
+          this.toastr.error(CONSTANT.error);
+          this.addMessage(this.params.prompt, CONSTANT.error);
+          this.isLoading = false;
         }
       });
 
@@ -76,14 +137,16 @@ export class ChatbotComponent {
 
   toggleChatbot(): void {
     this.isShow = !this.isShow;
-    // remove chatContainer
-
   }
 
   addMessage(question: string, answer: string) {
     this.listChat = [...this.listChat, new Chat(question, answer)];
     this.cdr.detectChanges();
     this.scrollToBottom();
+  }
+
+  addMsg(content: string, role: string = 'user') {
+    this.params.listMsg = [...this.params.listMsg, new Msg(content, role)];
   }
 
   test() {
