@@ -97,5 +97,10 @@
     "EMAIL_NOT_REGISTERED": "This account has not been registered!"
   },
   "LOGIN": "Login",
-  "UPDATE_PASSWORD": "Update Password"
+  "UPDATE_PASSWORD": "Update Password",
+  "LOGIN_WITH_GOOGLE_FB": "Login with Google or Facebook",
+  "FORGOT_PASSWORD": "Forgot Password",
+  "UPDATE_AVATAR": "Update Avatar",
+  "UPDATE_PROFILE": "Update Profile",
+  "RESET_PASSWORD": "Reset Password"
 }

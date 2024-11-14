@@ -50,7 +50,7 @@
       <input type="password" placeholder="Mật khẩu " name="password" [(ngModel)]="loginForm.password" required/>
       <input type="text" placeholder="Captcha " name="captcha" [(ngModel)]="loginForm.captcha" required/>
       <div class="d-flex g-2 align-items-center w-100">
-        <img [src]="captchaImg" (click)="getCaptcha()" alt="captcha"/>
+        <img [ngSrc]="captchaImg" (click)="getCaptcha()" alt="captcha"/>
         <i class="fas fa-sync ms-2" (click)="getCaptcha()"></i>
       </div>
       <a href="javascript:;" (click)="forgetPassword()">Quên mật khẩu </a>

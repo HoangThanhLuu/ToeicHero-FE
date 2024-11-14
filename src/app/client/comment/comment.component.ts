@@ -28,7 +28,6 @@ export class CommentComponent implements OnInit {
     total: 0
   };
   listCmt: Comment[] = [];
-  originalCmt: Comment[] = [];
   submitting: boolean = false;
 
   likes = 0;
@@ -62,16 +61,6 @@ export class CommentComponent implements OnInit {
               replies: []
             };
           });
-          this.originalCmt.forEach(oc => {
-            // check if origin comment is expended then expend the same comment in listCmt
-            const c = this.listCmt.find(c => c.commentId === oc.commentId);
-            if (c) {
-              c.replies = [...oc.replies];
-              c.page = oc.page;
-              c.size = oc.size;
-            }
-          });
-          this.originalCmt = [...this.listCmt];
           this.params.total = res.totalElements;
         }
       });
