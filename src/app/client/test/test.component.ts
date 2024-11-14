@@ -157,6 +157,7 @@ export class TestComponent implements OnInit {
           }
         });
     });
+    this.profileService.getProfileData().subscribe();
   }
 
   updateAllChecked() {

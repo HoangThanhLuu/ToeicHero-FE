@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CONSTANT} from '../../common/constant';
 import {HttpClient} from '@angular/common/http';
 import {NgxSpinnerService} from 'ngx-spinner';
@@ -8,7 +8,7 @@ import {NgxSpinnerService} from 'ngx-spinner';
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.scss'
 })
-export class BlogComponent {
+export class BlogComponent implements OnInit{
   @Input() content: string = '';
   listBlog: any = [];
   formatDate = CONSTANT.formatDate;

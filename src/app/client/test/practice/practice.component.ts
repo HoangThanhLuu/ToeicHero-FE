@@ -22,10 +22,6 @@ export class PracticeComponent implements OnInit, OnDestroy {
   listPartResult: any = [];
   buttonStates: { [key: number]: boolean } = {};
   selectedIndex: number = 0;
-  questionPart7Has2Answer: any = ['147', '149', '154', '156'];
-  questionPart7Has3Answer: any = ['151', '166', '169'];
-  questionPart7Has4Answer: any = ['158', '162', '172'];
-  questionPart7Has2Paragraph: any = ['176', '181', '186', '191', '196'];
   selectedAnswer: { [key: number]: string } = {};
   param: any = {};
   totalTimeInSeconds: number = 0;     // initialize the time variable, it's seconds not minutes!

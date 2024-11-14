@@ -123,8 +123,9 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
                     type: 'primary',
                     onClick: () => {
                       localStorage.removeItem('token');
-                      localStorage.setItem('tokenValid', 'false');
+                      localStorage.removeItem('tokenValid');
                       localStorage.removeItem('profile');
+                      localStorage.removeItem(`${this.defaultFormatAnswer}_${this.currentExam.examId}`);
                       window.location.href = '/home';
                       confirmModal.destroy();
                     }
@@ -192,7 +193,6 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
       heartbeatUrl: window.location.origin,
     }
     this.connectionService.monitor(options).subscribe((isConnected: ConnectionState) => {
-      console.log(isConnected.hasNetworkConnection, isConnected.hasInternetAccess)
       if (isConnected.hasNetworkConnection || isConnected.hasInternetAccess) {
         this.networkStatus = true;
         this.showAlert[2] = false;

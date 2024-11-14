@@ -15,6 +15,7 @@ import {ChatbotComponent} from '../chatbot/chatbot.component';
 import {MarkdownComponent} from 'ngx-markdown';
 import {NzCommentActionComponent, NzCommentComponent, NzCommentModule} from 'ng-zorro-antd/comment';
 import {NzModalModule} from 'ng-zorro-antd/modal';
+import {NgOptimizedImage} from '@angular/common';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {NzModalModule} from 'ng-zorro-antd/modal';
     NzCommentComponent,
     NzCommentActionComponent,
     NzCommentModule,
-    NzModalModule
+    NzModalModule,
+    NgOptimizedImage
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
