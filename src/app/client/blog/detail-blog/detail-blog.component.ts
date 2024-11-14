@@ -37,7 +37,7 @@ export class DetailBlogComponent implements OnInit{
       const blogId = params['blogId'];
       this.http.get(`/api/blog/detail/${blogId}`)
         .pipe(finalize(() => {
-          this.spinnerService.hide();
+          this.spinnerService.hide().then();
         }))
         .subscribe((res: any) => {
           if (res?.success) {

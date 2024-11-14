@@ -74,34 +74,32 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    setTimeout(() => {
-      if (!this.profileService.userIsLogin() && !this.profileService.currentUser.userId) {
-        const confirmModal: NzModalRef = this.modal.create({
-          nzTitle: `Vui lòng đăng nhập để thực hiện bài thi`,
-          nzContent: `Bạn chưa đăng nhập, vui lòng đăng nhập để thực hiện bài thi?`,
-          nzCentered: true,
-          nzFooter: [
-            {
-              label: 'Đồng ý',
-              type: 'primary',
-              onClick: _ => {
-                confirmModal.destroy();
-                this.bs.show(LoginComponent, {
-                  class: 'modal-lg modal-dialog-centered',
-                  ignoreBackdropClick: true,
-                  initialState: {
-                    isNotDirect: true,
-                    directLink: window.location.href
-                  }
-                });
-              }
+    if (!this.profileService.userIsLogin() && !this.profileService.currentUser.userId) {
+      const confirmModal: NzModalRef = this.modal.create({
+        nzTitle: `Vui lòng đăng nhập để thực hiện bài thi`,
+        nzContent: `Bạn chưa đăng nhập, vui lòng đăng nhập để thực hiện bài thi?`,
+        nzCentered: true,
+        nzFooter: [
+          {
+            label: 'Đồng ý',
+            type: 'primary',
+            onClick: _ => {
+              confirmModal.destroy();
+              this.bs.show(LoginComponent, {
+                class: 'modal-lg modal-dialog-centered',
+                ignoreBackdropClick: true,
+                initialState: {
+                  isNotDirect: true,
+                  directLink: window.location.href
+                }
+              });
             }
-          ]
-        });
-      } else {
-        this.initData();
-      }
-    }, 2_000);
+          }
+        ]
+      });
+    } else {
+      this.initData();
+    }
   }
 
   ngOnInit(): void {

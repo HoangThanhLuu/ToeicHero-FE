@@ -56,13 +56,13 @@
         <table class="table table-bordered table-striped table-hover layout-auto" aria-label="toeicute">
           <thead>
           <tr>
-            <th> Id</th>
-            <th>File Name</th>
-            <th>File Type</th>
-            <th>File Size</th>
-            <th>Upload Date</th>
-            <th>Link</th>
-            <th> #</th>
+            <th scope="col"> Id</th>
+            <th scope="col">File Name</th>
+            <th scope="col">File Type</th>
+            <th scope="col">File Size</th>
+            <th scope="col">Upload Date</th>
+            <th scope="col">Link</th>
+            <th scope="col"> #</th>
           </tr>
           </thead>
           <tbody>
@@ -84,6 +84,7 @@
                   nz-image
                   width="120px"
                   height="100px"
+                  loading="lazy"
                   [nzSrc]="data.fileUrl"
                   alt="toeic"
                 />

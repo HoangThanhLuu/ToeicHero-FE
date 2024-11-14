@@ -5,7 +5,7 @@
       <nav class="sidebar sidebar-offcanvas mt-2" id="sidebar">
         <ul class="nav">
           <li class="nav-item nav-profile">
-            <a href="#" class="nav-link">
+            <a href="javascript:void(0)" class="nav-link">
               <div class="nav-profile-image">
                 <img ngSrc="assets/images/admin-avatar.jpg" alt="profile" height="360" width="360">
                 <span class="login-status online"></span>
@@ -34,7 +34,6 @@
           }
         </ul>
       </nav>
-
       <div class="main-panel mt-5">
         <div class="content-wrapper">
           <router-outlet></router-outlet>
@@ -50,7 +49,7 @@
   color="#fff"
   type="ball-scale-multiple"
 >
-  <p style="font-size: 20px; color: white">Bạn chờ chút nhé...</p>
+  <p style="font-size: 20px; color: white">Loading...</p>
 </ngx-spinner>
 <button (click)="scrollToTop()" class="back-to-top-btn">
   <i class="fa fa-arrow-up"></i>

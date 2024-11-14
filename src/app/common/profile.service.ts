@@ -54,7 +54,7 @@ export class ProfileService {
             localStorage.removeItem('tokenValid');
             window.location.href = '/login';
           }
-          subscriber.next(res);
+          subscriber.next(res.data);
         },
         error: (err) => {
           subscriber.error(err.error);

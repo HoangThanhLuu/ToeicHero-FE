@@ -17,7 +17,6 @@ export class HomeComponent implements OnInit {
           this.loadKommunicateScript(res.data.script);
         },
         error: () => {
-
         }
       });
   }
@@ -26,7 +25,6 @@ export class HomeComponent implements OnInit {
     const script = this.renderer.createElement('script');
     script.type = 'text/javascript';
     script.text = scriptContent;
-
     this.renderer.appendChild(this.el.nativeElement, script);
   }
 

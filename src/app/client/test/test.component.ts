@@ -187,18 +187,33 @@ export class TestComponent implements OnInit {
   }
 
   startFullTest() {
-    if (this.profileService.userIsLogin() && this.profileService.currentUser.userId > '0') {
-      window.location.href = `${window.location.href}/start`;
-    } else {
-      this.toast.error('Vui lòng đăng nhập để thực hiện bài test');
-      this.bsModalService.show(LoginComponent, {
-        class: 'modal-lg modal-dialog-centered',
-        initialState: {
-          isNotDirect: true,
-          directLink: window.location.href
+    this.profileService.getProfileData().subscribe({
+      next: profile => {
+        if (profile) {
+          window.location.href = `${window.location.href}/start`;
+        } else {
+          this.toast.error('Vui lòng đăng nhập để thực hiện bài test');
+          this.bsModalService.show(LoginComponent, {
+            class: 'modal-lg modal-dialog-centered',
+            initialState: {
+              isNotDirect: true,
+              directLink: window.location.href
+            }
+          });
         }
-      });
-    }
+      },
+      error: () => {
+        this.toast.error('Vui lòng đăng nhập để thực hiện bài test');
+        this.bsModalService.show(LoginComponent, {
+          class: 'modal-lg modal-dialog-centered',
+          initialState: {
+            isNotDirect: true,
+            directLink: window.location.href
+          }
+        });
+      }
+    });
+
   }
 
   startPractice() {

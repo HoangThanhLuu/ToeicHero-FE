@@ -7,6 +7,7 @@ import {CarouselComponent} from '../carousel/carousel.component';
 import {AboutComponent} from '../about/about.component';
 import {ServiceComponent} from '../service/service.component';
 import {CarouselModule} from 'ngx-bootstrap/carousel';
+import {NgOptimizedImage} from '@angular/common';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {CarouselModule} from 'ngx-bootstrap/carousel';
   imports: [
     ShareClientModule,
     HomeRoutingModule,
-    CarouselModule
+    CarouselModule,
+    NgOptimizedImage
   ]
 })
 export class HomeModule { }
