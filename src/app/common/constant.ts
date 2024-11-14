@@ -11,4 +11,5 @@ export const CONSTANT = {
   formatStateButton: 'stateButton',
   formatSelectAnswer: 'selectAnswer',
   directLink: 'directLink',
+  captcha: 'Captcha',
 }

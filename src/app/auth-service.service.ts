@@ -10,13 +10,14 @@ import {
 } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AuthService} from "./auth.service";
-import {BASE_URL} from "./common/constant";
+import {BASE_URL, CONSTANT} from "./common/constant";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService implements HttpInterceptor {
   isDevelopMode: boolean = isDevMode();
+
   constructor(private authService: AuthService) {
   }
 
@@ -31,11 +32,13 @@ export class AuthServiceService implements HttpInterceptor {
         }
       });
     } else {
+      const captcha = document.cookie.split(';').find((item: string) => item.includes(CONSTANT.captcha));
       req = req.clone({
         url: apiEndPoint.href,
+        withCredentials: true,  // send cookie
         setHeaders: {
           Authorization: `Bearer ${token}`,
-          Cookie: document.cookie
+          'Captcha': captcha ? captcha.split('=')[1] : ''
         }
       });
     }

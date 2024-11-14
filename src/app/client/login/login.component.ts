@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, isDevMode, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {matchpassword} from './matchpassword.validator';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {OtpConfirmComponent} from './otp-confirm/otp-confirm.component';
@@ -10,10 +10,7 @@ import {finalize} from 'rxjs';
 import {TranslateService} from '@ngx-translate/core';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {ProfileService} from '../../common/profile.service';
-import {
-  BASE_URL,
-  BASE_URL_LOCAL,
-} from '../../common/constant';
+import {BASE_URL, BASE_URL_LOCAL, CONSTANT,} from '../../common/constant';
 
 @Component({
   selector: 'app-login',
@@ -68,7 +65,17 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   getCaptcha() {
-    this.captchaImg = `${isDevMode() ? '' : BASE_URL}/api/user/get-captcha?${Date.now()}`;
+    // this.captchaImg = `${isDevMode() ? '' : BASE_URL}/api/user/get-captcha?${Date.now()}`;
+    this.http.get(`/api/user/get-captcha?${Date.now()}`, {
+      observe: 'response',
+      responseType: 'blob',
+      withCredentials: true
+    })
+      .subscribe((res: any) => {
+        console.log(res.headers.get('captcha'));
+        document.cookie = `${CONSTANT.captcha}=${res.headers.get('captcha')};max-age=300;path=/`;
+        this.captchaImg = URL.createObjectURL(res.body);
+      });
   }
 
   switchTab() {
