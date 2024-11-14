@@ -1,0 +1,24 @@
+.fixed-bottom-custom {
+  position: fixed;
+  bottom: 0;
+  right: 10px;
+  z-index: 1000;
+  padding: 10px;
+}
+
+$bg-chatbot: var(--primary-500);
+.chatbot {
+  width: 400px;
+  height: 450px;
+  border: 2px solid $bg-chatbot;
+}
+
+.header {
+  height: 10%;
+}
+.close:hover {
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  background: var(--primary-300);
+}

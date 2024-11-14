@@ -1,0 +1,17 @@
+<div class="fixed-bottom-custom w-100 d-flex flex-row-reverse" title="Chat bot & Dịch thuật">
+  @if (isShow) {
+    <div class="chatbot bg-light">
+      <div class="bg-primary text-white d-flex justify-content-between align-items-center header ps-3 pe-3">
+        <h5 class="text-uppercase">Toeicute AI</h5>
+        <span class="close" (click)="toggleChatbot()">X</span>
+      </div>
+    </div>
+  } @else {
+    <img ngSrc="/assets/images/chatbot.png"
+         alt="chatbot" class="rounded-circle"
+         id="chatbot"
+         width="60"
+         (click)="toggleChatbot()"
+         height="60">
+  }
+</div>

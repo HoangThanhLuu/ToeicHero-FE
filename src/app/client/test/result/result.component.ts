@@ -1,10 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
-import {NzModalService} from "ng-zorro-antd/modal";
-import {BsModalService} from "ngx-bootstrap/modal";
 import {NgxSpinnerService} from "ngx-spinner";
-import {AuthServiceService} from "../../../auth-service.service";
 import {ActivatedRoute} from "@angular/router";
 import {finalize} from "rxjs";
 
@@ -17,13 +13,8 @@ export class ResultComponent implements OnInit {
   examHistory: any;
   exam: any;
 
-  constructor(private toast: ToastrService,
-              private http: HttpClient,
-              private modal: NzModalService,
-              private bs: BsModalService,
-              private bsModalService: BsModalService,
+  constructor(private http: HttpClient,
               private spinnerService: NgxSpinnerService,
-              private authService: AuthServiceService,
               private route: ActivatedRoute) {
   }
 
@@ -48,14 +39,6 @@ export class ResultComponent implements OnInit {
 
   backToListTest() {
     window.location.href = '/list-test';
-  }
-
-  formatTime(minutes: number): string {
-    const hours = Math.floor(minutes / 60);
-    const remainingMinutes = minutes % 60;
-    const formattedHours = hours.toString().padStart(2, '0');
-    const formattedMinutes = remainingMinutes.toString().padStart(2, '0');
-    return `${formattedHours}:${formattedMinutes}`;
   }
 
   formatTimeFromSeconds(seconds: number): string {
