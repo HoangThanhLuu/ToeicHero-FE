@@ -1,5 +1,5 @@
 $base-width: 400px;
-$base-height: 500px;
+$base-height: 600px;
 $base-dimension: 16px;
 $base-border-radius: 12px;
 $base-button-size: 52px;
@@ -16,12 +16,18 @@ $font-color: #888;
 }
 
 .shadow {
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  box-shadow: rgba(50, 50, 93, 0.25) 0 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0 -2px 6px 0px inset;
 }
 
 .bg-secondary {
   background-color: #d7d3d3 !important;
   border-radius: 0;
+}
+
+.bg-toeicute {
+  background-color: $primary-color;
+  border-radius: 0;
+
 }
 
 .border-right {
@@ -125,7 +131,6 @@ textarea {
   font-size: $base-dimension;
   line-height: calc(#{$base-dimension} + #{$base-dimension} / 2);
   color: $font-color;
-  background-color: initial;
   border: 0;
   outline: 0 !important;
   resize: none;
@@ -164,8 +169,21 @@ textarea {
 .bg-light {
   background: #BCC0C4 !important;
 }
+
 span {
   min-width: 50px;
   max-width: 75% !important;
   width: fit-content;
 }
+
+nz-select {
+  width: 100px !important;
+
+  nz-select-top-control {
+    border-radius: 0;
+    background-color: $primary-color !important;
+    border: none !important;
+  }
+}
+
+

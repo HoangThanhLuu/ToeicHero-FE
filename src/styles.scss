@@ -178,6 +178,10 @@ $theme-colors: (
 /* Importing Bootstrap SCSS file. */
 @import "node_modules/bootstrap/scss/bootstrap";
 @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+@import 'prismjs/themes/prism-okaidia.css';
+@import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
+@import 'prismjs/plugins/line-highlight/prism-line-highlight.css';
+
 /* Importing Datepicker SCSS file. */
 @import "node_modules/ng-zorro-antd/ng-zorro-antd.min.css";
 @import "node_modules/ng-zorro-antd/style/index.min.css"; /* Import base styles */
@@ -188,6 +192,7 @@ $theme-colors: (
 @import "node_modules/ng-zorro-antd/code-editor/style/index.min.css";
 @import "node_modules/ng-zorro-antd/graph/style/index.min.css";
 @import "ngx-toastr/toastr-bs5-alert";
+
 .fs-message{
   font-size: 0.8rem;
 }

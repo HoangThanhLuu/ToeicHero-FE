@@ -1,4 +1,4 @@
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule, SecurityContext} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
@@ -35,6 +35,11 @@ import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {TinyServiceService} from './common/tiny-service.service';
 import {ProfileService} from './common/profile.service';
 import { SafeHtmlPipe } from './common/pipe/safe-html.pipe';
+import {MarkdownModule} from 'ngx-markdown';
+import 'prismjs';
+import 'prismjs/components/prism-typescript.min.js';
+import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
+import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
 
 registerLocaleData(en);
 @NgModule({
@@ -75,6 +80,7 @@ registerLocaleData(en);
       },
       defaultLanguage: 'vi_VN',
     }),
+    MarkdownModule.forRoot()
   ],
   providers: [
     {provide: NZ_I18N, useValue: en},
