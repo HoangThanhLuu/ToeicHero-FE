@@ -34,7 +34,8 @@ export class AuthServiceService implements HttpInterceptor {
       req = req.clone({
         url: apiEndPoint.href,
         setHeaders: {
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
+          Cookie: document.cookie
         }
       });
     }
