@@ -16,7 +16,7 @@ import {NgxSpinnerService} from "ngx-spinner";
 import {ActivatedRoute} from "@angular/router";
 import {finalize} from "rxjs";
 import {LoginComponent} from "../../login/login.component";
-import {AuthService} from "../../../auth.service";
+import {ProfileService} from "../../../common/profile.service";
 
 @Component({
   selector: 'app-start',
@@ -32,10 +32,6 @@ export class StartComponent implements OnInit, OnDestroy {
   currentExam: any;
   listPart: any = [];
   selectedIndex: number = 6;
-  questionPart7Has2Answer: any = ['147', '149', '154', '156'];
-  questionPart7Has3Answer: any = ['151', '166', '169'];
-  questionPart7Has4Answer: any = ['158', '162', '172'];
-  questionPart7Has2Paragraph: any = ['176', '181', '186', '191', '196'];
   selectedAnswer: { [key: number]: string } = {};
   param: any = {};
 
@@ -44,15 +40,13 @@ export class StartComponent implements OnInit, OnDestroy {
               private modal: NzModalService,
               private bs: BsModalService,
               private spinnerService: NgxSpinnerService,
-              private auth: AuthService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              protected profileService: ProfileService) {
     this.initializeButtonStates();
   }
 
   ngOnInit(): void {
-    const token = this.auth.getToken();
-    const isLogin = token ? !this.auth.isTokenExpired(token) : false;
-    if (!isLogin) {
+    if (!this.profileService.isLogin) {
       const confirmModal: NzModalRef = this.modal.create({
         nzTitle: `Vui lòng đăng nhập để thực hiện bài thi`,
         nzContent: `Bạn chưa đăng nhập, vui lòng đăng nhập để thực hiện bài thi?`,
@@ -104,7 +98,6 @@ export class StartComponent implements OnInit, OnDestroy {
   startTimer() {
     const interval = setInterval(() => {
       this.totalTimeInSeconds--;
-
       const minutes = Math.floor(this.totalTimeInSeconds / 60);
       const remainingSeconds = this.totalTimeInSeconds % 60;
 
@@ -192,15 +185,6 @@ export class StartComponent implements OnInit, OnDestroy {
   }
 
   protected readonly Number = Number;
-
-  counter(i: number) {
-    return new Array(i);
-  }
-
-  questionPart7HasAnswerCheck(questNumber: number, list: any) {
-    return !!list.includes(questNumber);
-  }
-
 
   changeStateButton(selectedAnswerValue: string, questionId: number, partCode: string) {
     this.selectedAnswer[questionId] = selectedAnswerValue;
