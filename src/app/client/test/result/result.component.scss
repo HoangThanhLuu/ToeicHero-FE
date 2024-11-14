@@ -27,3 +27,11 @@ span {
   margin-right: 6px;
   font-size: 24px;
 }
+
+
+// responsive nz-progress for mobile
+@media (max-width: 768px) {
+  nz-progress {
+    width: 100px !important;
+  }
+}

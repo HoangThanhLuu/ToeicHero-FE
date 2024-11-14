@@ -10,37 +10,37 @@
         <h1 class="">Kết quả: {{ this.exam?.examName }}</h1>
       </div>
       <div class="col-12">
-        <p><i class="fa-regular fa-clock"></i> Thời gian làm bài: {{ this.examHistory?.timeToDoExam / 60 }} phút | 7
+        <p><i class="fa-regular fa-clock"></i> Thời gian làm bài: {{ this.examHistory?.timeToDoExam }} phút | 7
           phần
           thi | {{ this.examHistory?.totalQuestion }} câu hỏi </p>
       </div>
       <div class="col-12">
-        <button nz-button nzType="primary" class="btn btn-primary" nzSize="large" (click)="backToListTest()">Quay về
-          trang đề thi
+        <button nz-button nzType="primary" class="btn btn-primary" nzSize="large" (click)="backToListTest()">
+          Quay về trang đề thi
         </button>
       </div>
       <div class="col-12 mt-3">
         <div class="row">
-          <div class="col-4 bg-light-success shadow d-flex flex-column justify-content-between p-5">
+          <div
+            class="col-12 col-sm-12 col-md-12 col-xl-4 bg-light-success shadow d-flex flex-column justify-content-between p-5">
             <div>
               <i class="fa fa-check"></i>
-              Kết quả làm bài <span> {{ Number(this.examHistory?.numberOfCorrectAnswer) }}
+              Kết quả làm bài <span> {{ this.examHistory?.numberOfCorrectAnswer }}
               / {{ this.examHistory.totalQuestion }}</span>
             </div>
             <div>
               <p><i class="fa fa-bullseye"></i>
                 Độ chính xác
                 (#đúng/#tổng)
-                <span> {{ Number(this.examHistory?.numberOfCorrectAnswer) / (Number(this.examHistory?.numberOfWrongAnswer) + Number(this.examHistory?.numberOfCorrectAnswer)) * 100 }}
+                <span> {{ this.examHistory?.percentCorrectAnswer }}
                   % </span>
               </p>
             </div>
             <div>
               <p>
                 <i class="fa fa-clock"></i>
-                Thời gian làm
-                bài
-                <span>  {{ formatTimeFromSeconds((Number(this.examHistory?.timeToDoExam) - Number(this.examHistory?.timeRemaining))) }}
+                Thời gian làm bài
+                <span>  {{ this.examHistory.timeDoExam }}
                   phút </span>
               </p>
             </div>
@@ -48,77 +48,65 @@
               <p>
                 <i class="fa fa-headphones"></i>
                 Điểm nghe
-                <span class="fw-bold text-danger">123 / 495</span>
+                <span class="fw-bold text-danger">{{ this.examHistory?.totalScoreListening }} / 495</span>
               </p>
             </div>
             <div>
               <p>
                 <i class="fa fa-eye"></i>
                 Điểm đọc
-                <span class="fw-bold text-danger">123 / 495</span>
+                <span class="fw-bold text-danger">{{ this.examHistory?.totalScoreReading }} / 495</span>
               </p>
             </div>
             <div>
               <p>
                 <i class="fa fa-bullseye"></i>
                 Tổng điểm
-                <span class="fw-bold text-danger">123 / 990</span>
+                <span class="fw-bold text-danger">{{ this.examHistory?.totalScore }} / 990</span>
               </p>
             </div>
           </div>
-          <div class="col-7 ms-2">
+          <div class="col-12 col-sm-12 col-xl-7 ms-2 mt-2 mt-xl-0">
             <div class="row">
-              <nz-card class="col-4 d-flex flex-column justify-content-center">
-                <div>
-                  <span nz-icon [nzType]="'check-circle'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"></span>
-                </div>
-                <div>
-                  <p class="text-success">Trả lời đúng</p>
-                </div>
-                <div>
-                  <p class="text-dark">{{ this.examHistory?.numberOfCorrectAnswer }} Câu hỏi</p>
-                </div>
+              <nz-card class="col-4 d-flex flex-column justify-content-center align-items-center">
+                <span nz-icon [nzType]="'check-circle'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"
+                      class="text-center"></span>
+                <p class="text-success">Trả lời đúng</p>
+                <p class="text-dark text-center">{{ this.examHistory?.numberOfCorrectAnswer }} <br/> Câu hỏi</p>
               </nz-card>
 
-              <nz-card class="col-4 d-flex flex-column justify-content-center">
-                <div>
-                  <span nz-icon nzType="close-circle" nzTheme="twotone" [nzTwotoneColor]="'#f10729'"></span>
-                </div>
-                <div>
-                  <p class="text-danger">Trả lời sai</p>
-                </div>
-                <div>
-                  <p
-                    class="text-dark">{{ Number(this.examHistory?.numberOfWrongAnswer) - Number(this.examHistory?.numberOfNotAnswer) }}
-                    Câu hỏi</p>
-                </div>
+              <nz-card class="col-4 d-flex flex-column justify-content-center align-items-center">
+                <span nz-icon nzType="close-circle" nzTheme="twotone" [nzTwotoneColor]="'#f10729'"></span>
+                <p class="text-danger">Trả lời sai</p>
+                <p class="text-dark text-center">{{ this.examHistory?.numberWrongAnswer }}
+                  <br/> Câu hỏi</p>
               </nz-card>
 
-              <nz-card class="col-4 d-flex flex-column justify-content-center">
-                <div>
-                  <span nz-icon nzType="minus-circle" [nzTheme]="'twotone'" [nzTwotoneColor]="'#808080'"></span>
-                </div>
-                <div>
-                  <p class="text-dark">Bỏ qua</p>
-                </div>
-                <div>
-                  <p class="text-dark">{{ this.examHistory?.numberOfNotAnswer }} Câu hỏi</p>
-                </div>
+              <nz-card class="col-4 d-flex flex-column justify-content-center align-items-center">
+                <span nz-icon nzType="minus-circle" [nzTheme]="'twotone'" [nzTwotoneColor]="'#808080'"></span>
+                <p class="text-dark">Bỏ qua</p>
+                <p class="text-dark text-center">{{ this.examHistory?.numberOfNotAnswer }} <br/> Câu hỏi</p>
               </nz-card>
 
             </div>
             <div class="row">
-              <nz-card class="col-4 d-flex flex-column justify-content-center border-0">
+              <nz-card class="col-4 d-flex flex-column justify-content-center align-items-center">
                 <h3 class="text-center">Điểm số nghe</h3>
-                <nz-progress [nzPercent]="75" nzType="circle"></nz-progress>
+                <nz-progress [nzPercent]="this.examHistory?.percentListening"
+                             [nzStrokeColor]="this.examHistory.colorListening"
+                             nzType="circle" [nzWidth]="80"></nz-progress>
               </nz-card>
-              <nz-card class="col-4 d-flex flex-column justify-content-center">
+              <nz-card class="col-4 d-flex flex-column justify-content-center align-items-center">
                 <h3 class="text-center">Điểm số nghe</h3>
-                <nz-progress [nzPercent]="75" nzType="circle"></nz-progress>
+                <nz-progress [nzPercent]="this.examHistory?.percentReading"
+                             [nzStrokeColor]="this.examHistory.colorReading"
+                             nzType="circle" [nzWidth]="80"></nz-progress>
               </nz-card>
-              <nz-card class="col-4 d-flex flex-column justify-content-center">
+              <nz-card class="col-4 d-flex flex-column justify-content-center align-items-center">
                 <h3 class="text-center">Điểm số nghe</h3>
-                <nz-progress [nzPercent]="75" nzType="circle"></nz-progress>
+                <nz-progress [nzPercent]="this.examHistory?.percentTotal"
+                             [nzStrokeColor]="this.examHistory.colorTotal"
+                             nzType="circle" [nzWidth]="80"></nz-progress>
               </nz-card>
             </div>
           </div>
@@ -126,7 +114,7 @@
 
         </div>
       </div>
-      <div class="col-5 mt-2">
+      <div class="col-12 col-sm-12 col-xl-5 mt-2">
         <div class="row">
           <nz-list nzBordered nzHeader="Phân tích chi tiết">
             <nz-list-item>

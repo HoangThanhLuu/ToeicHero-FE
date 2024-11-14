@@ -17,7 +17,6 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {NavbarComponent} from './navbar/navbar.component';
 import {CarouselComponent} from './carousel/carousel.component';
 import {ServiceComponent} from './service/service.component';
-import {CarouselModule} from "ngx-owl-carousel-o";
 import {TopbarComponent} from './topbar/topbar.component';
 import {AboutComponent} from './about/about.component';
 import {TestComponent} from './test/test.component';
@@ -71,6 +70,7 @@ import {NzProgressModule} from 'ng-zorro-antd/progress';
 import {ChatbotComponent} from './chatbot/chatbot.component';
 import {MarkdownComponent, MarkdownPipe} from 'ngx-markdown';
 import {ConnectionServiceModule} from 'ng-connection-service';
+import {CarouselModule} from 'ngx-bootstrap/carousel';
 
 @NgModule({
   declarations: [
@@ -105,47 +105,48 @@ import {ConnectionServiceModule} from 'ng-connection-service';
     CommentComponent,
     ChatbotComponent
   ],
-  imports: [
-    NgbModule,
-    CommonModule,
-    ClientRoutingModule,
-    FormsModule,
-    FontAwesomeModule,
-    CarouselModule,
-    NgOptimizedImage,
-    ReactiveFormsModule,
-    NzAvatarModule,
-    NgxSpinnerModule,
-    NzTagModule,
-    NzEmptyModule,
-    NzTabsModule,
-    NzCheckboxModule,
-    NzGridModule,
-    NzButtonModule,
-    NzRadioModule,
-    NzImageModule,
-    NzDividerModule,
-    NzCardModule,
-    NzIconModule,
-    NzListModule,
-    NzTypographyModule,
-    NzFormModule,
-    NzDatePickerModule,
-    NzSelectModule,
-    NzInputNumberModule,
-    NzInputModule,
-    NzTimePickerModule,
-    TooltipModule,
-    NzCollapseModule,
-    NzTableModule,
-    NzToolTipModule,
-    NzPaginationModule,
-    NzCommentModule,
-    NzProgressModule,
-    MarkdownPipe,
-    MarkdownComponent,
-    ConnectionServiceModule
-  ],
+    imports: [
+        NgbModule,
+        CommonModule,
+        ClientRoutingModule,
+        FormsModule,
+        FontAwesomeModule,
+        CarouselModule,
+        NgOptimizedImage,
+        ReactiveFormsModule,
+        NzAvatarModule,
+        NgxSpinnerModule,
+        NzTagModule,
+        NzEmptyModule,
+        NzTabsModule,
+        NzCheckboxModule,
+        NzGridModule,
+        NzButtonModule,
+        NzRadioModule,
+        NzImageModule,
+        NzDividerModule,
+        NzCardModule,
+        NzIconModule,
+        NzListModule,
+        NzTypographyModule,
+        NzFormModule,
+        NzDatePickerModule,
+        NzSelectModule,
+        NzInputNumberModule,
+        NzInputModule,
+        NzTimePickerModule,
+        TooltipModule,
+        NzCollapseModule,
+        NzTableModule,
+        NzToolTipModule,
+        NzPaginationModule,
+        NzCommentModule,
+        NzProgressModule,
+        MarkdownPipe,
+        MarkdownComponent,
+        ConnectionServiceModule,
+        CarouselModule
+    ],
   providers: [],
   exports: [
     NavbarComponent,

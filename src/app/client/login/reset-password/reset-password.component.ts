@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {FormGroup} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
-import {BsModalService} from "ngx-bootstrap/modal";
 import {NgxSpinnerService} from "ngx-spinner";
 import {ActivatedRoute} from "@angular/router";
 import {TranslateService} from "@ngx-translate/core";
@@ -47,6 +45,7 @@ export class ResetPasswordComponent implements OnInit {
             const msg = this.translate.instant(`USER.${res?.message}`);
             if (res.success) {
               this.toastr.success(msg);
+              window.location.href = '/login';
             } else {
               this.toastr.error(msg);
             }

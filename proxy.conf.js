@@ -7,7 +7,7 @@ const PROXY_CONFIG = [
     secure: false,
     "changeOrigin": true,
     "logLevel": "debug",
-    headers: {host: 'http://192.168.1.126/'},
+    headers: {host: 'localhost'},
     pathRewrite: {"^/api": "/api"}
   },
   {

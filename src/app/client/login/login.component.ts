@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   captchaImg: any;
 
 
-
   constructor(private formBuilder: FormBuilder,
               private http: HttpClient,
               private bs: BsModalService,
