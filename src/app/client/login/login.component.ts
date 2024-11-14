@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, isDevMode, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, isDevMode, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {matchpassword} from './matchpassword.validator';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 import {OtpConfirmComponent} from './otp-confirm/otp-confirm.component';
@@ -17,7 +17,7 @@ import {BASE_URL, BASE_URL_LOCAL, CONSTANT,} from '../../common/constant';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
   @Output() close = new EventEmitter();
   @Output() signIn = new EventEmitter();
   @Output() signUp = new EventEmitter();
@@ -65,14 +65,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   getCaptcha() {
-    // this.captchaImg = `${isDevMode() ? '' : BASE_URL}/api/user/get-captcha?${Date.now()}`;
     this.http.get(`/api/user/get-captcha?${Date.now()}`, {
       observe: 'response',
       responseType: 'blob',
       withCredentials: true
     })
       .subscribe((res: any) => {
-        console.log(res.headers.get('captcha'));
         document.cookie = `${CONSTANT.captcha}=${res.headers.get('captcha')};max-age=300;path=/`;
         this.captchaImg = URL.createObjectURL(res.body);
       });
@@ -116,7 +114,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           email: email
         }
       });
-    if (modalRef && modalRef.content) {
+    if (modalRef?.content) {
       modalRef.content.confirmed.subscribe(() => {
         if (switchTab)
           this.switchTab();
@@ -235,16 +233,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   loginSocial(p: string) {
-    const mIsDevMode = isDevMode();
+    const mIsDevMode = isDevMode() || window.location.href.includes('localhost');
     // set directLink to cookie with 5 minutes
     if (this.isNotDirect) {
       document.cookie = `directLink=${this.directLink};max-age=300;path=/`;
     }
     window.location.href = `${mIsDevMode ? BASE_URL_LOCAL : BASE_URL}/api/oauth2/authorize/${p}?redirect_uri=${window.location.origin}/oauth2/redirect`;
-  }
-
-  ngOnDestroy(): void {
-
   }
 
   forgetPassword() {

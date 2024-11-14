@@ -5,7 +5,8 @@
         <ng-container *ngIf=" detailBlog">
           <h1 class="d-flex flex-row justify-content-center mt-3">{{ detailBlog?.title }}</h1>
           <div class="d-flex g-2">
-            <img src="./assets/images/logo.jpg" class="rounded-circle d-none d-lg-block"
+            <img ngSrc="./assets/images/logo.jpg" class="rounded-circle d-none d-lg-block"
+                 alt="toeicute"
                  width="50" height="50" style="object-fit: contain;">
             <div class="d-flex flex-column justify-content-center ms-3">
               <h6>{{ detailBlog?.author }}</h6>

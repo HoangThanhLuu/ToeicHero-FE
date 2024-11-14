@@ -125,7 +125,7 @@ export class ConfigTinyComponent implements OnInit{
         isPopup: true
       }
     });
-    if (bsModalRef && bsModalRef.content) {
+    if (bsModalRef?.content) {
       bsModalRef.content.addSuccessEmit.subscribe(() => {
         this.getListConfigTiny(`/api/tiny-config/list?page=${this.page}&size=${this.size}`);
       });

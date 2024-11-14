@@ -36,7 +36,9 @@ export class UpdateTinyConfigComponent {
     }else{
       this.showBorderError[0] = false;
     }
-    const url = `/api/tiny-config/${this.isAdd ? 'add' : `update/${this.params.tinyConfigId}`}?apiKey=${this.params.apiKey}`;
+    const urlUpdate = `/api/tiny-config/update/${this.params.tinyConfigId}?apiKey=${this.params.apiKey}`;
+    const urlAdd = `/api/tiny-config/add?apiKey=${this.params.apiKey}`;
+    const url = this.isAdd ? urlAdd : urlUpdate;
     this.spinnerService.show();
     this.http.post(url, {})
         .subscribe({

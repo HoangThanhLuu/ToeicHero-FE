@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {NgxSpinnerService} from "ngx-spinner";
@@ -10,7 +10,7 @@ import {TranslateService} from "@ngx-translate/core";
   templateUrl: './update-kommunicate-bot.component.html',
   styleUrls: ['./update-kommunicate-bot.component.scss']
 })
-export class UpdateKommunicateBotComponent implements OnInit {
+export class UpdateKommunicateBotComponent {
   title: string = "Quản lý Bot Kommunicate";
   currentPage: string = "Kommunicate";
   showBorderError: any = [];
@@ -30,26 +30,23 @@ export class UpdateKommunicateBotComponent implements OnInit {
               private translate: TranslateService) {
   }
 
-  ngOnInit() {
-  }
-
   close() {
     this.bsModalRef.hide();
   }
 
   addAccount(): void {
-    if(!this.params.appId) {
+    if (!this.params.appId) {
       this.toastr.error('Vui lòng nhập AppId');
       this.showBorderError[0] = true;
       return;
-    }else{
+    } else {
       this.showBorderError[0] = false;
     }
-    if(!this.params.apiKey) {
+    if (!this.params.apiKey) {
       this.toastr.error('Vui lòng nhập APIKey');
       this.showBorderError[1] = true;
       return;
-    }else{
+    } else {
       this.showBorderError[1] = false;
     }
     this.spinnerService.show();
@@ -65,13 +62,14 @@ export class UpdateKommunicateBotComponent implements OnInit {
             appId: '',
             apiKey: ''
           };
-          if(this.isPopup) {
+          if (this.isPopup) {
             this.close();
           }
         },
         error: (res: any) => {
           const msg = this.translate.instant(`KOMMUNICATE.${res?.message}`);
-          this.spinnerService.hide();
+          this.spinnerService.hide().then();
+          this.toastr.error(msg);
         }
       })
   }

@@ -2,7 +2,7 @@
   height: 50px;
   width: 100%;
 
-  font-family: arial;
+  font-family: "Google Sans", arial, sans-serif;
   color: white;
   font-size: 0.75em;
   overflow: hidden;
@@ -125,6 +125,7 @@
           width: 75%;
         }
       }
+
       &:hover {
         .volume-slider {
           left: -123px;

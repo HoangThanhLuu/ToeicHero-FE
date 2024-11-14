@@ -1,17 +1,15 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {ClientModule} from './client/client.module';
-import {AdminModule} from './admin/admin.module';
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => ClientModule,
+    loadChildren: () => import('./client/client.module').then(m => m.ClientModule),
   },
   {
     path: 'admin',
-    loadChildren: () => AdminModule,
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
   },
   {
     path: '**',

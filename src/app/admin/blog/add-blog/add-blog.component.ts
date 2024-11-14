@@ -1,18 +1,18 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {ToastrService} from "ngx-toastr";
-import {NgxSpinnerService} from "ngx-spinner";
-import {BsModalRef} from "ngx-bootstrap/modal";
-import {TranslateService} from "@ngx-translate/core";
-import {AdminLibBaseCss3, AdminStyle2} from "../../admin.style";
-import {TinyServiceService} from "../../../common/tiny-service.service";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {ToastrService} from 'ngx-toastr';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {BsModalRef} from 'ngx-bootstrap/modal';
+import {TranslateService} from '@ngx-translate/core';
+import {AdminLibBaseCss3, AdminStyle2} from '../../admin.style';
+import {TinyServiceService} from '../../../common/tiny-service.service';
 
 @Component({
   selector: 'app-add-blog',
   templateUrl: './add-blog.component.html',
-  styleUrls: ['./add-blog.component.scss',...AdminLibBaseCss3, ...AdminStyle2]
+  styleUrls: ['./add-blog.component.scss', ...AdminLibBaseCss3, ...AdminStyle2]
 })
-export class AddBlogComponent implements OnInit{
+export class AddBlogComponent {
   @Input() title: string = "Add Blog: ";
   @Input() isShowImage: boolean = false;
   @Input() imageSrc: string | undefined = "";
@@ -24,11 +24,11 @@ export class AddBlogComponent implements OnInit{
   formData = new FormData();
   fileImage: string | null = null;
   tinymceConfig: any;
-  params: any ={
+  params: any = {
     blogId: '',
     author: '',
     content: '',
-    title:'',
+    title: '',
     image: '',
     summary: '',
     createdAt: '',
@@ -44,29 +44,26 @@ export class AddBlogComponent implements OnInit{
     this.tinymceConfig = tinyService.getTinyConfig();
   }
 
-  ngOnInit(): void {
-
-    }
   addBlog(): void {
-    if(!this.params.author) {
+    if (!this.params.author) {
       this.toastr.error('Please enter author');
       this.showBorderError[0] = true;
       return;
-    }else{
+    } else {
       this.showBorderError[0] = false;
     }
-    if(!this.params.title) {
+    if (!this.params.title) {
       this.toastr.error('Please enter title');
       this.showBorderError[1] = true;
       return;
-    }else{
+    } else {
       this.showBorderError[1] = false;
     }
-    if(!this.params.content) {
+    if (!this.params.content) {
       this.toastr.error('Please enter content');
       this.showBorderError[2] = true;
       return;
-    }else{
+    } else {
       this.showBorderError[2] = false;
     }
     this.spinnerService.show();
@@ -74,21 +71,21 @@ export class AddBlogComponent implements OnInit{
     this.formData.append('title', this.params.title);
     this.formData.append('summary', this.params.summary);
     this.formData.append('content', this.params.content);
-    this.http.post('/api/blog/create',this.formData )
+    this.http.post('/api/blog/create', this.formData)
       .subscribe({
         next: (res: any) => {
           const msg = this.translate.instant(`BLOG.${res?.message}`);
           this.toastr.success(msg);
           this.addSuccessEmit.emit();
           this.spinnerService.hide();
-          if(this.isPopup){
+          if (this.isPopup) {
             this.close();
           }
         },
         error: (res: any) => {
           const msg = this.translate.instant(`BLOG.${res?.message}`);
-          this.spinnerService.hide();
-          console.log(res);
+          this.spinnerService.hide().then();
+          this.toastr.error(msg);
         }
       })
     this.formData.delete('author');
@@ -97,37 +94,42 @@ export class AddBlogComponent implements OnInit{
     this.formData.delete('content');
     this.formData.delete('file');
   }
-  modifyBlog(){
+
+  modifyBlog() {
     this.spinnerService.show();
     this.formData.append('blogId', this.params.blogId);
     this.formData.append('author', this.params.author);
     this.formData.append('title', this.params.title);
     this.formData.append('summary', this.params.summary);
     this.formData.append('content', this.params.content);
-    this.http.patch(`/api/blog/update`,this.formData)
+    this.http.patch(`/api/blog/update`, this.formData)
       .subscribe({
         next: (res: any) => {
           const msg = this.translate.instant(`BLOG.${res?.message}`);
           this.toastr.success(msg);
           this.modified.emit();
           this.spinnerService.hide();
-          if(this.isPopup){
+          if (this.isPopup) {
             this.close();
           }
         },
         error: (res: any) => {
           const msg = this.translate.instant(`BLOG.${res?.message}`);
-          this.spinnerService.hide();
+          this.spinnerService.hide().then();
+          this.toastr.error(msg);
         }
       })
   }
+
   handleFileInput(event: any) {
     const file = event.target.files[0];
     this.handleFiles(file);
   }
+
   close() {
     this.bsModalRef.hide();
   }
+
   handleFiles(file: any) {
     if (file) {
       const reader = new FileReader();
@@ -139,9 +141,11 @@ export class AddBlogComponent implements OnInit{
       reader.readAsDataURL(file);
     }
   }
+
   allowDrop(event: any) {
     event.preventDefault();
   }
+
   handleDrop(event: any) {
     event.preventDefault();
     const files = event.dataTransfer.files[0];

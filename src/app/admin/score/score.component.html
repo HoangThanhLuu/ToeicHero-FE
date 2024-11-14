@@ -31,7 +31,7 @@
              [nzLoading]="tblLoading">
             <thead>
             <tr>
-              <th
+              <th scope="col"
                 *ngFor="let column of listOfColumns"
                 [nzSortOrder]="column.sortOrder"
                 [nzSortFn]="column.sortFn"
@@ -39,7 +39,7 @@
               >
                 {{ column.name }}
               </th>
-              <th>#</th>
+              <th scope="col">#</th>
             </tr>
             </thead>
             <tbody>

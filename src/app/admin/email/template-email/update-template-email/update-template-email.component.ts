@@ -54,7 +54,8 @@ export class UpdateTemplateEmailComponent {
         },
         error: (res: any) => {
           const msg = this.translate.instant(`EMAIL.${res?.message}`);
-          this.spinnerService.hide();
+          this.spinnerService.hide().then();
+          this.toastr.error(msg); 
         }
       })
   }

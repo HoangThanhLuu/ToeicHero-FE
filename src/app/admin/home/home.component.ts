@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {AdminLibBaseCss2, AdminStyle} from "../admin.style";
+import {Component} from '@angular/core';
+import {AdminStyle} from '../admin.style';
 
 @Component({
   selector: 'app-home',

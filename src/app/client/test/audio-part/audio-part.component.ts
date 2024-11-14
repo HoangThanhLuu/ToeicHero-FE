@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, SimpleChanges} from '@angular/core';
 import {ToastrService} from "ngx-toastr";
 
 @Component({
@@ -19,8 +19,9 @@ export class AudioPartComponent implements OnInit {
   constructor(private toastr: ToastrService) {
     this.audio = new Audio();
   }
+
   ngOnInit(): void {
-    if(!this.audioSource) {
+    if (!this.audioSource) {
       return;
     }
 
@@ -28,7 +29,7 @@ export class AudioPartComponent implements OnInit {
   }
 
   playPause() {
-    if(!this.audioSource) {
+    if (!this.audioSource) {
       this.toastr.error(`File audio ${this.partName.toLowerCase()} đang bị lỗi!`);
       return;
     }

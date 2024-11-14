@@ -4,8 +4,6 @@ import {
 } from '@angular/core';
 import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
-import {NzModalService} from "ng-zorro-antd/modal";
-import {BsModalService} from "ngx-bootstrap/modal";
 import {NgxSpinnerService} from "ngx-spinner";
 import {
   finalize,
@@ -24,8 +22,6 @@ export class ListTestComponent implements OnInit {
 
   constructor(private toast: ToastrService,
               private http: HttpClient,
-              private modal: NzModalService,
-              private bsModalService: BsModalService,
               private spinnerService: NgxSpinnerService) {
   }
 

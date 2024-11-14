@@ -34,10 +34,8 @@ export class PartTemplate3Component implements OnChanges {
             question: [this.part?.questions[i]]
           }];
           groupIndex++;
-        } else {
-          if (this.listQuestion.length > 0) {
-            this.listQuestion[this.listQuestion.length - 1].question.push(this.part?.questions[i]);
-          }
+        } else if (this.listQuestion.length > 0) {
+          this.listQuestion[this.listQuestion.length - 1].question.push(this.part?.questions[i]);
         }
       }
     }

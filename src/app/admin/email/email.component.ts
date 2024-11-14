@@ -101,7 +101,7 @@ export class EmailComponent implements OnInit {
         title: 'Add Email Config'
       }
     });
-    if (bsModalRef && bsModalRef.content) {
+    if (bsModalRef?.content) {
       bsModalRef.content.addSuccessEmit.subscribe(() => {
         this.getListEmailConfig();
       });

@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
 import {BsModalRef} from "ngx-bootstrap/modal";
 import {NgxSpinnerService} from "ngx-spinner";

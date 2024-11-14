@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 
 import { BlogRoutingModule } from './blog-routing.module';
 import { BlogComponent } from './blog.component';
@@ -13,11 +13,12 @@ import {DetailBlogComponent} from './detail-blog/detail-blog.component';
     BlogComponent,
     DetailBlogComponent
   ],
-    imports: [
-        CommonModule,
-        BlogRoutingModule,
-        NzImageModule,
-        NzPaginationModule
-    ]
+  imports: [
+    CommonModule,
+    BlogRoutingModule,
+    NzImageModule,
+    NzPaginationModule,
+    NgOptimizedImage
+  ]
 })
 export class BlogModule { }

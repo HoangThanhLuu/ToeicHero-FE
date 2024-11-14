@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AdminLibBaseCss3, AdminStyle2} from '../../admin.style';
 import {HttpClient} from '@angular/common/http';
 import {ToastrService} from 'ngx-toastr';
@@ -8,7 +8,6 @@ import {TranslateService} from '@ngx-translate/core';
 import {bottom} from '@popperjs/core';
 import {DatetimeService} from '../../../common/datetime.service';
 import {Topic} from '../../../common/model/Topic';
-import {NzDatePickerComponent} from 'ng-zorro-antd/date-picker';
 
 @Component({
   selector: 'app-add-exam',

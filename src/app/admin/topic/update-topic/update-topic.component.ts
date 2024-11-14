@@ -54,11 +54,13 @@ export class UpdateTopicComponent {
       reader.readAsDataURL(file);
     }
   }
+
   deleteImg() {
     this.formData.delete('file');
     this.isShowImage = false;
     this.imageSrc = '';
   }
+
   allowDrop(event: any) {
     event.preventDefault();
   }
@@ -68,6 +70,7 @@ export class UpdateTopicComponent {
     const files = event.dataTransfer.files[0];
     this.handleFiles(files);
   }
+
   modifiTopic() {
     this.spinnerService.show();
     this.formData.append('topicName', this.params.topicName);
@@ -78,13 +81,14 @@ export class UpdateTopicComponent {
           this.toastr.success(msg);
           this.modified.emit();
           this.spinnerService.hide();
-          if(this.isPopup){
+          if (this.isPopup) {
             this.close();
           }
         },
         error: (res: any) => {
           const msg = this.translate.instant(`TOPIC.${res?.message}`);
-          this.spinnerService.hide();
+          this.spinnerService.hide().then();
+          this.toastr.error(msg);
         }
       })
   }

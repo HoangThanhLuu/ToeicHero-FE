@@ -104,7 +104,7 @@ export class FirebaseComponent implements OnInit{
         isPopup: true
       }
     });
-    if (bsModalRef && bsModalRef.content) {
+    if (bsModalRef?.content) {
       bsModalRef.content.addSuccessEmit.subscribe(() => {
         this.getListFirebase();
       });

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import {HttpClient} from '@angular/common/http';
@@ -14,7 +14,7 @@ import {ProfileService} from '../../../common/profile.service';
   templateUrl: './update-profile.component.html',
   styleUrls: ['./update-profile.component.scss']
 })
-export class UpdateProfileComponent implements OnInit{
+export class UpdateProfileComponent {
   profileForm!: FormGroup;
   avatarSrc: string = '';
   formData = new FormData();
@@ -34,8 +34,6 @@ export class UpdateProfileComponent implements OnInit{
     });
   }
 
-  ngOnInit(): void {
-  }
   closeModal() {
     this.close.emit('ok');
     this.bsModalRef.hide();

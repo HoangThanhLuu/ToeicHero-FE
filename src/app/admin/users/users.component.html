@@ -16,7 +16,7 @@
           </nz-form-control>
         </nz-form-item>
       </div>
-      <table class="table">
+      <table class="table" aria-label="toeicute">
         <thead>
         <tr>
           <th> ID </th>
@@ -34,7 +34,7 @@
           <tr>
             <td>{{item?.user_id}}</td>
             <td>{{item?.full_name}}</td>
-            <td><img nz-image [nzSrc]="item?.avatar" style="height: 60px; width: 60px;" /></td>
+            <td><img nz-image [nzSrc]="item?.avatar" style="height: 60px; width: 60px;" alt="toeicute" /></td>
             <td>{{item?.email}}</td>
             <td>{{item?.phone}}</td>
             <td>{{item?.address}}</td>

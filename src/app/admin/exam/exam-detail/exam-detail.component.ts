@@ -27,7 +27,6 @@ export class ExamDetailComponent implements OnInit {
   listPart: Part[] = [];
   currentExam: Exam = new Exam();
   selectedFile: any;
-  selectPart: any;
   formData = new FormData();
 
   constructor(private toast: ToastrService,
@@ -57,10 +56,6 @@ export class ExamDetailComponent implements OnInit {
     });
   }
 
-  trackByFn(index: number, item: any): any {
-    return item.partId;
-  }
-
   openFormEdit(item: any) {
     const modalRef = this.bsModalService.show(EditPartComponent, {
       class: 'modal-lg modal-dialog-centered',
@@ -70,7 +65,7 @@ export class ExamDetailComponent implements OnInit {
         currentExam: this.currentExam
       }
     });
-    if (modalRef && modalRef.content) {
+    if (modalRef?.content) {
       modalRef.content.editPartSuccess.subscribe(() => {
         this.ngOnInit();
       });
@@ -78,7 +73,7 @@ export class ExamDetailComponent implements OnInit {
   }
 
   seeDetail(item: any) {
-    window.location.href = `/admin/question/list-by-part?pid=${item?.partId}`;
+    window.location.href = `/admin/exam/question/list-by-part?pid=${item?.partId}`;
   }
 
   importExel(item: any, index: number) {

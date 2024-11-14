@@ -7,7 +7,7 @@ import {CONSTANT} from './constant';
 })
 export class DatetimeService {
   getFormatDate(value: Date, formatString: string) {
-    return new DatePipe(CONSTANT.defaultLocale).transform(value, formatString, CONSTANT.timeZone) || '';
+    return new DatePipe(CONSTANT.defaultLocale).transform(value, formatString, CONSTANT.timeZone) ?? '';
   }
 }
 

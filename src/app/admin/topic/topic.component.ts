@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AdminLibBaseCss2, AdminStyle} from '../admin.style';
 import {BsModalService} from 'ngx-bootstrap/modal';
 import {AddTopicComponent} from './add-topic/add-topic.component';
@@ -49,7 +49,7 @@ export class TopicComponent implements OnInit {
         title: 'Add Topic'
       }
     });
-    if (modalRef && modalRef.content) {
+    if (modalRef?.content) {
       modalRef.content.added.subscribe(() => {
         this.getListTopic();
       });
@@ -73,29 +73,30 @@ export class TopicComponent implements OnInit {
           label: 'Agree',
           type: 'primary',
           onClick: () => {
-              this.spinner.show();
-              this.http.delete<any>(`/api/admin/topic/delete/${topic?.topicId}`)
-                .subscribe((res: any) => {
-                    if(res?.success) {
-                      const msg = this.translate.instant(`TOPIC.${res?.message}`);
-                      if (res?.success) {
-                        this.toast.success(msg);
-                      } else {
-                        this.toast.error(msg);
-                      }
-                      this.getListTopic();
-                    }else{
-                      const msg = this.translate.instant(`TOPIC.${res?.message}`);
-                      this.toast.error(msg);
-                    }
-                    this.spinner.hide();
-                  confirmModal.destroy();
-                });
+            this.spinner.show();
+            this.http.delete<any>(`/api/admin/topic/delete/${topic?.topicId}`)
+              .subscribe((res: any) => {
+                if (res?.success) {
+                  const msg = this.translate.instant(`TOPIC.${res?.message}`);
+                  if (res?.success) {
+                    this.toast.success(msg);
+                  } else {
+                    this.toast.error(msg);
+                  }
+                  this.getListTopic();
+                } else {
+                  const msg = this.translate.instant(`TOPIC.${res?.message}`);
+                  this.toast.error(msg);
+                }
+                this.spinner.hide();
+                confirmModal.destroy();
+              });
           }
         }
       ]
     });
   }
+
   editTopic(data: any) {
     const bsModalResult = this.bsModalService.show(UpdateTopicComponent, {
       class: 'modal-lg modal-dialog-centered',
@@ -110,7 +111,7 @@ export class TopicComponent implements OnInit {
         }
       }
     });
-    if (bsModalResult?.content?.modified){
+    if (bsModalResult?.content?.modified) {
       bsModalResult.content.modified.subscribe(() => {
         this.getListTopic();
       });

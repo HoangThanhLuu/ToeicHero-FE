@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {NgxSpinnerService} from "ngx-spinner";
@@ -10,10 +10,10 @@ import {TranslateService} from "@ngx-translate/core";
   templateUrl: './update-kommunicate.component.html',
   styleUrls: ['./update-kommunicate.component.scss']
 })
-export class UpdateKommunicateComponent implements OnInit {
+export class UpdateKommunicateComponent {
   @Input() title: string = "Add Kommunicate: ";
   @Input() isAdd = true;
-  @Input() isPopup: boolean =false;
+  @Input() isPopup: boolean = false;
   @Input() param: any = {
     email: '',
     password: ''
@@ -21,34 +21,33 @@ export class UpdateKommunicateComponent implements OnInit {
   @Output() added = new EventEmitter();
   @Output() addSuccessEmit = new EventEmitter();
   showBorderError: any = [];
+
   constructor(private http: HttpClient,
               private toastr: ToastrService,
               private spinnerService: NgxSpinnerService,
               private bsModalRef: BsModalRef,
-              private  translate: TranslateService) {
-  }
-  ngOnInit(): void {
+              private translate: TranslateService) {
   }
 
   addAccount(): void {
-    if(!this.param.email) {
+    if (!this.param.email) {
       this.toastr.error('Please input Email');
       this.showBorderError[0] = true;
       return;
-    }else{
+    } else {
       this.showBorderError[0] = false;
     }
-    if(!this.param.password) {
+    if (!this.param.password) {
       this.toastr.error('Please input Password');
       this.showBorderError[1] = true;
       return;
-    }else{
+    } else {
       this.showBorderError[1] = false;
     }
     this.spinnerService.show();
     this.http.post('/api/kommunicate/account/update', this.param)
       .subscribe({
-        next: (res: any) =>{
+        next: (res: any) => {
           const msg = this.translate.instant(`KOMMUNICATE.${res?.message}`);
           this.toastr.success(msg);
           this.added.emit('updateOk');
@@ -58,7 +57,7 @@ export class UpdateKommunicateComponent implements OnInit {
             email: '',
             password: ''
           }
-          if(this.isPopup) {
+          if (this.isPopup) {
             this.close();
           }
         },
@@ -69,6 +68,7 @@ export class UpdateKommunicateComponent implements OnInit {
         }
       })
   }
+
   close() {
     this.bsModalRef.hide();
   }

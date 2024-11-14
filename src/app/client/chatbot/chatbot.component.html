@@ -1,14 +1,14 @@
 @if (isShow) {
   <section class="chatbox-panel">
     <header class="chatbox-panel__header">
-      <aside style="flex:2">
+      <aside aria-label="toeicute" style="flex:2">
         <img ngSrc="/assets/images/avatar_chatbot.jpg"
              alt="Toeicute AI" class="rounded-circle"
              width="48"
              (click)="toggleChatbot()"
              height="48">
       </aside>
-      <aside style="flex:6">
+      <aside aria-label="toeicute" style="flex:6">
         <h1 class="mb-1" (click)="test()">TOEICUTE</h1>
         <nz-select [(ngModel)]="selectedModel" nzPlaceHolder="Chọn chatbot" [ngClass]="{'d-none': !isChatbot}">
           <nz-option-group nzLabel="Miễn phí">
@@ -21,7 +21,7 @@
           </nz-option-group>
         </nz-select>
       </aside>
-      <aside style="flex:3;text-align:right;">
+      <aside aria-label="toeicute" style="flex:3;text-align:right;">
         <button class="chatbox-panel-close" (click)="toggleChatbot()"><i class="fa fa-close" aria-hidden="true"></i>
         </button>
       </aside>
@@ -70,7 +70,7 @@
       </div>
     </main>
     <footer class="chatbox-panel__footer">
-      <aside style="flex:10">
+      <aside aria-label="toeicute" style="flex:10">
         <textarea type="text" placeholder="Nhập câu hỏi của bạn vào đây..."
                   class="form-control text-start align-middle pt-1" id="exampleFormControlTextSarea1"
                   rows="3"
@@ -78,7 +78,7 @@
                   [readOnly]="isLoading"
                   autofocus [(ngModel)]="params.prompt"></textarea>
       </aside>
-      <aside style="flex:1;" class="d-flex justify-content-center align-items-center text-center h-100 bg-white">
+      <aside aria-label="toeicute" style="flex:1;" class="d-flex justify-content-center align-items-center text-center h-100 bg-white">
         @if (isLoading) {
           <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
         } @else {

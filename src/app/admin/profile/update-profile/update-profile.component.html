@@ -4,56 +4,71 @@
     <form action="" [formGroup]="profileForm">
       <!-- Photo -->
       <fieldset>
+        <legend></legend>
         <div class="grid-35">
           <label>Avatar</label>
         </div>
         <div class="grid-65">
           <span class="photo" title="Change your profile avatar!">
-            <img nz-image [nzSrc]="profileService.currentUser.avatar" class="avatar" [alt]="profileService.currentUser.fullName"/>
+            <img nz-image [nzSrc]="profileService.currentUser.avatar" class="avatar"
+                 [alt]="profileService.currentUser.fullName"/>
           </span>
           <input type="file" class="btn" (change)="handleFileInput($event)"/>
         </div>
       </fieldset>
       <fieldset>
+        <legend></legend>
         <div class="grid-35">
           <label for="fname">Họ tên</label>
         </div>
         <div class="grid-65">
-          <input type="text" id="fname" tabindex="1" formControlName="fullName" [value]="profileService.currentUser.fullName"/>
+          <input type="text" id="fname" tabindex="1" formControlName="fullName"
+                 [value]="profileService.currentUser.fullName"/>
         </div>
       </fieldset>
       <!-- Email -->
       <fieldset>
-        <div class="grid-35">
-          <label for="email"> Email</label>
-        </div>
-        <div class="grid-65">
-          <input type="email" class="border-none" readonly id="email" tabindex="2" [value]="profileService.currentUser.email"/>
-        </div>
+        <legend>
+          <div class="grid-35">
+            <label for="email"> Email</label>
+          </div>
+          <div class="grid-65">
+            <input type="email" class="border-none" readonly id="email" tabindex="2"
+                   [value]="profileService.currentUser.email"/>
+          </div>
+        </legend>
       </fieldset>
       <!-- Phone -->
       <fieldset>
-        <div class="grid-35">
-          <label for="email">Phone number </label>
-        </div>
-        <div class="grid-65">
-          <input type="email" id="phone" tabindex="3" formControlName="phone" [value]="profileService.currentUser.phone"/>
-        </div>
+        <legend>
+          <div class="grid-35">
+            <label for="email">Phone number </label>
+          </div>
+          <div class="grid-65">
+            <input type="email" id="phone" tabindex="3" formControlName="phone"
+                   [value]="profileService.currentUser.phone"/>
+          </div>
+        </legend>
       </fieldset>
 
       <!-- Location -->
       <fieldset>
-        <div class="grid-35">
-          <label for="location">Adress</label>
-        </div>
-        <div class="grid-65">
-          <input type="text" id="location" tabindex="4" formControlName="address" [value]="profileService.currentUser.address"/>
-        </div>
+        <legend>
+          <div class="grid-35">
+            <label for="location">Adress</label>
+          </div>
+          <div class="grid-65">
+            <input type="text" id="location" tabindex="4" formControlName="address"
+                   [value]="profileService.currentUser.address"/>
+          </div>
+        </legend>
       </fieldset>
 
       <fieldset>
-        <input type="button" class="Btn cancel" value="Cancel" (click)="closeModal()"/>
-        <input type="submit" class="Btn" value="Save" (click)="onUpdateProfile()"/>
+        <legend>
+          <input type="button" class="Btn cancel" value="Cancel" (click)="closeModal()"/>
+          <input type="submit" class="Btn" value="Save" (click)="onUpdateProfile()"/>
+        </legend>
       </fieldset>
     </form>
   </div>

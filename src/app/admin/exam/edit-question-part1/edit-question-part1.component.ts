@@ -1,13 +1,13 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {ToastrService} from "ngx-toastr";
-import {HttpClient} from "@angular/common/http";
-import {NzModalService} from "ng-zorro-antd/modal";
-import {BsModalRef, BsModalService} from "ngx-bootstrap/modal";
-import {NgxSpinnerService} from "ngx-spinner";
-import {ActivatedRoute} from "@angular/router";
-import {AdminLibBaseCss3, AdminStyle2} from "../../admin.style";
-import {concatMap} from "rxjs/operators";
-import {finalize, forkJoin, from, Observable, pipe} from "rxjs";
+import {ToastrService} from 'ngx-toastr';
+import {HttpClient} from '@angular/common/http';
+import {NzModalService} from 'ng-zorro-antd/modal';
+import {BsModalRef} from 'ngx-bootstrap/modal';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {ActivatedRoute} from '@angular/router';
+import {AdminLibBaseCss3, AdminStyle2} from '../../admin.style';
+import {concatMap} from 'rxjs/operators';
+import {finalize, forkJoin, from, Observable} from 'rxjs';
 
 @Component({
   selector: 'app-edit-question-part1',

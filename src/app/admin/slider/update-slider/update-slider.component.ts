@@ -2,7 +2,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output
 } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
@@ -16,9 +15,9 @@ import {AdminLibBaseCss3, AdminStyle2} from "../../admin.style";
 @Component({
   selector: 'app-update-slider',
   templateUrl: './update-slider.component.html',
-  styleUrls: ['./update-slider.component.scss',...AdminLibBaseCss3, ...AdminStyle2]
+  styleUrls: ['./update-slider.component.scss', ...AdminLibBaseCss3, ...AdminStyle2]
 })
-export class UpdateSliderComponent implements OnInit {
+export class UpdateSliderComponent {
 
   @Input() title: string = "Update Slider: ";
   @Output() added = new EventEmitter();
@@ -37,9 +36,6 @@ export class UpdateSliderComponent implements OnInit {
               private bsModalRef: BsModalRef,
               private translate: TranslateService,
   ) {
-  }
-
-  ngOnInit() {
   }
 
   handleFileInput(event: any) {
@@ -65,11 +61,13 @@ export class UpdateSliderComponent implements OnInit {
       reader.readAsDataURL(file);
     }
   }
+
   deleteImg() {
     this.formData.delete('file');
     this.isShowImage = false;
     this.imageSrc = '';
   }
+
   allowDrop(event: any) {
     event.preventDefault();
   }
@@ -90,7 +88,7 @@ export class UpdateSliderComponent implements OnInit {
     this.http.post<any>(url, this.formData)
       .pipe(
         finalize(() => {
-          if(this.isPopup) {
+          if (this.isPopup) {
             this.bsModalRef.hide();
           }
         })
@@ -106,7 +104,7 @@ export class UpdateSliderComponent implements OnInit {
             this.formData.delete('file');
             this.imageSrc = '';
             this.isShowImage = false;
-            if(this.isPopup){
+            if (this.isPopup) {
               this.close();
             }
           } else {

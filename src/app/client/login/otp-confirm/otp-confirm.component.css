@@ -101,9 +101,6 @@
   margin: 0 6px;
 }
 
-form.otp-form {
-  margin: 24px 0;
-}
 
 .otp-form .otp-field:focus {
   border-color: #101010;

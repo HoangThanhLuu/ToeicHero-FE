@@ -1,18 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {ClientComponent} from "./client.component";
-import {HomeComponent} from "./home/home.component";
-import {TestComponent} from "./test/test.component";
-import {ListTestComponent} from "./list-test/list-test.component";
-import {ProfileComponent} from "./profile/profile.component";
-import {StartComponent} from "./test/start/start.component";
-import {LoginPopupComponent} from "./login/login-popup/login-popup.component";
-import {ResultComponent} from "./test/result/result.component";
-import {PracticeComponent} from "./test/practice/practice.component";
 import {ClientGuardGuard} from "../client-guard.guard";
-import {HistoryExamComponent} from "./history-exam/history-exam.component";
-import {HistoryExamDetailComponent} from "./history-exam/history-exam-detail/history-exam-detail.component";
-import {ResetPasswordComponent} from "./login/reset-password/reset-password.component";
+import {profileResolver} from '../common/profile.service';
 
 const routes: Routes = [
   {
@@ -25,61 +15,36 @@ const routes: Routes = [
         pathMatch: 'full'
       }, {
         path: 'home',
-        component: HomeComponent
+        loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
       }, {
         path: 'login',
-        component: LoginPopupComponent
+        loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
       }, {
         path: 'list-test',
-        component: ListTestComponent
+        loadChildren: () => import('./list-test/list-test.module').then(m => m.ListTestModule)
       },
       {
         path: 'profile',
+        resolve: [profileResolver],
         canActivate: [ClientGuardGuard],
-        component: ProfileComponent
+        loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
       }, {
         path: 'test/:examId',
-        children: [
-          {
-            path: '',
-            component: TestComponent
-          },
-          {
-            path: 'start',
-            component: StartComponent
-          },
-          {
-            path: 'result/:resultId',
-            canActivate: [ClientGuardGuard],
-            component: ResultComponent
-          },
-          {
-            path: 'practice',
-            canActivate: [ClientGuardGuard],
-            component: PracticeComponent
-          }
-        ]
+        resolve: [profileResolver],
+        loadChildren: () => import('./test/test.module').then(m => m.TestModule)
       },
       {
         path: 'my-exam',
+        resolve: [profileResolver],
         canActivate: [ClientGuardGuard],
-        children: [
-          {
-            path: '',
-            component: HistoryExamComponent
-          },
-          {
-            path: 'detail/:userExamHistoryId',
-            component: HistoryExamDetailComponent
-          }
-        ]
+        loadChildren: () => import('./history-exam/history-exam.module').then(m => m.HistoryExamModule)
       },
       {
         path: 'reset-password/:otp',
-        component: ResetPasswordComponent
+        loadChildren: () => import('./login/reset-password/reset-password.module').then(m => m.ResetPasswordModule)
       },
-      { path: 'oauth2', loadChildren: () => import('./redirect/redirect.module').then(m => m.RedirectModule) },
-      { path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule) }
+      {path: 'oauth2', loadChildren: () => import('./redirect/redirect.module').then(m => m.RedirectModule)},
+      {path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)}
     ]
   }
 ];

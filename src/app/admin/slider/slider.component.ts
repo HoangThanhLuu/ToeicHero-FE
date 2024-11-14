@@ -142,7 +142,7 @@ export class SliderComponent implements OnInit {
         title: 'Add Slider'
       }
     });
-    if (bsModalRef && bsModalRef.content) {
+    if (bsModalRef?.content) {
       bsModalRef.content.addSuccessEmit.subscribe(() => {
         this.getListSlider(`api/slider/all?page=${this.page}&size=${this.size}`);
       });

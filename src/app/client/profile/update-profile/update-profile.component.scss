@@ -87,7 +87,7 @@ input[type="file"] {
 span.btn:hover {
   opacity: 1;
   color: #fff;
-  background-color: var(--primary-600);;
+  background-color: var(--primary-600);
 }
 
 .profile:hover .btn {
@@ -119,7 +119,7 @@ fieldset textarea, input {
   font-size: 15px;
   color: #333;
   background-color: #f7f7f7;
-  box-shadow: 0 0 0 1px var(--primary-600);;
+  box-shadow: 0 0 0 1px var(--primary-600);
   padding: 5px;
   width: 75%;
   margin: 5px auto;
@@ -135,7 +135,7 @@ fieldset textarea {
 }
 
 fieldset textarea:hover, input:hover {
-  box-shadow: 0 0 0 1px var(--primary-600);;
+  box-shadow: 0 0 0 1px var(--primary-600);
   background-color: #fff;
 }
 

@@ -67,7 +67,7 @@ export class TemplateEmailComponent implements OnInit {
       }
     });
 
-    if (bsModalResult && bsModalResult.content) {
+    if (bsModalResult?.content) {
       bsModalResult.content.added.subscribe(() => {
         this.getListTemplateEmail();
       });
@@ -119,7 +119,7 @@ export class TemplateEmailComponent implements OnInit {
         title: 'Add Template Email'
       }
     });
-    if (bsModalRef && bsModalRef.content) {
+    if (bsModalRef?.content) {
       bsModalRef.content.added.subscribe(() => {
         this.getListTemplateEmail();
       });

@@ -101,7 +101,7 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
       } else {
         this.initData();
       }
-    }, 1_000);
+    }, 2_000);
   }
 
   ngOnInit(): void {
@@ -398,13 +398,11 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
         this.toast.error('Bài thi đã hết giờ làm bài');
         const isNotSelectAll = this.checkSelectedAll();
         this.submitTest(isNotSelectAll);
+      } else if (haveData) {
+        this.totalTimeInSeconds = (new Date(this.param.endTime).getTime() - new Date().getTime()) / 1000;
+        this.totalTimeInSeconds = Math.ceil(this.totalTimeInSeconds);
       } else {
-        if(haveData) {
-          this.totalTimeInSeconds = (new Date(this.param.endTime).getTime() - new Date().getTime()) / 1000;
-          this.totalTimeInSeconds = Math.ceil(this.totalTimeInSeconds);
-        } else {
-          this.totalTimeInSeconds = 120 * 60;
-        }
+        this.totalTimeInSeconds = 120 * 60;
       }
       if (!this.param?.examId) {
         this.param.examId = this.currentExam.examId;

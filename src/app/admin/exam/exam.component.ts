@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AdminLibBaseCss2, AdminStyle} from "../admin.style";
-import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
-import {NzModalService} from "ng-zorro-antd/modal";
 import {BsModalService} from "ngx-bootstrap/modal";
 import {AddExamComponent} from "./add-exam/add-exam.component";
 import {EditExamComponent} from "./edit-exam/edit-exam.component";
@@ -24,11 +22,10 @@ export class ExamComponent implements OnInit {
   currentPage: string = "Đề thi"
   listExam: Exam[] = [];
 
-  constructor(private toast: ToastrService,
-              private http: HttpClient,
-              private modal: NzModalService,
-              private bsModalService: BsModalService,
-              private spinnerService: NgxSpinnerService) {
+  constructor(
+    private http: HttpClient,
+    private bsModalService: BsModalService,
+    private spinnerService: NgxSpinnerService) {
   }
 
   ngOnInit(): void {
@@ -43,7 +40,7 @@ export class ExamComponent implements OnInit {
         isPopup: true
       }
     });
-    if (bsModalRef && bsModalRef.content) {
+    if (bsModalRef?.content) {
       bsModalRef.content.addSuccessEmit.subscribe(() => {
         this.getListExam();
       });
@@ -84,7 +81,7 @@ export class ExamComponent implements OnInit {
         }
       }
     });
-    if (bsModalRef && bsModalRef.content) {
+    if (bsModalRef?.content) {
       bsModalRef.content.editSuccessEmit.subscribe(() => {
         this.getListExam();
       });

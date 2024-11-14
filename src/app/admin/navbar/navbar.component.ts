@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 
 import {AdminLibBaseCss2, AdminStyle} from "../admin.style";
+import {CONSTANT} from '../../common/constant';
 
 @Component({
   selector: 'app-navbar',
@@ -13,6 +14,9 @@ export class NavbarComponent {
   logout() {
     localStorage.removeItem('token');
     localStorage.setItem('tokenValid', 'false');
+    localStorage.removeItem(CONSTANT.systemMenu);
+    localStorage.removeItem(CONSTANT.memberMenu);
+
     window.location.href = '/home';
   }
 }

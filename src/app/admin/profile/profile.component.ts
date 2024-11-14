@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
 import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
@@ -16,7 +16,7 @@ import {ProfileService} from '../../common/profile.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
   currentUser: any;
   avatarSrc: string = '';
   formData = new FormData();
@@ -28,9 +28,6 @@ export class ProfileComponent implements OnInit {
               private bsModalService: BsModalService,
               private spinner: NgxSpinnerService,
               protected profileService: ProfileService) {
-  }
-
-  ngOnInit(): void {
   }
 
   handleFileInput($event: any) {
@@ -109,7 +106,7 @@ export class ProfileComponent implements OnInit {
     });
     if (bsModalRef.content) {
       bsModalRef.content.close.subscribe(() => {
-        this.ngOnInit();
+        this.profileService.getProfileData().subscribe();
       })
     }
   }

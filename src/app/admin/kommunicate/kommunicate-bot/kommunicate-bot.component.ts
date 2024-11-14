@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BsModalService} from 'ngx-bootstrap/modal';
 import {HttpClient} from '@angular/common/http';
 import {NzModalRef, NzModalService} from 'ng-zorro-antd/modal';
@@ -24,21 +24,25 @@ export class KommunicateBotComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private toastr: ToastrService,
     private modal: NzModalService,
-    private  translate: TranslateService,
+    private translate: TranslateService,
   ) {
   }
+
   ngOnInit(): void {
     this.getListKommunicateBot();
   }
+
   getListKommunicateBot() {
     this.http.get('/api/kommunicate/bot/all')
       .subscribe((res: any) => {
         this.listKommunicateBot = res;
       });
   }
+
   trackByFn(index: number, data: any): any {
     return data.id;
   }
+
   onSwitchChange(appId: number) {
     this.spinner.show();
     this.http.patch(`api/kommunicate/bot/update/status/${appId}`, {})
@@ -47,8 +51,8 @@ export class KommunicateBotComponent implements OnInit {
           this.getListKommunicateBot()
         })
       )
-      .subscribe( {
-        next: (res: any)  => {
+      .subscribe({
+        next: (res: any) => {
           const msg = this.translate.instant(`KOMMUNICATE.${res?.message}`);
           this.toastr.success(msg);
           this.spinner.hide().then();
@@ -60,6 +64,7 @@ export class KommunicateBotComponent implements OnInit {
         }
       })
   }
+
   update(data: any) {
     const bsModalResult = this.bsModalService.show(UpdateKommunicateBotComponent, {
       class: 'modal-lg modal-dialog-centered',
@@ -74,13 +79,14 @@ export class KommunicateBotComponent implements OnInit {
       },
       backdrop: 'static'
     });
-    if (bsModalResult?.content?.added){
+    if (bsModalResult?.content?.added) {
       bsModalResult.content.added.subscribe(() => {
         this.getListKommunicateBot();
       });
     }
   }
-  deleteBot(id: number) :void {
+
+  deleteBot(id: number): void {
     const confirmModal: NzModalRef = this.modal.create({
       nzTitle: `Confirm`,
       nzContent: `Do you want to delete?`,
@@ -118,6 +124,7 @@ export class KommunicateBotComponent implements OnInit {
       ]
     });
   }
+
   openFormAdd() {
     const bsModalRef = this.bsModalService.show(UpdateKommunicateBotComponent, {
       class: 'modal-lg modal-dialog-centered',
@@ -126,7 +133,7 @@ export class KommunicateBotComponent implements OnInit {
         isPopup: true
       }
     });
-    if (bsModalRef && bsModalRef.content) {
+    if (bsModalRef?.content) {
       bsModalRef.content.addSuccessEmit.subscribe(() => {
         this.getListKommunicateBot();
       });

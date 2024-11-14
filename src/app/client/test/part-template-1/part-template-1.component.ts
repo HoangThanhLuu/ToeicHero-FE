@@ -2,7 +2,6 @@ import {
   Component,
   EventEmitter,
   Input,
-  OnInit,
   Output
 } from '@angular/core';
 
@@ -27,7 +26,7 @@ export class PartTemplate1Component {
     return new Array(i);
   }
 
-  changeStateButton(event: any, questionId: any, partCode: any) {
+  changeStateButton(event: any, questionId: any) {
     this.selectedAnswerChange.emit({
       questionId,
       answer: event

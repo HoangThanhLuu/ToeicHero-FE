@@ -96,7 +96,7 @@ export class CommentComponent implements OnInit {
           const msg = this.translate.instant(`CMT.${res?.message}`);
           this.toast.success(msg);
           const cmt = this.listCmt.find(c => c.commentId === res?.data);
-          this.getListCommentByParent(cmt?.commentId || 0, cmt?.page || 1, Number(cmt?.size) + 1 || 10);
+          this.getListCommentByParent(cmt?.commentId ?? 0, cmt?.page ?? 1, Number(cmt?.size) + 1 || 10);
           this.params.content = '';
           this.params.parentId = '';
           this.spinnerService.hide().then();

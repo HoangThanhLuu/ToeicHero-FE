@@ -1,8 +1,40 @@
-<ng-container *ngIf="canActivate">
+@if (canActivate) {
   <div class="container-scroller">
     <app-navbar></app-navbar>
     <div class="container-fluid page-body-wrapper">
-      <app-sidebar></app-sidebar>
+      <nav class="sidebar sidebar-offcanvas mt-2" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item nav-profile">
+            <a href="#" class="nav-link">
+              <div class="nav-profile-image">
+                <img ngSrc="assets/images/admin-avatar.jpg" alt="profile" height="360" width="360">
+                <span class="login-status online"></span>
+              </div>
+              <div class="nav-profile-text d-flex flex-column">
+                <span class="font-weight-bold mb-2">TOEICUTE</span>
+                <span class="text-small">Admin</span>
+              </div>
+              <i class="mdi mdi-bookmark-check text-primary nav-profile-badge"></i>
+            </a>
+          </li>
+          @for (menu of listMemberMenu; track menu) {
+            <ng-template [ngTemplateOutlet]="listMenu" [ngTemplateOutletContext]="{ item: menu }"></ng-template>
+          }
+          <div class="border-bottom"></div>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="javascript:void(0)" aria-expanded="false"
+               aria-controls="general-pages">
+              <span class="menu-title"> System setting </span>
+              <i class="mdi mdi-home-assistant menu-icon"></i>
+            </a>
+            <div class="border-bottom"></div>
+          </li>
+          @for (menu of listSystemMenu; track menu) {
+            <ng-template [ngTemplateOutlet]="listMenu" [ngTemplateOutletContext]="{ item: menu }"></ng-template>
+          }
+        </ul>
+      </nav>
+
       <div class="main-panel mt-5">
         <div class="content-wrapper">
           <router-outlet></router-outlet>
@@ -11,7 +43,7 @@
       </div>
     </div>
   </div>
-</ng-container>
+}
 <ngx-spinner
   bdColor="rgba(51,51,51,0.8)"
   size="medium"
@@ -23,3 +55,38 @@
 <button (click)="scrollToTop()" class="back-to-top-btn">
   <i class="fa fa-arrow-up"></i>
 </button>
+
+<ng-template #listMenu let-menu="item">
+  <ng-container *ngIf="!menu.haveChild">
+    <li class="nav-item">
+      <a class="nav-link" [href]="menu.path"
+         [target]="listMenuGroupBlank.includes(menu.menuGroupId) ? 'blank' : ''">
+        <span class="menu-title">{{ menu.displayName }}</span>
+        <i [class]="menu.icon"></i>
+      </a>
+    </li>
+  </ng-container>
+  <ng-container *ngIf="menu.haveChild">
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse"
+         href="javascript:void(0)"
+         (click)="expendMenu(menu)"
+      >
+        <span class="menu-title">{{ menu.displayName }}</span>
+        <i class="menu-arrow"></i>
+        <i [class]="menu.icon"></i>
+      </a>
+      <div class="collapse" [ngClass]="{'show': menu.expanded}">
+        <ul class="nav flex-column sub-menu">
+          <ng-container *ngFor="let submenu of menu.leftMenus">
+            <li class="nav-item">
+              <a class="nav-link" [href]="submenu.path">
+                <span class="menu-title">{{ submenu.displayName }}</span>
+              </a>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+    </li>
+  </ng-container>
+</ng-template>

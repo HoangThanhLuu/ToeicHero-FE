@@ -14,19 +14,19 @@
         <nz-table nzShowPagination nzShowSizeChanger #basicTable [nzData]="listMyExam">
           <thead>
           <tr>
-            <th scope="row">Ngày làm</th>
-            <th>Đề thi</th>
-            <th>Kết quả</th>
-            <th>Thời gian làm bài</th>
-            <th>#</th>
+            <th scope="col">Ngày làm</th>
+            <th scope="col">Đề thi</th>
+            <th scope="col">Kết quả</th>
+            <th scope="col">Thời gian làm bài</th>
+            <th scope="col">#</th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let data of basicTable.data">
-            <td scope="col">{{ data?.examDate | date: 'MMM d, y, h:mm:ss a'}}</td>
+            <td>{{ data?.examDate | date: 'MMM d, y, h:mm:ss a' }}</td>
             <td>{{ data?.exam?.examName }}</td>
-            <td>{{ data?.numberOfCorrectAnswer }}/{{data?.totalQuestion}}</td>
-            <td>{{formatTimeFromSeconds((Number(data?.timeToDoExam) - Number(data?.timeRemaining)))}}</td>
+            <td>{{ data?.numberOfCorrectAnswer }}/{{ data?.totalQuestion }}</td>
+            <td>{{ formatTimeFromSeconds((Number(data?.timeToDoExam) - Number(data?.timeRemaining))) }}</td>
             <td>
               <div class="btn btn-group border-0 d-flex justify-content-between">
                 <button class="btn btn-outline-info me-2" (click)="openDetailExam(data?.userExamHistoryId)">Xem chi

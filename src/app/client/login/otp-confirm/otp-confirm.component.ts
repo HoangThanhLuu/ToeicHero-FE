@@ -34,7 +34,6 @@ export class OtpConfirmComponent {
     const updateIndex = nextIndex == 1 ? 5 : nextIndex - 2;
     const maxLength = 1;
     const pressedKey = event.key;
-    console.log(pressedKey);
     if (!isNaN(Number(pressedKey))) {
       event.target.value = pressedKey;
       const nextInput = document.querySelector(`.otp-field[name='opt-field[]']:nth-child(${nextIndex})`) as HTMLInputElement | null;

@@ -19,7 +19,7 @@ export class UpdateEmailComponent {
     username: '',
     host: '',
     port: '',
-    password:''
+    password: ''
   };
 
   constructor(private http: HttpClient,
@@ -32,6 +32,7 @@ export class UpdateEmailComponent {
   close() {
     this.bsModalRef.hide();
   }
+
   addAccount(): void {
     this.spinnerService.show();
     this.http.post('/api/email/config/update', this.params)
@@ -46,7 +47,8 @@ export class UpdateEmailComponent {
         },
         error: (res: any) => {
           const msg = this.translate.instant(`EMAIL.${res?.message}`);
-          this.spinnerService.hide();
+          this.spinnerService.hide().then();
+          this.toastr.error(msg);
         }
       })
   }

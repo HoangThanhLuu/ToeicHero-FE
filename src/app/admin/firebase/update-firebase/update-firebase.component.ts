@@ -22,10 +22,9 @@ export class UpdateFirebaseComponent {
   formData = new FormData();
   fileUrl: string | null = null;
   @Input() params: any = {
-    id:'',
+    id: '',
     tokenKey: ''
   };
-
 
 
   constructor(private http: HttpClient,
@@ -34,41 +33,43 @@ export class UpdateFirebaseComponent {
               private bsModalRef: BsModalRef,
               private translate: TranslateService) {
   }
+
   addFirebase(): void {
-    if(!this.params.tokenKey) {
+    if (!this.params.tokenKey) {
       this.toastr.error('Please input Key');
       this.showBorderError = true;
       return;
-    }else{
+    } else {
       this.showBorderError = false;
     }
-      if (!this.formData.has('file')) {
-        this.toastr.error('Please select file');
-        return;
-      }
+    if (!this.formData.has('file')) {
+      this.toastr.error('Please select file');
+      return;
+    }
     this.spinnerService.show();
     this.formData.append('tokenKey', this.params.tokenKey);
-    this.http.post('/api/firebase/config/add',this.formData )
+    this.http.post('/api/firebase/config/add', this.formData)
       .subscribe({
         next: (res: any) => {
           const msg = this.translate.instant(`FIREBASE.${res?.message}`);
           this.toastr.success(msg);
           this.addSuccessEmit.emit();
           this.spinnerService.hide();
-          if(this.isPopup){
+          if (this.isPopup) {
             this.close();
           }
         },
         error: (res: any) => {
           const msg = this.translate.instant(`FIREBASE.${res?.message}`);
-          this.spinnerService.hide();
-          console.log(res);
+          this.spinnerService.hide().then();
+          this.toastr.error(msg);
         }
       })
     this.formData.delete('tokenKey');
     this.formData.delete('file');
   }
-  modifyFirebase(){
+
+  modifyFirebase() {
     this.formData.append('tokenKey', this.params.tokenKey);
     this.spinnerService.show().then();
     this.http.patch(`/api/firebase/config/update/${this.params.id}`, this.formData)
@@ -78,13 +79,14 @@ export class UpdateFirebaseComponent {
           this.toastr.success(msg);
           this.modified.emit();
           this.spinnerService.hide();
-          if(this.isPopup){
+          if (this.isPopup) {
             this.close();
           }
         },
         error: (res: any) => {
           const msg = this.translate.instant(`FIREBASE.${res?.message}`);
-          this.spinnerService.hide();
+          this.spinnerService.hide().then();
+          this.toastr.error(msg);
         }
       })
   }
@@ -93,9 +95,11 @@ export class UpdateFirebaseComponent {
     const file = event.target.files[0];
     this.handleFiles(file);
   }
+
   close() {
     this.bsModalRef.hide();
   }
+
   handleFiles(file: any) {
     if (file) {
       const reader = new FileReader();
@@ -107,9 +111,11 @@ export class UpdateFirebaseComponent {
       reader.readAsDataURL(file);
     }
   }
+
   allowDrop(event: any) {
     event.preventDefault();
   }
+
   handleDrop(event: any) {
     event.preventDefault();
     const files = event.dataTransfer.files[0];

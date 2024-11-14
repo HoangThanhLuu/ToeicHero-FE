@@ -12,4 +12,6 @@ export const CONSTANT = {
   formatSelectAnswer: 'selectAnswer',
   directLink: 'directLink',
   captcha: 'Captcha',
+  memberMenu: 'MEMBER_MENU',
+  systemMenu: 'SYSTEM_MENU',
 }

@@ -128,7 +128,7 @@ export class ConfigRevaiComponent implements OnInit{
         isPopup: true
       }
     });
-    if (bsModalRef && bsModalRef.content) {
+    if (bsModalRef?.content) {
       bsModalRef.content.addSuccessEmit.subscribe(() => {
         this.getListConfigRevai();
       });
