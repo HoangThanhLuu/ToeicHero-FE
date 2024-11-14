@@ -3,13 +3,19 @@
   "BACK_TO_HOME": "Back To Home",
   "COPY_RIGHT": "Copyright",
   "RIGHT_RESERVED": "All Right Reserved!",
+  "IN_PROGRESS": "In progress",
+  "TRANSCRIBED": "Transcribed",
+  "DONE": "Done",
+  "FAILED": "Failed",
   "EMAIL": {
     "UPDATE_EMAIL_CONFIG_SUCCESS": "Update Account success!",
     "ADD_EMAIL_CONFIG_SUCCESS": "Add Email Config success!",
     "EMAIL_CONFIG_NOT_FOUND": "Email not found!",
     "UPDATE_EMAIL_CONFIG_STATUS_SUCCESS": "Email Config updated successfully!",
-    "DELETE_EMAIL_CONFIG_SUCCESS": "Successfully deleted Email Config!"
-
+    "DELETE_EMAIL_CONFIG_SUCCESS": "Successfully deleted Email Config!",
+    "UPDATE_EMAIL_TEMPLATE_SUCCESS": "Email Template updated successfully!",
+    "ADD_EMAIL_TEMPLATE_SUCCESS": "Email Template added successfully!",
+    "DELETE_EMAIL_TEMPLATE_SUCCESS": "Email Template deleted successfully!"
   },
   "KOMMUNICATE": {
     "UPDATE_KOMMUNICATE_BOT_STATUS_SUCCESS": "update Bot Success!",
@@ -20,10 +26,8 @@
     "UPDATE_KOMMUNICATE_ACCOUNT_SUCCESS": "Successfully updated Kommunicate account!",
     "ADD_KOMMUNICATE_ACCOUNT_SUCCESS": "Successfully added Kommunicate account!",
     "DELETE_KOMMUNICATE_ACCOUNT_SUCCESS": "Successfully deleted Kommunicate account!"
-
   },
   "FIREBASE": {
-
     "ADD_CONFIG_FIREBASE_SUCCESS": "Successfully added Firebase!",
     "ADD_CONFIG_FIREBASE_EXIST": "Firebase already exists!",
     "ADD_CONFIG_FIREBASE_FAILED": "Failed to add Firebase!",
@@ -48,7 +52,6 @@
     "UPDATE_SLIDER_SUCCESS": "Slider updated successfully!"
   },
   "TINY": {
-
     "UPDATE_TINY_ACCOUNT_SUCCESS": "Successfully updated Tiny account!",
     "CREATE_TINY_ACCOUNT_SUCCESS": "Successfully created Tiny account!",
     "DELETE_TINY_ACCOUNT_SUCCESS": "Successfully deleted Tiny account!",
@@ -95,6 +98,16 @@
     "UPDATE_PROFILE_SUCCESS": "Profile updated successfully!",
     "EMAIL_PASS_INVALID": "Email or password cannot be empty!",
     "EMAIL_NOT_REGISTERED": "This account has not been registered!"
+  },
+  "BLOG": {
+    "CREATE_BLOG_SUCCESS": "Blog post created successfully",
+    "BLOG_NOT_FOUND": "Blog post not found",
+    "UPDATE_BLOG_SUCCESS": "Blog post updated successfully",
+    "DELETE_BLOG_SUCCESS": "Blog post deleted successfully"
+  },
+  "CMT": {
+    "USER_NOT_LOGIN": "You are not logged in!",
+    "CREATE_COMMENT_SUCCESS": "Comment created successfully!"
   },
   "LOGIN": "Login",
   "UPDATE_PASSWORD": "Update Password",

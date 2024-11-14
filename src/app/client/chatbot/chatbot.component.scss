@@ -69,7 +69,6 @@ $font-color: #888;
   box-sizing: border-box;
   display: flex;
   width: 100%;
-  padding: $base-dimension;
   border-top: 1px solid #ddd;
   align-items: center;
   justify-content: space-around;
@@ -77,8 +76,8 @@ $font-color: #888;
 
 @mixin chatbox-floating-button {
   position: fixed;
-  bottom: 0;
-  right: 0;
+  bottom: 10px;
+  right: 5px;
   width: $base-button-size;
   height: $base-button-size;
   color: $background-color;
@@ -120,7 +119,7 @@ textarea {
   box-sizing: border-box;
   width: 100%;
   margin: 0;
-  height: calc(#{$base-dimension} + #{$base-dimension} / 2);
+  height: calc(#{$base-dimension} + #{$base-dimension});
   padding: 0 calc(#{$base-dimension} / 2);
   font-family: inherit;
   font-size: $base-dimension;
@@ -131,6 +130,7 @@ textarea {
   outline: 0 !important;
   resize: none;
   overflow: hidden;
+  overflow-y: scroll;
 
   &::placeholder {
     color: $font-color;
@@ -139,8 +139,8 @@ textarea {
 
 .chatbox-panel {
   @include chabox-container;
-  right: 0;
-  bottom: 0;
+  right: 5px;
+  bottom: 10px;
   width: $base-width;
   height: $base-height;
   background-color: $background-color;
@@ -159,4 +159,13 @@ textarea {
     @include chatbox-footer;
     flex: 0 0 auto;
   }
+}
+
+.bg-light {
+  background: #BCC0C4 !important;
+}
+span {
+  min-width: 50px;
+  max-width: 75% !important;
+  width: fit-content;
 }
