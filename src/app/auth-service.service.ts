@@ -16,7 +16,7 @@ import {BASE_URL} from "./common/constant";
   providedIn: 'root'
 })
 export class AuthServiceService implements HttpInterceptor {
-  isDevelopMode: boolean = true;
+  isDevelopMode: boolean = isDevMode();
   constructor(private authService: AuthService) {
   }
 
@@ -24,7 +24,7 @@ export class AuthServiceService implements HttpInterceptor {
     let apiEndPoint = new URL(req.url, BASE_URL);
     const token = this.authService.getToken();
     // handle if running on production
-    if (this.isDevelopMode) {
+    if (this.isDevelopMode || window.location.href.includes('localhost')) {
       req = req.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
