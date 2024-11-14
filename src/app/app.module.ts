@@ -18,7 +18,7 @@ import {ModalModule} from 'ngx-bootstrap/modal';
 import {ClientModule} from './client/client.module';
 import {AdminModule} from './admin/admin.module';
 import {ConfirmModalComponent} from './common/confirm-modal/confirm-modal.component';
-import {NZ_I18N} from 'ng-zorro-antd/i18n';
+import {NZ_I18N, en_US} from 'ng-zorro-antd/i18n';
 import {DatePipe, registerLocaleData} from '@angular/common';
 import en from '@angular/common/locales/en';
 import {ToastrModule} from 'ngx-toastr';
@@ -27,21 +27,29 @@ import {NzAvatarModule} from 'ng-zorro-antd/avatar';
 import {NzImageModule} from 'ng-zorro-antd/image';
 import {AuthServiceService} from './auth-service.service';
 import {ClientGuardGuard} from './client-guard.guard';
-import {SocialLoginModule, SocialAuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider} from '@abacritt/angularx-social-login';
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+  GoogleLoginProvider,
+  FacebookLoginProvider
+} from '@abacritt/angularx-social-login';
 import {FACEBOOK_APP_ID} from './common/constant';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {TinyServiceService} from './common/tiny-service.service';
 import {ProfileService} from './common/profile.service';
-import { SafeHtmlPipe } from './common/pipe/safe-html.pipe';
+import {SafeHtmlPipe} from './common/pipe/safe-html.pipe';
 import {MarkdownModule} from 'ngx-markdown';
 import 'prismjs';
 import 'prismjs/components/prism-typescript.min.js';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
 import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
+import {NzDatePickerModule} from 'ng-zorro-antd/date-picker';
+import {DatetimeService} from './common/datetime.service';
 
 registerLocaleData(en);
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,10 +88,11 @@ registerLocaleData(en);
       },
       defaultLanguage: 'vi_VN',
     }),
-    MarkdownModule.forRoot()
+    MarkdownModule.forRoot(),
+    NzDatePickerModule
   ],
   providers: [
-    {provide: NZ_I18N, useValue: en},
+    {provide: NZ_I18N, useValue: en_US},
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthServiceService,
@@ -107,14 +116,14 @@ registerLocaleData(en);
             provider: new FacebookLoginProvider(FACEBOOK_APP_ID)
           }
         ],
-        onError: (err) => {
-        }
+        onError: _ => {}
       } as SocialAuthServiceConfig,
     },
     provideAnimations(),
     TinyServiceService,
     ProfileService,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    DatetimeService
   ],
   exports: [FontAwesomeModule],
   bootstrap: [AppComponent],

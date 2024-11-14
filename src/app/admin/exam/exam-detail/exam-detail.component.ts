@@ -8,6 +8,8 @@ import {ActivatedRoute} from "@angular/router";
 import {NgxSpinnerService} from "ngx-spinner";
 import {finalize} from "rxjs";
 import {EditPartComponent} from "../edit-part/edit-part.component";
+import {Part} from '../../../common/model/Part';
+import {Exam} from '../../../common/model/Exam';
 
 @Component({
   selector: 'app-exam-detail',
@@ -22,8 +24,8 @@ export class ExamDetailComponent implements OnInit {
   title = 'Chi tiết đề thi';
   titleShow = '';
   currentPage: string = "Chi tiết đề thi"
-  listPart: any = [];
-  currentExam: any;
+  listPart: Part[] = [];
+  currentExam: Exam = new Exam();
   selectedFile: any;
   selectPart: any;
   formData = new FormData();
@@ -37,14 +39,14 @@ export class ExamDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.spinnerService.show();
+    this.spinnerService.show().then();
     this.route.queryParams.subscribe((params: any) => {
       this.http.get(`/api/admin/exam/find-by-id?examId=${params?.eid}`)
         .pipe(finalize(() => {
           this.spinnerService.hide();
         }))
         .subscribe((res: any) => {
-          if (res?.success && res?.data?.status == 'ACTIVE') {
+          if (res?.success) {
             this.currentExam = res?.data;
             this.listPart = res?.data?.parts;
             this.titleShow = `${this.title} - ${this.currentExam?.examName}`;

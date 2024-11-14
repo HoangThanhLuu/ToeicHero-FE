@@ -8,6 +8,8 @@ import {AddExamComponent} from "./add-exam/add-exam.component";
 import {EditExamComponent} from "./edit-exam/edit-exam.component";
 import {NgxSpinnerService} from "ngx-spinner";
 import {finalize} from "rxjs";
+import {CONSTANT} from '../../common/constant';
+import {Exam} from '../../common/model/Exam';
 
 @Component({
   selector: 'app-exam',
@@ -20,7 +22,7 @@ import {finalize} from "rxjs";
 export class ExamComponent implements OnInit {
   title: string = "Quản lý đề thi";
   currentPage: string = "Đề thi"
-  listExam: any = [];
+  listExam: Exam[] = [];
 
   constructor(private toast: ToastrService,
               private http: HttpClient,
@@ -33,15 +35,12 @@ export class ExamComponent implements OnInit {
     this.getListExam();
   }
 
-  importFile() {
-
-  }
-
   openFormAdd() {
     const bsModalRef = this.bsModalService.show(AddExamComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Thêm đề thi'
+        title: 'Thêm đề thi',
+        isPopup: true
       }
     });
     if (bsModalRef && bsModalRef.content) {
@@ -53,20 +52,16 @@ export class ExamComponent implements OnInit {
 
 
   getListExam() {
-    this.spinnerService.show();
+    this.spinnerService.show().then();
     this.http.get('/api/admin/exam/list')
       .pipe(finalize(() => {
-        this.spinnerService.hide();
+        this.spinnerService.hide().then();
       }))
       .subscribe((res: any) => {
         if (res?.success) {
           this.listExam = res?.data;
         }
       });
-  }
-
-  trackByFn(index: number, item: any): any {
-    return item.examId;
   }
 
   openDetail(item: any) {
@@ -95,4 +90,7 @@ export class ExamComponent implements OnInit {
       });
     }
   }
+
+  protected readonly CONSTANT = CONSTANT;
 }
+

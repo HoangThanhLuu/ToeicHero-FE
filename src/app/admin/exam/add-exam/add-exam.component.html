@@ -5,27 +5,29 @@
       <form class="forms-sample">
         <div class="form-group">
           <label for="examName">Exam Name</label>
-          <input type="text" class="form-control" [ngClass]="{'error-input-custom': showBorderError}" id="examName"
+          <input type="text" class="form-control" [ngClass]="{'error-input-custom': showBorderError[0]}" id="examName"
                  [(ngModel)]="param.examName" placeholder="Nhập tên đề thi">
         </div>
         <div class="form-group">
           <label for="examTopic">Topic</label>
           <select class="form-control" id="examTopic" [(ngModel)]="param.topicId">
             <option value="">-- Select Topic --</option>
-            <ng-container *ngFor="let topic of listTopic">
-              <option [value]="topic?.topicId">{{topic?.topicName}}</option>
-            </ng-container>
+            @for (topic of listTopic; track topic) {
+              <option [value]="topic?.topicId">{{ topic?.topicName }}</option>
+            }
           </select>
         </div>
-
-        <ng-container *ngFor="let part of audioParts; let i = index">
-          <div class="form-group">
-            <label>{{ 'Audio part ' + (i + 1) }}</label>
-            <input type="file" [name]="'audio-part' + (i + 1)" (change)="onFileSelected($event, i)" accept="audio/*"
+        @for (part of audioParts; track part; let i = $index) {
+          <div class="form-group" [ngClass]="{'d-none': i!=0 && param.isFree === 'false'}">
+            <label>Audio {{ i != 0 ? 'part ' + i : 'exam' }}</label>
+            <input type="file" name="audio-part-{{i}}" (change)="onFileSelected($event, i)" accept="audio/*"
                    class="file-upload-default" #fileInput>
             <div class="input-group col-xs-12">
-              <input type="text" class="form-control file-upload-info" [value]="selectedFiles[i]?.name" disabled
-                     [placeholder]="'Audio part ' + (i + 1)">
+              <input type="text" class="form-control file-upload-info"
+                     [ngClass]="{'error-input-custom': showBorderError[9] && i==0}"
+                     [value]="selectedFiles[i]?.name"
+                     disabled
+                     placeholder="Audio {{ i != 0 ? 'part ' + i : 'exam' }}">
               <span class="input-group-append">
                 <button type="button" class="file-upload-browse btn btn-gradient-danger btn-icon-text"
                         (click)="triggerFileInput(fileInput)">
@@ -33,7 +35,60 @@
               </span>
             </div>
           </div>
-        </ng-container>
+        }
+        <div class="form-group">
+          <label>Is Free</label>
+          <select class="form-control" name="free" [ngClass]="{'error-input-custom': showBorderError[1]}"
+                  [(ngModel)]="param.isFree">
+            <option value="">-- Is Free --</option>
+            <option [value]="'true'">Free</option>
+            <option [value]="'false'">Pay</option>
+          </select>
+        </div>
+        <div class="form-group"
+             [ngClass]="{'d-none': param.isFree !== 'false', 'error-input-custom': showBorderError[2]}">
+          <label>From date</label>
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="mdi mdi-calendar"></i>
+              </div>
+            </div>
+            <nz-date-picker
+              class="form-control"
+              name="fromDate"
+              nzShowTime
+              nzFormat="dd-MM-yyyy HH:mm:ss"
+              [(ngModel)]="param.fromDate"
+              nzPlacement="bottomLeft"
+              [nzAllowClear]="true"
+              (ngModelChange)="onChangeDate($event, 'from')"
+            ></nz-date-picker>
+          </div>
+        </div>
+        <div class="form-group"
+             [ngClass]="{'d-none': param.isFree !== 'false', 'error-input-custom': showBorderError[3]}">
+          <label>To date</label>
+          <div class="input-group mb-2 mr-sm-2">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <i class="mdi mdi-calendar"></i>
+              </div>
+            </div>
+            <nz-date-picker
+              class="form-control"
+              nzShowTime
+              name="toDate"
+              nzFormat="dd-MM-yyyy HH:mm:ss"
+              [(ngModel)]="param.toDate"
+              nzPlacement="bottomLeft"
+              [nzBackdrop]="true"
+              [nzAllowClear]="true"
+              nzShowToday="true"
+              (ngModelChange)="onChangeDate($event, 'to')"
+            ></nz-date-picker>
+          </div>
+        </div>
       </form>
       <button class="btn btn-gradient-primary-2 me-2" (click)="addNewExam()">Add</button>
       <button class="btn btn-light" (click)="cancel()">Cancel</button>

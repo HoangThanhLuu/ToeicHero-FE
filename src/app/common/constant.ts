@@ -9,4 +9,5 @@ export const CONSTANT = {
   formatDate2: 'dd-MM-yyyy ',
   timeZone: '+0700',
   error: 'Đã có lỗi xảy ra, vui lòng thử lại sau',
+  defaultLocale: 'en_US'
 }

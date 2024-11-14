@@ -15,42 +15,41 @@
         </tr>
         </thead>
         <tbody>
-        <ng-container *ngFor="let item of listPart; let i = index; trackBy: trackByFn">
-          <tr>
-            <td>{{item.partName}}</td>
-            <td>
-              <ng-container *ngIf="i < 4; else noAudio">
-                <app-audio-player [audioSource]="item.partAudio" [partName]="item.partName"></app-audio-player>
-              </ng-container>
-            </td>
-            <td class="align-middle">{{item.numberOfQuestion}}</td>
-            <td class="template-demo">
-              <button class="btn btn-danger btn-sm" tooltip="View details" (click)="seeDetail(item)">
-                <i class="mdi mdi-eye"></i>
-              </button>
-              <ng-container *ngIf="i < 4">
-                <button class="btn btn-gradient-warning btn-sm" tooltip="Edit information"
-                        (click)="openFormEdit(item)">
-                  <i class="mdi mdi-pencil"></i>
+          @for (item of listPart; track item; let i = $index; ) {
+            <tr>
+              <td>{{ item.partName }}</td>
+              <td>
+                @if (i < 4) {
+                  <app-audio-player [audioSource]="item.partAudio" [partName]="item.partName"></app-audio-player>
+                } @else {
+                  <label class="badge badge-info">No audio</label>
+                }
+              </td>
+              <td class="align-middle">{{ item.numberOfQuestion }}</td>
+              <td class="template-demo">
+                <button class="btn btn-danger btn-sm" tooltip="View details" (click)="seeDetail(item)">
+                  <i class="mdi mdi-eye"></i>
                 </button>
-              </ng-container>
-              <button type="button" class="btn btn-gradient-success btn-sm" tooltip="Import from Excel"
-                      (click)="importExel(item, i)">
-                <i class="mdi mdi-upload"></i></button>
-              <input type="file" #fileInput style="display: none"  (change)="onFileChange($event, item)">
+                @if (i < 4) {
+                  <button class="btn btn-gradient-warning btn-sm" tooltip="Edit information"
+                          (click)="openFormEdit(item)">
+                    <i class="mdi mdi-pencil"></i>
+                  </button>
+                }
+                <button type="button" class="btn btn-gradient-success btn-sm" tooltip="Import from Excel"
+                        (click)="importExel(item, i)">
+                  <i class="mdi mdi-upload"></i></button>
+                <input type="file" #fileInput style="display: none" (change)="onFileChange($event, item)">
 
-              <button class="btn btn-gradient-danger btn-sm d-none" tooltip="Delete all questions in the section" (click)="deletePart(item)">
-                <i class="mdi mdi-delete"></i>
-              </button>
-            </td>
-          </tr>
-        </ng-container>
+                <button class="btn btn-gradient-danger btn-sm d-none" tooltip="Delete all questions in the section"
+                        (click)="deletePart(item)">
+                  <i class="mdi mdi-delete"></i>
+                </button>
+              </td>
+            </tr>
+          }
         </tbody>
       </table>
     </div>
   </div>
 </div>
-
-<ng-template #noAudio>
-  <label class="badge badge-info">No audio</label>
-</ng-template>

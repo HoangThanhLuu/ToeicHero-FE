@@ -11,44 +11,52 @@
           <button class="btn btn-block btn-lg btn-gradient-primary-2" (click)="openFormAdd()">Add New</button>
         </h4>
         <div class="table-responsive">
-          <table class="table">
+          <table class="table table-striped table-hover table-bordered">
             <thead>
             <tr>
-              <th style="width: 10%;">Exam Code</th>
-              <th style="width: 10%;">Exam Set</th>
-              <th style="width: 20%;">Exam Name</th>
-              <th style="width: 12.5%;">Audio Part 1</th>
-              <th style="width: 12.5%;">Audio Part 2</th>
-              <th style="width: 12.5%;">Audio Part 3</th>
-              <th style="width: 12.5%;">Audio Part 4</th>
-              <th style="width: 10%;">#</th>
+              <th>Exam type</th>
+              <th>Exam Name</th>
+              <th>Audio exam</th>
+              <th>Audio Part 1</th>
+              <th>Audio Part 2</th>
+              <th>Audio Part 3</th>
+              <th>Audio Part 4</th>
+              <th>From date</th>
+              <th>To date</th>
+              <th>Topic</th>
+              <th>#</th>
             </tr>
             </thead>
             <tbody>
-            <ng-container *ngFor="let item of listExam; let i = index; trackBy: trackByFn">
-              <tr>
-                <td>{{ item?.examId }}</td>
-                <td>{{item?.topic?.topicName}}</td>
-                <td>{{ item.examName }}</td>
-                <td>
-                  <app-audio-player [audioSource]="item.audioPart1" partName="Part 1"></app-audio-player>
-                </td>
-                <td>
-                  <app-audio-player [audioSource]="item.audioPart2" partName="Part 2"></app-audio-player>
-                </td>
-                <td>
-                  <app-audio-player [audioSource]="item.audioPart3" partName="Part 3"></app-audio-player>
-                </td>
-                <td>
-                  <app-audio-player [audioSource]="item.audioPart4" partName="Part 4"></app-audio-player>
-                </td>
-                <td class="template-demo">
-                  <button class="btn btn-gradient-primary-2 btn-sm" (click)="openDetail(item)">Detail</button>
-                  <button class="btn btn-gradient-info btn-sm" (click)="openFormEdit(item)">Edit</button>
-                  <button class="btn btn-gradient-danger btn-sm" (click)="delete(item)">Delete</button>
-                </td>
-              </tr>
-            </ng-container>
+              @for (item of listExam; track item; ) {
+                <tr>
+                  <td>{{ item?.free ? 'Free' : 'Pay' }}</td>
+                  <td>{{ item.examName }}</td>
+                  <td>
+                    <app-audio-player [audioSource]="item.examAudio" partName="Exam audio"></app-audio-player>
+                  </td>
+                  <td>
+                    <app-audio-player [ngClass]="{'d-none': !item?.free}" [audioSource]="item.audioPart1" partName="Part 1"></app-audio-player>
+                  </td>
+                  <td>
+                    <app-audio-player [ngClass]="{'d-none': !item?.free}" [audioSource]="item.audioPart2" partName="Part 2"></app-audio-player>
+                  </td>
+                  <td>
+                    <app-audio-player [ngClass]="{'d-none': !item?.free}" [audioSource]="item.audioPart3" partName="Part 3"></app-audio-player>
+                  </td>
+                  <td>
+                    <app-audio-player [ngClass]="{'d-none': !item?.free}" [audioSource]="item.audioPart4" partName="Part 4"></app-audio-player>
+                  </td>
+                  <td>{{ item.fromDate | date : CONSTANT.formatDate: CONSTANT.timeZone }}</td>
+                  <td>{{ item.toDate | date : CONSTANT.formatDate: CONSTANT.timeZone }}</td>
+                  <td>{{ item?.topic?.topicName }}</td>
+                  <td class="template-demo">
+                    <button class="btn btn-gradient-primary-2 btn-sm" (click)="openDetail(item)">Detail</button>
+                    <button class="btn btn-gradient-info btn-sm" (click)="openFormEdit(item)">Edit</button>
+                    <button class="btn btn-gradient-danger btn-sm" (click)="delete(item)">Delete</button>
+                  </td>
+                </tr>
+              }
             </tbody>
           </table>
         </div>
