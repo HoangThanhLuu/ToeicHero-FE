@@ -58,6 +58,6 @@ export class DetailBlogComponent implements OnInit{
       });
   }
   blogDetail(blogId: any) {
-    window.location.href = `/detail-blog/${blogId}`;
+    window.location.href = `/blog/detail-blog/${blogId}`;
   }
 }

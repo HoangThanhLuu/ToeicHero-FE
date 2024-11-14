@@ -7,6 +7,7 @@ import {ToastrService} from 'ngx-toastr';
 import {finalize} from 'rxjs';
 import {TranslateService} from '@ngx-translate/core';
 import {UpdateKommunicateBotComponent} from './update-kommunicate-bot/update-kommunicate-bot.component';
+import {ScrollService} from "../../../common/scroll.service";
 
 @Component({
   selector: 'app-kommunicate-bot',
@@ -25,11 +26,13 @@ export class KommunicateBotComponent implements OnInit {
     private toastr: ToastrService,
     private modal: NzModalService,
     private translate: TranslateService,
+    private scrollService: ScrollService
   ) {
   }
 
   ngOnInit(): void {
     this.getListKommunicateBot();
+    this.scrollService.scrollToTop();
   }
 
   getListKommunicateBot() {

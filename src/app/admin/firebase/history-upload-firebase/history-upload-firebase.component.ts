@@ -8,6 +8,7 @@ import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
 import {finalize} from "rxjs";
 import {DatePipe} from "@angular/common";
 import {AdminLibBaseCss3, AdminStyle2} from "../../admin.style";
+import {ScrollService} from "../../../common/scroll.service";
 
 @Component({
   selector: 'app-history-upload-firebase',
@@ -63,11 +64,13 @@ export class HistoryUploadFirebaseComponent implements OnInit {
               private toastr: ToastrService,
               private spinnerService: NgxSpinnerService,
               private modal: NzModalService,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private scrollService: ScrollService) {
   }
 
   ngOnInit(): void {
     this.getListHistoryUpload();
+    this.scrollService.scrollToTop();
   }
 
   getListHistoryUpload() {

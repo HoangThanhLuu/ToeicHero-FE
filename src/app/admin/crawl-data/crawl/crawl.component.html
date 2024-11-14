@@ -4,7 +4,7 @@
       <h4 class="card-title" [innerText]="title | translate"></h4>
       <form nz-form class="forms-sample mt-4">
         <nz-form-item>
-          <nz-form-label [nzSpan]="1">Email:</nz-form-label>
+          <nz-form-label [nzSpan]="1">Email</nz-form-label>
           <nz-form-control [nzSpan]="20" nzHasFeedback>
             <nz-select name="select-email" [(ngModel)]="params.email" (ngModelChange)="onEmailChange($event)">
               <nz-option *ngFor="let email of emails" [nzValue]="email" [nzLabel]="email"></nz-option>
@@ -12,9 +12,9 @@
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>
-          <nz-form-label [nzSpan]="1">URL:</nz-form-label>
-          <nz-form-control [nzSpan]="20" nzValidateStatus="URL" nzHasFeedbac>
-            <input nz-input [(ngModel)]="params.url" placeholder="Input URL"
+          <nz-form-label [nzSpan]="1">URL</nz-form-label>
+          <nz-form-control [nzSpan]="20" nzValidateStatus="URL" nzHasFeedback>
+            <input [(ngModel)]="params.url" placeholder="Input URL"
                    [ngClass]="{'error-input-custom': showBorderError}" id="url"/>
           </nz-form-control>
         </nz-form-item>

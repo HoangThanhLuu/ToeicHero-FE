@@ -7,6 +7,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {finalize} from 'rxjs';
 import {UpdateFirebaseComponent} from './update-firebase/update-firebase.component';
 import {NzModalRef, NzModalService} from 'ng-zorro-antd/modal';
+import {ScrollService} from "../../common/scroll.service";
 
 @Component({
   selector: 'app-firebase',
@@ -25,11 +26,12 @@ export class FirebaseComponent implements OnInit{
     private toastr: ToastrService,
     private modal: NzModalService,
     private  translate: TranslateService,
-
+    private scrollService: ScrollService
   ) {
   }
   ngOnInit(): void {
     this.getListFirebase();
+    this.scrollService.scrollToTop();
   }
   getListFirebase() {
     this.http.get('/api/firebase/config/all')

@@ -41,7 +41,7 @@ export class BlogComponent {
   }
 
   blogDetail(blogId: any) {
-    window.location.href = `/detail-blog/${blogId}`;
+    window.location.href = `/blog/detail-blog/${blogId}`;
   }
 
   changePage(event: number) {

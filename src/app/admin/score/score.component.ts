@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {ToastrService} from 'ngx-toastr';
 import {AdminLibBaseCss2, AdminStyle} from '../admin.style';
 import {NzTableFilterFn, NzTableFilterList, NzTableSortFn, NzTableSortOrder} from 'ng-zorro-antd/table';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-score',
@@ -23,7 +24,8 @@ export class ScoreComponent implements OnInit{
   formData: FormData = new FormData();
 
   constructor(private http: HttpClient,
-              private toast: ToastrService) {
+              private toast: ToastrService,
+              private  translate: TranslateService,) {
   }
 
   ngOnInit(): void {
@@ -122,13 +124,15 @@ export class ScoreComponent implements OnInit{
       .subscribe({
         next: (res: any) => {
           if (res?.success) {
-            this.toast.success(res?.message);
+            const msg = this.translate.instant(`SCORE.${res?.message}`);
+            this.toast.success(msg);
             const index = this.listScore.findIndex((e: any) => e.calculateScoreId === item.calculateScoreId);
             Object.assign(this.listScore[index], newData);
             this.editCache[item?.calculateScoreId].edit = false;
             this.checkSaveAllBtn();
           } else {
-            this.toast.error(res?.message);
+            const msg = this.translate.instant(`SCORE.${res?.message}`);
+            this.toast.error(msg);
           }
           this.tblLoading = false;
         },
@@ -150,8 +154,8 @@ export class ScoreComponent implements OnInit{
       .subscribe({
         next: (res: any) => {
           if (res?.success) {
-            this.toast.success(res?.message);
-
+            const msg = this.translate.instant(`SCORE.${res?.message}`);
+            this.toast.success(msg);
             listUpdate.forEach((item: any) => {
               const index = this.listScore.findIndex((e: any) => e.calculateScoreId === item.calculateScoreId);
               Object.assign(this.listScore[index], item);
@@ -159,7 +163,8 @@ export class ScoreComponent implements OnInit{
             });
             this.checkSaveAllBtn();
           } else {
-            this.toast.error(res?.message);
+            const msg = this.translate.instant(`SCORE.${res?.message}`);
+            this.toast.error(msg);
           }
           this.tblLoading = false;
         },
@@ -175,10 +180,12 @@ export class ScoreComponent implements OnInit{
       .subscribe({
         next: (res: any) => {
           if (res?.success) {
-            this.toast.success(res?.message);
+            const msg = this.translate.instant(`SCORE.${res?.message}`);
+            this.toast.success(msg);
             this.getListScore();
           } else {
-            this.toast.error(res?.message);
+            const msg = this.translate.instant(`SCORE.${res?.message}`);
+            this.toast.error(msg);
           }
           this.tblLoading = false;
         },

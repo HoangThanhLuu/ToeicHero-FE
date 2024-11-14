@@ -7,6 +7,7 @@ import {ToastrService} from 'ngx-toastr';
 import {UpdateKommunicateComponent} from './update-kommunicate/update-kommunicate.component';
 import {finalize} from 'rxjs';
 import {TranslateService} from '@ngx-translate/core';
+import {ScrollService} from "../../common/scroll.service";
 @Component({
   selector: 'app-kommunicate',
   templateUrl: './kommunicate.component.html',
@@ -23,11 +24,13 @@ export class KommunicateComponent implements OnInit{
     private modal: NzModalService,
     private spinner: NgxSpinnerService,
     private  translate: TranslateService,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private scrollService: ScrollService
   ) {
   }
   ngOnInit(): void {
     this.getListKommunicate();
+    this.scrollService.scrollToTop();
   }
   getListKommunicate() {
     this.http.get('/api/kommunicate/account/all')

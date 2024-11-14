@@ -17,6 +17,7 @@ import {
   NzModalRef,
   NzModalService
 } from 'ng-zorro-antd/modal';
+import {ScrollService} from "../../common/scroll.service";
 
 @Component({
   selector: 'app-slider',
@@ -38,12 +39,14 @@ export class SliderComponent implements OnInit {
     private toast: ToastrService,
     private modal: NzModalService,
     private http: HttpClient,
-    private translate: TranslateService,) {
+    private translate: TranslateService,
+    private scrollService: ScrollService) {
   }
 
 
   ngOnInit(): void {
     this.getListSlider(`api/slider/all?page=${this.page}&size=${this.size}`);
+    this.scrollService.scrollToTop();
   }
 
   getListSlider(url: string) {

@@ -63,12 +63,19 @@
   }
 }
 .btn-gradient-primary{
-  background: var(--primary-600);
+  background: var(--primary-600) !important;
   color: white;
   border-radius: 8px;
 }
 .text{
   padding-top: 10px;
 }
-
+.btn-outline-primary{
+  border-color: var(--primary-500) !important;
+  color: var(--primary-500) !important;
+}
+.btn-outline-primary:hover{
+  background: var(--primary-600) !important;
+  color: white !important;
+}
 

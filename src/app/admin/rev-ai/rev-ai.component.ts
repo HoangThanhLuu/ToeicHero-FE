@@ -7,6 +7,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {ToastrService} from 'ngx-toastr';
 import {finalize} from 'rxjs';
 import {UpdateRevaiComponent} from './update-revai/update-revai.component';
+import {ScrollService} from "../../common/scroll.service";
 
 
 @Component({
@@ -25,12 +26,14 @@ export class RevAiComponent implements OnInit {
     private modal: NzModalService,
     private spinner: NgxSpinnerService,
     private translate: TranslateService,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private scrollService: ScrollService
   ) {
   }
 
   ngOnInit(): void {
     this.getListRevai();
+    this.scrollService.scrollToTop();
   }
 
   getListRevai() {

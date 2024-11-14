@@ -11,75 +11,76 @@
     "UPDATE_EMAIL_CONFIG_SUCCESS": "Update Account success!",
     "ADD_EMAIL_CONFIG_SUCCESS": "Add Email Config success!",
     "EMAIL_CONFIG_NOT_FOUND": "Email not found!",
-    "UPDATE_EMAIL_CONFIG_STATUS_SUCCESS": "Email Config updated successfully!",
-    "DELETE_EMAIL_CONFIG_SUCCESS": "Successfully deleted Email Config!",
-    "UPDATE_EMAIL_TEMPLATE_SUCCESS": "Email Template updated successfully!",
-    "ADD_EMAIL_TEMPLATE_SUCCESS": "Email Template added successfully!",
-    "DELETE_EMAIL_TEMPLATE_SUCCESS": "Email Template deleted successfully!"
+    "UPDATE_EMAIL_CONFIG_STATUS_SUCCESS": "Email Config updated Success!",
+    "DELETE_EMAIL_CONFIG_SUCCESS": "Deleted Email Config Success!",
+    "UPDATE_EMAIL_TEMPLATE_SUCCESS": "Updated Email Template Success!",
+    "ADD_EMAIL_TEMPLATE_SUCCESS": "Added Email Template Success!",
+    "DELETE_EMAIL_TEMPLATE_SUCCESS": "Deleted Email Template Success!"
   },
   "KOMMUNICATE": {
     "UPDATE_KOMMUNICATE_BOT_STATUS_SUCCESS": "update Bot Success!",
     "KOMMUNICATE_BOT_NOT_FOUND": "Kommunicate Bot not found! ",
-    "ADD_KOMMUNICATE_BOT_SUCCESS": "Add Kommunicate Bot successfully!",
-    "DELETE_KOMMUNICATE_BOT_SUCCESS": "Successfully deleted Kommunicate bot!",
-    "UPDATE_KOMMUNICATE_BOT_SUCCESS": "Successfully updated Kommunicate bot!",
-    "UPDATE_KOMMUNICATE_ACCOUNT_SUCCESS": "Successfully updated Kommunicate account!",
-    "ADD_KOMMUNICATE_ACCOUNT_SUCCESS": "Successfully added Kommunicate account!",
-    "DELETE_KOMMUNICATE_ACCOUNT_SUCCESS": "Successfully deleted Kommunicate account!"
+    "ADD_KOMMUNICATE_BOT_SUCCESS": "Add Kommunicate Bot Success!",
+    "DELETE_KOMMUNICATE_BOT_SUCCESS": "Deleted Kommunicate bot Success!",
+    "UPDATE_KOMMUNICATE_BOT_SUCCESS": "Updated Kommunicate bot Success!",
+    "UPDATE_KOMMUNICATE_ACCOUNT_SUCCESS": "Updated Kommunicate account Success!",
+    "ADD_KOMMUNICATE_ACCOUNT_SUCCESS": "Added Kommunicate account Success!",
+    "DELETE_KOMMUNICATE_ACCOUNT_SUCCESS": "Deleted Kommunicate account Success!"
   },
   "FIREBASE": {
-    "ADD_CONFIG_FIREBASE_SUCCESS": "Successfully added Firebase!",
+    "ADD_CONFIG_FIREBASE_SUCCESS": "Added Firebase Success!",
     "ADD_CONFIG_FIREBASE_EXIST": "Firebase already exists!",
     "ADD_CONFIG_FIREBASE_FAILED": "Failed to add Firebase!",
-    "REMOVE_CONFIG_FIREBASE_SUCCESS": "Successfully removed Firebase!",
-    "UPDATE_CONFIG_FIREBASE_SUCCESS": "Successfully updated Firebase!"
+    "REMOVE_CONFIG_FIREBASE_SUCCESS": "Removed Firebase Success!",
+    "UPDATE_CONFIG_FIREBASE_SUCCESS": "Updated Firebase Success!"
   },
   "REVAI": {
-    "UPDATE_REV_AI_ACCOUNT_SUCCESS": "Successfully updated Rev-AI account!",
-    "ADD_REV_AI_ACCOUNT_SUCCESS": "Successfully added Rev-AI account!",
+    "UPDATE_REV_AI_ACCOUNT_SUCCESS": "Updated Rev-AI account Success!",
+    "ADD_REV_AI_ACCOUNT_SUCCESS": "Added Rev-AI account Success!",
     "ACCOUNT_NOT_FOUND": "Account not found!",
-    "DELETE_ACCOUNT_SUCCESS": "Successfully deleted account!",
-    "ADD_CONFIG_REV_AI_SUCCESS": "Successfully added Rev-AI config!",
-    "UPDATE_STATUS_REV_AI_SUCCESS": "Successfully updated Status!",
-    "UPDATE_CONFIG_REV_AI_SUCCESS": "Successfully updated Rev-AI config!",
-    "DELETE_CONFIG_REV_AI_SUCCESS": "Successfully deleted Rev-AI config!"
+    "DELETE_ACCOUNT_SUCCESS": "Deleted account Success!",
+    "ADD_CONFIG_REV_AI_SUCCESS": "Added Rev-AI config Success!",
+    "UPDATE_STATUS_REV_AI_SUCCESS": "Updated Status Success!",
+    "UPDATE_CONFIG_REV_AI_SUCCESS": "Updated Rev-AI config Success!",
+    "DELETE_CONFIG_REV_AI_SUCCESS": "Deleted Rev-AI config Success!"
   },
   "SLIDER": {
-    "ADD_SLIDER_SUCCESS": "Slider added successfully!",
-    "DELETE_SLIDER_FAIL": "Failed to delete Slider!",
-    "DELETE_SLIDER_SUCCESS": "Slider deleted successfully!",
-    "UPDATE_SLIDER_POSITION_SUCCESS": "Position updated successfully!",
-    "UPDATE_SLIDER_SUCCESS": "Slider updated successfully!"
+    "ADD_SLIDER_SUCCESS": " Added Slider Success!",
+    "DELETE_SLIDER_FAIL": "Delete Slider Failed!",
+    "DELETE_SLIDER_SUCCESS": " Deleted Slider success!",
+    "UPDATE_SLIDER_POSITION_SUCCESS": " Updated Position success!",
+    "UPDATE_SLIDER_SUCCESS": " Updated Slider success!"
   },
   "TINY": {
-    "UPDATE_TINY_ACCOUNT_SUCCESS": "Successfully updated Tiny account!",
-    "CREATE_TINY_ACCOUNT_SUCCESS": "Successfully created Tiny account!",
-    "DELETE_TINY_ACCOUNT_SUCCESS": "Successfully deleted Tiny account!",
-    "ADD_TINY_CONFIG_SUCCESS": "Successfully added Tiny Config!",
-    "UPDATE_TINY_CONFIG_SUCCESS": "Successfully updated Tiny Config!",
-    "UPDATE_TINY_CONFIG_STATUS_SUCCESS": "Successfully updated status of Tiny Config!",
-    "DELETE_TINY_CONFIG_SUCCESS": "Successfully deleted Tiny Config!",
+    "UPDATE_TINY_ACCOUNT_SUCCESS": "Updated Tiny account Success!",
+    "CREATE_TINY_ACCOUNT_SUCCESS": "Created Tiny account Success!",
+    "DELETE_TINY_ACCOUNT_SUCCESS": "Deleted Tiny account Success!",
+    "ADD_TINY_CONFIG_SUCCESS": "Added Tiny Config Success!",
+    "UPDATE_TINY_CONFIG_SUCCESS": "Updated Tiny Config Success!",
+    "UPDATE_TINY_CONFIG_STATUS_SUCCESS": "Updated status of Tiny Config Success!",
+    "DELETE_TINY_CONFIG_SUCCESS": "Deleted Tiny Config Success!",
     "DUPLICATE_KEY": "Key already exists!"
   },
   "CRAWL": {
-    "UPDATE_CONFIG_SUCCESS": "Successfully updated Config!",
-    "ADD_CONFIG_SUCCESS": "Successfully added Config!",
-    "REMOVE_CONFIG_SUCCESS": "Successfully removed Config!",
+    "UPDATE_CONFIG_SUCCESS": "Updated Config Successfully!",
+    "ADD_CONFIG_SUCCESS": "Added Config Successfully!",
+    "REMOVE_CONFIG_SUCCESS": "Removed Config Successfully!",
     "URL_CRAWL_NOT_MATCH": "URL does not match Study4 URL!",
     "CRAWL_CONFIG_NOT_FOUND": "Email not set up!",
     "PART_NOT_MATCH": "Please select another account or review the path!",
-    "CRAWL_SUCCESS": "Crawl successful!"
+    "CRAWL_SUCCESS": "Crawl successful!",
+    "CRAWL_IN_PROGRESS": "In progress!"
   },
   "TOPIC": {
-    "CREATE_TOPIC_SUCCESS": "Topic created successfully!",
-    "DELETE_TOPIC_SUCCESS": "Topic deleted successfully!",
+    "CREATE_TOPIC_SUCCESS": "Created topic successfully!",
+    "DELETE_TOPIC_SUCCESS": "Deleted topic successfully!",
     "GET_ALL_TOPIC_SUCCESS": "Successfully retrieved list of topics!"
   },
   "EXAM": {
     "EXAM_NOT_FOUND": "Exam not found!",
     "GET_ALL_EXAM_SUCCESS": "Successfully retrieved list of exams!",
-    "CREATE_EXAM_SUCCESS": "Exam created successfully!",
-    "UPDATE_EXAM_SUCCESS": "Exam updated successfully!",
+    "CREATE_EXAM_SUCCESS": "Created exam successfully!",
+    "UPDATE_EXAM_SUCCESS": "Updated exam successfully!",
     "GET_EXAM_SUCCESS": "Exam found!",
     "EXAM_NAME_INVALID": "Exam name cannot be empty!"
   },
@@ -91,23 +92,43 @@
     "GET_ALL_USER_SUCCESS": "Successfully retrieved list of users!",
     "UPDATE_USER_SUCCESS": "User updated successfully!",
     "UPDATE_PASSWORD_SUCCESS": "Password updated successfully!",
-    "UPDATE_AVATAR_SUCCESS": "Avatar updated successfully!",
+    "UPDATE_AVATAR_SUCCESS": "Updated avatar successfully!",
     "SEND_EMAIL_SUCCESS": "Email sent successfully!",
     "SEND_EMAIL_FAILED": "Failed to send Email. Please try again later!",
     "PASSWORD_NOT_MATCH": "Passwords do not match!",
-    "UPDATE_PROFILE_SUCCESS": "Profile updated successfully!",
+    "UPDATE_PROFILE_SUCCESS": "Updated profile successfully!",
     "EMAIL_PASS_INVALID": "Email or password cannot be empty!",
     "EMAIL_NOT_REGISTERED": "This account has not been registered!"
   },
   "BLOG": {
-    "CREATE_BLOG_SUCCESS": "Blog post created successfully",
+    "CREATE_BLOG_SUCCESS": "Created blog successfully",
     "BLOG_NOT_FOUND": "Blog post not found",
-    "UPDATE_BLOG_SUCCESS": "Blog post updated successfully",
-    "DELETE_BLOG_SUCCESS": "Blog post deleted successfully"
+    "UPDATE_BLOG_SUCCESS": "Updated blog successfully",
+    "DELETE_BLOG_SUCCESS": "Deleted successfully"
   },
   "CMT": {
     "USER_NOT_LOGIN": "You are not logged in!",
     "CREATE_COMMENT_SUCCESS": "Comment created successfully!"
+  },
+  "TRANSCRIPT": {
+    "FIREBASE_CONFIG_NOT_FOUND":  "NO FIREBASE CONFIG!",
+    "GET_TRANSCRIPT_IN_PROGRESS": "In Progress!",
+    "TRANSCRIPT_SUCCESS": "Get transcript success!",
+    "GET_REV_AI_JOB_SUCCESS": "Get Rev-ai Job success!",
+    "GET_TRANSCRIPT_HISTORY_SUCCESS": "Get history transcript success!",
+    "TRANSCRIPT_NOT_FOUND": "Transcript not found!",
+    "TRANSLATE_SUCCESS": "Translate success!",
+    "FILE_NOT_PRESENT": "File not present!",
+    "FILE_NOT_SUPPORT": "No support file!"
+  },
+  "SCORE": {
+    "INIT_LIST_SCORE_SUCCESS": "Init list score success!",
+    "GET_LIST_SCORE_SUCCESS": "Get list score success!",
+    "CALCULATE_SCORE_SUCCESS": "Caculate score success!",
+    "UPDATE_SCORE_SUCCESS": "Update score success!",
+    "UPDATE_ALL_SCORE_SUCCESS": "Update all score success!",
+    "FILE_IS_NULL": "File is null!",
+    "IMPORT_FILE_SCORE_SUCCESS": "Import file score success!"
   },
   "LOGIN": "Login",
   "UPDATE_PASSWORD": "Update Password",

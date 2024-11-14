@@ -7,6 +7,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {ToastrService} from 'ngx-toastr';
 import {finalize} from 'rxjs';
 import {UpdateTinyComponent} from './update-tiny/update-tiny.component';
+import {ScrollService} from "../../common/scroll.service";
 
 
 @Component({
@@ -27,12 +28,14 @@ export class TinyComponent implements OnInit{
     private modal: NzModalService,
     private spinner: NgxSpinnerService,
     private translate: TranslateService,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private scrollService: ScrollService
   ) {
   }
 
   ngOnInit(): void {
     this.getListTiny(`/api/tiny-account/list?page=${this.page}&size=${this.size}`);
+    this.scrollService.scrollToTop();
   }
 
   getListTiny(url: string) {

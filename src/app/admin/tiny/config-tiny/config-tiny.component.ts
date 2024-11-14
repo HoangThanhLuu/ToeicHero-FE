@@ -7,6 +7,7 @@ import {NzModalRef, NzModalService} from 'ng-zorro-antd/modal';
 import {TranslateService} from '@ngx-translate/core';
 import {finalize} from 'rxjs';
 import {UpdateTinyConfigComponent} from './update-tiny-config/update-tiny-config.component';
+import {ScrollService} from "../../../common/scroll.service";
 
 @Component({
   selector: 'app-config-tiny',
@@ -27,10 +28,12 @@ export class ConfigTinyComponent implements OnInit{
       private toastr: ToastrService,
       private modal: NzModalService,
       private  translate: TranslateService,
+      private scrollService: ScrollService
   ) {
   }
   ngOnInit(): void {
     this.getListConfigTiny(`/api/tiny-config/list?page=${this.page}&size=${this.size}`);
+    this.scrollService.scrollToTop();
   }
   getListConfigTiny(url: string) {
     this.http.get(url)

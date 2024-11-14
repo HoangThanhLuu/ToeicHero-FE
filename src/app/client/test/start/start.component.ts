@@ -192,7 +192,8 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
       heartbeatUrl: window.location.origin,
     }
     this.connectionService.monitor(options).subscribe((isConnected: ConnectionState) => {
-      if (isConnected.hasNetworkConnection && isConnected.hasInternetAccess) {
+      console.log(isConnected.hasNetworkConnection, isConnected.hasInternetAccess)
+      if (isConnected.hasNetworkConnection || isConnected.hasInternetAccess) {
         this.networkStatus = true;
         this.showAlert[2] = false;
         this.spinnerService.hide('test').then();

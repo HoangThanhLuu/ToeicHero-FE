@@ -7,6 +7,7 @@ import {ToastrService} from 'ngx-toastr';
 import {TranslateService} from '@ngx-translate/core';
 import {UpdateConfigComponent} from './update-config/update-config.component';
 import {NzModalRef, NzModalService} from 'ng-zorro-antd/modal';
+import {ScrollService} from "../../../common/scroll.service";
 
 @Component({
   selector: 'app-config-revai',
@@ -25,11 +26,12 @@ export class ConfigRevaiComponent implements OnInit{
     private toastr: ToastrService,
     private modal: NzModalService,
     private  translate: TranslateService,
-
+    private scrollService: ScrollService
   ) {
   }
   ngOnInit(): void {
     this.getListConfigRevai();
+    this.scrollService.scrollToTop();
   }
   getListConfigRevai() {
     this.http.get('/api/revai/config/all')

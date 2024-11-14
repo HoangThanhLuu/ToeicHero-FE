@@ -1,16 +1,17 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {NgxSpinnerService} from "ngx-spinner";
 import {BsModalRef} from "ngx-bootstrap/modal";
 import {TranslateService} from "@ngx-translate/core";
+import {ScrollService} from "../../../common/scroll.service";
 
 @Component({
   selector: 'app-update-firebase',
   templateUrl: './update-firebase.component.html',
   styleUrls: ['./update-firebase.component.scss']
 })
-export class UpdateFirebaseComponent {
+export class UpdateFirebaseComponent implements OnInit{
   @Input() title: string = "Add Firebase: ";
   @Input() isAdd = true;
   @Input() ismodify = false;
@@ -31,8 +32,13 @@ export class UpdateFirebaseComponent {
               private toastr: ToastrService,
               private spinnerService: NgxSpinnerService,
               private bsModalRef: BsModalRef,
+              private scrollService: ScrollService,
               private translate: TranslateService) {
   }
+
+  ngOnInit(): void {
+    this.scrollService.scrollToTop();
+    }
 
   addFirebase(): void {
     if (!this.params.tokenKey) {

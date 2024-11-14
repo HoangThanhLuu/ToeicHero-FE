@@ -1,16 +1,17 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {NgxSpinnerService} from "ngx-spinner";
 import {BsModalRef} from "ngx-bootstrap/modal";
 import {TranslateService} from "@ngx-translate/core";
+import {ScrollService} from "../../../../common/scroll.service";
 
 @Component({
   selector: 'app-update-config',
   templateUrl: './update-config.component.html',
   styleUrls: ['./update-config.component.scss']
 })
-export class UpdateConfigComponent {
+export class UpdateConfigComponent implements OnInit{
   @Input() title: string = "Update Config: ";
   @Input() isAdd = true;
   @Input() isPopup: boolean = false;
@@ -26,7 +27,12 @@ export class UpdateConfigComponent {
               private toastr: ToastrService,
               private spinnerService: NgxSpinnerService,
               private bsModalRef: BsModalRef,
-              private  translate: TranslateService) {
+              private  translate: TranslateService,
+              private scrollService: ScrollService) {
+  }
+
+  ngOnInit(): void {
+    this.scrollService.scrollToTop();
   }
 
   addAccount(): void {

@@ -68,7 +68,8 @@
     "URL_CRAWL_NOT_MATCH": "URL không trùng khớp với URL của Study4!",
     "CRAWL_CONFIG_NOT_FOUND": "Chưa thiết lập email !",
     "PART_NOT_MATCH": "Vui lòng chọn tài khoản khác hoặc xem lại đường dẫn!",
-    "CRAWL_SUCCESS": "Crawl thành công!"
+    "CRAWL_SUCCESS": "Crawl thành công!",
+    "CRAWL_IN_PROGRESS": "Đang xử lý!"
   },
   "TOPIC": {
     "CREATE_TOPIC_SUCCESS": "Tạo Topic thành công!",
@@ -108,6 +109,26 @@
   "CMT": {
     "USER_NOT_LOGIN": "Bạn chưa đăng nhập!",
     "CREATE_COMMENT_SUCCESS": "Bình luận thành công!"
+  },
+  "TRANSCRIPT": {
+    "FIREBASE_CONFIG_NOT_FOUND": "Không tìm thấy cấu hình Firebase!",
+    "GET_TRANSCRIPT_IN_PROGRESS": "Đang xử lý!",
+    "TRANSCRIPT_SUCCESS": "Lấy Transcipt thành công!",
+    "GET_REV_AI_JOB_SUCCESS": "Lấy Rev-ai thành công!",
+    "GET_TRANSCRIPT_HISTORY_SUCCESS": "Lấy lịch sử transcript thành công!",
+    "TRANSCRIPT_NOT_FOUND": "Không tìm thấy bản transcript!",
+    "TRANSLATE_SUCCESS": "Dịch thành công!",
+    "FILE_NOT_PRESENT": "Không có tệp!",
+    "FILE_NOT_SUPPORT": "File không được hỗ trợ!"
+  },
+  "SCORE": {
+    "INIT_LIST_SCORE_SUCCESS": "Khởi tạo danh sách điểm thành công!",
+    "GET_LIST_SCORE_SUCCESS": "Lấy danh sách điểm thành công!",
+    "CALCULATE_SCORE_SUCCESS": "Tính điểm thành công!",
+    "UPDATE_SCORE_SUCCESS": "Cập nhật điểm thành công!",
+    "UPDATE_ALL_SCORE_SUCCESS": "Cập nhật tất cả điểm thành công!",
+    "FILE_IS_NULL": "Tệp bị trống!",
+    "IMPORT_FILE_SCORE_SUCCESS": "Nhập tệp điểm thành công!"
   },
   "LOGIN": "Đăng nhập",
   "UPDATE_PASSWORD": "Thay đổi mật khẩu",

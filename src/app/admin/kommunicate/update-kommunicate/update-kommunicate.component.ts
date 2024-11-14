@@ -1,16 +1,17 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {NgxSpinnerService} from "ngx-spinner";
 import {BsModalRef} from "ngx-bootstrap/modal";
 import {TranslateService} from "@ngx-translate/core";
+import {ScrollService} from "../../../common/scroll.service";
 
 @Component({
   selector: 'app-update-kommunicate',
   templateUrl: './update-kommunicate.component.html',
   styleUrls: ['./update-kommunicate.component.scss']
 })
-export class UpdateKommunicateComponent {
+export class UpdateKommunicateComponent implements OnInit{
   @Input() title: string = "Add Kommunicate: ";
   @Input() isAdd = true;
   @Input() isPopup: boolean = false;
@@ -26,8 +27,13 @@ export class UpdateKommunicateComponent {
               private toastr: ToastrService,
               private spinnerService: NgxSpinnerService,
               private bsModalRef: BsModalRef,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private scrollService: ScrollService) {
   }
+
+  ngOnInit(): void {
+    this.scrollService.scrollToTop();
+    }
 
   addAccount(): void {
     if (!this.param.email) {

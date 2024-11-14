@@ -1,16 +1,17 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {NgxSpinnerService} from "ngx-spinner";
 import {BsModalRef} from "ngx-bootstrap/modal";
 import {TranslateService} from "@ngx-translate/core";
+import {ScrollService} from "../../../common/scroll.service";
 
 @Component({
   selector: 'app-update-tiny',
   templateUrl: './update-tiny.component.html',
   styleUrls: ['./update-tiny.component.scss']
 })
-export class UpdateTinyComponent {
+export class UpdateTinyComponent implements OnInit{
   @Input() title: string = "Add Tiny: ";
   @Input() isAdd = true;
   @Input() isPopup: boolean = false;
@@ -26,8 +27,13 @@ export class UpdateTinyComponent {
               private toastr: ToastrService,
               private spinnerService: NgxSpinnerService,
               private bsModalRef: BsModalRef,
-              private  translate: TranslateService) {
+              private  translate: TranslateService,
+              private scrollService: ScrollService) {
   }
+
+  ngOnInit(): void {
+    this.scrollService.scrollToTop();
+    }
   addAccount(): void {
     if(!this.params.username) {
       this.toastr.error('Please input Username');
