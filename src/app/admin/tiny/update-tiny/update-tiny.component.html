@@ -6,7 +6,7 @@
         <div class="form-group mt-4">
           <label> UserName: </label>
           <div class="col-sm-11">
-            <input type="text" class="form-control" name="username"  placeholder="Nhập UserName "
+            <input type="text" class="form-control" name="username"  placeholder="Input UserName "
                    [ngClass]="{'error-input-custom': showBorderError[0]}" id="username"
                    [(ngModel)]="this.params.username" [readonly]="!isAdd" [disabled]="!isAdd">
           </div>
@@ -14,14 +14,14 @@
         <div class="form-group mt-3">
           <label> Password: </label>
           <div class="col-sm-11">
-            <input type="text" class="form-control" name="password" placeholder="Nhập password "
+            <input type="text" class="form-control" name="password" placeholder="Input password "
                    [ngClass]="{'error-input-custom': showBorderError[1]}" id="pass"
                    [(ngModel)]="this.params.password">
           </div>
         </div>
         <div class="button mt-5">
-          <button class="btn btn-primary" (click)="addAccount()"> {{ isAdd? 'Thêm' : 'Sửa' }}</button>
-          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : isAdd}" (click)="close()"> Hủy </button>
+          <button class="btn btn-primary" (click)="addAccount()"> {{ isAdd? 'Add' : 'Edit' }}</button>
+          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : isAdd}" (click)="close()"> Cancel </button>
         </div>
       </form>
     </div>

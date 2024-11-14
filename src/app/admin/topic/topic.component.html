@@ -8,16 +8,16 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">
-            <button class="btn btn-block btn-lg btn-gradient-primary-2" (click)="addTopic()">Thêm mới</button>
+            <button class="btn btn-block btn-lg btn-gradient-primary-2" (click)="addTopic()">Add New</button>
           </h4>
           <div class="table-responsive">
             <table class="table">
               <thead>
               <tr>
-                <th style="width: 15%;"> Mã bộ đề thi</th>
-                <th style="width: 40%;"> Tên bộ đề thi</th>
-                <th style="width: 30%;"> Hình ảnh</th>
-                <th style="width: 15%;"> #</th>
+                <th style="width: 15%;">Exam Set Code</th>
+                <th style="width: 40%;">Exam Set Name</th>
+                <th style="width: 30%;">Image</th>
+                <th style="width: 15%;">#</th>
               </tr>
               </thead>
               <tbody>
@@ -30,9 +30,9 @@
                          [alt]="item?.topicName">
                   </td>
                   <td>
-                    <button class="btn btn-gradient-info btn-rounded btn-fw" (click)="editTopic(item)">Sửa
+                    <button class="btn btn-gradient-info btn-rounded btn-fw" (click)="editTopic(item)">Edit
                     </button>
-                    <button class="btn btn-gradient-danger btn-rounded btn-fw" (click)="deleteTopic(item)">Xóa
+                    <button class="btn btn-gradient-danger btn-rounded btn-fw" (click)="deleteTopic(item)">Delete
                     </button>
                   </td>
                 </tr>

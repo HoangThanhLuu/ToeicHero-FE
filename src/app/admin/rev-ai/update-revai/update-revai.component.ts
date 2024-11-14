@@ -11,7 +11,7 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['./update-revai.component.scss']
 })
 export class UpdateRevaiComponent {
-  @Input() title: string = "Thêm tài khoản REV-AI: ";
+  @Input() title: string = "Add account REV-AI: ";
   @Input() isAdd = true;
   @Input() isPopup: boolean = false;
   @Output() added = new EventEmitter();
@@ -31,14 +31,14 @@ export class UpdateRevaiComponent {
   }
   addAccount(): void {
     if(!this.params.email) {
-      this.toastr.error('Vui lòng nhập Email');
+      this.toastr.error('Please input Email');
       this.showBorderError[0] = true;
       return;
     }else{
       this.showBorderError[0] = false;
     }
     if(!this.params.password) {
-      this.toastr.error('Vui lòng nhập Password');
+      this.toastr.error('Please input Password');
       this.showBorderError[1] = true;
       return;
     }else{

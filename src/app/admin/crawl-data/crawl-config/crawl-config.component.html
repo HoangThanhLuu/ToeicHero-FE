@@ -8,7 +8,7 @@
     <div class="card-body">
       <div style="overflow-x: auto;">
         <h4 class="card-title">
-          <button class="btn btn-outline-primary btn-gradient-primary-2" (click)="openFormAdd()">Thêm mới</button>
+          <button class="btn btn-outline-primary btn-gradient-primary-2" (click)="openFormAdd()">Add New</button>
         </h4>
       <nz-table #borderedTable nzBordered [nzData]="listConfigCrawl">
         <thead>
@@ -27,8 +27,8 @@
           <td class="fix" [popover]= "data.token">{{ data.token }}</td>
           <td class="fix" [popover]= "data.agentUser">{{ data.agentUser }}</td>
           <td>
-            <button class="btn btn-success btn-rounded btn-sm me-2" (click)="update(data)" > Sửa </button>
-            <button class="btn btn-danger btn-rounded btn-sm " (click)="deleteFirebase(data.id)"> Xóa </button>
+            <button class="btn btn-success btn-rounded btn-sm me-2" (click)="update(data)" > Edit </button>
+            <button class="btn btn-danger btn-rounded btn-sm " (click)="deleteFirebase(data.id)"> Delete </button>
           </td>
         </tr>
         </tbody>

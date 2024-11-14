@@ -11,7 +11,7 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['./update-email.component.scss']
 })
 export class UpdateEmailComponent {
-  @Input() title: string = "Thêm Email: ";
+  @Input() title: string = "Add Email: ";
   @Input() isAdd = true;
   @Output() added = new EventEmitter();
   @Output() addSuccessEmit = new EventEmitter();

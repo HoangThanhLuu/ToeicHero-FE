@@ -11,7 +11,7 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['./update-kommunicate.component.scss']
 })
 export class UpdateKommunicateComponent implements OnInit {
-  @Input() title: string = "Thêm tài khoản Kommunicate: ";
+  @Input() title: string = "Add Kommunicate: ";
   @Input() isAdd = true;
   @Input() isPopup: boolean =false;
   @Input() param: any = {
@@ -32,14 +32,14 @@ export class UpdateKommunicateComponent implements OnInit {
 
   addAccount(): void {
     if(!this.param.email) {
-      this.toastr.error('Vui lòng nhập Email');
+      this.toastr.error('Please input Email');
       this.showBorderError[0] = true;
       return;
     }else{
       this.showBorderError[0] = false;
     }
     if(!this.param.password) {
-      this.toastr.error('Vui lòng nhập Password');
+      this.toastr.error('Please input Password');
       this.showBorderError[1] = true;
       return;
     }else{

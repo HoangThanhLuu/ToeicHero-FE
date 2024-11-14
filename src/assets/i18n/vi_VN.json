@@ -108,7 +108,14 @@
   "CMT": {
     "USER_NOT_LOGIN": "Bạn chưa đăng nhập!",
     "CREATE_COMMENT_SUCCESS": "Bình luận thành công!"
-  }
+  },
+  "LOGIN": "Đăng nhập",
+  "UPDATE_PASSWORD": "Thay đổi mật khẩu",
+  "LOGIN_WITH_GOOGLE_FB": "Đăng nhập bằng Google hoặc Facebook",
+  "FORGOT_PASSWORD": "Quên mật khẩu",
+  "UPDATE_AVATAR": "Cập nhật ảnh đại diện",
+  "UPDATE_PROFILE": "Cập nhật trang cá nhân",
+  "RESET_PASSWORD": "Đặt lại mật khẩu"
 }
 
 

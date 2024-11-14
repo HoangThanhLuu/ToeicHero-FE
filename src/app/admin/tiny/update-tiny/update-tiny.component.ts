@@ -11,7 +11,7 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['./update-tiny.component.scss']
 })
 export class UpdateTinyComponent {
-  @Input() title: string = "Thêm tài khoản Tiny: ";
+  @Input() title: string = "Add Tiny: ";
   @Input() isAdd = true;
   @Input() isPopup: boolean = false;
   @Output() added = new EventEmitter();
@@ -30,14 +30,14 @@ export class UpdateTinyComponent {
   }
   addAccount(): void {
     if(!this.params.username) {
-      this.toastr.error('Vui lòng nhập Username');
+      this.toastr.error('Please input Username');
       this.showBorderError[0] = true;
       return;
     }else{
       this.showBorderError[0] = false;
     }
     if(!this.params.password) {
-      this.toastr.error('Vui lòng nhập Password');
+      this.toastr.error('Please input Password');
       this.showBorderError[1] = true;
       return;
     }else{

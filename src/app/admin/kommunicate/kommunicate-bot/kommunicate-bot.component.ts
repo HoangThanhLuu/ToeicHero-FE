@@ -14,7 +14,7 @@ import {UpdateKommunicateBotComponent} from './update-kommunicate-bot/update-kom
   styleUrls: ['./kommunicate-bot.component.scss']
 })
 export class KommunicateBotComponent implements OnInit {
-  title: string = 'Quản lý Bot Kommunicate';
+  title: string = 'Manage Bot Kommunicate';
   currentPage: string = 'Kommunicate';
   listKommunicateBot: any = [];
 
@@ -64,7 +64,7 @@ export class KommunicateBotComponent implements OnInit {
     const bsModalResult = this.bsModalService.show(UpdateKommunicateBotComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Cập nhật Kommunicate Bot ',
+        title: 'Update Kommunicate Bot ',
         isAdd: false,
         isPopup: true,
         params: {
@@ -82,15 +82,15 @@ export class KommunicateBotComponent implements OnInit {
   }
   deleteBot(id: number) :void {
     const confirmModal: NzModalRef = this.modal.create({
-      nzTitle: `Xác nhận`,
-      nzContent: `Bạn có muốn xóa Kommunicate Bot này không?`,
+      nzTitle: `Confirm`,
+      nzContent: `Do you want to delete?`,
       nzCentered: true,
       nzFooter: [
         {
-          label: 'Hủy',
+          label: 'Cancel',
           onClick: () => confirmModal.destroy()
         }, {
-          label: 'Đồng ý',
+          label: 'Agree',
           type: 'primary',
           onClick: () => {
             this.spinner.show().then()
@@ -122,7 +122,7 @@ export class KommunicateBotComponent implements OnInit {
     const bsModalRef = this.bsModalService.show(UpdateKommunicateBotComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Thêm Bot Kommunicate',
+        title: 'Add Bot Kommunicate',
         isPopup: true
       }
     });

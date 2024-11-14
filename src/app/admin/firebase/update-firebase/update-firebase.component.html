@@ -7,7 +7,7 @@
           <label> Token Key: </label>
           <div class="col-sm-11">
             <input type="text" class="form-control" [ngClass]="{'error-input-custom': showBorderError}" id="exampleInputName1"
-                   name="tokenKey" placeholder="Nhập Token Key " [(ngModel)]="params.tokenKey">
+                   name="tokenKey" placeholder="Input Token Key " [(ngModel)]="params.tokenKey">
           </div>
         </div>
         <div class="form-group" [ngClass]="{'d-none' : !isAdd}">
@@ -19,11 +19,11 @@
                   <i class="mdi mdi-cloud-upload text-dark" style="height: 100px; width: 100px;"></i>
                 </div>
                 <h6 class="text-dark" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
-                  Kéo và thả tập tin Json vào đây
+                  Drag and drop the Json file here
                 </h6>
-                <p> Hoặc </p>
+                <p> Or </p>
                 <div class="upload-btn-wrapper">
-                  <button class="btn btn-gradient-primary">Tải lên file Json</button>
+                  <button class="btn btn-gradient-primary">Upload file Json</button>
                   <input type="file" (change)="handleFileInput($event)" (drop)="handleDrop($event)"
                          (dragover)="allowDrop($event)"
                   />
@@ -36,9 +36,9 @@
           </div>
         </div>
         <div class="button mt-5">
-          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : !isAdd}" (click)="addFirebase()"> Thêm </button>
-          <button class="btn btn-primary" [ngClass]="{'d-none' : isAdd}" (click)="modifyFirebase()"> Sửa </button>
-          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : isAdd}" (click)="close()"> Hủy</button>
+          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : !isAdd}" (click)="addFirebase()"> Add </button>
+          <button class="btn btn-primary" [ngClass]="{'d-none' : isAdd}" (click)="modifyFirebase()"> Edit </button>
+          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : isAdd}" (click)="close()"> Cancel</button>
         </div>
       </form>
     </div>

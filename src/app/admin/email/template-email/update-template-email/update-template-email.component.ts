@@ -19,7 +19,7 @@ import {TinyServiceService} from "../../../../common/tiny-service.service";
   styleUrls: ['./update-template-email.component.scss', ...AdminLibBaseCss4, ...AdminStyle3]
 })
 export class UpdateTemplateEmailComponent {
-  @Input() title: string = "Thêm Tempalte-email: ";
+  @Input() title: string = "Add Tempalte-email: ";
   @Input() isAdd = true;
   @Output() added = new EventEmitter();
   tinymceConfig: any;

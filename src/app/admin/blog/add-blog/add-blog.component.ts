@@ -13,7 +13,7 @@ import {TinyServiceService} from "../../../common/tiny-service.service";
   styleUrls: ['./add-blog.component.scss',...AdminLibBaseCss3, ...AdminStyle2]
 })
 export class AddBlogComponent implements OnInit{
-  @Input() title: string = "Thêm Blog: ";
+  @Input() title: string = "Add Blog: ";
   @Input() isShowImage: boolean = false;
   @Input() imageSrc: string | undefined = "";
   @Output() addSuccessEmit = new EventEmitter();
@@ -49,21 +49,21 @@ export class AddBlogComponent implements OnInit{
     }
   addBlog(): void {
     if(!this.params.author) {
-      this.toastr.error('Vui lòng nhập tác giả');
+      this.toastr.error('Please enter author');
       this.showBorderError[0] = true;
       return;
     }else{
       this.showBorderError[0] = false;
     }
     if(!this.params.title) {
-      this.toastr.error('Vui lòng nhập tiêu đề');
+      this.toastr.error('Please enter title');
       this.showBorderError[1] = true;
       return;
     }else{
       this.showBorderError[1] = false;
     }
     if(!this.params.content) {
-      this.toastr.error('Vui lòng nội dung');
+      this.toastr.error('Please enter content');
       this.showBorderError[2] = true;
       return;
     }else{

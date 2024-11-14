@@ -20,7 +20,7 @@ import {AdminLibBaseCss3, AdminStyle2} from "../../admin.style";
 })
 export class UpdateSliderComponent implements OnInit {
 
-  @Input() title: string = "Cập nhật Slider: ";
+  @Input() title: string = "Update Slider: ";
   @Output() added = new EventEmitter();
   @Output() addSuccessEmit = new EventEmitter();
   @Input() isAdd = true;
@@ -82,7 +82,7 @@ export class UpdateSliderComponent implements OnInit {
 
   addNew(): void {
     if (!this.formData.has('file')) {
-      this.toastr.error('Vui lòng chọn ảnh');
+      this.toastr.error('Please select image');
       return;
     }
     this.spinnerService.show();
@@ -115,8 +115,8 @@ export class UpdateSliderComponent implements OnInit {
           }
         },
         error: (error) => {
-          console.error('Lỗi:', error);
-          this.toastr.error('Đã xảy ra lỗi');
+          console.error('Error:', error);
+          this.toastr.error('Error! An error occurred. Please try again later');
           this.spinnerService.hide();
         }
       });

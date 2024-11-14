@@ -89,7 +89,7 @@ import {BsDatepickerModule} from "ngx-bootstrap/datepicker";
 import {BlogComponent} from './blog/blog.component';
 import {AddBlogComponent} from './blog/add-blog/add-blog.component';
 import {SafeHtmlPipe} from "../common/pipe/safe-html.pipe";
-import { UserActivityComponent } from './users/user-activity/user-activity.component';
+import {UserActivityComponent} from './users/user-activity/user-activity.component';
 import {NzSpinModule} from "ng-zorro-antd/spin";
 
 @NgModule({

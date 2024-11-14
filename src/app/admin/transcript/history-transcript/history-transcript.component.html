@@ -9,7 +9,7 @@
     <div class="card-body">
       <div nz-row [ngClass]="{'d-none': !isShowPageHeader}">
         <nz-form-item nz-col nzSpan="6" class="me-3">
-          <nz-form-label>Lọc theo trạng thái</nz-form-label>
+          <nz-form-label>Filter by status</nz-form-label>
           <nz-form-control>
             <nz-select name="select-type" [(ngModel)]="pagination.type" (ngModelChange)="onChangeType($event)">
               <nz-option *ngFor="let type of listType" [nzValue]="type.value" [nzLabel]="type.label"></nz-option>
@@ -17,7 +17,7 @@
           </nz-form-control>
         </nz-form-item>
         <nz-form-item nz-col nzSpan="6" class="me-3">
-          <nz-form-label>Sắp xếp theo ngày</nz-form-label>
+          <nz-form-label>Sort by date</nz-form-label>
           <nz-form-control>
             <nz-select name="select-sort" [(ngModel)]="pagination.sort" (ngModelChange)="onChangeSort($event)">
               <nz-option *ngFor="let sort of listSort" [nzValue]="sort.value" [nzLabel]="sort.label"></nz-option>
@@ -25,7 +25,7 @@
           </nz-form-control>
         </nz-form-item>
         <nz-form-item nz-col nzSpan="6" class="me-3">
-          <nz-form-label>Chọn ngày</nz-form-label>
+          <nz-form-label>Select Date</nz-form-label>
           <nz-form-control>
             <div class="input-group">
               <span class="input-group-text"><i class="fa-regular fa-clock"></i></span>
@@ -46,7 +46,7 @@
       </div>
 
       <div class="table-responsive mt-3">
-        <h4 class="card-title text-center">Danh sách bộ transcript</h4>
+        <h4 class="card-title text-center">List of transcripts</h4>
         <div class="d-flex flex-row-reverse">
           <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon"
                   title="Làm mới"
@@ -59,12 +59,12 @@
           <thead>
           <tr>
             <th> Id</th>
-            <th> Tên bộ transcript</th>
+            <th> Name transcript</th>
             <th> Audio</th>
             <th> Transcript</th>
             <th> Translate</th>
-            <th> Trạng thái</th>
-            <th> Thời gian</th>
+            <th> Status</th>
+            <th> Time</th>
             <th> #</th>
           </tr>
           </thead>
@@ -95,14 +95,14 @@
 
             <td>{{ data.createdAt | date : formatDate : timeZone }}</td>
             <td>
-              <button type="button" class="btn btn-outline-secondary btn-icon" title="Chi tiết" (click)="view(data)">
+              <button type="button" class="btn btn-outline-secondary btn-icon" title="Detail" (click)="view(data)">
                 <i class="mdi mdi-call-made text-primary"></i>
               </button>
-              <button type="button" class="btn btn-outline-secondary btn-icon" title="Tải xuống"
+              <button type="button" class="btn btn-outline-secondary btn-icon" title="Download"
                       (click)="download(data.id)">
                 <i class="mdi mdi-download text-success"></i>
               </button>
-              <button type="button" class="btn btn-outline-secondary btn-icon" title="Dịch"
+              <button type="button" class="btn btn-outline-secondary btn-icon" title="Translate"
                       (click)="translateContent(data.id)">
                 <i class="mdi mdi-google-translate text-dark"></i>
               </button>
@@ -110,7 +110,7 @@
           </tr>
           <ng-container *ngIf="list.length === 0">
             <tr>
-              <td colspan="8" class="text-center">Không có dữ liệu</td>
+              <td colspan="8" class="text-center">No Data</td>
             </tr>
           </ng-container>
           </tbody>

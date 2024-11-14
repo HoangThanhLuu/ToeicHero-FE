@@ -3,29 +3,29 @@
     <div class="card-body">
       <h4 class="card-title" [innerText]="title | translate"></h4>
       <form nz-form class="forms-sample mt-4">
-        <nz-form-item >
-          <nz-form-label [nzSpan]="1">Email: </nz-form-label>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="1">Email:</nz-form-label>
           <nz-form-control [nzSpan]="20" nzHasFeedback>
             <nz-select name="select-email" [(ngModel)]="params.email" (ngModelChange)="onEmailChange($event)">
-              <nz-option *ngFor="let email of emails"  [nzValue]="email" [nzLabel]="email"></nz-option>
+              <nz-option *ngFor="let email of emails" [nzValue]="email" [nzLabel]="email"></nz-option>
             </nz-select>
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>
-          <nz-form-label [nzSpan]="1" >URL: </nz-form-label>
-          <nz-form-control [nzSpan]="20"nzValidateStatus="URL" nzHasFeedbac >
-            <input nz-input [(ngModel)]="params.url" placeholder="Nhập URL"
+          <nz-form-label [nzSpan]="1">URL:</nz-form-label>
+          <nz-form-control [nzSpan]="20" nzValidateStatus="URL" nzHasFeedbac>
+            <input nz-input [(ngModel)]="params.url" placeholder="Input URL"
                    [ngClass]="{'error-input-custom': showBorderError}" id="url"/>
           </nz-form-control>
         </nz-form-item>
         <div class="mt-5">
-          <button class="btn btn-gradient-primary-2" (click)="getData()"> Crawl </button>
+          <button class="btn btn-gradient-primary-2" (click)="getData()"> Crawl</button>
         </div>
       </form>
       <div class="">
         <div class="d-flex flex-row-reverse mb-2">
           <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon"
-                  title="Làm mới"
+                  title="Refresh"
                   (click)="getListCrawl()"
           >
             <i class="mdi mdi-refresh text-danger"></i>
@@ -33,30 +33,30 @@
         </div>
       </div>
       <div class="table-responsive mt-3">
-        <h4 class="card-title text-center">Danh Crawl trong tuần này</h4>
+        <h4 class="card-title text-center">List Crawl this week</h4>
         <div class="d-flex flex-row-reverse">
         </div>
         <table class="table table-bordered table-striped table-hover mt-2">
           <thead>
           <tr>
-            <th> Id</th>
-            <th> Tên đề thi</th>
-            <th> Thời gian bắt đầu crawl</th>
-            <th> Thời gian hoàn thành crawl</th>
-            <th> Trạng thái</th>
-            <th> Mô tả </th>
-            <th> Đường link</th>
+            <th>Id</th>
+            <th>Exam Name</th>
+            <th>Crawl Start Time</th>
+            <th>Crawl Completion Time</th>
+            <th>Status</th>
+            <th>Description</th>
+            <th>Link</th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let data of listCrawl">
             <td>{{ data.id }}</td>
-            <td [popover]= "data.examName" >{{ data.examName }}</td>
+            <td [popover]="data.examName">{{ data.examName }}</td>
             <td>{{ data.startTime | date : formatDate: timeZone }}</td>
-            <td>{{ data.endTime | date : formatDate: timeZone}}</td>
-            <td>{{ data.jobStatus | translate}}</td>
-            <td [popover]= "data.description"> {{ data.description | translate}}</td>
-            <td [popover]= "data.jobLink">{{ data.jobLink }}</td>
+            <td>{{ data.endTime | date : formatDate: timeZone }}</td>
+            <td>{{ data.jobStatus | translate }}</td>
+            <td [popover]="data.description"> {{ data.description | translate }}</td>
+            <td [popover]="data.jobLink">{{ data.jobLink }}</td>
           </tr>
           </tbody>
         </table>

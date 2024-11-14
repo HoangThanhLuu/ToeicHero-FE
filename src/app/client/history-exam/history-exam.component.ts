@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
 import {NgxSpinnerService} from "ngx-spinner";
-import {GetHeaderService} from "../../common/get-headers/get-header.service";
 import {finalize} from "rxjs";
 
 @Component({
@@ -15,8 +14,7 @@ export class HistoryExamComponent implements OnInit {
 
   constructor(private toast: ToastrService,
               private http: HttpClient,
-              private spinner: NgxSpinnerService,
-              private getHeaderService: GetHeaderService) {
+              private spinner: NgxSpinnerService) {
   }
 
   ngOnInit(): void {
@@ -25,10 +23,7 @@ export class HistoryExamComponent implements OnInit {
 
   private getListMyExam() {
     this.spinner.show().then(r => r);
-    const headers = this.getHeaderService.getHeaderAuthentication();
-    this.http.get('/api/exam-history/my-exam', {
-      headers
-    })
+    this.http.get('/api/exam-history/my-exam')
       .pipe(finalize(() => this.spinner.hide()))
       .subscribe((res: any) => {
         if (res?.success) {
@@ -55,6 +50,6 @@ export class HistoryExamComponent implements OnInit {
   }
 
   doExamAgain(examId: any) {
-    
+
   }
 }

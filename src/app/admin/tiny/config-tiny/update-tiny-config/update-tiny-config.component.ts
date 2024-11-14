@@ -11,7 +11,7 @@ import {TranslateService} from '@ngx-translate/core';
   styleUrls: ['./update-tiny-config.component.scss']
 })
 export class UpdateTinyConfigComponent {
-  @Input() title: string = 'Thêm tài khoản Config Tiny : ';
+  @Input() title: string = 'Add account Config Tiny : ';
   @Input() isAdd = true;
   @Input() isPopup: boolean = false;
   @Output() added = new EventEmitter();
@@ -30,7 +30,7 @@ export class UpdateTinyConfigComponent {
   }
   addAccount(): void {
     if(!this.params.apiKey) {
-      this.toastr.error('Vui lòng nhập Access API Key');
+      this.toastr.error('Please input Access API Key');
       this.showBorderError[0] = true;
       return;
     }else{

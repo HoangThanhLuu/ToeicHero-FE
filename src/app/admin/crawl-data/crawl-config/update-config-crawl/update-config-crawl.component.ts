@@ -11,7 +11,7 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['./update-config-crawl.component.scss']
 })
 export class UpdateConfigCrawlComponent {
-  @Input() title: string = 'Thêm tài khoản Config Crawl : ';
+  @Input() title: string = 'Add Account Config Crawl : ';
   @Input() isAdd = true;
   @Input() isPopup: boolean = false;
   showBorderError: boolean = false;
@@ -32,14 +32,14 @@ export class UpdateConfigCrawlComponent {
   }
   addAccount(): void {
     if(!this.params.email) {
-      this.toastr.error('Vui lòng nhập Email');
+      this.toastr.error('Please enter Email');
       this.showBorderError = true;
       return;
     }else{
       this.showBorderError = false;
     }
     if(!this.params.token) {
-      this.toastr.error('Vui lòng nhập Token');
+      this.toastr.error('Please enter Token');
       this.showBorderError = true;
       return;
     }else{

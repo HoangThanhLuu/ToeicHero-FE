@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {BsModalService} from "ngx-bootstrap/modal";
 import {LoginComponent} from "../login/login.component";
 import {AuthService} from "../../auth.service";
-import {HttpClient} from "@angular/common/http";
-import {GetHeaderService} from "../../common/get-headers/get-header.service";
 import {ProfileService} from "../../common/profile.service";
 
 @Component({

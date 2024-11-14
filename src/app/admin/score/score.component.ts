@@ -13,8 +13,8 @@ import {NzTableFilterFn, NzTableFilterList, NzTableSortFn, NzTableSortOrder} fro
   ]
 })
 export class ScoreComponent implements OnInit{
-  title: string = 'Quản lý tính điểm đề thi';
-  currentPage: string = 'Tính điểm đề thi';
+  title: string = 'Manage score';
+  currentPage: string = 'Score';
   listScore: any = [];
   listOfColumns: ColumnItem[] = [];
   editCache: { [key: number]: { edit: boolean; data: DataItem } } = {};
@@ -86,7 +86,7 @@ export class ScoreComponent implements OnInit{
   private getListColumn() {
     this.listOfColumns = [
       {
-        name: 'Số câu đúng',
+        name: 'Number of sentences correct',
         sortOrder: 'ascend',
         sortFn: (a: DataItem, b: DataItem) => a.totalQuestion - b.totalQuestion,
         listOfFilter: [],
@@ -95,7 +95,7 @@ export class ScoreComponent implements OnInit{
         sortDirections: ['ascend', 'descend', null],
       },
       {
-        name: 'Điểm nghe',
+        name: 'Listening score',
         sortOrder: null,
         sortFn: (a: DataItem, b: DataItem) => a.scoreListening - b.scoreListening,
         listOfFilter: [],
@@ -104,7 +104,7 @@ export class ScoreComponent implements OnInit{
         sortDirections: ['ascend', 'descend', null],
       },
       {
-        name: 'Điểm đọc',
+        name: 'Reading score',
         sortOrder: null,
         sortFn: (a: DataItem, b: DataItem) => a.scoreReading - b.scoreReading,
         listOfFilter: [],

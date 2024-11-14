@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
 import {HttpClient} from '@angular/common/http';
 import {NzModalRef, NzModalService} from 'ng-zorro-antd/modal';
@@ -6,8 +6,6 @@ import {BsModalService} from 'ngx-bootstrap/modal';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import {UpdateProfileComponent} from './update-profile/update-profile.component';
-import {switchMap, tap, catchError, finalize} from 'rxjs/operators';
-import {of} from 'rxjs';
 import {ProfileService} from '../../common/profile.service';
 
 @Component({
@@ -15,7 +13,7 @@ import {ProfileService} from '../../common/profile.service';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent {
   avatarSrc: string = '';
   formData = new FormData();
   showDropdown = false;
@@ -28,16 +26,13 @@ export class ProfileComponent implements OnInit {
               public profileService: ProfileService) {
   }
 
-  ngOnInit(): void {
-  }
-
   openFormEditInfo() {
     const bsModalRef = this.bsModalService.show(UpdateProfileComponent, {
       class: 'modal-lg modal-dialog-centered',
     });
     if (bsModalRef.content) {
       bsModalRef.content.close.subscribe(() => {
-        this.ngOnInit();
+        this.profileService.getProfile();
       })
     }
   }
@@ -79,39 +74,17 @@ export class ProfileComponent implements OnInit {
           type: 'primary',
           onClick: () => {
             this.spinner.show().then(r => r);
-            this.http.post<any>('/api/upload-file', this.formData).pipe(
-              switchMap((res: any) => {
-                if (res?.success) {
-                  return this.http.post<any>('/api/user/update-avatar', {avatar: res?.data});
-                } else {
-                  return of(res);
-                }
-              }),
-              tap((res1: any) => {
-                if (res1?.success) {
-                  this.toast.success(res1?.message);
-                  const profile = localStorage.getItem('profile') ?? '';
-                  const currentProfile = JSON.parse(profile);
-                  currentProfile.avatar = res1?.data;
-                  localStorage.setItem('profile', JSON.stringify(currentProfile));
-                } else {
-                  this.toast.error(res1?.message);
-                }
-              }),
-              catchError((error: any) => {
-                this.toast.error(error?.message || 'Cập nhật ảnh đại diện thất bại');
-                return of(error);
-              }),
-              finalize(() => this.spinner.hide())
-            ).subscribe(() => {
-              confirmModal.destroy();
-            });
+            this.http.post<any>('/api/user/update-avatar', this.formData)
+              .subscribe(_ => {
+                this.spinner.hide().then(r => r);
+                this.toast.success('Cập nhật ảnh đại diện thành công');
+                this.profileService.getProfile();
+                confirmModal.destroy();
+              });
           }
         }
       ]
     });
-
-
   }
 
   triggerFileInput(fileInput: any) {

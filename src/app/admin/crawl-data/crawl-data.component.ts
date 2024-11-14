@@ -1,9 +1,5 @@
-import {Component, numberAttribute, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {ToastrService} from "ngx-toastr";
-import {NgxSpinnerService} from "ngx-spinner";
-import {BsModalRef} from "ngx-bootstrap/modal";
-import {TranslateService} from "@ngx-translate/core";
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from "@angular/common/http";;
 import {AdminLibBaseCss2, AdminStyle} from "../admin.style";
 import {CONSTANT} from "../../common/constant";
 import {DatePipe} from "@angular/common";
@@ -19,19 +15,19 @@ export class CrawlDataComponent implements OnInit {
   listStatus = [
     {
       value: 'ALL',
-      label: 'Tất cả'
+      label: 'All'
     },
     {
       value: 'DONE',
-      label: 'Hoàn thành'
+      label: 'Done'
     },
     {
       value: 'IN_PROGRESS',
-      label: 'Đang xử lý'
+      label: 'In Progress'
     },
     {
       value: 'FAILED',
-      label: 'Thất bại'
+      label: 'Failed'
     }
   ];
   params: any = {

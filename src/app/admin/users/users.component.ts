@@ -4,8 +4,6 @@ import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {finalize} from "rxjs";
 import {NgxSpinnerService} from "ngx-spinner";
-import {NzModalService} from "ng-zorro-antd/modal";
-import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-users',
@@ -17,25 +15,25 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class UsersComponent implements OnInit {
   listUser: any = [];
-  title = 'Quản lý tài khoản';
-  currentPage = 'Tài khoản';
+  title = 'Account Management';
+  currentPage = 'Accounts';
   totalElements = 0;
   listStatus = [
     {
       value: 'ALL',
-      label: 'Tất cả'
+      label: 'All'
     },
     {
       value: 'ACTIVE',
-      label: 'Đã kích hoạt'
+      label: 'Active'
     },
     {
       value: 'INACTIVE',
-      label: 'Chưa kích hoạt'
+      label: 'Inactive'
     },
     {
       value: 'BLOCKED',
-      label: 'Bị chặn'
+      label: 'Blocked'
     }
   ];
   params: any = {

@@ -6,30 +6,30 @@
         <div class="form-group mt-4">
           <label> Username: </label>
           <div class="col-sm-11">
-            <input type="text" class="form-control" name="username" placeholder="Nhập Username" [(ngModel)]="this.params.username" [readonly]="!isAdd" [disabled]="!isAdd">
+            <input type="text" class="form-control" name="username" placeholder="Input Username" [(ngModel)]="this.params.username" [readonly]="!isAdd" [disabled]="!isAdd">
           </div>
         </div>
         <div class="form-group mt-3">
           <label> Host: </label>
           <div class="col-sm-11">
-            <input type="text" class="form-control" name="host"  placeholder="Nhập Host " [(ngModel)]="this.params.host">
+            <input type="text" class="form-control" name="host"  placeholder="Input Host " [(ngModel)]="this.params.host">
           </div>
         </div>
         <div class="form-group mt-3">
           <label> Port: </label>
           <div class="col-sm-11">
-            <input type="text" class="form-control" name="port" placeholder="Nhập Port " [(ngModel)]="this.params.port">
+            <input type="text" class="form-control" name="port" placeholder="Input Port " [(ngModel)]="this.params.port">
           </div>
         </div>
         <div class="form-group mt-3">
           <label> Password: </label>
           <div class="col-sm-11">
-            <input type="text" class="form-control" name="password" placeholder="Nhập Password " [(ngModel)]="this.params.password">
+            <input type="text" class="form-control" name="password" placeholder="Input Password " [(ngModel)]="this.params.password">
           </div>
         </div>
         <div class="button mt-5">
-          <button class="btn btn-primary" (click)="addAccount()" > {{ isAdd? 'Thêm' : 'Sửa' }} </button>
-          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : isAdd}" (click)="close()"> Hủy </button>
+          <button class="btn btn-primary" (click)="addAccount()" > {{ isAdd? 'Edit' : 'Edit' }} </button>
+          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : isAdd}" (click)="close()"> Cancel </button>
         </div>
       </form>
 

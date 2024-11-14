@@ -4,76 +4,130 @@
 </app-page-header>
 
 <div class="col-lg-12 grid-margin stretch-card">
+
   <div class="card">
-    <div class="card-body">
-      <nz-table #borderedTable nzBordered
-                [nzData]="listAction"
-                [nzShowPagination]=false>
+    <div class="card-body table-responsive">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+              <nz-form-item nz-col nzSpan="6" class="me-3">
+                <nz-form-label>Filter by status</nz-form-label>
+                <nz-form-control>
+                  <nz-select name="select-type" [(ngModel)]="params.type" (ngModelChange)="onChangeType($event)">
+                    <nz-option *ngFor="let type of listType" [nzValue]="type.value" [nzLabel]="type.label"></nz-option>
+                  </nz-select>
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item nz-col nzSpan="6">
+                <nz-form-label>Select Date</nz-form-label>
+                <nz-form-control>
+                  <div class="input-group">
+                    <span class="input-group-text"><i class="fa-regular fa-clock"></i></span>
+                    <input
+                      class="form-control txt-event-date"
+                      placeholder="dd-MM-yyyy"
+                      name="drp"
+                      [(ngModel)]="rangeDate"
+                      bsDaterangepicker readonly
+                      [bsConfig]="{ isAnimated: true, adaptivePosition: true  }"
+                      [outsideClick]="true"
+                      [maxDate]="maxDate"
+                      (bsValueChange)="onChangeDate($event)"
+                    />
+                  </div>
+                </nz-form-control>
+              </nz-form-item>
+              <div class="mb-3">
+                <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon"
+                        title="Refresh"
+                        (click)="getLisActionUser()">
+                  <i class="mdi mdi-refresh text-danger"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <table class="table table-striped table-hover table-bordered">
         <thead>
         <tr>
           <th> User Name</th>
           <th> Action</th>
-          <th> Create Date</th>
-          <th> Ip Adress</th>
           <th> Old Data</th>
           <th> New Data</th>
+          <th> Create Date</th>
+          <th> Ip Adress</th>
         </tr>
         </thead>
         <tbody>
-        <ng-container *ngFor="let data of borderedTable.data">
-          <tr>
-            <td>{{ data?.userAccount?.email }}</td>
-            <td>{{ data.action }}</td>
-            <td>{{ data.createdAt | date : formatDate: timeZone }}</td>
-            <td>{{ data.lastIpAddress }}</td>
-            <td>
-              <ng-container *ngIf="data?.oldData">
-                <ng-container *ngIf="data.action == 'UPDATE_AVATAR'">
-                  <img [src]="data.oldData"
-                       width="60px"
-                       height="60px" alt="Image"/>
-                </ng-container>
-                <ng-container *ngIf="data.action != 'UPDATE_AVATAR'">
-                  <ng-container *ngFor="let item of parsedOldData(data.oldData); let i = index">
-                    <ng-container *ngIf="!isLastElement(i, parsedOldData(data.oldData))">
-                      <div>{{ i === 0 ? 'FullName' : i === 1 ? 'Phone' : 'City' }}: {{ item }}</div>
-                    </ng-container>
-                    <ng-container *ngIf="isLastElement(i, parsedOldData(data.oldData))">
-                      <img [src]="item"
-                           width="60px"
-                           height="60px" alt="Image"/>
-                    </ng-container>
-                  </ng-container>
-                </ng-container>
-              </ng-container>
-            </td>
-            <td>
-              <ng-container *ngIf="data?.newData">
-                <ng-container *ngIf="data.action == 'UPDATE_AVATAR'">
-                  <img [src]="data.newData"
-                       width="60px"
-                       height="60px" alt="Image"/>
-                </ng-container>
-                <ng-container *ngIf="data.action != 'UPDATE_AVATAR'">
-                  <ng-container *ngFor="let item of parsedNewData(data.newData); let i = index">
-                    <ng-container *ngIf="!isLastElement(i, parsedNewData(data.newData))">
-                      <div>{{ i === 0 ? 'FullName' : i === 1 ? 'Phone' : 'City' }}: {{ item }}</div>
-                    </ng-container>
-                    <ng-container *ngIf="isLastElement(i, parsedNewData(data.newData))">
-                      <img [src]="item"
-                           width="60px"
-                           height="60px" alt="Image"/>
-                    </ng-container>
-                  </ng-container>
-                </ng-container>
-              </ng-container>
-            </td>
-          </tr>
-        </ng-container>
+          @for (data of listAction; track data) {
+            <tr>
+              <td class="text-center">{{ data?.userAccount?.email }}</td>
+              <td class="text-center">{{ data?.action | translate }}</td>
+              <td class="text-center">
+                @if (data?.oldData) {
+                  @switch (data?.action) {
+                    @case ("UPDATE_AVATAR") {
+                      <img nz-image [nzSrc]="data.oldData" height="80" alt="avatar"
+                           class="w-100 border-0 mh-100 object-fit-contain"/>
+                    }
+                    @case ("UPDATE_PROFILE") {
+                      <pre class="text-start" style="white-space: pre-line;">
+                          {{ getJsonFromData(data?.oldData) | json }}
+                      </pre>
+                      @if (getImage(data?.oldData)) {
+                        <img nz-image [nzSrc]="getImage(data?.oldData)" height="80" alt="avatar"
+                             class="border-0 flex-grow-1 object-fit-contain"/>
+                      }
+                    }
+                    @case ("LOGIN") {
+                      N/A
+                    }
+                    @default {
+                      N/A
+                    }
+                  }
+                } @else {
+                  N/A
+                }
+              </td>
+              <td>
+                @if (data?.newData) {
+                  @switch (data?.action) {
+                    @case ("UPDATE_AVATAR") {
+                      <img nz-image [nzSrc]="data.newData" height="80" alt="avatar"
+                           class="w-100 border-0 mh-100 object-fit-contain"/>
+                    }
+                    @case ("UPDATE_PROFILE") {
+                      <pre class="text-start" style="white-space: pre-line;">
+                          {{ getJsonFromData(data?.newData) | json }}
+                      </pre>
+                      @if (getImage(data?.newData)) {
+                        <img nz-image [nzSrc]="getImage(data?.newData)" height="80" alt="avatar"
+                             class="border-0 flex-grow-1 object-fit-contain"/>
+                      }
+                    }
+                    @case ("LOGIN") {
+                      N/A
+                    }
+                    @default {
+                      N/A
+                    }
+                  }
+                } @else {
+                  N/A
+                }
+              </td>
+              <td>{{ data.createdAt | date : formatDate: timeZone }}</td>
+              <td>{{ data.lastIpAddress }}</td>
+            </tr>
+          }
         </tbody>
-      </nz-table>
+      </table>
     </div>
-    <div class="mt-2 d-flex flex-row-reverse">
+    <div class="mt-2 d-flex flex-row-reverse mb-3">
       <nz-pagination
         [(nzPageIndex)]="this.params.page"
         [nzTotal]="totalElements"

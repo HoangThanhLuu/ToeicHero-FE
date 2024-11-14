@@ -11,7 +11,7 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['./update-config.component.scss']
 })
 export class UpdateConfigComponent {
-  @Input() title: string = "Cập nhật Config: ";
+  @Input() title: string = "Update Config: ";
   @Input() isAdd = true;
   @Input() isPopup: boolean = false;
   formData = new FormData();
@@ -31,7 +31,7 @@ export class UpdateConfigComponent {
 
   addAccount(): void {
     if(!this.params.accessToken) {
-      this.toastr.error('Vui lòng nhập Access Token');
+      this.toastr.error('Please input Access Token');
       this.showBorderError = true;
       return;
     }else{

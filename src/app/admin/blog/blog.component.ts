@@ -16,8 +16,8 @@ import {DetailBlogComponent} from "./detail-blog/detail-blog.component";
   styleUrls: ['./blog.component.scss']
 
 })
-export class BlogComponent implements OnInit{
-  title: string = 'Quản lý Blog';
+export class BlogComponent implements OnInit {
+  title: string = 'Manage Blog';
   currentPage: string = 'Blog';
   listBlog: any = [];
   totalElements = 0;
@@ -31,45 +31,47 @@ export class BlogComponent implements OnInit{
   listSort = [
     {
       value: 'desc',
-      label: 'Giảm dần'
+      label: 'Decrease'
     },
     {
       value: 'asc',
-      label: 'Tăng dần'
+      label: 'Increase'
     }
   ];
   content: string = '';
+
   constructor(
     private bsModalService: BsModalService,
     private http: HttpClient,
     private modal: NzModalService,
     private spinner: NgxSpinnerService,
-    private  translate: TranslateService,
-    private toast: ToastrService
-  ) {
+    private translate: TranslateService,
+    private toast: ToastrService) {
   }
 
   ngOnInit(): void {
-       this.getBlog();
-    }
+    this.getBlog();
+  }
+
   getBlog() {
-    this.http.get(`/api/blog/all?page=${this.params.page-1}&size=${this.params.size}&sort=${this.params.sort}`)
+    this.http.get(`/api/blog/all?page=${this.params.page - 1}&size=${this.params.size}&sort=${this.params.sort}`)
       .subscribe((res: any) => {
         this.listBlog = res.content;
         this.totalElements = res.totalElements;
       });
   }
-  deleteBlog(id: number) :void {
+
+  deleteBlog(id: number): void {
     const confirmModal: NzModalRef = this.modal.create({
-      nzTitle: `Xác nhận`,
-      nzContent: `Bạn có muốn xóa Blog này không?`,
+      nzTitle: `Confirm`,
+      nzContent: `Do you want to delete this Blog?`,
       nzCentered: true,
       nzFooter: [
         {
-          label: 'Hủy',
+          label: 'Cancel',
           onClick: () => confirmModal.destroy()
         }, {
-          label: 'Đồng ý',
+          label: 'Agree',
           type: 'primary',
           onClick: () => {
             this.spinner.show().then()
@@ -97,6 +99,7 @@ export class BlogComponent implements OnInit{
       ]
     });
   }
+
   changePage(event: number) {
     this.params.page = event;
     this.getBlog();
@@ -107,11 +110,12 @@ export class BlogComponent implements OnInit{
     this.params.page = 1;
     this.getBlog();
   }
+
   openFormAdd() {
     const bsModalRef = this.bsModalService.show(AddBlogComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Thêm Blog',
+        title: 'Add Blog',
         isPopup: true
       }
     });
@@ -121,11 +125,12 @@ export class BlogComponent implements OnInit{
       });
     }
   }
+
   update(data: any) {
     const bsModalResult = this.bsModalService.show(AddBlogComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Cập nhật Blog ',
+        title: 'Update Blog ',
         isAdd: false,
         isPopup: true,
         params: {
@@ -139,16 +144,18 @@ export class BlogComponent implements OnInit{
         }
       }
     });
-    if (bsModalResult?.content?.modified){
+    if (bsModalResult?.content?.modified) {
       bsModalResult.content.modified.subscribe(() => {
         this.getBlog();
       });
     }
   }
+
   onChangeSort(event: any) {
     this.params.sort = event;
     this.getBlog();
   }
+
   openDetail(data: any) {
     this.bsModalService.show(DetailBlogComponent, {
       class: 'modal-lg modal-dialog-centered',
@@ -157,6 +164,7 @@ export class BlogComponent implements OnInit{
       }
     });
   }
+
   protected readonly JSON = JSON;
 
 

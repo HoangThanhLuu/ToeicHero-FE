@@ -8,7 +8,7 @@
     <div class="card-body">
       <div nz-row>
         <nz-form-item nz-col nzSpan="6" class="me-3">
-          <nz-form-label>Lọc theo kiểu file</nz-form-label>
+          <nz-form-label>Filter by file type</nz-form-label>
           <nz-form-control>
             <nz-select name="select-type" [(ngModel)]="params.type" (ngModelChange)="onChangeType($event)">
               <nz-option *ngFor="let type of listType" [nzValue]="type.value" [nzLabel]="type.label"></nz-option>
@@ -16,7 +16,7 @@
           </nz-form-control>
         </nz-form-item>
         <nz-form-item nz-col nzSpan="6" class="me-3">
-          <nz-form-label>Sắp xếp theo ngày </nz-form-label>
+          <nz-form-label>Sort by date </nz-form-label>
           <nz-form-control>
             <nz-select name="select-sort" [(ngModel)]="params.sort" (ngModelChange)="onChangeSort($event)">
               <nz-option *ngFor="let sort of listSort" [nzValue]="sort.value" [nzLabel]="sort.label"></nz-option>
@@ -24,7 +24,7 @@
           </nz-form-control>
         </nz-form-item>
         <nz-form-item nz-col nzSpan="6" class="me-3">
-          <nz-form-label>Chọn ngày</nz-form-label>
+          <nz-form-label>Select Date</nz-form-label>
           <nz-form-control>
             <div class="input-group">
               <span class="input-group-text"><i class="fa-regular fa-clock"></i></span>
@@ -57,11 +57,11 @@
           <thead>
           <tr>
             <th> Id</th>
-            <th> Tên File</th>
-            <th> Kiểu file</th>
-            <th> Kích thước file</th>
-            <th> Ngày Upload</th>
-            <th> Đường Link</th>
+            <th>File Name</th>
+            <th>File Type</th>
+            <th>File Size</th>
+            <th>Upload Date</th>
+            <th>Link</th>
             <th> #</th>
           </tr>
           </thead>
@@ -91,12 +91,12 @@
             </td>
             <td>
               <button class="btn btn-danger btn-rounded btn-sm d-flex justify-content-center"
-                      (click)="deleteHistoryUpload(data.id)"> Xóa
+                      (click)="deleteHistoryUpload(data.id)"> Delete
               </button>
             </td>
           </tr>
           <tr class="bg-light">
-            <td [colSpan]="3" class="text-end fw-bold">Tổng cộng:</td>
+            <td [colSpan]="3" class="text-end fw-bold">Total:</td>
             <td class="fw-bold">{{totalSize}}MB</td>
             <td colspan="3"></td>
           </tr>
