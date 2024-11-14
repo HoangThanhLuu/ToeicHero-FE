@@ -25,6 +25,9 @@ export class ProfileService {
   public getAvatar() {
     return this.currentUser.avatar;
   }
+  public userIsLogin() {
+    return this.isLogin;
+  }
 
   getProfile() {
     const token = localStorage.getItem('token');
@@ -34,13 +37,13 @@ export class ProfileService {
         if (res?.success) {
           this.isLogin = true;
           const p: Profile = {
-            fullName: res.data.fullName,
+            fullName: res.data.full_name,
             email: res.data.email,
             avatar: res.data.avatar,
             password: '',
             phone: res.data.phone,
             address: res.data.address,
-            userId: res.data._id,
+            userId: res.data.user_id,
           };
           this.currentUser = p;
           this.paramUser = JSON.parse(JSON.stringify(p));

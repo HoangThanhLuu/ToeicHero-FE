@@ -2,6 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  HostListener,
   OnDestroy,
   OnInit,
   ViewChild
@@ -15,9 +16,26 @@ import {
 import {BsModalService} from "ngx-bootstrap/modal";
 import {NgxSpinnerService} from "ngx-spinner";
 import {ActivatedRoute} from "@angular/router";
-import {finalize} from "rxjs";
+import {
+  finalize,
+  Subscription,
+  fromEvent,
+  merge,
+  of,
+  switchMap,
+  filter,
+  timer,
+  takeUntil,
+  Subject,
+  delayWhen
+} from "rxjs";
 import {LoginComponent} from "../../login/login.component";
 import {ProfileService} from "../../../common/profile.service";
+import {CONSTANT} from '../../../common/constant';
+import {
+  map,
+  tap
+} from 'rxjs/operators';
 
 @Component({
   selector: 'app-start',
@@ -35,6 +53,16 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
   selectedIndex: number = 0;
   selectedAnswer: { [key: number]: string } = {};
   param: any = {};
+  interval: any;
+  intervalCacheAnswer: any;
+  logAnswer: any;
+  logSelectedAnswer: any;
+  logButtonStates: any;
+  networkStatus: boolean = navigator.onLine;
+  networkStatus$: Subscription = new Subscription();
+  tabVisibilityDetector$: Subscription = new Subscription();
+  mouseMoveDetector$: Subscription = new Subscription();
+  mouseEnterSubject$ = new Subject<void>();
 
   constructor(private toast: ToastrService,
               private http: HttpClient,
@@ -43,54 +71,117 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
               private spinnerService: NgxSpinnerService,
               private route: ActivatedRoute,
               protected profileService: ProfileService) {
-    this.initializeButtonStates();
   }
 
   ngAfterViewInit(): void {
-    if (!this.profileService.isLogin && !this.profileService.currentUser) {
-      const confirmModal: NzModalRef = this.modal.create({
-        nzTitle: `Vui lòng đăng nhập để thực hiện bài thi`,
-        nzContent: `Bạn chưa đăng nhập, vui lòng đăng nhập để thực hiện bài thi?`,
-        nzCentered: true,
-        nzFooter: [
-          {
-            label: 'Đồng ý',
-            type: 'primary',
-            onClick: () => {
-              confirmModal.destroy();
-              this.bs.show(LoginComponent, {
-                class: 'modal-lg modal-dialog-centered',
-                ignoreBackdropClick: true,
-                initialState: {
-                  isNotDirect: true
-                }
-              });
+    setTimeout(() => {
+      if (!this.profileService.userIsLogin() && !this.profileService.currentUser.userId) {
+        const confirmModal: NzModalRef = this.modal.create({
+          nzTitle: `Vui lòng đăng nhập để thực hiện bài thi`,
+          nzContent: `Bạn chưa đăng nhập, vui lòng đăng nhập để thực hiện bài thi?`,
+          nzCentered: true,
+          nzFooter: [
+            {
+              label: 'Đồng ý',
+              type: 'primary',
+              onClick: () => {
+                confirmModal.destroy();
+                this.bs.show(LoginComponent, {
+                  class: 'modal-lg modal-dialog-centered',
+                  ignoreBackdropClick: true,
+                  initialState: {
+                    isNotDirect: true,
+                    directLink: window.location.href
+                  }
+                });
+              }
             }
-          }
-        ]
-      });
-    } else {
-      this.initData();
-    }
+          ]
+        });
+      } else {
+        this.initData();
+      }
+    }, 1_000);
   }
 
   ngOnInit(): void {
-
+    this.checkNetworkStatus();
   }
 
-  private initData() {
-    this.spinnerService.show();
+  detectTabVisibility() {
+    this.tabVisibilityDetector$ = fromEvent(document, 'visibilitychange')
+      .subscribe(() => {
+        if (document.visibilityState === 'hidden') {
+          this.showToast('Bạn đã chuyển tab');
+          this.param.totalOpenNewTab++;
+          localStorage.setItem(`${CONSTANT.formatAnswer}_${this.currentExam.examId}`, JSON.stringify(this.param));
+        }
+      });
+  }
+
+  detectMouseMove() {
+    this.mouseMoveDetector$ = fromEvent(document, 'mouseleave')
+      .pipe(
+        switchMap(() => timer(2000).pipe(
+          takeUntil(fromEvent(document, 'mouseenter').pipe(
+            tap(() => {
+              this.mouseEnterSubject$.next(); // Thông báo khi chuột vào lại
+            })
+          )),
+          tap(() => {
+            this.showToast('Bạn đã rời khỏi trang web');
+            this.param.totalLeave++;
+            localStorage.setItem(`${CONSTANT.formatAnswer}_${this.currentExam.examId}`, JSON.stringify(this.param));
+          }),
+          switchMap(() => of(null).pipe( // Chuyển sang observable không kết thúc
+            takeUntil(this.mouseEnterSubject$) // Duy trì toast cho đến khi chuột vào lại
+          ))
+        ))
+      )
+      .subscribe();
+  }
+  showToast(msg: string) {
+    this.toast.warning(msg, 'Cảnh báo', {
+      timeOut: 0, // Không tự động tắt toast
+      extendedTimeOut: 0,
+      closeButton: false,
+    });
+  }
+
+  checkNetworkStatus() {
+    this.networkStatus = navigator.onLine;
+    this.networkStatus$ = merge(
+      of(null),
+      fromEvent(window, 'online'),
+      fromEvent(window, 'offline')
+    )
+      .pipe(map(() => navigator.onLine))
+      .subscribe(status => {
+        this.networkStatus = status;
+      });
+  }
+
+  initData() {
     this.route.params.subscribe(params => {
       const examId = params['examId'];
+      this.logAnswer = localStorage.getItem(`${CONSTANT.formatAnswer}_${examId}`) || '{}';
+      this.logButtonStates = localStorage.getItem(`${CONSTANT.formatStateButton}_${examId}`) || '{}';
+      this.logSelectedAnswer = localStorage.getItem(`${CONSTANT.formatSelectAnswer}_${examId}`) || '{}';
+
+      // convert log to json
+      this.logAnswer = JSON.parse(this.logAnswer);
+      this.logButtonStates = JSON.parse(this.logButtonStates);
+      this.logSelectedAnswer = JSON.parse(this.logSelectedAnswer);
+
+      this.spinnerService.show().then();
       this.http.get(`/api/exam/find-full-question/${examId}`)
         .pipe(finalize(() => {
-          this.spinnerService.hide();
+          this.spinnerService.hide().then();
         }))
         .subscribe((res: any) => {
           if (res?.success) {
             this.currentExam = res?.data;
             this.listPart = res?.data?.parts;
-            this.startTimer();
             this.initializeSelectedAnswer();
           } else {
             this.toast.error(res?.message);
@@ -101,7 +192,7 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   startTimer() {
-    const interval = setInterval(() => {
+    this.interval = setInterval(() => {
       this.totalTimeInSeconds--;
       const minutes = Math.floor(this.totalTimeInSeconds / 60);
       const remainingSeconds = this.totalTimeInSeconds % 60;
@@ -114,7 +205,7 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
         this.seconds.nativeElement.textContent = this.formatTime(remainingSeconds);
       }
       if (this.totalTimeInSeconds <= 0) {
-        clearInterval(interval);
+        clearInterval(this.interval);
         this.toast.success('Hết thời gian làm bài');
         const isNotSelectAll = this.checkSelectedAll();
         this.submitTest(isNotSelectAll);
@@ -157,7 +248,7 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
     this.param.totalQuestion = 200;
     this.param.isFullTest = true;
     this.param.isDone = done;
-    this.spinnerService.show().then(r => r);
+    this.spinnerService.show().then();
     this.http.post('/api/exam/finish-exam', this.param)
       .pipe(
         finalize(() => {
@@ -191,14 +282,16 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
 
   protected readonly Number = Number;
 
-  changeStateButton(selectedAnswerValue: string, questionId: number, partCode: string) {
+  changeStateButton(selectedAnswerValue: string, questionId: number) {
     this.selectedAnswer[questionId] = selectedAnswerValue;
     this.buttonStates[questionId] = true;
-    this.param.answers.forEach((answer: any) => {
-      if (answer.questionId === questionId) {
-        answer.answer = selectedAnswerValue;
-      }
-    });
+    const answer = this.param.answers.find((answer: any) => answer.questionId === questionId);
+    if (answer) {
+      answer.answer = selectedAnswerValue;
+    }
+    localStorage.setItem(`${CONSTANT.formatAnswer}_${this.currentExam.examId}`, JSON.stringify(this.param));
+    localStorage.setItem(`${CONSTANT.formatStateButton}_${this.currentExam.examId}`, JSON.stringify(this.buttonStates));
+    localStorage.setItem(`${CONSTANT.formatSelectAnswer}_${this.currentExam.examId}`, JSON.stringify(this.selectedAnswer));
   }
 
   switchToTab(partIndex: number, questionId: number) {
@@ -221,35 +314,79 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private initializeSelectedAnswer() {
-    this.param.examId = this.currentExam.examId;
-    this.param.totalTime = 120 * 60;
-    this.param.answers = [];
-    this.listPart.forEach((part: any, partIndex: any) => {
-      const partCode = part.partCode;
-      part.questions.forEach((question: any) => {
-        const questionId = question.questionId;
-        this.selectedAnswer[question.questionId] = '';
-        this.param.answers.push({
-          questionId: questionId,
-          answer: '',
-          partCode: partCode
+    if (this.logAnswer?.examId) {
+      this.param = JSON.parse(JSON.stringify(this.logAnswer));
+      if (this.param?.endTime && new Date(this.param.endTime).getTime() < new Date().getTime()) {
+        this.toast.error('Bài thi đã hết giờ làm bài');
+        const isNotSelectAll = this.checkSelectedAll();
+        this.submitTest(isNotSelectAll);
+      } else {
+        this.totalTimeInSeconds = (new Date(this.param.endTime).getTime() - new Date().getTime()) / 1000;
+        this.totalTimeInSeconds = Math.ceil(this.totalTimeInSeconds);
+        this.buttonStates = JSON.parse(JSON.stringify(this.logButtonStates));
+        this.selectedAnswer = JSON.parse(JSON.stringify(this.logSelectedAnswer));
+        this.param = JSON.parse(JSON.stringify(this.logAnswer));
+        this.param.totalLeave ??= 0;
+        this.param.totalOpenNewTab ??= 0;
+      }
+    } else {
+
+
+
+      this.param.examId = this.currentExam.examId;
+      this.param.totalTime = 120 * 60;
+      this.param.totalLeave = 0;
+      this.param.totalOpenNewTab = 0;
+      this.param.startTime = new Date();
+      this.param.endTime = new Date(this.param.startTime.getTime() + this.param.totalTime * 1000);
+      this.param.answers = [];
+      this.listPart.forEach((part: any, partIndex: any) => {
+        const partCode = part.partCode;
+        part.questions.forEach((question: any) => {
+          const questionId = question.questionId;
+          this.selectedAnswer[question.questionId] = '';
+          this.param.answers.push({
+            questionId: questionId,
+            answer: '',
+            partCode: partCode
+          });
         });
       });
-    });
+      this.initializeButtonStates();
+    }
+    this.startTimer();
+    // this.cacheAnswer();
+    this.detectTabVisibility();
+    this.detectMouseMove();
   }
 
   changePart(event: any) {
-    if (event === 'next') {
-      this.nextPart();
-    } else {
-      this.previousPart();
-    }
+    event === 'next' ? this.nextPart() : this.previousPart();
   }
 
   selectedAnswerChange(event: any) {
-    this.changeStateButton(event.answer, event.questionId, '');
+    this.changeStateButton(event.answer, event.questionId);
   }
 
   ngOnDestroy(): void {
+    clearInterval(this.interval);
+    clearInterval(this.intervalCacheAnswer);
+    this.networkStatus$.unsubscribe();
+    this.tabVisibilityDetector$.unsubscribe();
+    this.mouseMoveDetector$.unsubscribe();
+  }
+
+  cacheAnswer() {
+    this.intervalCacheAnswer = setInterval(() => {
+      if (this.networkStatus) {
+        this.http.post('api/user-exam-log/save-answer', this.param)
+          .subscribe({
+            next: (res: any) => {
+              if (res?.success) {
+              }
+            }
+          });
+      }
+    }, 15_000);
   }
 }

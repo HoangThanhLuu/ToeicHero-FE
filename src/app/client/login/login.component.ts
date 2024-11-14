@@ -11,7 +11,11 @@ import {finalize} from 'rxjs';
 import {TranslateService} from '@ngx-translate/core';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {ProfileService} from '../../common/profile.service';
-import {BASE_URL, BASE_URL_LOCAL} from '../../common/constant';
+import {
+  BASE_URL,
+  BASE_URL_LOCAL,
+  CONSTANT
+} from '../../common/constant';
 
 @Component({
   selector: 'app-login',
@@ -23,6 +27,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   @Output() signIn = new EventEmitter();
   @Output() signUp = new EventEmitter();
   @Input() isNotDirect: boolean = false;
+  @Input() directLink: string = '';
   isRegisterTab = false;
   message: string = '';
   showBorderError: any = [];
@@ -33,6 +38,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     captcha: ''
   };
   captchaImg: any;
+
 
 
   constructor(private formBuilder: FormBuilder,
@@ -226,6 +232,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   loginSocial(p: string) {
     const mIsDevMode = isDevMode();
+    // set directLink to cookie with 5 minutes
+    if (this.isNotDirect) {
+      document.cookie = `directLink=${this.directLink};max-age=300;path=/`;
+    }
     window.location.href = `${mIsDevMode ? BASE_URL_LOCAL : BASE_URL}/api/oauth2/authorize/${p}?redirect_uri=${window.location.origin}/oauth2/redirect`;
   }
 

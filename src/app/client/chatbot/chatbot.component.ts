@@ -10,7 +10,7 @@ import {CONSTANT} from '../../common/constant';
 })
 export class ChatbotComponent {
   @ViewChild('chatContainer') private chatContainer!: ElementRef;
-  isShow: boolean = true;
+  isShow: boolean = false;
   isChatbot: boolean = true;
   selectedModel: ModelAI = ModelAI.PALM2;
   isLoading: boolean = false;

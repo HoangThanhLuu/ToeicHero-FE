@@ -42,7 +42,7 @@
         <i class="fas fa-sync ms-2" (click)="getCaptcha()"></i>
       </div>
       <a href="javascript:void(0)" (click)="forgetPassword()">Quên mật khẩu </a>
-      <button (click)="login()">Đăng nhập</button>
+      <button type="submit" (click)="login()">Đăng nhập</button>
       <span class="mt-3 d-sm-none">Chưa có tài khoản bấm <a href="javascript:void(0)" (click)="switchTab()"
                                                             class="text-decoration-underline">Đăng ký</a></span>
     </form>
@@ -66,10 +66,10 @@
 
 <ng-template #loginButtonGroup>
   <div class="d-flex justify-content-center flex-column">
-    <button class="loginBtn loginBtn--facebook" (click)="loginSocial(Provider.FACEBOOK)">
+    <button type="button" class="loginBtn loginBtn--facebook" (click)="loginSocial(Provider.FACEBOOK)">
       Đăng nhập với Facebook
     </button>
-    <button class="loginBtn loginBtn--google" (click)="loginSocial(Provider.GOOGLE)">
+    <button type="button" class="loginBtn loginBtn--google" (click)="loginSocial(Provider.GOOGLE)">
       Đăng nhập với Google
     </button>
   </div>

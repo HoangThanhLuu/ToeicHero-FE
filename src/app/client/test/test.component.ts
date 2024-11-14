@@ -1,11 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
 import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
 import {BsModalService} from "ngx-bootstrap/modal";
 import {NgxSpinnerService} from "ngx-spinner";
-import {ActivatedRoute, Router} from "@angular/router";
+import {
+  ActivatedRoute,
+  Router
+} from "@angular/router";
 import {finalize} from "rxjs";
 import {LoginComponent} from "../login/login.component";
+import {ProfileService} from '../../common/profile.service';
 
 @Component({
   selector: 'app-test',
@@ -128,7 +135,8 @@ export class TestComponent implements OnInit {
               private bsModalService: BsModalService,
               private spinnerService: NgxSpinnerService,
               private router: Router,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private profileService: ProfileService) {
   }
 
   ngOnInit(): void {
@@ -179,20 +187,18 @@ export class TestComponent implements OnInit {
   }
 
   startFullTest() {
-    this.http.get('/api/user/get-profile')
-      .subscribe((res: any) => {
-        if (res?.success) {
-          window.location.href = `${window.location.href}/start`;
-        } else {
-          this.toast.error('Vui lòng đăng nhập để thực hiện bài test');
-          this.bsModalService.show(LoginComponent, {
-            class: 'modal-lg modal-dialog-centered',
-            initialState: {
-              isNotDirect: true
-            }
-          });
+    if (this.profileService.userIsLogin() && this.profileService.currentUser.userId > '0') {
+      window.location.href = `${window.location.href}/start`;
+    } else {
+      this.toast.error('Vui lòng đăng nhập để thực hiện bài test');
+      this.bsModalService.show(LoginComponent, {
+        class: 'modal-lg modal-dialog-centered',
+        initialState: {
+          isNotDirect: true,
+          directLink: window.location.href
         }
       });
+    }
   }
 
   startPractice() {
