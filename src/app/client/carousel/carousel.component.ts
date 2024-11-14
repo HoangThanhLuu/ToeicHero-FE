@@ -4,10 +4,7 @@ import {
   OnInit,
 } from '@angular/core';
 import {OwlOptions} from 'ngx-owl-carousel-o';
-import {NgwWowService} from 'ngx-wow';
 import {HttpClient} from '@angular/common/http';
-
-declare var $: any;
 
 @Component({
   selector: 'app-carousel',
@@ -17,9 +14,7 @@ declare var $: any;
 export class CarouselComponent implements OnDestroy, OnInit {
   listSlider: any = [];
 
-  constructor(private wowService: NgwWowService,
-              private http: HttpClient,) {
-    this.wowService.init();
+  constructor(private http: HttpClient) {
   }
 
   images = ['assets/images/carousel-1.jpg', 'assets/images/carousel-4.jpg', 'assets/images/carousel-5.jpg'];

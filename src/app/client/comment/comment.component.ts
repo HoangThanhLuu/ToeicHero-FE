@@ -58,7 +58,7 @@ export class CommentComponent implements OnInit {
               showReply: false,
               contentReply: '',
               totalPage: res.totalPages,
-              page: 0,
+              page: 1,
               size: 10,
               replies: []
             };
@@ -95,6 +95,8 @@ export class CommentComponent implements OnInit {
         next: (res: any) => {
           const msg = this.translate.instant(`CMT.${res?.message}`);
           this.toast.success(msg);
+          const cmt = this.listCmt.find(c => c.commentId === res?.data);
+          this.getListCommentByParent(cmt?.commentId || 0, cmt?.page || 1, Number(cmt?.size) + 1 || 10);
           this.params.content = '';
           this.params.parentId = '';
           this.spinnerService.hide().then();
@@ -111,7 +113,7 @@ export class CommentComponent implements OnInit {
     if (this.profileService.isLogin) {
       this.createCmt({content: badWords(content, {replacement: '*'}), parentId});
     } else {
-      this.toast.error('Vui lòng đăng nhập để Bình luận');
+      this.toast.error('Vui lòng đăng nhập để bình luận');
       this.bsModalService.show(LoginComponent, {
         class: 'modal-lg modal-dialog-centered',
         initialState: {
@@ -130,7 +132,7 @@ export class CommentComponent implements OnInit {
   }
 
   getListCommentByParent(commentId: number, page: number, size: number) {
-    this.http.get(`/api/comment/get-by-parent?parentId=${commentId}&page=${page}&size=${size}`)
+    this.http.get(`/api/comment/get-by-parent?parentId=${commentId}&page=${page - 1}&size=${size}`)
       .subscribe({
         next: (res: any) => {
           const comment = this.listCmt.find(c => c.commentId === commentId);
@@ -140,14 +142,16 @@ export class CommentComponent implements OnInit {
                 ...item,
                 showReply: false,
                 contentReply: '',
-                page: 0,
+                page: 1,
                 size: 10,
                 replies: []
               };
             });
-            comment.replies = [...comment.replies, ...replies];
-            comment.page++;
+            comment.replies = [...replies];
             comment.totalPage = res.totalPages;
+            comment.size = size;
+
+            this.originalCmt = [...this.listCmt];
           }
         }
       });
@@ -162,6 +166,19 @@ export class CommentComponent implements OnInit {
     this.params.size = $event;
     this.getCmtByExam();
   }
+
+  reduceComment(commentId: any) {
+    const comment = this.listCmt.find(c => c.commentId === commentId);
+    if (comment) {
+      comment.replies = [];
+      comment.page = 1;
+      comment.size = 10;
+      comment.totalPage = 0;
+      this.originalCmt = [...this.listCmt];
+    }
+  }
+
+  protected readonly Number = Number;
 }
 
 

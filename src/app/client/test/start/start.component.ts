@@ -56,6 +56,7 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
   interval: any;
   intervalCacheAnswer: any;
   logAnswer: any;
+  message: string = '';
   logSelectedAnswer: any;
   logButtonStates: any;
   networkStatus: boolean = navigator.onLine;
@@ -150,6 +151,7 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
 
   checkNetworkStatus() {
     this.networkStatus = navigator.onLine;
+    console.log(this.networkStatus)
     this.networkStatus$ = merge(
       of(null),
       fromEvent(window, 'online'),
@@ -158,6 +160,16 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
       .pipe(map(() => navigator.onLine))
       .subscribe(status => {
         this.networkStatus = status;
+        console.log('ok', status);
+        if(!status) {
+
+          this.showToast('Mất kết nối internet');
+          this.message = 'Mất kết nối internet';
+          this.spinnerService.show('test').then();
+        } else {
+          this.message = 'Kết nối internet đã khôi phục';
+          this.spinnerService.hide('test').then();
+        }
       });
   }
 

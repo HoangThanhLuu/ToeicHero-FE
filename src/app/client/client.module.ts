@@ -58,7 +58,6 @@ import {HistoryExamComponent} from './history-exam/history-exam.component';
 import {NzCollapseModule} from "ng-zorro-antd/collapse";
 import {NzTableModule} from "ng-zorro-antd/table";
 import {HistoryExamDetailComponent} from './history-exam/history-exam-detail/history-exam-detail.component';
-import {GoogleSigninButtonModule} from "@abacritt/angularx-social-login";
 import {NzToolTipModule} from "ng-zorro-antd/tooltip";
 import {PartTemplate1Component} from './test/part-template-1/part-template-1.component';
 import {PartTemplate2Component} from './test/part-template-2/part-template-2.component';
@@ -138,7 +137,6 @@ import {MarkdownComponent, MarkdownPipe} from 'ngx-markdown';
     TooltipModule,
     NzCollapseModule,
     NzTableModule,
-    GoogleSigninButtonModule,
     NzToolTipModule,
     NzPaginationModule,
     NzCommentModule,

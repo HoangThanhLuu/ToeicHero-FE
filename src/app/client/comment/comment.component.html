@@ -47,32 +47,37 @@
         Trả lời
       </span>
     </nz-comment-action>
-    @if(cmt?.numberOfReplies > 0) {
+    @if (cmt?.numberOfReplies > 0) {
       <nz-comment-action>
       <span (click)="getListCommentByParent(cmt?.commentId, cmt?.page, cmt?.size)">
         Xem trả lời
       </span>
       </nz-comment-action>
+      <nz-comment-action>
+      <span (click)="reduceComment(cmt?.commentId)">
+        Rút gọn
+      </span>
+      </nz-comment-action>
     }
-    @if(cmt?.showReply) {
+    @if (cmt?.showReply) {
       <ng-template [ngTemplateOutlet]="doComment" [ngTemplateOutletContext]="{comment: {
         parentId: cmt?.commentId,
         avatar: profileService.getAvatar(),
         content: cmt?.contentReply,
         submitting: cmt?.submitting,
-        rows: 2}}"></ng-template>
+        rows: 2 }}"></ng-template>
     }
-   @if(cmt?.replies?.length > 0) {
-     @for(c of cmt?.replies; track c) {
-       <ng-template [ngTemplateOutlet]="commentTemplateRef"
-                    [ngTemplateOutletContext]="{ comment: c }"></ng-template>
-     }
-     @if(cmt?.totalPage > cmt?.page) {
-       <button (click)="getListCommentByParent(cmt?.commentId, cmt?.page, cmt?.size)" nz-button>
-         Xem thêm
-       </button>
-     }
-   }
+    @if (cmt?.replies?.length > 0) {
+      @for (c of cmt?.replies; track c) {
+        <ng-template [ngTemplateOutlet]="commentTemplateRef"
+                     [ngTemplateOutletContext]="{ comment: c }"></ng-template>
+      }
+      @if (cmt?.totalPage > cmt?.page) {
+        <button (click)="getListCommentByParent(cmt?.commentId, cmt?.page, cmt?.size + 10)" nz-button>
+          Xem thêm
+        </button>
+      }
+    }
   </nz-comment>
 </ng-template>
 

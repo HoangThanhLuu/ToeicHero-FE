@@ -27,13 +27,6 @@ import {NzAvatarModule} from 'ng-zorro-antd/avatar';
 import {NzImageModule} from 'ng-zorro-antd/image';
 import {AuthServiceService} from './auth-service.service';
 import {ClientGuardGuard} from './client-guard.guard';
-import {
-  SocialLoginModule,
-  SocialAuthServiceConfig,
-  GoogleLoginProvider,
-  FacebookLoginProvider
-} from '@abacritt/angularx-social-login';
-import {FACEBOOK_APP_ID} from './common/constant';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
@@ -79,7 +72,6 @@ registerLocaleData(en);
     NzModalModule,
     NzAvatarModule,
     NzImageModule,
-    SocialLoginModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -100,25 +92,6 @@ registerLocaleData(en);
     },
     ClientGuardGuard,
     DatePipe,
-    {
-      provide: 'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin: false,
-        providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              '979931356007-03ed2esa3j6gl56rom12robrgln5iop3.apps.googleusercontent.com'
-            )
-          },
-          {
-            id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider(FACEBOOK_APP_ID)
-          }
-        ],
-        onError: _ => {}
-      } as SocialAuthServiceConfig,
-    },
     provideAnimations(),
     TinyServiceService,
     ProfileService,
