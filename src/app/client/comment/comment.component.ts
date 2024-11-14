@@ -12,6 +12,7 @@ import {BsModalService} from 'ngx-bootstrap/modal';
 import {ProfileService} from '../../common/profile.service';
 import {finalize} from 'rxjs';
 import {formatDistance} from 'date-fns';
+import {badWords} from '../../common';
 
 @Component({
   selector: 'app-comment',
@@ -108,7 +109,7 @@ export class CommentComponent implements OnInit {
 
   checkLoginBeforeCmt(content: string, parentId: number) {
     if (this.profileService.isLogin) {
-      this.createCmt({content, parentId});
+      this.createCmt({content: badWords(content, {replacement: '*'}), parentId});
     } else {
       this.toast.error('Vui lòng đăng nhập để Bình luận');
       this.bsModalService.show(LoginComponent, {
@@ -118,10 +119,6 @@ export class CommentComponent implements OnInit {
         }
       });
     }
-  }
-
-  trackByFn(index: number, item: any): number {
-    return item.id;
   }
 
   formatDistance(date: string): string {

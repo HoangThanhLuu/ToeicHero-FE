@@ -47,45 +47,46 @@
         Trả lời
       </span>
     </nz-comment-action>
-    <ng-container *ngIf="cmt?.numberOfReplies > 0">
+    @if(cmt?.numberOfReplies > 0) {
       <nz-comment-action>
       <span (click)="getListCommentByParent(cmt?.commentId, cmt?.page, cmt?.size)">
         Xem trả lời
       </span>
       </nz-comment-action>
-    </ng-container>
-    <ng-container *ngIf="cmt?.showReply">
+    }
+    @if(cmt?.showReply) {
       <ng-template [ngTemplateOutlet]="doComment" [ngTemplateOutletContext]="{comment: {
         parentId: cmt?.commentId,
-        avatar: cmt?.user?.avatar,
+        avatar: profileService.getAvatar(),
         content: cmt?.contentReply,
         submitting: cmt?.submitting,
         rows: 2}}"></ng-template>
-    </ng-container>
-    <ng-container *ngIf="cmt?.replies?.length > 0">
-      <ng-container *ngFor="let c of cmt?.replies">
-        <ng-template [ngTemplateOutlet]="commentTemplateRef"
-                     [ngTemplateOutletContext]="{ comment: c }"></ng-template>
-      </ng-container>
-      <ng-container *ngIf="cmt?.totalPage > cmt?.page">
-        <button (click)="getListCommentByParent(cmt?.commentId, cmt?.page, cmt?.size)" nz-button>
-          Xem thêm
-        </button>
-      </ng-container>
-    </ng-container>
+    }
+   @if(cmt?.replies?.length > 0) {
+     @for(c of cmt?.replies; track c) {
+       <ng-template [ngTemplateOutlet]="commentTemplateRef"
+                    [ngTemplateOutletContext]="{ comment: c }"></ng-template>
+     }
+     @if(cmt?.totalPage > cmt?.page) {
+       <button (click)="getListCommentByParent(cmt?.commentId, cmt?.page, cmt?.size)" nz-button>
+         Xem thêm
+       </button>
+     }
+   }
   </nz-comment>
 </ng-template>
 
 <ng-template [ngTemplateOutlet]="doComment" [ngTemplateOutletContext]="{comment: {
-  avatar: profileService.currentUser.avatar,
+  avatar: profileService.getAvatar(),
   content: params.content,
   submitting: this.submitting,
   rows: 4
 }}"></ng-template>
 
-<ng-container *ngFor="let cmt of listCmt">
+@for (cmt of listCmt; track cmt) {
   <ng-template [ngTemplateOutlet]="commentTemplateRef" [ngTemplateOutletContext]="{ comment: cmt }"></ng-template>
-</ng-container>
+}
+
 <nz-pagination
   [nzPageIndex]="params.page"
   [nzTotal]="params.total"
