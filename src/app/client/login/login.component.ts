@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   getCaptcha() {
-    this.captchaImg = `/api/user/get-captcha?${Date.now()}`;
+    this.captchaImg = `${isDevMode() ? '' : BASE_URL}/api/user/get-captcha?${Date.now()}`;
   }
 
   switchTab() {
