@@ -7,7 +7,7 @@
   <div class="card">
     <div class="card-body">
       <h4 class="card-title">
-        <button class="btn btn-outline-primary btn-gradient-primary" (click)="openFormAdd()">Thêm mới</button>
+        <button class="btn btn-outline-primary btn-gradient-primary" (click)="openFormAdd()">Add New</button>
       </h4>
       <nz-table #borderedTable nzBordered [nzData]="listRevai">
         <thead>
@@ -22,8 +22,8 @@
           <td>{{ data.email }}</td>
           <td>{{ data.password }}</td>
           <td>
-            <button class="btn btn-success btn-rounded btn-sm me-2 " (click)="update(data)" > Sửa </button>
-            <button class="btn btn-danger btn-rounded btn-sm" (click)="deleteRevai(data.id)" > Xóa </button>
+            <button class="btn btn-success btn-rounded btn-sm me-2 " (click)="update(data)" > Edit </button>
+            <button class="btn btn-danger btn-rounded btn-sm" (click)="deleteRevai(data.id)" > Delete </button>
           </td>
         </tr>
         </tbody>

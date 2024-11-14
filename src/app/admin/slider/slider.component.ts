@@ -24,7 +24,7 @@ import {
   styleUrls: ['./slider.component.scss', ...AdminStyle, ...AdminLibBaseCss2]
 })
 export class SliderComponent implements OnInit {
-  title: string = "Quản lý slider";
+  title: string = "Manage slider";
   currentPage: string = "Slider";
   page = 1;
   size = 10;
@@ -60,15 +60,15 @@ export class SliderComponent implements OnInit {
 
   deleteSlider(sliderId: number): void {
     const confirmModal: NzModalRef = this.modal.create({
-      nzTitle: `Xác nhận`,
-      nzContent: `Bạn có muốn xóa slider này không?`,
+      nzTitle: `Confirm`,
+      nzContent: `Do you want to delete?`,
       nzCentered: true,
       nzFooter: [
         {
-          label: 'Hủy',
+          label: 'Cancel',
           onClick: () => confirmModal.destroy()
         }, {
-          label: 'Đồng ý',
+          label: 'Agree',
           type: 'primary',
           onClick: () => {
             this.spin.show().then();
@@ -121,7 +121,7 @@ export class SliderComponent implements OnInit {
     const bsRef = this.bsModalService.show(UpdateSliderComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Cập nhật tài khoản Rev-ai ',
+        title: 'Update Account Rev-ai ',
         isAdd: false,
         idSlider: data.id,
         imageSrc: data.image,
@@ -139,7 +139,7 @@ export class SliderComponent implements OnInit {
     const bsModalRef = this.bsModalService.show(UpdateSliderComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Thêm Slider'
+        title: 'Add Slider'
       }
     });
     if (bsModalRef && bsModalRef.content) {

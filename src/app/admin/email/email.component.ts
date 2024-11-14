@@ -15,7 +15,7 @@ import {TranslateService} from '@ngx-translate/core';
   styleUrls: ['./email.component.scss']
 })
 export class EmailComponent implements OnInit {
-  title: string = 'Quản lý email';
+  title: string = 'Manager email';
   currentPage: string = 'Email';
   listEmailConfig: any = [];
 
@@ -39,15 +39,15 @@ export class EmailComponent implements OnInit {
   }
   deleteEmail(id: number): void {
     const confirmModal: NzModalRef = this.modal.create({
-      nzTitle: `Xác nhận`,
-      nzContent: `Bạn có muốn xóa slider này không?`,
+      nzTitle: `Confirm`,
+      nzContent: `Do you want to delete?`,
       nzCentered: true,
       nzFooter: [
         {
-          label: 'Hủy',
+          label: 'Cancel',
           onClick: () => confirmModal.destroy()
         }, {
-          label: 'Đồng ý',
+          label: 'Agree',
           type: 'primary',
           onClick: () => {
             this.spinner.show().then()
@@ -78,7 +78,7 @@ export class EmailComponent implements OnInit {
     const bsModalResult = this.bsModalService.show(UpdateEmailComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Cập nhật tài khoản Email ',
+        title: 'Update Account Email ',
         isAdd: false,
         params: {
           host: data.host,
@@ -98,7 +98,7 @@ export class EmailComponent implements OnInit {
     const bsModalRef = this.bsModalService.show(UpdateEmailComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Thêm Email Config'
+        title: 'Add Email Config'
       }
     });
     if (bsModalRef && bsModalRef.content) {

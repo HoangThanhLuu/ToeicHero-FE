@@ -14,12 +14,12 @@
                     [ngClass]="{'d-none': !showSaveAllBtn}"
                     (click)="saveAll()"
             >
-              <i class="mdi mdi-file-check btn-icon-prepend"></i> Lưu tất cả
+              <i class="mdi mdi-file-check btn-icon-prepend"></i> Save all
             </button>
             <input type="file" (change)="onFileSelected($event)" accept=".xlsx" class="file-upload-default d-none" #fileInput />
             <button type="button" class="btn btn-gradient-success btn-icon-text mb-3 btn-sm"
                     (click)="triggerFileInput(fileInput)">
-              <i class="mdi mdi-upload btn-icon-prepend"></i> Nhập điểm từ file excel
+              <i class="mdi mdi-upload btn-icon-prepend"></i> Import scores from excel file
             </button>
           </div>
 
@@ -50,7 +50,7 @@
                 <td>{{item?.scoreReading}}</td>
                 <td class="template-demo">
                   <button class="btn btn-success btn-rounded btn-sm" (click)="startEdit(item?.calculateScoreId)">
-                    Sửa
+                    Edit
                   </button>
                 </td>
               </ng-container>
@@ -61,11 +61,11 @@
                 <td><input type="text" nz-input [(ngModel)]="editCache[item.calculateScoreId].data.scoreReading"/>
                 </td>
                 <td class="template-demo">
-                  <button type="button" class="btn btn-warning btn-sm" (click)="saveEdit(item)">Lưu</button>
+                  <button type="button" class="btn btn-warning btn-sm" (click)="saveEdit(item)">Save</button>
                   <button class="btn btn-outline-danger btn-sm"
-                          nz-popconfirm nzPopconfirmTitle="Bạn chắc chắn muốn xóa?"
-                          [nzCancelText]="'Hủy'" [nzOkText]="'Đồng ý'"
-                          (nzOnConfirm)="cancelEdit(item?.calculateScoreId)">Hủy
+                          nz-popconfirm nzPopconfirmTitle="Do you want to delete?"
+                          [nzCancelText]="'Cancel'" [nzOkText]="'Agree'"
+                          (nzOnConfirm)="cancelEdit(item?.calculateScoreId)">Cancel
                   </button>
                 </td>
               </ng-template>

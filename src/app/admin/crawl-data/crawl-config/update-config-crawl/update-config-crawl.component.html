@@ -6,7 +6,7 @@
         <div class="form-group mt-3">
           <label> Email: </label>
           <div class="col-sm-11">
-            <input type="email" class="form-control" name="email" placeholder="Nhập Email "
+            <input type="email" class="form-control" name="email" placeholder="Input Email "
                    [ngClass]="{'error-input-custom': showBorderError}" id="email"
                    [(ngModel)]="params.email"
                    [readonly]="!isAdd" [disabled]="!isAdd">
@@ -15,14 +15,14 @@
         <div class="form-group mt-3">
           <label> Token: </label>
           <div class="col-sm-11">
-            <input type="text" class="form-control" name="token" placeholder="Nhập token "
+            <input type="text" class="form-control" name="token" placeholder="Input token "
                    [ngClass]="{'error-input-custom': showBorderError}" id="token"
                    [(ngModel)]="params.token">
           </div>
         </div>
         <div class="button mt-5">
-          <button class="btn btn-primary" (click)="addAccount()"> {{ isAdd ? 'Thêm' : 'Sửa' }}</button>
-          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : isAdd}" (click)="close()"> Hủy </button>
+          <button class="btn btn-primary" (click)="addAccount()"> {{ isAdd ? 'Add' : 'Edit' }}</button>
+          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : isAdd}" (click)="close()"> Cancel </button>
         </div>
       </form>
     </div>

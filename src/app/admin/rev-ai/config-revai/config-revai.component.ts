@@ -64,7 +64,7 @@ export class ConfigRevaiComponent implements OnInit{
     const bsModalResult = this.bsModalService.show(UpdateConfigComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Cập nhật Config REV-AI ',
+        title: 'Update Config REV-AI ',
         isAdd: false,
         isPopup : true,
         params: {
@@ -83,15 +83,15 @@ export class ConfigRevaiComponent implements OnInit{
   }
   deleteConfigRev(id: number) :void {
     const confirmModal: NzModalRef = this.modal.create({
-      nzTitle: `Xác nhận`,
-      nzContent: `Bạn có muốn xóa Config RevAI này không?`,
+      nzTitle: `Confirm`,
+      nzContent: `Do you want to delete?`,
       nzCentered: true,
       nzFooter: [
         {
-          label: 'Hủy',
+          label: 'Cancel',
           onClick: () => confirmModal.destroy()
         }, {
-          label: 'Đồng ý',
+          label: 'Agree',
           type: 'primary',
           onClick: () => {
             this.spinner.show().then()
@@ -124,7 +124,7 @@ export class ConfigRevaiComponent implements OnInit{
     const bsModalRef = this.bsModalService.show(UpdateConfigComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Thêm Rev-AI Config',
+        title: 'Add Rev-AI Config',
         isPopup: true
       }
     });

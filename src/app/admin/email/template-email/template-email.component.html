@@ -7,7 +7,7 @@
   <div class="card">
     <div class="card-body">
       <h4 class="card-title">
-        <button class="btn btn-outline-primary btn-gradient-primary" (click)="openFormAdd()">Thêm mới</button>
+        <button class="btn btn-outline-primary btn-gradient-primary" (click)="openFormAdd()">Add new</button>
       </h4>
       <nz-table #borderedTable nzBordered [nzData]="listTemplateEmail">
         <thead>
@@ -24,9 +24,9 @@
           <td>{{ data.templateCode }}</td>
           <td>{{ data.subject }}</td>
           <td>
-            <button class="btn btn-success btn-rounded btn-sm me-2 "(click)="update(data)" > Sửa </button>
-            <button class="btn btn-primary btn-rounded btn-sm me-2" (click)="openDetail(data)" > Xem </button>
-            <button class="btn btn-danger btn-rounded btn-sm" (click)="deleteTemplate(data.id)"> Xóa </button>
+            <button class="btn btn-success btn-rounded btn-sm me-2 "(click)="update(data)" > Edit </button>
+            <button class="btn btn-primary btn-rounded btn-sm me-2" (click)="openDetail(data)" > View </button>
+            <button class="btn btn-danger btn-rounded btn-sm" (click)="deleteTemplate(data.id)"> Delete </button>
           </td>
         </tr>
         </tbody>

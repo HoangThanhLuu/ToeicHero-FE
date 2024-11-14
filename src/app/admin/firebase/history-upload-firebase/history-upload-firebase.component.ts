@@ -37,7 +37,7 @@ export class HistoryUploadFirebaseComponent implements OnInit {
   listType = [
     {
       value: 'all',
-      label: 'Tất cả'
+      label: 'All'
     },
     {
       value: 'audio',
@@ -45,17 +45,17 @@ export class HistoryUploadFirebaseComponent implements OnInit {
     },
     {
       value: 'image',
-      label: 'Hình ảnh'
+      label: 'Image'
     },
   ];
   listSort = [
     {
       value: 'desc',
-      label: 'Giảm dần'
+      label: 'Decrease'
     },
     {
       value: 'asc',
-      label: 'Tăng dần'
+      label: 'Increase'
     }
   ];
 
@@ -112,15 +112,15 @@ export class HistoryUploadFirebaseComponent implements OnInit {
 
   deleteHistoryUpload(id: number) {
     const confirmModal: NzModalRef = this.modal.create({
-      nzTitle: `Xác nhận`,
-      nzContent: `Bạn có muốn xóa File Upload này không?`,
+      nzTitle: `Confirm`,
+      nzContent: `Do you want to delete?`,
       nzCentered: true,
       nzFooter: [
         {
-          label: 'Hủy',
+          label: 'Cancel',
           onClick: () => confirmModal.destroy()
         }, {
-          label: 'Đồng ý',
+          label: 'Agree',
           type: 'primary',
           onClick: () => {
             this.spinnerService.show();

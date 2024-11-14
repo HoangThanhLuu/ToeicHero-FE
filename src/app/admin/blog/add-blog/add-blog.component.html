@@ -4,37 +4,37 @@
       <h4 class="card-title" [innerText]="title | translate"></h4>
       <form class="forms-sample">
         <div class="form-group mt-3">
-          <label> Tác giả: </label>
+          <label> Author: </label>
           <div class="col-sm-11">
             <input type="text" class="form-control"
                    [ngClass]="{'error-input-custom': showBorderError[0]}" id="author"
-                   name="author" placeholder="Nhập tác giả " [(ngModel)]="params.author">
+                   name="author" placeholder="Input author " [(ngModel)]="params.author">
           </div>
         </div>
         <div class="form-group mt-2">
-          <label> Tiêu đề: </label>
+          <label>Title: </label>
           <div class="col-sm-11">
             <input type="text" class="form-control"
                    [ngClass]="{'error-input-custom': showBorderError[1]}" id="title"
-                   name="title" placeholder="Nhập tiêu đề " [(ngModel)]="params.title">
+                   name="title" placeholder="Input title " [(ngModel)]="params.title">
           </div>
         </div>
         <div class="form-group mt-2">
-          <label> Tóm tắt: </label>
+          <label> Summary: </label>
           <div class="col-sm-11">
             <input type="text" class="form-control" id="summary"
-                   name="summary" placeholder="Nhập tóm tắt " [(ngModel)]="params.summary">
+                   name="summary" placeholder="Input Summary" [(ngModel)]="params.summary">
           </div>
         </div>
         <div class="form-group">
-          <label > Nội dung </label>
+          <label > Content </label>
           <editor apiKey="01d1ysvvu8ltpjkbz1sn01lv6t5mu5wz0x6duazjsk6n6r66"
                   [(ngModel)]="params.content"
                   [init]="tinymceConfig"
           ></editor>
         </div>
         <div class="form-group">
-          <label> Ảnh </label>
+          <label> Image </label>
           <div class="container-upload" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
             <div class="upload-box">
               <div class="content">
@@ -42,11 +42,11 @@
                   <i class="mdi mdi-cloud-upload text-dark" style="height: 100px; width: 100px;"></i>
                 </div>
                 <h6 class="text-dark" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
-                  Kéo và thả ảnh vào đây
+                  Drag and drop photos here
                 </h6>
-                <p> Hoặc </p>
+                <p> Or </p>
                 <div class="upload-btn-wrapper">
-                  <button class="btn btn-gradient-primary">Tải ảnh lên </button>
+                  <button class="btn btn-gradient-primary">Upload </button>
                   <input type="file" (change)="handleFileInput($event)" (drop)="handleDrop($event)"
                          (dragover)="allowDrop($event)"
                   />
@@ -59,9 +59,9 @@
           </div>
         </div>
         <div class="button mt-5">
-          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : !isAdd}" (click)="addBlog()"> Thêm </button>
-          <button class="btn btn-primary" [ngClass]="{'d-none' : isAdd}" (click)="modifyBlog()"> Sửa </button>
-          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : isAdd}" (click)="close()"> Hủy</button>
+          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : !isAdd}" (click)="addBlog()"> Add </button>
+          <button class="btn btn-primary" [ngClass]="{'d-none' : isAdd}" (click)="modifyBlog()"> Edit </button>
+          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : isAdd}" (click)="close()"> Cancel</button>
         </div>
       </form>
     </div>

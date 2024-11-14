@@ -4,19 +4,19 @@
       <h4 class="card-title" [innerText]="title"></h4>
       <form class="forms-sample">
         <div class="form-group">
-          <label for="exampleInputName1">Tên Template</label>
+          <label for="exampleInputName1">Template Name</label>
           <input type="text" class="form-control" id="exampleInputName12" name="name"
-                 placeholder="Nhập tên Template" [(ngModel)]="this.params.name">
+                 placeholder="Input Template Name" [(ngModel)]="this.params.name">
         </div>
         <div class="form-group">
           <label for="exampleInputName1">Subject</label>
           <input type="text" class="form-control" id="exampleInputName1" name="subject"
-                 placeholder="Nhập Subject" [(ngModel)]="this.params.subject">
+                 placeholder="Input Subject" [(ngModel)]="this.params.subject">
         </div>
         <div class="form-group">
           <label for="exampleInputName1">Tempalte Code</label>
           <input type="text" class="form-control" id="exampleInputNamer1" name="code"
-                 placeholder="Nhập Template Code" [(ngModel)]="this.params.templateCode">
+                 placeholder="Input Template Code" [(ngModel)]="this.params.templateCode">
         </div>
         <div class="form-group">
           <label for="exampleInputName1">Template Context</label>
@@ -26,8 +26,8 @@
           ></editor>
         </div>
       </form>
-      <button class="btn btn-gradient-primary-2" (click)="doAction()" >{{ isAdd? 'Thêm' : 'Sửa' }}</button>
-      <button class="btn btn-secondary ms-2"[ngClass]="{'d-none' : isAdd}" (click)="close()">Hủy</button>
+      <button class="btn btn-gradient-primary-2" (click)="doAction()" >{{ isAdd? 'Add' : 'Edit' }}</button>
+      <button class="btn btn-secondary ms-2"[ngClass]="{'d-none' : isAdd}" (click)="close()">Cancel</button>
     </div>
   </div>
 </div>

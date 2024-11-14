@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import { BsModalService} from 'ngx-bootstrap/modal';
 import {HttpClient} from '@angular/common/http';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {ToastrService} from 'ngx-toastr';
@@ -7,9 +7,6 @@ import {TranslateService} from '@ngx-translate/core';
 import {finalize} from 'rxjs';
 import {UpdateFirebaseComponent} from './update-firebase/update-firebase.component';
 import {NzModalRef, NzModalService} from 'ng-zorro-antd/modal';
-import {UpdateKommunicateComponent} from "../kommunicate/update-kommunicate/update-kommunicate.component";
-
-
 
 @Component({
   selector: 'app-firebase',
@@ -17,7 +14,7 @@ import {UpdateKommunicateComponent} from "../kommunicate/update-kommunicate/upda
   styleUrls: ['./firebase.component.scss']
 })
 export class FirebaseComponent implements OnInit{
-  title: string = 'Quản lý tính Firebase';
+  title: string = 'Manage Firebase';
   currentPage: string = 'Firebase';
   listFirebase: any = [];
 
@@ -63,15 +60,15 @@ export class FirebaseComponent implements OnInit{
   }
   deleteFirebase(id: number) :void {
     const confirmModal: NzModalRef = this.modal.create({
-      nzTitle: `Xác nhận`,
-      nzContent: `Bạn có muốn xóa Firebase này không?`,
+      nzTitle: `Confirm`,
+      nzContent: `Do you want to delete?`,
       nzCentered: true,
       nzFooter: [
         {
-          label: 'Hủy',
+          label: 'Cancel',
           onClick: () => confirmModal.destroy()
         }, {
-          label: 'Đồng ý',
+          label: 'Agree',
           type: 'primary',
           onClick: () => {
             this.spinner.show().then()
@@ -103,7 +100,7 @@ export class FirebaseComponent implements OnInit{
     const bsModalRef = this.bsModalService.show(UpdateFirebaseComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Thêm Firebase',
+        title: 'Add Firebase',
         isPopup: true
       }
     });
@@ -117,7 +114,7 @@ export class FirebaseComponent implements OnInit{
     const bsModalResult = this.bsModalService.show(UpdateFirebaseComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Cập nhật Firebase ',
+        title: 'Update Firebase ',
         isAdd: false,
         isPopup: true,
         params: {

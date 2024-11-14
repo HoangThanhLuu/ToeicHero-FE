@@ -6,15 +6,15 @@
         <div class="form-group mt-3">
           <label> Access Token: </label>
           <div class="col-sm-11">
-            <input type="text" class="form-control" name="AccessToken" placeholder="Nhập AccessToken "
+            <input type="text" class="form-control" name="AccessToken" placeholder="Input AccessToken "
                    [ngClass]="{'error-input-custom': showBorderError}" id="accesstoken"
                    [(ngModel)]="this.params.accessToken">
           </div>
         </div>
         <div class="button mt-5">
-          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : !isAdd}" (click)="addAccount()"> Thêm </button>
-          <button class="btn btn-primary" [ngClass]="{'d-none' : isAdd}" (click)="modify()"> Sửa </button>
-          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : isAdd}" (click)="close()"> Hủy </button>
+          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : !isAdd}" (click)="addAccount()"> Add </button>
+          <button class="btn btn-primary" [ngClass]="{'d-none' : isAdd}" (click)="modify()"> Edit </button>
+          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : isAdd}" (click)="close()"> Cancel </button>
         </div>
       </form>
 

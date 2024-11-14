@@ -58,7 +58,7 @@ export class CrawlComponent implements OnInit {
 
   getData() {
     if (!this.params.url) {
-      this.toastr.error('Vui lòng nhập URL');
+      this.toastr.error('Please enter URL');
       this.showBorderError = true;
       return;
     } else {
@@ -71,15 +71,15 @@ export class CrawlComponent implements OnInit {
           if (res.success) {
             this.spinner.hide();
             const confirmModal: NzModalRef = this.modal.create({
-              nzTitle: `Xác nhận`,
-              nzContent: `Đề này bạn đã Crawl. Bạn có muốn Crawl lại hay không?`,
+              nzTitle: `Confirm`,
+              nzContent: `This topic you have Crawl. Do you want to Crawl again or not?`,
               nzCentered: true,
               nzFooter: [
                 {
-                  label: 'Hủy',
+                  label: 'Cancel',
                   onClick: () => confirmModal.destroy()
                 }, {
-                  label: 'Đồng ý',
+                  label: 'Agree',
                   type: 'primary',
                   onClick: () => {
                     this.crawlData();

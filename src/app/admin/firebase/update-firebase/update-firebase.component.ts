@@ -11,7 +11,7 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['./update-firebase.component.scss']
 })
 export class UpdateFirebaseComponent {
-  @Input() title: string = "Thêm Firebase: ";
+  @Input() title: string = "Add Firebase: ";
   @Input() isAdd = true;
   @Input() ismodify = false;
   @Input() isPopup: boolean = false;
@@ -36,14 +36,14 @@ export class UpdateFirebaseComponent {
   }
   addFirebase(): void {
     if(!this.params.tokenKey) {
-      this.toastr.error('Vui lòng nhập Key');
+      this.toastr.error('Please input Key');
       this.showBorderError = true;
       return;
     }else{
       this.showBorderError = false;
     }
       if (!this.formData.has('file')) {
-        this.toastr.error('Vui lòng chọn file');
+        this.toastr.error('Please select file');
         return;
       }
     this.spinnerService.show();

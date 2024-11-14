@@ -18,8 +18,8 @@ import {UpdateTopicComponent} from "./update-topic/update-topic.component";
   ]
 })
 export class TopicComponent implements OnInit {
-  title: string = "Quản lý bộ đề thi";
-  currentPage: string = "Bộ đề thi";
+  title: string = "Manage Topic";
+  currentPage: string = "Topic";
   listTopic: any = [];
 
 
@@ -46,7 +46,7 @@ export class TopicComponent implements OnInit {
     const modalRef = this.bsModalService.show(AddTopicComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Thêm bộ đề thi'
+        title: 'Add Topic'
       }
     });
     if (modalRef && modalRef.content) {
@@ -62,15 +62,15 @@ export class TopicComponent implements OnInit {
 
   deleteTopic(topic: any) {
     const confirmModal: NzModalRef = this.modal.create({
-      nzTitle: `Xác nhận`,
-      nzContent: `Bạn có muốn xóa bộ đề thi ${topic?.topicName} không?`,
+      nzTitle: `Confirm`,
+      nzContent: `Do you want to delete this ${topic?.topicName} ?`,
       nzCentered: true,
       nzFooter: [
         {
-          label: 'Hủy',
+          label: 'Cancel',
           onClick: () => confirmModal.destroy()
         }, {
-          label: 'Đồng ý',
+          label: 'Agree',
           type: 'primary',
           onClick: () => {
               this.spinner.show();
@@ -100,7 +100,7 @@ export class TopicComponent implements OnInit {
     const bsModalResult = this.bsModalService.show(UpdateTopicComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Cập nhật Topic',
+        title: 'Update Topic',
         isPopup: true,
         isShowImage: true,
         imageSrc: data.topicImage,

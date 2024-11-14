@@ -38,15 +38,15 @@ export class CrawlConfigComponent implements OnInit{
   }
   deleteFirebase(id: number) :void {
     const confirmModal: NzModalRef = this.modal.create({
-      nzTitle: `Xác nhận`,
-      nzContent: `Bạn có muốn xóa Config này không?`,
+      nzTitle: `Confirm`,
+      nzContent: `Do you want to delete?`,
       nzCentered: true,
       nzFooter: [
         {
-          label: 'Hủy',
+          label: 'Cancel',
           onClick: () => confirmModal.destroy()
         }, {
-          label: 'Đồng ý',
+          label: 'Agree',
           type: 'primary',
           onClick: () => {
             this.spinner.show().then()
@@ -78,7 +78,7 @@ export class CrawlConfigComponent implements OnInit{
     const bsModalResult = this.bsModalService.show(UpdateConfigCrawlComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Cập nhật Config Crawl',
+        title: 'Update Config Crawl',
         isAdd: false,
         isPopup: true,
         params: {
@@ -99,7 +99,7 @@ export class CrawlConfigComponent implements OnInit{
     const bsModalRef = this.bsModalService.show(UpdateConfigCrawlComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Thêm Config Crawl',
+        title: 'Add Config Crawl',
         isPopup: true
       }
     });

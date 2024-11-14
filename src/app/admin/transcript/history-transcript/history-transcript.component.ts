@@ -23,7 +23,7 @@ import {BsModalService} from "ngx-bootstrap/modal";
 })
 export class HistoryTranscriptComponent implements OnInit {
   @Input() isShowPageHeader: boolean = true;
-  title: string = "Lịch sử transcript";
+  title: string = "History transcript";
   currentPage: string = "History transcript";
   list: any = [];
   formatDate = CONSTANT.formatDate;
@@ -41,29 +41,29 @@ export class HistoryTranscriptComponent implements OnInit {
   listType = [
     {
       value: 'all',
-      label: 'Tất cả'
+      label: 'All'
     },
     {
       value: 'IN_PROGRESS',
-      label: 'Đang xử lý'
+      label: 'In Progress'
     },
     {
       value: 'TRANSCRIBED',
-      label: 'Thành công'
+      label: 'Success'
     },
     {
       value: 'FAILED',
-      label: 'Thất bại'
+      label: 'Failed'
     }
   ];
   listSort = [
     {
       value: 'desc',
-      label: 'Giảm dần'
+      label: 'Decrease'
     },
     {
       value: 'asc',
-      label: 'Tăng dần'
+      label: 'Increase'
     }
   ];
   maxDate: Date = new Date();

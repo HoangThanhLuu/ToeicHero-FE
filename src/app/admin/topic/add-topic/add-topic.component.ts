@@ -74,7 +74,7 @@ export class AddTopicComponent {
 
   addNew(): void {
     if (!this.param.topicName) {
-      this.toastr.error('Vui lòng nhập tên bộ đề thi');
+      this.toastr.error('Please input topic name');
       this.showBorderError = true;
       return;
     } else {
@@ -82,7 +82,7 @@ export class AddTopicComponent {
     }
 
     if (!this.formData.has('file')) {
-      this.toastr.error('Vui lòng chọn ảnh');
+      this.toastr.error('Please select image');
       return;
     }
     this.spinnerService.show().then(r => r);

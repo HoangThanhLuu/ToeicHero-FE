@@ -15,7 +15,7 @@ import {UpdateRevaiComponent} from './update-revai/update-revai.component';
   styleUrls: ['./rev-ai.component.scss']
 })
 export class RevAiComponent implements OnInit {
-  title: string = 'Quản lý tài khoản REV-AI';
+  title: string = 'Manage REV-AI';
   currentPage: string = 'REV-AI';
   listRevai: any = [];
 
@@ -42,15 +42,15 @@ export class RevAiComponent implements OnInit {
 
   deleteRevai(id: number): void {
     const confirmModal: NzModalRef = this.modal.create({
-      nzTitle: `Xác nhận`,
-      nzContent: `Bạn có muốn xóa RevAI này không?`,
+      nzTitle: `Confirm`,
+      nzContent: `Do you want to delete?`,
       nzCentered: true,
       nzFooter: [
         {
-          label: 'Hủy',
+          label: 'Cancel',
           onClick: () => confirmModal.destroy()
         }, {
-          label: 'Đồng ý',
+          label: 'Agree',
           type: 'primary',
           onClick: () => {
             this.spinner.show().then()
@@ -83,7 +83,7 @@ export class RevAiComponent implements OnInit {
     const bsModalResult = this.bsModalService.show(UpdateRevaiComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Cập nhật tài khoản Rev-ai ',
+        title: 'Update account Rev-ai ',
         isAdd: false,
         isPopup: true,
         params: {
@@ -103,7 +103,7 @@ export class RevAiComponent implements OnInit {
     const bsModalRef = this.bsModalService.show(UpdateRevaiComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Thêm Rev-AI',
+        title: 'Add Rev-AI',
         isPopup: true
       }
     });

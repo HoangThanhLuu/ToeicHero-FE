@@ -14,7 +14,7 @@ import {UpdateTinyConfigComponent} from './update-tiny-config/update-tiny-config
   styleUrls: ['./config-tiny.component.scss']
 })
 export class ConfigTinyComponent implements OnInit{
-  title: string = 'Quản lý Config Tiny';
+  title: string = 'Manage Config Tiny';
   currentPage: string = 'Config Tiny';
   listConfigTiny: any = [];
   page = 0;
@@ -64,15 +64,15 @@ export class ConfigTinyComponent implements OnInit{
   }
   deleteConfifTiny(id: number) :void {
     const confirmModal: NzModalRef = this.modal.create({
-      nzTitle: `Xác nhận`,
-      nzContent: `Bạn có muốn xóa Config Tiny này không?`,
+      nzTitle: `Confirm`,
+      nzContent: `Do you want to delete?`,
       nzCentered: true,
       nzFooter: [
         {
-          label: 'Hủy',
+          label: 'Cancel',
           onClick: () => confirmModal.destroy()
         }, {
-          label: 'Đồng ý',
+          label: 'Agree',
           type: 'primary',
           onClick: () => {
             this.spinner.show().then()
@@ -104,7 +104,7 @@ export class ConfigTinyComponent implements OnInit{
     const bsModalResult = this.bsModalService.show(UpdateTinyConfigComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Cập nhật Tiny Config ',
+        title: 'Update Tiny Config ',
         isAdd: false,
         isPopup: true,
         params: JSON.parse(JSON.stringify(data))
@@ -121,7 +121,7 @@ export class ConfigTinyComponent implements OnInit{
     const bsModalRef = this.bsModalService.show(UpdateTinyConfigComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Thêm Config Tiny',
+        title: 'Add Config Tiny',
         isPopup: true
       }
     });

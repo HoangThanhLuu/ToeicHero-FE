@@ -10,7 +10,7 @@
         <tr>
           <th>Part</th>
           <th>Audio</th>
-          <th>Số câu hỏi</th>
+          <th>Number Question</th>
           <th>#</th>
         </tr>
         </thead>
@@ -25,21 +25,21 @@
             </td>
             <td class="align-middle">{{item.numberOfQuestion}}</td>
             <td class="template-demo">
-              <button class="btn btn-danger btn-sm" tooltip="Xem chi tiết" (click)="seeDetail(item)">
+              <button class="btn btn-danger btn-sm" tooltip="View details" (click)="seeDetail(item)">
                 <i class="mdi mdi-eye"></i>
               </button>
               <ng-container *ngIf="i < 4">
-                <button class="btn btn-gradient-warning btn-sm" tooltip="Chỉnh sửa thông tin"
+                <button class="btn btn-gradient-warning btn-sm" tooltip="Edit information"
                         (click)="openFormEdit(item)">
                   <i class="mdi mdi-pencil"></i>
                 </button>
               </ng-container>
-              <button type="button" class="btn btn-gradient-success btn-sm" tooltip="Import câu hỏi từ file excel"
+              <button type="button" class="btn btn-gradient-success btn-sm" tooltip="Import from Excel"
                       (click)="importExel(item, i)">
                 <i class="mdi mdi-upload"></i></button>
               <input type="file" #fileInput style="display: none"  (change)="onFileChange($event, item)">
 
-              <button class="btn btn-gradient-danger btn-sm d-none" tooltip="Xóa toàn bộ câu hỏi trong part" (click)="deletePart(item)">
+              <button class="btn btn-gradient-danger btn-sm d-none" tooltip="Delete all questions in the section" (click)="deletePart(item)">
                 <i class="mdi mdi-delete"></i>
               </button>
             </td>
@@ -52,5 +52,5 @@
 </div>
 
 <ng-template #noAudio>
-  <label class="badge badge-info">Không có audio</label>
+  <label class="badge badge-info">No audio</label>
 </ng-template>

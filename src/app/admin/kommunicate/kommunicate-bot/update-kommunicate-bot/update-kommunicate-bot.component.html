@@ -6,7 +6,7 @@
         <div class="form-group mt-4">
           <label> APPID: </label>
           <div class="col-sm-11">
-            <input type="text" class="form-control" name="appid"  placeholder="Nhập AppId "
+            <input type="text" class="form-control" name="appid"  placeholder="Input AppId "
                    [ngClass]="{'error-input-custom': showBorderError[0]}" id="appid"
                    [(ngModel)]="params.appId" [readonly]="!isAdd" [disabled]="!isAdd">
           </div>
@@ -14,14 +14,14 @@
         <div class="form-group mt-3">
           <label> APIKEY: </label>
           <div class="col-sm-11">
-            <input type="text" class="form-control" name="apikey" placeholder="Nhập APIKEY "
+            <input type="text" class="form-control" name="apikey" placeholder="Input APIKEY "
                    [ngClass]="{'error-input-custom': showBorderError[1]}" id="apikey"
                    [(ngModel)]="params.apiKey">
           </div>
         </div>
         <div class="button mt-5">
-          <button class="btn btn-primary" (click)="addAccount()" > {{ isAdd? 'Thêm' : 'Sửa' }} </button>
-          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : isAdd}" (click)="close()"> Hủy </button>
+          <button class="btn btn-primary" (click)="addAccount()" > {{ isAdd? 'Add' : 'Edit' }} </button>
+          <button class="btn btn-outline-primary ms-2" [ngClass]="{'d-none' : isAdd}" (click)="close()"> Cancel </button>
         </div>
       </form>
 

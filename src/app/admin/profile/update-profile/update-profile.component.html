@@ -1,14 +1,14 @@
 <div class="profile">
   <div class="content">
-    <h1>Chỉnh sửa thông tin</h1>
+    <h1>Edit information</h1>
     <form action="" [formGroup]="profileForm">
       <!-- Photo -->
       <fieldset>
         <div class="grid-35">
-          <label>Ảnh đại diện</label>
+          <label>Avatar</label>
         </div>
         <div class="grid-65">
-          <span class="photo" title="Thay đổi ảnh đại diện của bạn!">
+          <span class="photo" title="Change your profile avatar!">
             <img nz-image [nzSrc]="profileService.currentUser.avatar" class="avatar" [alt]="profileService.currentUser.fullName"/>
           </span>
           <input type="file" class="btn" (change)="handleFileInput($event)"/>
@@ -34,7 +34,7 @@
       <!-- Phone -->
       <fieldset>
         <div class="grid-35">
-          <label for="email">Số điện thoại </label>
+          <label for="email">Phone number </label>
         </div>
         <div class="grid-65">
           <input type="email" id="phone" tabindex="3" formControlName="phone" [value]="profileService.currentUser.phone"/>
@@ -44,7 +44,7 @@
       <!-- Location -->
       <fieldset>
         <div class="grid-35">
-          <label for="location">Địa chỉ</label>
+          <label for="location">Adress</label>
         </div>
         <div class="grid-65">
           <input type="text" id="location" tabindex="4" formControlName="address" [value]="profileService.currentUser.address"/>
@@ -52,8 +52,8 @@
       </fieldset>
 
       <fieldset>
-        <input type="button" class="Btn cancel" value="Hủy" (click)="closeModal()"/>
-        <input type="submit" class="Btn" value="Lưu thay đổi" (click)="onUpdateProfile()"/>
+        <input type="button" class="Btn cancel" value="Cancel" (click)="closeModal()"/>
+        <input type="submit" class="Btn" value="Save" (click)="onUpdateProfile()"/>
       </fieldset>
     </form>
   </div>

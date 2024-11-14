@@ -72,19 +72,19 @@ export class UpdateProfileComponent implements OnInit{
         .pipe(
           tap((res: any) => {
             if (res?.success) {
-              this.toast.success('Chỉnh sửa thông tin thành công');
+              this.toast.success('Edited information successfully');
             } else {
               this.toast.error(res?.message);
             }
           }),
           catchError(error => {
-            this.toast.error('Chỉnh sửa thông tin thất bại');
+            this.toast.error('Editing information failed');
             return of(null);
           }),
           finalize(() => this.spin.hide().then(r => r))
         ).subscribe();
     } else {
-      this.toast.error('Chỉnh sửa thông tin thất bại');
+      this.toast.error('Editing information failed');
     }
   }
 }

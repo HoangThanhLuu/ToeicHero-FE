@@ -52,15 +52,15 @@ export class ProfileComponent implements OnInit {
 
   uploadAvatar() {
     const confirmModal: NzModalRef = this.modal.create({
-      nzTitle: `Xác nhận`,
-      nzContent: `Bạn có muốn chắc chắn cập nhật ảnh đại diện không?`,
+      nzTitle: `Confirm`,
+      nzContent: `Do you want to be update your profile picture?`,
       nzCentered: true,
       nzFooter: [
         {
-          label: 'Hủy',
+          label: 'Cancel',
           onClick: () => confirmModal.destroy()
         }, {
-          label: 'Đồng ý',
+          label: 'Agree',
           type: 'primary',
           onClick: () => {
             this.spinner.show().then(r => r);
@@ -84,7 +84,7 @@ export class ProfileComponent implements OnInit {
                 }
               }),
               catchError((error: any) => {
-                this.toast.error(error?.message || 'Cập nhật ảnh đại diện thất bại');
+                this.toast.error(error?.message || 'Update avatar fail');
                 return of(error);
               }),
               finalize(() => this.spinner.hide())

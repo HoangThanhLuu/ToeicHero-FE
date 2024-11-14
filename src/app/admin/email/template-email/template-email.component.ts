@@ -18,7 +18,7 @@ import {NzModalRef, NzModalService} from 'ng-zorro-antd/modal';
   styleUrls: ['./template-email.component.scss']
 })
 export class TemplateEmailComponent implements OnInit {
-  title: string = 'Quản lý Template Email';
+  title: string = 'Manager Template Email';
   currentPage: string = 'Template Email';
   listTemplateEmail: any = [];
 
@@ -56,7 +56,7 @@ export class TemplateEmailComponent implements OnInit {
     const bsModalResult = this.bsModalService.show(UpdateTemplateEmailComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Chỉnh sửa Email Template',
+        title: 'Update Email Template',
         isAdd: false,
         params: {
           name: data.name,
@@ -76,15 +76,15 @@ export class TemplateEmailComponent implements OnInit {
 
   deleteTemplate(id: any) {
     const confirmModal: NzModalRef = this.modal.create({
-      nzTitle: `Xác nhận`,
-      nzContent: `Bạn có muốn xóa slider này không?`,
+      nzTitle: `Confirm`,
+      nzContent: `Do you want to delete?`,
       nzCentered: true,
       nzFooter: [
         {
-          label: 'Hủy',
+          label: 'Cancel',
           onClick: () => confirmModal.destroy()
         }, {
-          label: 'Đồng ý',
+          label: 'Agree',
           type: 'primary',
           onClick: () => {
             this.spinner.show();
@@ -116,7 +116,7 @@ export class TemplateEmailComponent implements OnInit {
     const bsModalRef = this.bsModalService.show(UpdateTemplateEmailComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Thêm Template Email'
+        title: 'Add Template Email'
       }
     });
     if (bsModalRef && bsModalRef.content) {

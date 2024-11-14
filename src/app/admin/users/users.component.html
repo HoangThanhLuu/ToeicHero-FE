@@ -7,7 +7,7 @@
     <div class="card-body">
       <div nz-row>
         <nz-form-item nz-col nzSpan="6" class="me-3">
-          <nz-form-label><i class="fa-solid fa-filter me-2"></i> Lọc theo trạng thái</nz-form-label>
+          <nz-form-label><i class="fa-solid fa-filter me-2"></i> Filter by status</nz-form-label>
           <nz-form-control>
             <nz-select name="select-status" [(ngModel)]="params.status" (ngModelChange)="onChange($event)">
               <nz-option *ngFor="let status of listStatus" [nzValue]="status.value"
@@ -20,12 +20,12 @@
         <thead>
         <tr>
           <th> ID </th>
-          <th> Tên người dùng </th>
-          <th> Avatar </th>
-          <th> Email </th>
-          <th> Số điện thoại </th>
-          <th> Địa chỉ </th>
-          <th> Trạng thái </th>
+          <th>Username</th>
+          <th>Avatar</th>
+          <th>Email</th>
+          <th>Phone Number</th>
+          <th>Address</th>
+          <th>Status</th>
           <th> # </th>
         </tr>
         </thead>

@@ -15,7 +15,7 @@ import {UpdateTinyComponent} from './update-tiny/update-tiny.component';
   styleUrls: ['./tiny.component.scss']
 })
 export class TinyComponent implements OnInit{
-  title: string = 'Quản lý tài khoản Tiny';
+  title: string = 'Manage account Tiny';
   currentPage: string = 'Tiny';
   listTiny: any = [];
   page = 0;
@@ -44,15 +44,15 @@ export class TinyComponent implements OnInit{
   }
   deleteTiny(id: string ): void {
     const confirmModal: NzModalRef = this.modal.create({
-      nzTitle: `Xác nhận`,
-      nzContent: `Bạn có muốn xóa Tiny này không?`,
+      nzTitle: `Confirm`,
+      nzContent: `Do you want to delete?`,
       nzCentered: true,
       nzFooter: [
         {
-          label: 'Hủy',
+          label: 'Cancel',
           onClick: () => confirmModal.destroy()
         }, {
-          label: 'Đồng ý',
+          label: 'Agree',
           type: 'primary',
           onClick: () => {
             this.spinner.show().then();
@@ -84,7 +84,7 @@ export class TinyComponent implements OnInit{
     const bsRef = this.bsModalService.show(UpdateTinyComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Cập nhật tài khoản Tiny ',
+        title: 'Update account Tiny ',
         isAdd: false,
         isPopup: true,
         params: {

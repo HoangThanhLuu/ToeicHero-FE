@@ -6,12 +6,12 @@
         <div class="form-group mt-4">
           <label> Topic Name: </label>
           <div class="col-sm-11">
-            <input type="email" class="form-control" name="name"  placeholder="Nhập tên Topic " id="name"
+            <input type="email" class="form-control" name="name"  placeholder="Input Topic Name" id="name"
                    [(ngModel)]="this.params.topicName" >
           </div>
         </div>
         <div class="form-group">
-          <label>Hình ảnh</label>
+          <label>Image</label>
           <div class="container-upload" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
             <div class="upload-box">
               <div class="content">
@@ -19,11 +19,11 @@
                   <i class="mdi mdi-cloud-upload text-dark" style="height: 100px; width: 100px;"></i>
                 </div>
                 <h5 class="text-dark" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
-                  Kéo và thả hình ảnh vào đây
+                  Drag and drop file here
                 </h5>
-                <p> Hoặc </p>
+                <p> Or </p>
                 <div class="upload-btn-wrapper">
-                  <button class="btn btn-gradient-primary">Tải lên</button>
+                  <button class="btn btn-gradient-primary">Upload</button>
                   <input type="file" (change)="handleFileInput($event)" (drop)="handleDrop($event)"
                          (dragover)="allowDrop($event)"/>
                 </div>
@@ -41,8 +41,8 @@
           </div>
 
           <div class="button mt-5">
-            <button class="btn btn-gradient-primary" (click)="modifiTopic()">Xác nhận</button>
-            <button class="btn btn-outline-primary-2 ms-2" (click)="close()">Hủy</button>
+            <button class="btn btn-gradient-primary" (click)="modifiTopic()">Update</button>
+            <button class="btn btn-outline-primary-2 ms-2" (click)="close()">Cancel</button>
           </div>
         </div>
       </form>

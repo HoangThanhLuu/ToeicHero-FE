@@ -11,7 +11,7 @@ import {TranslateService} from "@ngx-translate/core";
   styleUrls: ['./update-topic.component.scss']
 })
 export class UpdateTopicComponent {
-  @Input() title: string = "Cập nhật Topic: ";
+  @Input() title: string = "Update Topic: ";
   @Input() isShowImage: boolean = false;
   @Input() imageSrc: string | undefined = "";
   @Input() isPopup: boolean = false;

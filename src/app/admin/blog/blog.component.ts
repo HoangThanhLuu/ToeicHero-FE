@@ -17,7 +17,7 @@ import {DetailBlogComponent} from "./detail-blog/detail-blog.component";
 
 })
 export class BlogComponent implements OnInit {
-  title: string = 'Quản lý Blog';
+  title: string = 'Manage Blog';
   currentPage: string = 'Blog';
   listBlog: any = [];
   totalElements = 0;
@@ -31,11 +31,11 @@ export class BlogComponent implements OnInit {
   listSort = [
     {
       value: 'desc',
-      label: 'Giảm dần'
+      label: 'Decrease'
     },
     {
       value: 'asc',
-      label: 'Tăng dần'
+      label: 'Increase'
     }
   ];
   content: string = '';
@@ -63,15 +63,15 @@ export class BlogComponent implements OnInit {
 
   deleteBlog(id: number): void {
     const confirmModal: NzModalRef = this.modal.create({
-      nzTitle: `Xác nhận`,
-      nzContent: `Bạn có muốn xóa Blog này không?`,
+      nzTitle: `Confirm`,
+      nzContent: `Do you want to delete this Blog?`,
       nzCentered: true,
       nzFooter: [
         {
-          label: 'Hủy',
+          label: 'Cancel',
           onClick: () => confirmModal.destroy()
         }, {
-          label: 'Đồng ý',
+          label: 'Agree',
           type: 'primary',
           onClick: () => {
             this.spinner.show().then()
@@ -115,7 +115,7 @@ export class BlogComponent implements OnInit {
     const bsModalRef = this.bsModalService.show(AddBlogComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Thêm Blog',
+        title: 'Add Blog',
         isPopup: true
       }
     });
@@ -130,7 +130,7 @@ export class BlogComponent implements OnInit {
     const bsModalResult = this.bsModalService.show(AddBlogComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Cập nhật Blog ',
+        title: 'Update Blog ',
         isAdd: false,
         isPopup: true,
         params: {

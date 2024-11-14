@@ -4,17 +4,17 @@
       <h4 class="card-title" [innerText]="title"></h4>
       <form class="forms-sample">
         <div class="form-group row">
-          <label>Chọn model lấy transcript</label>
+          <label>Select Model</label>
           <nz-select name="model" [(ngModel)]="param.model" (ngModelChange)="changeModel($event)">
             <nz-option *ngFor="let model of models" [nzValue]="model" [nzLabel]="model"></nz-option>
           </nz-select>
         </div>
         <div class="form-group">
-          <label for="exampleInputName1">Tên bộ transcript</label>
+          <label for="exampleInputName1">Name transcript</label>
           <input type="text" class="form-control" [ngClass]="{'error-input-custom': showBorderError}"
                  id="exampleInputName1"
                  name="name"
-                 [(ngModel)]="param.name" placeholder="Nhập tên transcript">
+                 [(ngModel)]="param.name" placeholder="Input transcript name">
         </div>
         <div class="form-group">
           <label>MP3</label>
@@ -25,10 +25,10 @@
                   <i class="mdi mdi-cloud-upload text-dark" style="height: 100px; width: 100px;"></i>
                 </div>
                 <h6 class="text-dark" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
-                  Kéo và thả tập tin của bạn vào đây. Hoặc
+                  Drag and drop file here
                 </h6>
                 <div class="upload-btn-wrapper">
-                  <button class="btn btn-gradient-primary">Tải lên file mp3</button>
+                  <button class="btn btn-gradient-primary">Upload file mp3</button>
                   <input type="file" (change)="handleFileInput($event)" (drop)="handleDrop($event)"
                          (dragover)="allowDrop($event)"
                          accept="audio/*"/>
@@ -42,7 +42,7 @@
         </div>
       </form>
       <div class="mt-3">
-        <button class="btn btn-gradient-primary" (click)="getTranscript()">Xác nhận</button>
+        <button class="btn btn-gradient-primary" (click)="getTranscript()">Confirm</button>
       </div>
       <app-history-transcript [isShowPageHeader]="false"></app-history-transcript>
     </div>

@@ -13,7 +13,7 @@ import {TranslateService} from '@ngx-translate/core';
   styleUrls: ['./kommunicate.component.scss']
 })
 export class KommunicateComponent implements OnInit{
-  title: string = 'Quản lý tài khoản Kommunicate';
+  title: string = 'Manage account Kommunicate';
   currentPage: string = 'Kommunicate';
   listKommunicate: any = [];
 
@@ -38,15 +38,15 @@ export class KommunicateComponent implements OnInit{
   deleteKommunicate(id: number): void {
 
     const confirmModal: NzModalRef = this.modal.create({
-      nzTitle: `Xác nhận`,
-      nzContent: `Bạn có muốn xóa Kommunicate này không?`,
+      nzTitle: `Confirm`,
+      nzContent: `Do you want to delete?`,
       nzCentered: true,
       nzFooter: [
         {
-          label: 'Hủy',
+          label: 'Cancel',
           onClick: () => confirmModal.destroy()
         }, {
-          label: 'Đồng ý',
+          label: 'Agree',
           type: 'primary',
           onClick: () => {
             this.spinner.show().then()
@@ -78,7 +78,7 @@ export class KommunicateComponent implements OnInit{
     const bsModalResult = this.bsModalService.show(UpdateKommunicateComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Cập nhật Kommunicate Account ',
+        title: 'Update Kommunicate Account ',
         isAdd: false,
         isPopup: true,
         param: {
@@ -97,7 +97,7 @@ export class KommunicateComponent implements OnInit{
     const bsModalRef = this.bsModalService.show(UpdateKommunicateComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Thêm Kommunicate',
+        title: 'Add Kommunicate',
         isPopup: true
       }
     });

@@ -4,12 +4,12 @@
       <h4 class="card-title" [innerText]="title"></h4>
       <form class="forms-sample">
         <div class="form-group">
-          <label for="exampleInputName1">Tên bộ đề thi</label>
+          <label for="exampleInputName1">Topic Name</label>
           <input type="text" class="form-control" [ngClass]="{'error-input-custom': showBorderError}" id="exampleInputName1"
-                 [(ngModel)]="param.topicName" placeholder="Nhập tên bộ đề thi">
+                 [(ngModel)]="param.topicName" placeholder="Input topic name">
         </div>
         <div class="form-group">
-          <label>Hình ảnh</label>
+          <label>Image</label>
           <div class="container-upload" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
             <div class="upload-box">
               <div class="content">
@@ -17,11 +17,11 @@
                   <i class="mdi mdi-cloud-upload text-dark" style="height: 100px; width: 100px;"></i>
                 </div>
                 <h5 class="text-dark" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
-                  Kéo và thả tập tin của bạn vào đây
+                  Drag and drop file here
                 </h5>
-                <p>hoặc</p>
+                <p>Or</p>
                 <div class="upload-btn-wrapper">
-                  <button class="btn btn-gradient-primary-2">Tải lên</button>
+                  <button class="btn btn-gradient-primary-2">Upload</button>
                   <input type="file" (change)="handleFileInput($event)" (drop)="handleDrop($event)"
                          (dragover)="allowDrop($event)"/>
                 </div>
@@ -33,8 +33,8 @@
           </div>
         </div>
       </form>
-      <button class="btn btn-gradient-primary-2" (click)="addNew()">Xác nhận</button>
-      <button class="btn btn-secondary ms-2" (click)="close()">Hủy</button>
+      <button class="btn btn-gradient-primary-2" (click)="addNew()">Add</button>
+      <button class="btn btn-secondary ms-2" (click)="close()">Cancel</button>
     </div>
   </div>
 </div>
