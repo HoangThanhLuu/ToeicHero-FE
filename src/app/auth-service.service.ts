@@ -1,4 +1,7 @@
-import {Injectable} from '@angular/core';
+import {
+  Injectable,
+  isDevMode
+} from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -13,15 +16,15 @@ import {BASE_URL} from "./common/constant";
   providedIn: 'root'
 })
 export class AuthServiceService implements HttpInterceptor {
+  isDevelopMode: boolean = true;
   constructor(private authService: AuthService) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let apiEndPoint = new URL(req.url, BASE_URL);
-    const isDevMode = window.location.host.includes('localhost');
     const token = this.authService.getToken();
     // handle if running on production
-    if (isDevMode) {
+    if (this.isDevelopMode) {
       req = req.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`

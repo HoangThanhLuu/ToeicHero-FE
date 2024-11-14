@@ -7,7 +7,7 @@ import {Component} from '@angular/core';
 })
 export class ChatbotComponent {
   isShow: boolean = true;
-
+  isChatbot: boolean = true;
   constructor() {
   }
 
