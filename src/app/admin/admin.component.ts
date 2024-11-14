@@ -6,6 +6,7 @@ import {NgxSpinnerService} from "ngx-spinner";
 import {distinctUntilChanged, finalize} from "rxjs";
 import {TranslateService} from '@ngx-translate/core';
 import {CONSTANT} from '../common/constant';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -25,6 +26,7 @@ export class AdminComponent implements OnInit {
   constructor(private http: HttpClient,
               private modal: NzModalService,
               private spinner: NgxSpinnerService,
+              private router: Router,
               private translate: TranslateService) {
     this.translate.setDefaultLang('en_US');
     this.translate.use('en_US');
@@ -103,6 +105,10 @@ export class AdminComponent implements OnInit {
 
   expendMenu(menu: MenuGroup) {
     menu.expanded = !menu.expanded;
+  }
+
+  openTab(path: string) {
+    this.router.navigateByUrl(path);
   }
 }
 

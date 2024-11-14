@@ -2,7 +2,6 @@ import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
-import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {RouterOutlet} from '@angular/router';
 import {AppRoutingModule} from './app-routing.module';
 import {
@@ -13,7 +12,6 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {NgxSpinnerModule} from 'ngx-spinner';
 import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {ModalModule} from 'ngx-bootstrap/modal';
-import {ConfirmModalComponent} from './common/confirm-modal/confirm-modal.component';
 import {NZ_I18N, en_US} from 'ng-zorro-antd/i18n';
 import {DatePipe, registerLocaleData} from '@angular/common';
 import en from '@angular/common/locales/en';
@@ -38,8 +36,6 @@ registerLocaleData(en);
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent,
-    ConfirmModalComponent,
   ],
   imports: [
     BrowserModule,

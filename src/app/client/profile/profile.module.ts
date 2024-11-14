@@ -6,6 +6,7 @@ import {ProfileComponent} from './profile.component';
 import {UpdateProfileComponent} from './update-profile/update-profile.component';
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import {NgOptimizedImage} from '@angular/common';
+import {NzModalModule} from 'ng-zorro-antd/modal';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {NgOptimizedImage} from '@angular/common';
   imports: [
     ShareClientModule,
     ProfileRoutingModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    NzModalModule
   ]
 })
 export class ProfileModule { }

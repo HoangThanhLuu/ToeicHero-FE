@@ -21,45 +21,20 @@ export class ProfileService {
   isLogin: boolean = false;
 
   constructor(private http: HttpClient) {
-    this.getProfile();
+    this.getProfileData();
   }
 
   get getAvatar() {
     return this.currentUser.avatar;
   }
+
   public userIsLogin() {
     return this.isLogin;
   }
+
   setProfile(profile = new Profile()): void {
     this.currentUser = profile;
   }
-
-  getProfile() {
-    const token = localStorage.getItem('token');
-    if (!token) return;
-    this.http.get('/api/user/get-profile')
-      .subscribe((res: any) => {
-        if (res?.success) {
-          this.isLogin = true;
-          const p: Profile = {
-            fullName: res.data.full_name,
-            email: res.data.email,
-            avatar: res.data.avatar,
-            password: '',
-            phone: res.data.phone,
-            address: res.data.address,
-            userId: res.data.user_id,
-          };
-          this.currentUser = p;
-          this.paramUser = JSON.parse(JSON.stringify(p));
-        } else {
-          this.isLogin = false;
-          localStorage.removeItem('token');
-          localStorage.removeItem('tokenValid');
-        }
-      });
-  }
-
   getProfileData(): Observable<Profile> {
     return new Observable<any>((subscriber: any) => {
       const sub = this.http.get('/api/user/get-profile').subscribe({
@@ -67,6 +42,12 @@ export class ProfileService {
           if (res.success) {
             this.isLogin = true;
             this.setProfile(res.data as Profile);
+            if (this.currentUser.avatar === null) {
+              this.currentUser.avatar = '/assets/images/default-avatar.jpg';
+            }
+            if (this.currentUser.email === 'admin') {
+              window.location.href = '/admin';
+            }
           } else {
             this.isLogin = false;
             localStorage.removeItem('token');

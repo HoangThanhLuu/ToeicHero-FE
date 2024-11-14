@@ -30,7 +30,6 @@ const routes: Routes = [
         loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
       }, {
         path: 'test/:examId',
-        resolve: [profileResolver],
         loadChildren: () => import('./test/test.module').then(m => m.TestModule)
       },
       {

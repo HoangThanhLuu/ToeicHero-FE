@@ -30,9 +30,9 @@ export class ProfileComponent {
     const bsModalRef = this.bsModalService.show(UpdateProfileComponent, {
       class: 'modal-lg modal-dialog-centered',
     });
-    if (bsModalRef.content) {
+    if (bsModalRef?.content) {
       bsModalRef.content.close.subscribe(() => {
-        this.profileService.getProfile();
+        this.profileService.getProfileData();
       })
     }
   }
@@ -78,7 +78,7 @@ export class ProfileComponent {
               .subscribe(_ => {
                 this.spinner.hide().then(r => r);
                 this.toast.success('Cập nhật ảnh đại diện thành công');
-                this.profileService.getProfile();
+                this.profileService.getProfileData();
                 confirmModal.destroy();
               });
           }

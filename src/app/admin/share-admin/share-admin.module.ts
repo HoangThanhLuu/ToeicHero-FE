@@ -19,18 +19,18 @@ import {TranslateModule} from '@ngx-translate/core';
 import {NzSelectModule} from 'ng-zorro-antd/select';
 import {NzWaterMarkModule} from 'ng-zorro-antd/water-mark';
 import {NzSpinModule} from 'ng-zorro-antd/spin';
-import {PageHeaderComponent} from '../page-header/page-header.component';
 import {AudioPlayerComponent} from '../exam/audio-player/audio-player.component';
+import {PageHeaderComponent} from '../page-header/page-header.component';
 
 
 @NgModule({
   declarations: [
-    PageHeaderComponent,
     AudioPlayerComponent
   ],
   imports: [
     CommonModule,
     ShareAdminRoutingModule,
+    PageHeaderComponent
   ],
   exports: [
     CommonModule,
@@ -53,8 +53,8 @@ import {AudioPlayerComponent} from '../exam/audio-player/audio-player.component'
     NzSelectModule,
     NzWaterMarkModule,
     NzSpinModule,
-    PageHeaderComponent,
-    AudioPlayerComponent
+    AudioPlayerComponent,
+    PageHeaderComponent
   ]
 })
 export class ShareAdminModule {

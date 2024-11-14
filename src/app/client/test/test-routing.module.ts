@@ -5,6 +5,7 @@ import {StartComponent} from './start/start.component';
 import {ClientGuardGuard} from '../../client-guard.guard';
 import {ResultComponent} from './result/result.component';
 import {PracticeComponent} from './practice/practice.component';
+import {profileResolver} from '../../common/profile.service';
 
 const routes: Routes = [
   {
@@ -13,16 +14,17 @@ const routes: Routes = [
   },
   {
     path: 'start',
+    resolve: [profileResolver],
     component: StartComponent
   },
   {
     path: 'result/:resultId',
-    canActivate: [ClientGuardGuard],
+    resolve: [profileResolver],
     component: ResultComponent
   },
   {
     path: 'practice',
-    canActivate: [ClientGuardGuard],
+    resolve: [profileResolver],
     component: PracticeComponent
   }
 ];

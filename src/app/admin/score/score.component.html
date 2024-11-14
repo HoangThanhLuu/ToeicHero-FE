@@ -16,7 +16,8 @@
             >
               <i class="mdi mdi-file-check btn-icon-prepend"></i> Save all
             </button>
-            <input type="file" (change)="onFileSelected($event)" accept=".xlsx" class="file-upload-default d-none" #fileInput />
+            <input type="file" (change)="onFileSelected($event)" accept=".xlsx" class="file-upload-default d-none"
+                   #fileInput/>
             <button type="button" class="btn btn-gradient-success btn-icon-text mb-3 btn-sm"
                     (click)="triggerFileInput(fileInput)">
               <i class="mdi mdi-upload btn-icon-prepend"></i> Import scores from excel file
@@ -28,14 +29,14 @@
             [nzData]="listScore"
             nzBordered
             nzShowPagination="false"
-             [nzLoading]="tblLoading">
+            [nzLoading]="tblLoading">
             <thead>
             <tr>
               <th scope="col"
-                *ngFor="let column of listOfColumns"
-                [nzSortOrder]="column.sortOrder"
-                [nzSortFn]="column.sortFn"
-                [nzSortDirections]="column.sortDirections"
+                  *ngFor="let column of listOfColumns"
+                  [nzSortOrder]="column.sortOrder"
+                  [nzSortFn]="column.sortFn"
+                  [nzSortDirections]="column.sortDirections"
               >
                 {{ column.name }}
               </th>
@@ -46,8 +47,8 @@
             <tr *ngFor="let item of list.data; trackBy: trackByFn">
               <td [tooltip]="'Số câu đúng ' + item?.totalQuestion">{{ item?.totalQuestion }}</td>
               <ng-container *ngIf="!editCache[item.calculateScoreId].edit; else editTemplate">
-                <td>{{item?.scoreListening}}</td>
-                <td>{{item?.scoreReading}}</td>
+                <td>{{ item?.scoreListening }}</td>
+                <td>{{ item?.scoreReading }}</td>
                 <td class="template-demo">
                   <button class="btn btn-success btn-rounded btn-sm" (click)="startEdit(item?.calculateScoreId)">
                     Edit

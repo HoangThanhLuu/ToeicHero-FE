@@ -4,7 +4,6 @@ import {ToastrService} from 'ngx-toastr';
 import {HttpClient} from '@angular/common/http';
 import {BsModalRef} from 'ngx-bootstrap/modal';
 import {NgxSpinnerService} from 'ngx-spinner';
-import {AuthService} from '../../../auth.service';
 import {catchError, finalize, tap} from 'rxjs/operators';
 import {of} from 'rxjs';
 import {ProfileService} from '../../../common/profile.service';
@@ -25,7 +24,6 @@ export class UpdateProfileComponent {
               private http: HttpClient,
               private bsModalRef: BsModalRef,
               private spin: NgxSpinnerService,
-              private auth: AuthService,
               protected profileService: ProfileService) {
     this.profileForm = this.formBuilder.group({
       fullName: ['', Validators.required],

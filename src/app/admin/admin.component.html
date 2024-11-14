@@ -57,16 +57,16 @@
 </button>
 
 <ng-template #listMenu let-menu="item">
-  <ng-container *ngIf="!menu.haveChild">
+  @if (!menu.haveChild) {
     <li class="nav-item">
-      <a class="nav-link" [href]="menu.path"
+      <a class="nav-link" href="javascript:void(0)"
+         (click)="openTab(menu.path)"
          [target]="listMenuGroupBlank.includes(menu.menuGroupId) ? 'blank' : ''">
         <span class="menu-title">{{ menu.displayName }}</span>
         <i [class]="menu.icon"></i>
       </a>
     </li>
-  </ng-container>
-  <ng-container *ngIf="menu.haveChild">
+  } @else {
     <li class="nav-item">
       <a class="nav-link" data-bs-toggle="collapse"
          href="javascript:void(0)"
@@ -78,15 +78,15 @@
       </a>
       <div class="collapse" [ngClass]="{'show': menu.expanded}">
         <ul class="nav flex-column sub-menu">
-          <ng-container *ngFor="let submenu of menu.leftMenus">
+          @for (submenu of menu.leftMenus; track submenu) {
             <li class="nav-item">
-              <a class="nav-link" [href]="submenu.path">
+              <a class="nav-link" [routerLink]="submenu.path">
                 <span class="menu-title">{{ submenu.displayName }}</span>
               </a>
             </li>
-          </ng-container>
+          }
         </ul>
       </div>
     </li>
-  </ng-container>
+  }
 </ng-template>
