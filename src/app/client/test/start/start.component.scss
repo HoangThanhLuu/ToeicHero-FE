@@ -39,7 +39,7 @@
   height: 50px;
   width: 350px;
 
-  font-family: arial;
+  font-family: arial, sans-serif;
   color: white;
   font-size: 0.75em;
   overflow: hidden;
@@ -97,7 +97,7 @@
         &:before {
           position: absolute;
           top: 0;
-          left: 0px;
+          left: 0;
           background: white;
           content: "";
           height: 15px;
@@ -207,4 +207,10 @@
 }
 .notice{
   color: var(--primary-400);
+}
+
+@media screen and (max-width: 1000px) {
+  .right-button {
+    width: 100%;
+  }
 }

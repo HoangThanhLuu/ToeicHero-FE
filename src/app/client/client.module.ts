@@ -70,6 +70,7 @@ import {CommentComponent} from './comment/comment.component';
 import {NzProgressModule} from 'ng-zorro-antd/progress';
 import {ChatbotComponent} from './chatbot/chatbot.component';
 import {MarkdownComponent, MarkdownPipe} from 'ngx-markdown';
+import {ConnectionServiceModule} from 'ng-connection-service';
 
 @NgModule({
   declarations: [
@@ -142,7 +143,8 @@ import {MarkdownComponent, MarkdownPipe} from 'ngx-markdown';
     NzCommentModule,
     NzProgressModule,
     MarkdownPipe,
-    MarkdownComponent
+    MarkdownComponent,
+    ConnectionServiceModule
   ],
   providers: [],
   exports: [

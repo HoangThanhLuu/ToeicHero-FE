@@ -24,7 +24,7 @@
 }
 
 @media (max-width: 991.98px) {
-  .navbar .navbar-nav .nav-link  {
+  .navbar .navbar-nav .nav-link {
     margin-right: 0;
     padding: 10px 0;
   }
@@ -49,7 +49,7 @@
   transition: .5s;
 }
 
-.dropdown-menu{
+.dropdown-menu-2 {
   margin-left: -100px;
 }
 

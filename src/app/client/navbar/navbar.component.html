@@ -9,8 +9,11 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
-    <div class="navbar-nav ms-auto p-4 p-lg-0">
-      <a href="" class="nav-item nav-link" [ngClass]="{'active': activeNav=='home'}">Trang chủ</a>
+    <ul class="navbar-nav ms-auto p-4 p-lg-0">
+      <li class="nav-item">
+        <a href="" class="nav-link" [ngClass]="{'active': activeNav=='home'}">Trang chủ</a>
+      </li>
+
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="javascript:void(0)" role="button" data-bs-toggle="dropdown"
            aria-expanded="false">
@@ -21,22 +24,35 @@
           <li><a class="dropdown-item" href="javascript:void(0)"> Luyện nghe </a></li>
         </ul>
       </li>
-      <a href="/list-test" class="nav-item nav-link" [ngClass]="{'active': activeNav=='test'}">Thi</a>
-      <a href="/my-exam" class="nav-item nav-link" [ngClass]="{'active': activeNav=='my-exam'}">Kết quả</a>
-      <a href="/blog" class="nav-item nav-link" [ngClass]="{'active': activeNav=='blog'}">Blog</a>
-      <a href="/profile" class="nav-item nav-link d-xl-none">Trang cá nhân</a>
-      <a href="/otp" class="nav-item nav-link d-none">Liên hệ</a>
-      <a href="javascript:void(0)" (click)="openLogin()" class="nav-item nav-link" [ngClass]="{'d-none': isLogin}">Đăng
-        nhập</a>
-    </div>
+      <li class="nav-item">
+        <a href="/list-test" class="nav-item nav-link" [ngClass]="{'active': activeNav=='test'}">Thi</a>
+      </li>
+      <li class="nav-item">
+        <a href="/my-exam" class="nav-item nav-link" [ngClass]="{'active': activeNav=='my-exam'}">Kết quả</a>
+      </li>
+      <li class="nav-item">
+        <a href="/blog" class="nav-item nav-link" [ngClass]="{'active': activeNav=='blog'}">Blog</a>
+      </li>
+      <li class="nav-item">
+        <a href="/profile" class="nav-item nav-link d-xl-none">Trang cá nhân</a>
+      </li>
+      <li class="nav-item">
+        <a href="/otp" class="nav-item nav-link d-none">Liên hệ</a>
+      </li>
+      <li class="nav-item">
+        <a href="javascript:void(0)" (click)="openLogin()"
+           class="nav-item nav-link" [ngClass]="{'d-none': isLogin}">Đăng nhập</a>
+      </li>
+    </ul>
     <div class="nav-item dropdown" [ngClass]="{'d-none': !isLogin}">
       <a href="javascript:void(0)" class="navbar-brand d-flex align-items-center">
         <img class="nav-link dropdown-toggle rounded-circle d-none d-lg-block" role="button" data-bs-toggle="dropdown"
              aria-expanded="false"
-             [src]="profileService.getAvatar()" width="60" height="60" style="object-fit: contain;"
+             [src]="profileService.getAvatar" width="60" height="60" style="object-fit: contain;"
+             referrerpolicy="no-referrer"
              alt="Avatar"/>
       </a>
-      <ul class="dropdown-menu">
+      <ul class="dropdown-menu dropdown-menu-2">
         <li><a class="dropdown-item" href="/profile">Trang cá nhân</a></li>
         <li><a class="dropdown-item" href="javascript:void(0)" (click)="logout()">Đăng xuất</a></li>
       </ul>

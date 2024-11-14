@@ -62,7 +62,7 @@
     @if (cmt?.showReply) {
       <ng-template [ngTemplateOutlet]="doComment" [ngTemplateOutletContext]="{comment: {
         parentId: cmt?.commentId,
-        avatar: profileService.getAvatar(),
+        avatar: profileService.getAvatar,
         content: cmt?.contentReply,
         submitting: cmt?.submitting,
         rows: 2 }}"></ng-template>
@@ -82,7 +82,7 @@
 </ng-template>
 
 <ng-template [ngTemplateOutlet]="doComment" [ngTemplateOutletContext]="{comment: {
-  avatar: profileService.getAvatar(),
+  avatar: profileService.getAvatar,
   content: params.content,
   submitting: this.submitting,
   rows: 4

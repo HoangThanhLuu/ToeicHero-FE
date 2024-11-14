@@ -32,6 +32,7 @@
     "bootstrap": "^5.2.3",
     "jwt-decode": "^4.0.0",
     "marked": "^12.0.0",
+    "ng-connection-service": "^13.0.2",
     "ng-zorro-antd": "^17.4.1",
     "ngx-bootstrap": "^12.0.0",
     "ngx-markdown": "^17.2.1",

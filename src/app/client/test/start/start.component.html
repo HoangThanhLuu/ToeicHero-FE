@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="row mb-2">
-    <nz-tabset class="col-10 col-sm-12 col-md-10 left-content" [(nzSelectedIndex)]="selectedIndex">
+    <nz-tabset class="col-12 col-sm-12 col-md-10 left-content" [(nzSelectedIndex)]="selectedIndex">
       <nz-tab nzTitle="Part 1">
         <app-part-template-2
           [part]="listPart[0]"
@@ -74,7 +74,7 @@
         ></app-part-template-3>
       </nz-tab>
     </nz-tabset>
-    <div class="col-2 col-sm-12 col-md-2">
+    <div class="col-12 col-sm-12 col-md-2">
       <div class="row right-button">
         <div class="col-12 d-flex flex-column align-items-start">
           <label class="text-center title fw-bold">Thời gian làm bài: </label>
@@ -101,16 +101,16 @@
           <p class="notice fw-bold">Chú ý: bạn có thể click vào số thứ tự câu hỏi trong bài để chuyển hướng đến câu
             hỏi muốn làm</p>
         </div>
-        <ng-container *ngFor="let partIem of listPart; let partIndex = index">
+        @for (partItem of listPart; track partItem; let partIndex = $index) {
           <div class="col-12">
             <div class="row">
               <div class="col-12">
-                <p class="text-dark fw-bold mt-3" [innerText]="partIem?.partName"></p>
+                <p class="text-dark fw-bold mt-3" [innerText]="partItem?.partName"></p>
               </div>
             </div>
             <div class="row">
               <div class="col row">
-                <ng-container *ngFor="let questionButton of partIem?.questions; let questionIndex = index">
+                @for (questionButton of partItem?.questions; track questionButton; ) {
                   <div class="col-3">
                     <button class="mb-1 btn btn-outline-primary btn-circle mt-2 me-2"
                             (click)="switchToTab(partIndex ,questionButton?.questionId)"
@@ -118,11 +118,11 @@
                       {{ questionButton?.questionNumber }}
                     </button>
                   </div>
-                </ng-container>
+                }
               </div>
             </div>
           </div>
-        </ng-container>
+        }
       </div>
     </div>
   </div>
@@ -136,5 +136,5 @@
   type="ball-scale-multiple"
   name="test"
 >
-  <p style="font-size: 20px; color: white">{{message}}</p>
+  <p style="font-size: 20px; color: white">{{ message }}</p>
 </ngx-spinner>

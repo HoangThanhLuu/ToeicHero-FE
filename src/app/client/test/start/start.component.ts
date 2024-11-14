@@ -2,20 +2,19 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  HostListener,
   OnDestroy,
   OnInit,
   ViewChild
 } from '@angular/core';
-import {ToastrService} from "ngx-toastr";
-import {HttpClient} from "@angular/common/http";
+import {ToastrService} from 'ngx-toastr';
+import {HttpClient} from '@angular/common/http';
 import {
   NzModalRef,
   NzModalService
-} from "ng-zorro-antd/modal";
-import {BsModalService} from "ngx-bootstrap/modal";
-import {NgxSpinnerService} from "ngx-spinner";
-import {ActivatedRoute} from "@angular/router";
+} from 'ng-zorro-antd/modal';
+import {BsModalService} from 'ngx-bootstrap/modal';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {ActivatedRoute} from '@angular/router';
 import {
   finalize,
   Subscription,
@@ -23,19 +22,18 @@ import {
   merge,
   of,
   switchMap,
-  filter,
   timer,
   takeUntil,
   Subject,
-  delayWhen
-} from "rxjs";
-import {LoginComponent} from "../../login/login.component";
-import {ProfileService} from "../../../common/profile.service";
+} from 'rxjs';
+import {LoginComponent} from '../../login/login.component';
+import {ProfileService} from '../../../common/profile.service';
 import {CONSTANT} from '../../../common/constant';
 import {
   map,
   tap
 } from 'rxjs/operators';
+import {ConnectionService, ConnectionServiceOptions, ConnectionState} from 'ng-connection-service';
 
 @Component({
   selector: 'app-start',
@@ -64,6 +62,7 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
   tabVisibilityDetector$: Subscription = new Subscription();
   mouseMoveDetector$: Subscription = new Subscription();
   mouseEnterSubject$ = new Subject<void>();
+  showAlert: boolean = false;
 
   constructor(private toast: ToastrService,
               private http: HttpClient,
@@ -71,7 +70,9 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
               private bs: BsModalService,
               private spinnerService: NgxSpinnerService,
               private route: ActivatedRoute,
+              private connectionService: ConnectionService,
               protected profileService: ProfileService) {
+
   }
 
   ngAfterViewInit(): void {
@@ -85,7 +86,7 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
             {
               label: 'Đồng ý',
               type: 'primary',
-              onClick: () => {
+              onClick: _ => {
                 confirmModal.destroy();
                 this.bs.show(LoginComponent, {
                   class: 'modal-lg modal-dialog-centered',
@@ -141,6 +142,7 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
       )
       .subscribe();
   }
+
   showToast(msg: string) {
     this.toast.warning(msg, 'Cảnh báo', {
       timeOut: 0, // Không tự động tắt toast
@@ -149,28 +151,28 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  checkNetworkStatus() {
-    this.networkStatus = navigator.onLine;
-    console.log(this.networkStatus)
-    this.networkStatus$ = merge(
-      of(null),
-      fromEvent(window, 'online'),
-      fromEvent(window, 'offline')
-    )
-      .pipe(map(() => navigator.onLine))
-      .subscribe(status => {
-        this.networkStatus = status;
-        console.log('ok', status);
-        if(!status) {
-
+  checkNetworkStatus(): void {
+    const options: ConnectionServiceOptions = {
+      enableHeartbeat: true,
+      heartbeatUrl: window.location.origin,
+      heartbeatInterval: 2_000,
+      heartbeatRetryInterval: 10_000
+    }
+    this.connectionService.monitor(options).subscribe((isConnected: ConnectionState) => {
+      if (isConnected.hasNetworkConnection && isConnected.hasInternetAccess) {
+        this.networkStatus = true;
+        this.showAlert = false;
+        this.spinnerService.hide('test').then();
+      } else {
+        this.networkStatus = false;
+        if(!this.showAlert) {
           this.showToast('Mất kết nối internet');
-          this.message = 'Mất kết nối internet';
-          this.spinnerService.show('test').then();
-        } else {
-          this.message = 'Kết nối internet đã khôi phục';
-          this.spinnerService.hide('test').then();
+          this.showAlert = true;
         }
-      });
+        this.message = 'Mất kết nối internet';
+        this.spinnerService.show('test').then();
+      }
+    })
   }
 
   initData() {
@@ -342,7 +344,6 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
         this.param.totalOpenNewTab ??= 0;
       }
     } else {
-
 
 
       this.param.examId = this.currentExam.examId;

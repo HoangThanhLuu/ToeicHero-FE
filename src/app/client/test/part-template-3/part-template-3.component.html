@@ -15,6 +15,7 @@
           <ng-container *ngFor="let imgPart of item?.question[0]?.questionImages; let i = index;">
             <img nz-image
                  nz-tooltip="Click vào để xem rõ hơn."
+                 loading="lazy"
                  class="nz-image mt-2"
                  [nzSrc]="imgPart?.questionImage"
                  alt="image"/>

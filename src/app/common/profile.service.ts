@@ -22,7 +22,7 @@ export class ProfileService {
     this.getProfile();
   }
 
-  public getAvatar() {
+  get getAvatar() {
     return this.currentUser.avatar;
   }
   public userIsLogin() {
