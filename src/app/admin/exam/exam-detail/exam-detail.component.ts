@@ -77,10 +77,7 @@ export class ExamDetailComponent implements OnInit {
     }
   }
 
-  seeDetail(item
-              :
-              any
-  ) {
+  seeDetail(item: any) {
     window.location.href = `/admin/question/list-by-part?pid=${item?.partId}`;
   }
 

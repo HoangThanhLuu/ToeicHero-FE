@@ -22,6 +22,10 @@ export class ProfileService {
     this.getProfile();
   }
 
+  public getAvatar() {
+    return this.currentUser.avatar;
+  }
+
   getProfile() {
     const token = localStorage.getItem('token');
     if (!token) return;
@@ -42,6 +46,8 @@ export class ProfileService {
           this.paramUser = JSON.parse(JSON.stringify(p));
         } else {
           this.isLogin = false;
+          localStorage.removeItem('token');
+          localStorage.removeItem('tokenValid');
         }
       });
   }

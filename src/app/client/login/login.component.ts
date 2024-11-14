@@ -1,36 +1,17 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output
-} from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators
-} from "@angular/forms";
-import {HttpClient} from "@angular/common/http";
-import {matchpassword} from "./matchpassword.validator";
-import {
-  BsModalRef,
-  BsModalService
-} from "ngx-bootstrap/modal";
-import {OtpConfirmComponent} from "./otp-confirm/otp-confirm.component";
-import {ToastrService} from "ngx-toastr";
-import {NgxSpinnerService} from "ngx-spinner";
-import {NzModalService} from "ng-zorro-antd/modal";
-import {
-  FacebookLoginProvider,
-  SocialAuthService,
-  SocialUser
-} from "@abacritt/angularx-social-login";
-import {finalize} from "rxjs";
-import {TranslateService} from "@ngx-translate/core";
-import {UpdateKommunicateComponent} from "../../admin/kommunicate/update-kommunicate/update-kommunicate.component";
-import {ForgotPasswordComponent} from "./forgot-password/forgot-password.component";
-import {ProfileService} from "../../common/profile.service";
+import {Component, EventEmitter, Input, isDevMode, OnDestroy, OnInit, Output} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
+import {matchpassword} from './matchpassword.validator';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {OtpConfirmComponent} from './otp-confirm/otp-confirm.component';
+import {ToastrService} from 'ngx-toastr';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {FacebookLoginProvider} from '@abacritt/angularx-social-login';
+import {finalize} from 'rxjs';
+import {TranslateService} from '@ngx-translate/core';
+import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
+import {ProfileService} from '../../common/profile.service';
+import {BASE_URL, BASE_URL_LOCAL} from '../../common/constant';
 
 @Component({
   selector: 'app-login',
@@ -45,7 +26,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   isRegisterTab = false;
   message: string = '';
   showBorderError: any = [];
-  user!: SocialUser;
   registerForm: FormGroup;
   loginForm = {
     email: '',
@@ -61,11 +41,10 @@ export class LoginComponent implements OnInit, OnDestroy {
               private profileService: ProfileService,
               private bsModalRef: BsModalRef,
               private spinnerService: NgxSpinnerService,
-              private socialAuthService: SocialAuthService,
               private translate: TranslateService,
               private toast: ToastrService) {
     this.registerForm = this.formBuilder.group({
-        email: ['', [Validators.required, Validators.email, Validators.pattern("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")]],
+        email: ['', [Validators.required, Validators.email, Validators.pattern('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}')]],
         fullName: ['', [Validators.required]],
         password: ['', [Validators.required, Validators.minLength(8)]],
         confirmPassword: ['', Validators.required]
@@ -81,34 +60,12 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.bsModalRef.hide();
       window.location.href = '/home';
     } else {
-      this.socialAuthService.authState
-        .subscribe((res) => {
-          this.user = res;
-          if (res) {
-            if (res.provider == 'GOOGLE') {
-              const params = {
-                email: res?.email,
-                fullName: res?.name,
-                avatar: res?.photoUrl,
-                provider: res?.provider,
-              };
-              this.loginWithSocial(params);
-            }
-          }
-        });
       this.getCaptcha();
     }
   }
 
   getCaptcha() {
-    this.http.get('/api/user/get-captcha', {responseType: 'blob'})
-      .subscribe((res: any) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(res);
-        reader.onloadend = () => {
-          this.captchaImg = reader.result;
-        };
-      });
+    this.captchaImg = `/api/user/get-captcha?${Date.now()}`;
   }
 
   switchTab() {
@@ -267,47 +224,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     return this.loginForm?.email === '' || this.loginForm.password === '';
   }
 
-
-  loginWithFB() {
-    this.socialAuthService
-      .signIn(FacebookLoginProvider.PROVIDER_ID)
-      .then((data: any) => {
-        const params = {
-          email: data?.email,
-          fullName: data?.name,
-          avatar: data?.photoUrl,
-          provider: data?.provider,
-        };
-        this.loginWithSocial(params);
-      });
-  }
-
-  loginWithSocial(params: any) {
-    this.spinnerService.show().then(r => r);
-    this.http.post('/api/user/login-social', params)
-      .pipe(finalize(() => this.spinnerService.hide()))
-      .subscribe((res: any) => {
-        if (res?.success) {
-          const msg = this.translate.instant(`USER.${res?.message}`);
-          if (res?.success) {
-            this.toast.success(msg);
-          } else {
-            this.toast.error(msg);
-          }
-          localStorage.setItem('token', res?.data);
-          localStorage.setItem('tokenValid', 'true');
-          if (!this.isNotDirect) {
-            window.location.href = '/home';
-          } else {
-            this.signIn.emit();
-            this.bsModalRef.hide();
-            window.location.reload();
-          }
-        } else {
-          const msg = this.translate.instant(`USER.${res?.message}`);
-          this.toast.error(msg);
-        }
-      });
+  loginSocial(p: string) {
+    const mIsDevMode = isDevMode();
+    window.location.href = `${mIsDevMode ? BASE_URL_LOCAL : BASE_URL}/api/oauth2/authorize/${p}?redirect_uri=${window.location.origin}/oauth2/redirect`;
   }
 
   ngOnDestroy(): void {
@@ -315,7 +234,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   forgetPassword() {
-    const bsModalResult = this.bs.show(ForgotPasswordComponent, {
+    this.bs.show(ForgotPasswordComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
         param: {
@@ -324,6 +243,13 @@ export class LoginComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  protected readonly Provider = Provider;
+}
+
+export enum Provider {
+  GOOGLE = 'google',
+  FACEBOOK = 'facebook'
 }
 
 

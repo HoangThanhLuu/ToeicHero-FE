@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-9">
       <div class="d-flex flex-column">
-        <ng-container *ngFor="let post of listBlog">
+        @for (post of listBlog; track post) {
           <div class="d-flex g-2" (click)="blogDetail(post.blogId)">
             <img [nzSrc]="post.thumbnail" class="border-0" nz-image
                  style="height: 100px; width: 100px; object-fit: contain;" alt="toeicute"/>
@@ -16,7 +16,7 @@
             </div>
           </div>
           <hr/>
-        </ng-container>
+        }
       </div>
     </div>
     <div class="col-3">
@@ -24,7 +24,7 @@
         <div class="card-body">
           <h5 class="d-flex flex-row justify-content-center">Bài viết mới nhất</h5>
           <hr/>
-          <ng-container *ngFor="let data of listBlog">
+          @for (data of listBlog; track data) {
             <div class="d-flex g-2" (click)="blogDetail(data.blogId)">
               <img [nzSrc]="data.thumbnail" class="border-0" nz-image
                    style="height: 50px; width: 50px; object-fit: contain;" alt="toeicute"/>
@@ -34,7 +34,7 @@
               </div>
             </div>
             <hr/>
-          </ng-container>
+          }
         </div>
       </div>
     </div>

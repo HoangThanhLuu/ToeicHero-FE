@@ -1,14 +1,14 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {NgxSpinnerService} from "ngx-spinner";
-import {CONSTANT} from "../../common/constant";
+import {Component, Input} from '@angular/core';
+import {CONSTANT} from '../../common/constant';
+import {HttpClient} from '@angular/common/http';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.scss']
+  styleUrl: './blog.component.scss'
 })
-export class BlogComponent implements OnInit{
+export class BlogComponent {
   @Input() content: string = '';
   listBlog: any = [];
   formatDate = CONSTANT.formatDate;
@@ -19,6 +19,7 @@ export class BlogComponent implements OnInit{
     size: 10,
     sort: 'desc'
   };
+
   constructor(
     private http: HttpClient,
     private spinner: NgxSpinnerService,
@@ -26,11 +27,12 @@ export class BlogComponent implements OnInit{
   }
 
   ngOnInit(): void {
-       this.getListBlog();
-    }
-  getListBlog(){
+    this.getListBlog();
+  }
+
+  getListBlog() {
     this.spinner.show().then();
-    this.http.get(`/api/blog/all?page=${this.params.page-1}&size=${this.params.size}&sort=${this.params.sort}`)
+    this.http.get(`/api/blog/all?page=${this.params.page - 1}&size=${this.params.size}&sort=${this.params.sort}`)
       .subscribe((res: any) => {
         this.listBlog = res.content;
         this.totalElements = res.totalElements;
@@ -41,6 +43,7 @@ export class BlogComponent implements OnInit{
   blogDetail(blogId: any) {
     window.location.href = `/detail-blog/${blogId}`;
   }
+
   changePage(event: number) {
     this.params.page = event;
     this.getListBlog();

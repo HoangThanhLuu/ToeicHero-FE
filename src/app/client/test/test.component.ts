@@ -6,7 +6,6 @@ import {NgxSpinnerService} from "ngx-spinner";
 import {ActivatedRoute, Router} from "@angular/router";
 import {finalize} from "rxjs";
 import {LoginComponent} from "../login/login.component";
-import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-test',

@@ -65,8 +65,6 @@ import {PartTemplate2Component} from './test/part-template-2/part-template-2.com
 import {PartTemplate3Component} from './test/part-template-3/part-template-3.component';
 import {ForgotPasswordComponent} from './login/forgot-password/forgot-password.component';
 import {ResetPasswordComponent} from './login/reset-password/reset-password.component';
-import {BlogComponent} from './blog/blog.component';
-import {DetailBlogComponent} from './blog/detail-blog/detail-blog.component';
 import {NzPaginationModule} from "ng-zorro-antd/pagination";
 import {NzCommentModule} from "ng-zorro-antd/comment";
 import {CommentComponent} from './comment/comment.component';
@@ -104,8 +102,6 @@ import {MarkdownComponent, MarkdownPipe} from 'ngx-markdown';
     PartTemplate3Component,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    BlogComponent,
-    DetailBlogComponent,
     CommentComponent,
     ChatbotComponent
   ],
