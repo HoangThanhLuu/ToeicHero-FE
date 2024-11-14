@@ -1,9 +1,7 @@
 import {
   Component,
-  OnDestroy,
   OnInit,
 } from '@angular/core';
-import {OwlOptions} from 'ngx-owl-carousel-o';
 import {HttpClient} from '@angular/common/http';
 
 @Component({
@@ -11,7 +9,7 @@ import {HttpClient} from '@angular/common/http';
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.css']
 })
-export class CarouselComponent implements OnDestroy, OnInit {
+export class CarouselComponent implements  OnInit {
   listSlider: any = [];
 
   constructor(private http: HttpClient) {
@@ -29,19 +27,4 @@ export class CarouselComponent implements OnDestroy, OnInit {
         this.listSlider = res.content;
       });
   }
-
-  headerCarouselOptions: OwlOptions = {
-    autoplay: true,
-    smartSpeed: 1500,
-    items: 1,
-    dots: true,
-    loop: true,
-    nav: true,
-    navText: ['<i class="bi bi-chevron-left"></i>', '<i class="bi bi-chevron-right"></i>'],
-  };
-
-  ngOnDestroy(): void {
-  }
-
-
 }

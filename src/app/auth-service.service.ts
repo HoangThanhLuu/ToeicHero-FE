@@ -23,6 +23,7 @@ export class AuthServiceService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let apiEndPoint = new URL(req.url, BASE_URL);
     const token = this.authService.getToken();
+    console.log(this.isDevelopMode )
     // handle if running on production
     if (this.isDevelopMode || window.location.href.includes('localhost')) {
       req = req.clone({
