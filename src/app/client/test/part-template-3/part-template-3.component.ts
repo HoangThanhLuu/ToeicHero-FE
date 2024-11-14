@@ -40,7 +40,6 @@ export class PartTemplate3Component implements OnChanges {
           }
         }
       }
-      console.log(this.listQuestion);
     }
   }
 

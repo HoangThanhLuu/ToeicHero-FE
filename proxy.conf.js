@@ -7,7 +7,7 @@ const PROXY_CONFIG = [
     secure: false,
     "changeOrigin": true,
     "logLevel": "debug",
-    headers: {host: 'localhost'},
+    headers: {host: 'http://192.168.1.126/'},
     pathRewrite: {"^/api": "/api"}
   },
   {
@@ -20,17 +20,6 @@ const PROXY_CONFIG = [
     "logLevel": "debug",
     headers: {host: 'localhost'},
     pathRewrite: {"^/api": "/api"}
-  },
-  {
-    context: [
-      // "/api",
-    ],
-    target: "https://toeicute-38c2b32a7c77.herokuapp.com/",
-    secure: false,
-    "changeOrigin": true,
-    "logLevel": "debug",
-    headers: {host: 'toeicute-38c2b32a7c77.herokuapp.com'},
-    pathRewrite: {"^/api": "/api"}
-  },
+  }
 ];
 module.exports = PROXY_CONFIG;
