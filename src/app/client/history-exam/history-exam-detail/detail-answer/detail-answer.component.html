@@ -1,0 +1,27 @@
+<div class="col-12 grid-margin stretch-card mb-0">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title" [innerText]="title"></h4>
+      <h6> Câu: {{ this.params.questionNumber }}</h6>
+      @if( this.params.questionNumber <= 100) {
+        <app-audio-part [audioSource]="this.params?.questionAudio"></app-audio-part>
+      }
+      <img src="{{ this.params?.questionImage }} "> <br>
+      <span> {{ this.params?.paragraph1 }} </span>
+      <span> {{ this.params?.paragraph2 }} </span>
+      <span> {{ this.params?.questionContent }} </span> <br>
+      <label nz-radio [nzDisabled]>{{ this.params?.answerA }}</label> <br>
+      <label nz-radio [nzDisabled]>{{ this.params?.answerB }}</label> <br>
+      <label nz-radio [nzDisabled]>{{ this.params?.answerC }}</label> <br>
+      @if (this.params.questionNumber < 7 || this.params.questionNumber > 31 ) {
+        <label nz-radio nzValue="D">{{ this.params?.answerD }}</label> <br>
+      }
+      <span>Đáp án bạn chọn: <mark> {{ this.params?.selectedAnswer }} </mark> </span> <br>
+      <span><mark>Đáp án đúng: {{ this.params?.correctAnswer }} </mark> </span>
+      <h6 class="mt-3"> Transcript: </h6>
+      <span [innerHTML]="this.params?.transcript | safeHtml"> </span>
+      <h6> Giải thích đáp án chi tiết: </h6>
+      <span [innerHTML]="this.params?.translateTranscript | safeHtml"></span>
+    </div>
+  </div>
+</div>
