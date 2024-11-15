@@ -42,7 +42,7 @@ export class HistoryExamDetailComponent implements OnInit {
     });
   }
   detail(data: any) {
-    const bsModalResult = this.bsModalService.show(DetailAnswerComponent, {
+    this.bsModalService.show(DetailAnswerComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
         title: 'Update Firebase ',
@@ -57,7 +57,7 @@ export class HistoryExamDetailComponent implements OnInit {
          answerB: data?.question?.answerB,
          answerD: data?.question?.answerD,
          answerC: data?.question?.answerC,
-         selectedAnswer: data?.question?.selectedAnswer,
+         selectedAnswer: data?.selectedAnswer,
          correctAnswer: data?.question?.correctAnswer,
          transcript: data?.question?.transcript,
          translateTranscript: data?.question?.translateTranscript,
