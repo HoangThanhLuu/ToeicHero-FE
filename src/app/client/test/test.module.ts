@@ -19,29 +19,32 @@ import {NgOptimizedImage} from '@angular/common';
 
 
 @NgModule({
-  declarations: [
-    TestComponent,
-    StartComponent,
-    PracticeComponent,
-    PartTemplate1Component,
-    PartTemplate2Component,
-    PartTemplate3Component,
-    AudioPartComponent,
-    ResultComponent,
-    CommentComponent,
-    ChatbotComponent
-  ],
-  imports: [
-    ShareClientModule,
-    TestRoutingModule,
-    MarkdownComponent,
-    NzCommentComponent,
-    NzCommentActionComponent,
-    NzCommentModule,
-    NzModalModule,
-    NgOptimizedImage
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    declarations: [
+        TestComponent,
+        StartComponent,
+        PracticeComponent,
+        PartTemplate1Component,
+        PartTemplate2Component,
+        PartTemplate3Component,
+        AudioPartComponent,
+        ResultComponent,
+        CommentComponent,
+        ChatbotComponent
+    ],
+    imports: [
+        ShareClientModule,
+        TestRoutingModule,
+        MarkdownComponent,
+        NzCommentComponent,
+        NzCommentActionComponent,
+        NzCommentModule,
+        NzModalModule,
+        NgOptimizedImage
+    ],
+    exports: [
+        AudioPartComponent
+    ],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class TestModule {
 }

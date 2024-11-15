@@ -82,7 +82,8 @@
     "CREATE_EXAM_SUCCESS": "Created exam successfully!",
     "UPDATE_EXAM_SUCCESS": "Updated exam successfully!",
     "GET_EXAM_SUCCESS": "Exam found!",
-    "EXAM_NAME_INVALID": "Exam name cannot be empty!"
+    "EXAM_NAME_INVALID": "Exam name cannot be empty!",
+    "DELETE_EXAM_SUCCESS": "Delete Exam success!"
   },
   "USER": {
     "ACCOUNT_NOT_ACTIVE": "Account not activated!",

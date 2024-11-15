@@ -82,7 +82,8 @@
     "CREATE_EXAM_SUCCESS": "Tạo đề thi thành công!",
     "UPDATE_EXAM_SUCCESS": "Cập nhật đề thi thành công!",
     "GET_EXAM_SUCCESS": "Đã tìm thấy đề thi!",
-    "EXAM_NAME_INVALID": "Tên đề thi không được để trống!"
+    "EXAM_NAME_INVALID": "Tên đề thi không được để trống!",
+    "DELETE_EXAM_SUCCESS": "Xóa đề thành công!"
   },
   "USER": {
     "ACCOUNT_NOT_ACTIVE": "Tài khoản chưa được kích hoạt!",

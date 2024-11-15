@@ -1,6 +1,6 @@
 import {
   Component,
-  Input,
+  Input, OnDestroy, OnInit,
 } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
@@ -16,7 +16,7 @@ import {
   templateUrl: './transcript.component.html',
   styleUrls: ['./transcript.component.scss', ...AdminLibBaseCss2, ...AdminStyle]
 })
-export class TranscriptComponent {
+export class TranscriptComponent implements OnInit, OnDestroy{
   @Input() title: string = "Transcript";
   isShow: boolean = false;
   fileSrc: string | undefined = "";
@@ -27,7 +27,7 @@ export class TranscriptComponent {
   };
   models: string[] = ['Google', 'Rev AI'];
   showBorderError: boolean = false;
-
+  intervalProgress: any;
 
 
   constructor(private http: HttpClient,
@@ -35,6 +35,10 @@ export class TranscriptComponent {
               private spinnerService: NgxSpinnerService,
               private translate: TranslateService) {
   }
+
+  ngOnInit(): void {
+        this.loadProgress();
+    }
 
   handleFileInput(event: any) {
     const file = event.target.files[0];
@@ -105,6 +109,18 @@ export class TranscriptComponent {
           this.toastr.error('TRANSCRIPT.ERROR_GET_TRANSCRIPT');
         }
       });
+  }
+  ngOnDestroy(): void {
+    clearInterval(this.intervalProgress);
+  }
+  loadProgress() {
+    this.intervalProgress = setInterval(() => {
+      this.http.get(`/api/transcript/get`)
+        .subscribe({
+          next: _ => {
+          }
+        });
+    }, 5_000);
   }
 }
 

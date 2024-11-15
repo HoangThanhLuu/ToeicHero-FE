@@ -8,6 +8,9 @@ import {NgxSpinnerService} from "ngx-spinner";
 import {finalize} from "rxjs";
 import {CONSTANT} from '../../common/constant';
 import {Exam} from '../../common/model/Exam';
+import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
+import {ToastrService} from "ngx-toastr";
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-exam',
@@ -25,7 +28,10 @@ export class ExamComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private bsModalService: BsModalService,
-    private spinnerService: NgxSpinnerService) {
+    private spinnerService: NgxSpinnerService,
+    private modal: NzModalService,
+    private toast: ToastrService,
+    private translate: TranslateService) {
   }
 
   ngOnInit(): void {
@@ -65,8 +71,45 @@ export class ExamComponent implements OnInit {
     window.location.href = `/admin/exam/detail?eid=${item.examId}`;
   }
 
-  delete(item: any) {
-
+  delete(examId: any) {
+    const confirmModal: NzModalRef = this.modal.create({
+      nzTitle: `Confirm`,
+      nzContent: `Do you want to delete?`,
+      nzCentered: true,
+      nzFooter: [
+        {
+          label: 'Cancel',
+          onClick: () => confirmModal.destroy()
+        }, {
+          label: 'Agree',
+          type: 'primary',
+          onClick: () => {
+            this.spinnerService.show().then();
+            this.http.delete<any>(`/api/admin/exam/delete-exam/${examId}`)
+              .pipe(
+                finalize(() => {
+                  this.getListExam();
+                })
+              )
+              .subscribe({
+                next: (res: any) => {
+                  const msg = this.translate.instant(`EXAM.${res?.message}`);
+                  this.toast.success(msg);
+                  this.spinnerService.hide().then();
+                  confirmModal.destroy();
+                  console.log('thanh cong',examId);
+                },
+                error: (res: any) => {
+                  const msg = this.translate.instant(`EXAM.${res?.message}`);
+                  this.toast.success(msg);
+                  this.spinnerService.hide().then();
+                  console.log('that bai',examId);
+                }
+              });
+          }
+        }
+      ]
+    });
   }
 
   openFormEdit(item: any) {
