@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { PricingRoutingModule } from './pricing-routing.module';
 import { PricingComponent } from './pricing.component';
 import {ShareClientModule} from '../share-client/share-client.module';
+import {NzDrawerModule} from 'ng-zorro-antd/drawer';
+import {NgOptimizedImage} from '@angular/common';
 
 
 @NgModule({
@@ -10,7 +12,9 @@ import {ShareClientModule} from '../share-client/share-client.module';
   ],
   imports: [
     ShareClientModule,
-    PricingRoutingModule
+    NzDrawerModule,
+    PricingRoutingModule,
+    NgOptimizedImage
   ]
 })
 export class PricingModule { }

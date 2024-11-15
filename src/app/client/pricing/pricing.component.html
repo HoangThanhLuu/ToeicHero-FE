@@ -21,7 +21,10 @@
                 class="text-muted fw-light">/ Tháng</small></h1>
               <p class="card-text">{{ item.description }}</p>
             </div>
-            <div class="card-footer"><button type="button" class="w-100 btn btn-lg btn-primary">Mua ngay</button></div>
+            <div class="card-footer">
+              <button type="button" class="w-100 btn btn-lg btn-primary" (click)="buyPackage(item)">Mua ngay
+              </button>
+            </div>
           </div>
         </div>
       }
@@ -59,3 +62,32 @@
     </div>
   </main>
 </div>
+
+<ng-template #drawerTemplate let-drawerRef="drawerRef">
+  <form action="" method="post">
+    @for (item of listMethodPayment; track item; let i = $index) {
+      <div class="pymt-radio">
+        <div class="row-payment-method payment-row-last">
+          <div class="select-icon hr">
+            <input type="radio" [id]="'radio' + i" name="radios" value="paypal" [checked]="i===0">
+            <label [for]="'radio' + i"></label>
+          </div>
+          <div class="select-txt hr">
+            <p class="pymt-type-name">{{ item.name }}</p>
+          </div>
+          <div class="select-logo">
+            @for (img of item.image; track img; let i2 = $index) {
+              <div class="select-logo-sub " [ngClass]="{'logo-spacer': i2===0}">
+                <img [ngSrc]="img.url" alt="Visa" [height]="img.height" [width]="img.width"/>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    }
+  </form>
+</ng-template>
+
+<ng-template #footer>
+  <button nz-button nzType="primary" (click)="continueBuy()">Tiếp tục</button>
+</ng-template>

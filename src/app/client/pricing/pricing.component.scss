@@ -1,0 +1,108 @@
+input, section {
+  clear: both;
+}
+
+label {
+  font-weight: 700;
+  font-size: 14px;
+  display: block;
+  float: left;
+  color: #ccc;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  background: #fff;
+  margin-bottom: 2px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  border-bottom: 2px solid #eee;
+}
+
+
+label:hover {
+  background-color: #eee;
+  border-radius: 0;
+}
+
+.row-payment-method {
+  margin: 0 0 0 0;
+  padding: 22px 0 11px 0;
+  text-align: left;
+  display: table;
+}
+
+.payment-row-last {
+  margin-right: 30px;
+  width: 100%;
+}
+
+.select-icon {
+  display: table-cell;
+  vertical-align: top;
+  text-align: left;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.select-txt {
+  display: table-cell;
+  vertical-align: middle;
+  word-wrap: break-word;
+  height: 60px;
+  text-align: left;
+  padding-left: 15px;
+  font-size: 12pt;
+}
+
+.select-logo {
+  padding-right: 0;
+  vertical-align: top;
+  right: 35px;
+  position: absolute;
+}
+
+.select-logo-sub {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.logo-spacer {
+  padding-right: 13px;
+}
+
+.pymt-type-name {
+  font-weight: 500;
+  font-size: 12pt;
+  padding-bottom: 8px;
+  color: #5a6977;
+}
+
+.hr {
+  border-bottom: 1px solid #ebf0f5;
+  padding-bottom: 5px;
+}
+
+
+input[id^="radio"] {
+  display: none;
+}
+
+input[id^="radio"] + label {
+  background-image: url("/assets/images/radio-inactive.png");
+  height: 26px;
+  width: 24px;
+  display: inline-block;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+input[id^="radio"]:checked + label {
+  background-image: url("/assets/images/radio-active.png");
+  height: 26px;
+  width: 24px;
+  display: inline-block;
+  padding: 0;
+  cursor: pointer;
+}

@@ -263,7 +263,7 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   finishTest() {
-    const isNotSelectAll = this.checkSelectedAll();
+    const isNotSelectAll = !this.checkSelectedAll();
     const isNotSubmit = this.totalTimeInSeconds > 0;
     if (isNotSelectAll && isNotSubmit) {
       const confirmModal: NzModalRef = this.modal.create({
