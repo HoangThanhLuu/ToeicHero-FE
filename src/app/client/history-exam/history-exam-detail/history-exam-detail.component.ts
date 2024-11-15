@@ -16,6 +16,9 @@ export class HistoryExamDetailComponent implements OnInit {
   examHistory: any;
   exam: any;
   listAnswer: any = [];
+  colorLow = '#e2080f';
+  colorMedium = '#d9e024';
+  colorHigh = '#87d068';
 
   constructor(private toast: ToastrService,
               private http: HttpClient,
@@ -36,10 +39,34 @@ export class HistoryExamDetailComponent implements OnInit {
               this.exam = res?.data?.exam;
               this.examHistory = res?.data;
               this.listAnswer = res?.data?.userAnswers;
+              const percentListening = Math.floor((Number(res?.data?.totalScoreListening) / 495) * 100);
+              const percentReading = Math.floor((Number(res?.data?.totalScoreReading) / 495) * 100);
+              const percentTotal = Math.floor((Number(res?.data?.totalScore) / 990) * 100);
+              this.examHistory = {
+                ...res?.data,
+                timeDoExam: this.formatTimeFromSeconds(Number(res?.data?.timeToDoExam) - Number(res?.data?.timeRemaining)),
+                percentCorrectAnswer: Math.round((Number(res?.data?.numberOfCorrectAnswer) / Number(res?.data?.totalQuestion)) * 100),
+                numberWrongAnswer: Number(res?.data?.numberOfWrongAnswer) - Number(res?.data?.numberOfNotAnswer),
+                percentListening,
+                percentReading,
+                percentTotal,
+                colorListening: this.getColor(percentListening),
+                colorReading: this.getColor(percentReading),
+                colorTotal: this.getColor(percentTotal)
+              };
             }
           });
       }
     });
+  }
+  getColor(percent: number): string {
+    if (percent < 50) {
+      return this.colorLow;
+    } else if (percent >= 50 && percent < 75) {
+      return this.colorMedium;
+    } else {
+      return this.colorHigh;
+    }
   }
   detail(data: any) {
     this.bsModalService.show(DetailAnswerComponent, {
