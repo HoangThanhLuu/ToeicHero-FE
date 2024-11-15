@@ -187,8 +187,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.isNotValidInputLogin()) {
-      const msg = this.translate.instant(`USER.EMAIL_PASS_INVALID`);
-      this.toast.error(msg);
+      this.toast.error('Email hoặc Mật khẩu không hợp lệ');
       return;
     }
     this.spinnerService.show().then();

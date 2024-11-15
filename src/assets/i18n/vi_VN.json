@@ -98,8 +98,13 @@
     "SEND_EMAIL_FAILED": "Gửi Email thất bại. Vui lòng thử lại sau!",
     "PASSWORD_NOT_MATCH": "Mật khẩu không trùng khớp!",
     "UPDATE_PROFILE_SUCCESS": "Cập nhật Profile thành công!",
-    "EMAIL_PASS_INVALID": "Email hoặc mật khẩu không được bỏ trống!",
-    "EMAIL_NOT_REGISTERED": "Tài khoản này chưa được đăng ký!"
+    "EMAIL_PASS_INVALID": "Email hoặc mật khẩu không hợp lệ!",
+    "EMAIL_NOT_REGISTERED": "Tài khoản này chưa được đăng ký!",
+    "CAPTCHA_INCORRECT": "CapCha không đúng, Vui lòng thử lại!",
+    "CONFIRM_OTP_SUCCESS": "Xác nhận OTP thành công!",
+    "OTP_EXPIRED": "OTP đã hết hạn!",
+    "NOT_FOUNT_USER": "Không tìm thấy người dùng",
+    "NOT_SUPPORTED": "Không hỗ trợ!"
   },
   "BLOG": {
     "CREATE_BLOG_SUCCESS" : "Tạo bài viết thành công",
