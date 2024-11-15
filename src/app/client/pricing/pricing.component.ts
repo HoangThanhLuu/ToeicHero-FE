@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Plan} from '../../common/model/Plan';
-import {PlanDetail} from '../../common/model/PlanDetail';
 
 @Component({
   selector: 'app-pricing',
@@ -9,8 +8,7 @@ import {PlanDetail} from '../../common/model/PlanDetail';
   styleUrl: './pricing.component.scss'
 })
 export class PricingComponent implements OnInit {
-  listPlan: Plan[] = [];
-  listPlanDetail: PlanDetail[] = [];
+  list: DataPricing = new DataPricing();
 
   constructor(private http: HttpClient) {
   }
@@ -19,10 +17,26 @@ export class PricingComponent implements OnInit {
     this.http.get('/api/plan/get')
       .subscribe((res: any) => {
         if (res?.success) {
-          this.listPlan = res?.data;
-          this.listPlanDetail = res?.data[0]?.listDetail ?? [];
+          this.list = res?.data;
         }
       });
   }
 
+}
+
+export class DataPricing {
+  listPlan: Plan[] = [];
+  listDetail: PlanRs[] = [];
+}
+
+export class PlanRs {
+  planDetailId: number;
+  planDetailName: string;
+  listStatus: boolean[];
+
+  constructor(planDetailId: number, planDetailName: string, listStatus: boolean[]) {
+    this.planDetailId = planDetailId;
+    this.planDetailName = planDetailName;
+    this.listStatus = listStatus;
+  }
 }

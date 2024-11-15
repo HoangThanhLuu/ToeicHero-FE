@@ -10,22 +10,18 @@
 
   <main>
     <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-      @for (item of listPlan; track item) {
+      @for (item of list.listPlan; track item) {
         <div class="col">
-          <div class="card mb-4 rounded-3 shadow-sm border-primary">
+          <div class="card h-100 mb-4 rounded-3 shadow-sm border-primary ">
             <div class="card-header py-3 text-white bg-primary border-primary">
               <h4 class="my-0 fw-normal">{{ item.planName }}</h4>
             </div>
             <div class="card-body">
               <h1 class="card-title pricing-card-title">{{ item.planPrice | currency : 'VND' }}<small
                 class="text-muted fw-light">/ Tháng</small></h1>
-              <ul class="list-unstyled mt-3 mb-4">
-                @for (dt of item.listDetail; track dt) {
-                  <li>{{ dt.planDetailName }}</li>
-                }
-              </ul>
-              <button type="button" class="w-100 btn btn-lg btn-primary">Mua ngay</button>
+              <p class="card-text">{{ item.description }}</p>
             </div>
+            <div class="card-footer"><button type="button" class="w-100 btn btn-lg btn-primary">Mua ngay</button></div>
           </div>
         </div>
       }
@@ -38,77 +34,26 @@
         <thead>
         <tr>
           <th></th>
-          @for (item of listPlan; track item) {
+          @for (item of list.listPlan; track item) {
             <th>{{ item.planName }}</th>
           }
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <th scope="row" class="text-start">Public</th>
-          <td>
-            <span nz-icon nzType="check" nzTheme="outline"></span>
-          </td>
-          <td>
-            <span nz-icon nzType="check" nzTheme="outline"></span>
-          </td>
-          <td>
-            <span nz-icon nzType="check" nzTheme="outline"></span>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row" class="text-start">Private</th>
-          <td></td>
-          <td>
-            <span nz-icon nzType="check" nzTheme="outline"></span>
-          </td>
-          <td>
-            <span nz-icon nzType="check" nzTheme="outline"></span>
-          </td>
-        </tr>
-        </tbody>
-
-        <tbody>
-        <tr>
-          <th scope="row" class="text-start">Permissions</th>
-          <td>
-            <span nz-icon nzType="check" nzTheme="outline"></span>
-          </td>
-          <td>
-            <span nz-icon nzType="check" nzTheme="outline"></span>
-          </td>
-          <td>
-            <span nz-icon nzType="check" nzTheme="outline"></span>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row" class="text-start">Sharing</th>
-          <td></td>
-          <td>
-            <span nz-icon nzType="check" nzTheme="outline"></span>
-          </td>
-          <td>
-            <span nz-icon nzType="check" nzTheme="outline"></span>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row" class="text-start">Unlimited members</th>
-          <td></td>
-          <td>
-            <span nz-icon nzType="check" nzTheme="outline"></span>
-          </td>
-          <td>
-            <span nz-icon nzType="check" nzTheme="outline"></span>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row" class="text-start">Extra security</th>
-          <td></td>
-          <td></td>
-          <td>
-            <span nz-icon nzType="check" nzTheme="outline"></span>
-          </td>
-        </tr>
+          @for (item of list.listDetail; track item) {
+            <tr>
+              <th scope="row" class="text-start">{{ item.planDetailName }}</th>
+              @for (item1 of item.listStatus; track item1) {
+                <td>
+                  @if (item1) {
+                    <span nz-icon [nzType]="'check-circle'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"></span>
+                  } @else {
+                    <span nz-icon nzType="close-circle" nzTheme="twotone" [nzTwotoneColor]="'#f10729'"></span>
+                  }
+                </td>
+              }
+            </tr>
+          }
         </tbody>
       </table>
     </div>

@@ -137,5 +137,7 @@
   "FORGOT_PASSWORD": "Forgot Password",
   "UPDATE_AVATAR": "Update Avatar",
   "UPDATE_PROFILE": "Update Profile",
-  "RESET_PASSWORD": "Reset Password"
+  "RESET_PASSWORD": "Reset Password",
+  "add": "Add",
+  "edit": "Edit"
 }

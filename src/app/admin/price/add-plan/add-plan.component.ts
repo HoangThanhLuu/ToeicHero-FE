@@ -38,6 +38,11 @@ export class AddPlanComponent implements OnInit {
       key: 'planPrice',
       name: 'Price',
       placeHolder: 'Enter price'
+    },
+    {
+      key: 'description',
+      name: 'Description',
+      placeHolder: 'Enter description'
     }
   ];
 

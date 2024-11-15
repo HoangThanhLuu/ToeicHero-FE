@@ -137,7 +137,9 @@
   "FORGOT_PASSWORD": "Quên mật khẩu",
   "UPDATE_AVATAR": "Cập nhật ảnh đại diện",
   "UPDATE_PROFILE": "Cập nhật trang cá nhân",
-  "RESET_PASSWORD": "Đặt lại mật khẩu"
+  "RESET_PASSWORD": "Đặt lại mật khẩu",
+  "add": "Add",
+  "edit": "Edit"
 }
 
 
