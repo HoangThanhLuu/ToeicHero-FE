@@ -1,6 +1,6 @@
 import {
   Component,
-  Input,
+  Input, OnDestroy,
   OnInit
 } from '@angular/core';
 import {CONSTANT} from "../../../common/constant";
@@ -68,6 +68,7 @@ export class HistoryTranscriptComponent implements OnInit {
   ];
   maxDate: Date = new Date();
   rangeDate: Array<Date> = [new Date(new Date().setDate(new Date().getDate() - 7)), new Date()];
+
 
   constructor(private http: HttpClient,
               private toastr: ToastrService,
@@ -166,4 +167,5 @@ export class HistoryTranscriptComponent implements OnInit {
   getFormatDate(value: Date, formatString: string) {
     return new DatePipe('en_US').transform(value, formatString, this.timeZone);
   }
+
 }

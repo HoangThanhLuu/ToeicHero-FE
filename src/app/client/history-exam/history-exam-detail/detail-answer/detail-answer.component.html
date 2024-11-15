@@ -4,7 +4,9 @@
       <h4 class="card-title" [innerText]="title"></h4>
       <h6> Câu: {{ this.params.questionNumber }}</h6>
       @if( this.params.questionNumber <= 100) {
-        <app-audio-part [audioSource]="this.params?.questionAudio"></app-audio-part>
+        <audio controls >
+          <source src="{{this.params.questionAudio}}">
+        </audio>
       }
       <img src="{{ this.params?.questionImage }} "> <br>
       <span> {{ this.params?.paragraph1 }} </span>

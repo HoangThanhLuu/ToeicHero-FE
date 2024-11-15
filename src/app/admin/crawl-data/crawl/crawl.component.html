@@ -54,7 +54,14 @@
             <td [popover]="data.examName">{{ data.examName }}</td>
             <td>{{ data.startTime | date : formatDate: timeZone }}</td>
             <td>{{ data.endTime | date : formatDate: timeZone }}</td>
-            <td>{{ data.jobStatus | translate }}</td>
+            <td>
+              <ng-container *ngIf="data.jobStatus === 'IN_PROGRESS'">
+                <nz-spin ></nz-spin>
+              </ng-container>
+              <ng-container *ngIf="data.jobStatus !== 'IN_PROGRESS'">
+                {{ data.jobStatus | translate }}
+              </ng-container>
+            </td>
             <td [popover]="data.description"> {{ data.description | translate }}</td>
             <td [popover]="data.jobLink">{{ data.jobLink }}</td>
           </tr>

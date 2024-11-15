@@ -86,7 +86,7 @@
             </td>
             <td style="max-width: 100px;">
               <ng-container *ngIf="data.status === 'IN_PROGRESS'">
-                <nz-spin nzTip="data.status | translate"></nz-spin>
+                <nz-spin nzTip="{{data.status | translate}}"></nz-spin>
               </ng-container>
               <ng-container *ngIf="data.status !== 'IN_PROGRESS'">
                 {{ data.status | translate }}

@@ -142,6 +142,7 @@
           <th scope="col">Đáp án bạn chọn</th>
           <th scope="col">Đáp án đúng</th>
           <th scope="col">Kết quả</th>
+          <th scope="col">Xem chi tiết</th>
         </tr>
         </thead>
         <tbody>
@@ -153,6 +154,9 @@
             <ng-container *ngIf="data?.isCorrect == true; else notCorrect">
               <span nz-icon [nzType]="'check-circle'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"></span>
             </ng-container>
+          </td>
+          <td>
+            <button class="btn btn-outline-primary" (click)="detail(data)">Chi tiết</button>
           </td>
         </tr>
         </tbody>

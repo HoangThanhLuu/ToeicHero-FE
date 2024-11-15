@@ -29,6 +29,7 @@ export class TranscriptComponent {
   showBorderError: boolean = false;
 
 
+
   constructor(private http: HttpClient,
               private toastr: ToastrService,
               private spinnerService: NgxSpinnerService,
