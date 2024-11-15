@@ -72,7 +72,7 @@ export class HistoryExamDetailComponent implements OnInit {
     this.bsModalService.show(DetailAnswerComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
-        title: 'Update Firebase ',
+        title: 'Chi tiết đáp án',
        params : {
          questionNumber: data.question.questionNumber,
          questionAudio: data?.question?.questionAudio,

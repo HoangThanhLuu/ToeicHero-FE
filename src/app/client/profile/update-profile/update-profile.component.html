@@ -8,7 +8,7 @@
         </div>
         <div class="grid-65">
           <span class="photo" title="Thay đổi ảnh đại diện của bạn!">
-            <img nz-image [nzSrc]="currentProfile.avatar" class="avatar" [alt]="currentProfile.fullName"/>
+            <img [ngSrc]="currentProfile.avatar" class="avatar" [alt]="currentProfile.fullName"/>
           </span>
           <input type="file" class="btn" (change)="handleFileInput($event)"/>
         </div>

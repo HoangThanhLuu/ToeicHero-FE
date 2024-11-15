@@ -29,6 +29,9 @@ export class ProfileComponent {
   openFormEditInfo() {
     const bsModalRef = this.bsModalService.show(UpdateProfileComponent, {
       class: 'modal-lg modal-dialog-centered',
+      initialState: {
+        isPopup: true
+      }
     });
     if (bsModalRef?.content) {
       bsModalRef.content.close.subscribe(() => {
