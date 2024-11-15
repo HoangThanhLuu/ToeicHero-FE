@@ -1,0 +1,25 @@
+<div class="col-12 grid-margin stretch-card mb-0">
+  <div class="card">
+    <div class="card-header bg-primary">
+      <h4 class="text-white" [innerText]="title"></h4>
+    </div>
+    <div class="card-body">
+      <form class="forms-sample">
+        @for (item of listTagInput; track item; let i = $index) {
+          <div class="form-group">
+            <label>{{ item.name }}</label>
+            <input type="text" class="form-control" [name]="item.key"
+                   [placeholder]="item.placeholder"
+                   [disabled]="i === 0 && mode === Mode.EDIT"
+                   [ngClass]="{'error-input-custom': showBorderError[i]}"
+                   [(ngModel)]="item.value">
+          </div>
+        }
+      </form>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-gradient-primary-2 me-2" (click)="addNew()">Add</button>
+      <button class="btn btn-gradient-light" (click)="cancel()">Cancel</button>
+    </div>
+  </div>
+</div>

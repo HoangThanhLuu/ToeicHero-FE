@@ -11,6 +11,7 @@ import {
 import {Observable} from 'rxjs';
 import {AuthService} from "./auth.service";
 import {BASE_URL, CONSTANT} from "./common/constant";
+import {ProfileService} from './common/profile.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,14 +19,14 @@ import {BASE_URL, CONSTANT} from "./common/constant";
 export class AuthServiceService implements HttpInterceptor {
   isDevelopMode: boolean = isDevMode();
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private profileService: ProfileService) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let apiEndPoint = new URL(req.url, BASE_URL);
     const token = this.authService.getToken();
     // handle if running on production
-    if (this.isDevelopMode || window.location.href.includes('localhost') || req.url.includes('assets')) {
+    if (this.profileService.isDevelopmentMode) {
       req = req.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`

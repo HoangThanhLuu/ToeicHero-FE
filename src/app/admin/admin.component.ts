@@ -54,6 +54,15 @@ export class AdminComponent implements OnInit {
             if (memberMenu.length > 0 && systemMenu.length > 0) {
               this.listMemberMenu = [...memberMenu];
               this.listSystemMenu = [...systemMenu];
+
+              this.listSystemMenu.forEach((mn: MenuGroup) => {
+                mn.leftMenus = mn.leftMenus.sort((a, b) => a.leftMenuId - b.leftMenuId);
+              });
+
+              this.listMemberMenu.forEach((mn: MenuGroup) => {
+                mn.leftMenus = mn.leftMenus.sort((a, b) => a.leftMenuId - b.leftMenuId);
+              });
+
             } else {
               this.http.get<MenuGroup[]>('api/left-menu/get')
                 .pipe(distinctUntilChanged())

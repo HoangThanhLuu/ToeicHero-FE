@@ -1,16 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {AdminLibBaseCss2, AdminStyle} from "../admin.style";
-import {HttpClient} from "@angular/common/http";
-import {BsModalService} from "ngx-bootstrap/modal";
-import {AddExamComponent} from "./add-exam/add-exam.component";
-import {EditExamComponent} from "./edit-exam/edit-exam.component";
-import {NgxSpinnerService} from "ngx-spinner";
-import {finalize} from "rxjs";
+import {AdminLibBaseCss2, AdminStyle} from '../admin.style';
+import {HttpClient} from '@angular/common/http';
+import {BsModalService} from 'ngx-bootstrap/modal';
+import {AddExamComponent} from './add-exam/add-exam.component';
+import {EditExamComponent} from './edit-exam/edit-exam.component';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {finalize} from 'rxjs';
 import {CONSTANT} from '../../common/constant';
 import {Exam} from '../../common/model/Exam';
-import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
-import {ToastrService} from "ngx-toastr";
-import {TranslateService} from "@ngx-translate/core";
+import {NzModalRef, NzModalService} from 'ng-zorro-antd/modal';
+import {ToastrService} from 'ngx-toastr';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-exam',
@@ -21,8 +21,8 @@ import {TranslateService} from "@ngx-translate/core";
   ]
 })
 export class ExamComponent implements OnInit {
-  title: string = "Quản lý đề thi";
-  currentPage: string = "Đề thi"
+  title: string = 'Exam management';
+  currentPage: string = 'Exam'
   listExam: Exam[] = [];
 
   constructor(
@@ -97,13 +97,13 @@ export class ExamComponent implements OnInit {
                   this.toast.success(msg);
                   this.spinnerService.hide().then();
                   confirmModal.destroy();
-                  console.log('thanh cong',examId);
+                  console.log('thanh cong', examId);
                 },
                 error: (res: any) => {
                   const msg = this.translate.instant(`EXAM.${res?.message}`);
                   this.toast.success(msg);
                   this.spinnerService.hide().then();
-                  console.log('that bai',examId);
+                  console.log('that bai', examId);
                 }
               });
           }

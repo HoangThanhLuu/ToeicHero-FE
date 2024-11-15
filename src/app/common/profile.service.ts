@@ -1,4 +1,4 @@
-import {inject, Injectable} from '@angular/core';
+import {inject, Injectable, isDevMode} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Profile} from './model/Profile';
 import {ResolveFn} from '@angular/router';
@@ -28,6 +28,10 @@ export class ProfileService {
     return this.currentUser.avatar;
   }
 
+  get isDevelopmentMode() {
+    return isDevMode() || window.location.href.includes('172.19.200.219') || window.location.href.includes('localhost');
+  }
+
   public userIsLogin() {
     return this.isLogin;
   }
@@ -35,6 +39,7 @@ export class ProfileService {
   setProfile(profile = new Profile()): void {
     this.currentUser = profile;
   }
+
   getProfileData(): Observable<Profile> {
     return new Observable<any>((subscriber: any) => {
       const sub = this.http.get('/api/user/get-profile').subscribe({

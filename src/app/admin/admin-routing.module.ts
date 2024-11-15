@@ -30,9 +30,10 @@ const routes: Routes = [
       },
       {path: 'crawl', loadChildren: () => import('./crawl-data/crawl.module').then(m => m.CrawlModule)},
       {path: 'tiny', loadChildren: () => import('./tiny/tiny.module').then(m => m.TinyModule)},
-      {path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)}
+      {path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)},
+      {path: 'pricing', loadChildren: () => import('./price/price.module').then(m => m.PriceModule)},
     ]
-  },
+  }
 ];
 
 @NgModule({

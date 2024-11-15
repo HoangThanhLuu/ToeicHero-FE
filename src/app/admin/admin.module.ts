@@ -9,7 +9,6 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import {TranslateModule} from '@ngx-translate/core';
 import {NzModalModule} from 'ng-zorro-antd/modal';
 import {FormsModule} from '@angular/forms';
-import {ToastrModule} from 'ngx-toastr';
 import {NzPopconfirmDirective} from 'ng-zorro-antd/popconfirm';
 import {NzInputDirective} from 'ng-zorro-antd/input';
 import {NzTableModule} from 'ng-zorro-antd/table';
@@ -34,7 +33,6 @@ import {PageHeaderComponent} from './page-header/page-header.component';
     NzModalModule,
     NgOptimizedImage,
     FormsModule,
-    ToastrModule,
     NzPopconfirmDirective,
     NzInputDirective,
     NzTableModule,

@@ -50,6 +50,7 @@ registerLocaleData(en);
       timeOut: 1500,
       positionClass: 'toast-bottom-right',
       closeButton: true,
+      preventDuplicates: true
     }),
     NgxSpinnerModule.forRoot({type: 'ball-scale-multiple'}),
     TranslateModule.forRoot({

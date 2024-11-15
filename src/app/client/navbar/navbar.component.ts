@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
   avatar: string = '/assets/images/default-avatar.jpg';
   activeNav: string = 'home';
   isLogin: boolean = false;
+  listNav: string[] = ['home', 'test', 'my-exam', 'blog', 'pricing'];
 
   constructor(private bs: BsModalService,
               private auth: AuthService,
@@ -23,6 +24,9 @@ export class NavbarComponent implements OnInit {
     this.activeHeader();
     const token = this.auth.getToken();
     this.isLogin = token ? !this.auth.isTokenExpired(token) : false;
+    if (this.isLogin) {
+      this.profileService.getProfileData().subscribe();
+    }
   }
 
 
@@ -32,13 +36,11 @@ export class NavbarComponent implements OnInit {
 
   activeHeader() {
     const url = window.location.href;
-    if (url.includes('home')) {
-      this.activeNav = 'home';
-    } else if (url.includes('test')) {
-      this.activeNav = 'test';
-    } else if (url.includes('my-exam')) {
-      this.activeNav = 'my-exam';
-    }
+    this.listNav.forEach(nav => {
+      if (url.includes(nav)) {
+        this.activeNav = nav;
+      }
+    });
   }
 
 

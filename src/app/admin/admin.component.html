@@ -17,18 +17,27 @@
               <i class="mdi mdi-bookmark-check text-primary nav-profile-badge"></i>
             </a>
           </li>
+          <div class="border-bottom"></div>
+          <li class="nav-item bg-gradient-light">
+            <a class="nav-link fw-bold" data-bs-toggle="collapse" href="javascript:void(0)" aria-expanded="false"
+               aria-controls="general-pages">
+              <span class="menu-title fs-6"> Member site setting </span>
+              <i class="mdi mdi-home-assistant menu-icon text-dark"></i>
+            </a>
+          </li>
+          <div class="border-bottom"></div>
           @for (menu of listMemberMenu; track menu) {
             <ng-template [ngTemplateOutlet]="listMenu" [ngTemplateOutletContext]="{ item: menu }"></ng-template>
           }
           <div class="border-bottom"></div>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="javascript:void(0)" aria-expanded="false"
+          <li class="nav-item bg-gradient-light">
+            <a class="nav-link fw-bold" data-bs-toggle="collapse" href="javascript:void(0)" aria-expanded="false"
                aria-controls="general-pages">
-              <span class="menu-title"> System setting </span>
-              <i class="mdi mdi-home-assistant menu-icon"></i>
+              <span class="menu-title fs-6"> System setting </span>
+              <i class="mdi mdi-home-assistant menu-icon text-dark"></i>
             </a>
-            <div class="border-bottom"></div>
           </li>
+          <div class="border-bottom"></div>
           @for (menu of listSystemMenu; track menu) {
             <ng-template [ngTemplateOutlet]="listMenu" [ngTemplateOutletContext]="{ item: menu }"></ng-template>
           }
@@ -60,7 +69,7 @@
     <li class="nav-item">
       <a class="nav-link" href="javascript:void(0)"
          (click)="openTab(menu.path)"
-         [target]="listMenuGroupBlank.includes(menu.menuGroupId) ? 'blank' : ''">
+         [target]="menu.path.includes('api/applications') ? 'blank' : ''">
         <span class="menu-title">{{ menu.displayName }}</span>
         <i [class]="menu.icon"></i>
       </a>

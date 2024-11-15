@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {ClientComponent} from "./client.component";
-import {ClientGuardGuard} from "../client-guard.guard";
+import {ClientComponent} from './client.component';
+import {ClientGuardGuard} from '../client-guard.guard';
 import {profileResolver} from '../common/profile.service';
 
 const routes: Routes = [
@@ -43,7 +43,8 @@ const routes: Routes = [
         loadChildren: () => import('./login/reset-password/reset-password.module').then(m => m.ResetPasswordModule)
       },
       {path: 'oauth2', loadChildren: () => import('./redirect/redirect.module').then(m => m.RedirectModule)},
-      {path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)}
+      {path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)},
+      {path: 'pricing', loadChildren: () => import('./pricing/pricing.module').then(m => m.PricingModule)}
     ]
   }
 ];

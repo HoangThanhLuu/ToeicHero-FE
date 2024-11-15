@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 
-import {AdminLibBaseCss2, AdminStyle} from "../admin.style";
+import {AdminLibBaseCss2, AdminStyle} from '../admin.style';
 import {CONSTANT} from '../../common/constant';
 
 @Component({

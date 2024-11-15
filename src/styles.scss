@@ -18,7 +18,9 @@
 
 
 $default-text-color: #7E1E47;
-
+$color-2: #0D51A5;
+$color-3: #DC3545;
+$color-4: #BD2130;
 
 $primary: $default-text-color;
 $secondary: $yellow-300;
@@ -215,4 +217,19 @@ $theme-colors: (
 }
 .cdk-overlay-container {
   z-index: 999999 !important;
+}
+.main-box-header {
+  background: $primary;
+  border: solid 1px $primary;
+  height: 40px;
+  padding: 0.5rem 1.25rem;
+  .close-icon {
+    color: $color-3;
+    :hover {
+      color: $color-4;
+    }
+  }
+}
+.cursor {
+  cursor: pointer;
 }

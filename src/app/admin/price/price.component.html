@@ -1,0 +1,104 @@
+<app-page-header
+  [title]="title"
+  [currentPage]="currentPage">
+</app-page-header>
+
+
+<div class="container-fluid mt-4 px-5">
+  <div class="row" id="customTable">
+    <div class="col-sm">
+      <div class="main-box-header d-flex align-items-center text-white px-3">
+        <span class="title-table"> Price </span>
+      </div>
+      <table aria-label="table" class="page-body table table-striped bg-white">
+        <thead>
+        <tr class="text-center table-header">
+          <th class="align-middle" scope="col">#</th>
+          <th class="align-middle" scope="col">Name</th>
+          <th class="align-middle" scope="col">Price</th>
+          <th class="col-action align-middle text-center" scope="col">
+            <button (click)="openCreatePlan()" class="btn btn-sm btn-success">
+              <span><i aria-hidden="true" class="fas fa-plus-circle"></i></span>
+              <strong class="ms-1">Create</strong>
+            </button>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+          @for (item of listPlan; track item; let i = $index) {
+            <tr (click)="getPlanDetail(item.planId)" class="cursor"
+                [ngClass]="{'selected-row': this.currentPlan === item.planId}">
+              <th class="text-center" scope="row">{{ i + 1 }}</th>
+              <td class="text-center">
+                {{ item.planName }}
+              </td>
+              <td class="text-center">
+                {{ item.planPrice }}
+              </td>
+              <td class="text-center text-center template-demo">
+                <button (click)="openCreatePlan(item)" class="btn btn-sm btn-warning">
+                  <span><i aria-hidden="true" class="fas fa-edit"></i></span>
+                  <strong class="ml-1">Edit</strong>
+                </button>
+                <button (click)="delete(item.planId)" class="btn btn-sm btn-danger ml-3">
+                  <span><i aria-hidden="true" class="fas fa-trash"></i></span>
+                  <strong class="ml-1">Delete</strong>
+                </button>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td class="text-center bg-gradient-light" colspan="99">No data</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm">
+      <div class="main-box-header d-flex align-items-center text-white px-3">
+        <div class="title-table">Plan detail</div>
+      </div>
+      <table aria-label="table" class="page-body table table-hover table-striped bg-white">
+        <thead>
+        <tr class="text-center table-header">
+          <th class="align-middle" scope="col">#</th>
+          <th class="align-middle" scope="col">Name</th>
+          <th class="align-middle" scope="col">Status</th>
+          <th class="col-action align-middle text-center" scope="col">
+            <button (click)="openCreatePlanDetail()" class="btn btn-sm btn-success">
+              <span><i aria-hidden="true" class="fas fa-plus-circle"></i></span>
+              <strong class="ms-1">Create</strong>
+            </button>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+          @for (item of listPlanDetail; track item; let i = $index) {
+            <tr>
+              <th class="text-center align-middle" scope="row">{{ i + 1 }}</th>
+              <td class="align-middle">{{ item.planDetailName }}</td>
+              <td class="text-center align-middle">
+                <nz-switch [disabled]="currentPlan===-1" [(ngModel)]="item.status" (click)="updatePlanDetailAtPlan(item.planDetailId, item.status)"></nz-switch>
+              </td>
+              <td class="text-center text-center template-demo">
+                <button (click)="openCreatePlanDetail(item)" class="btn btn-sm btn-warning">
+                  <span><i aria-hidden="true" class="fas fa-edit"></i></span>
+                  <strong class="ml-1">Edit</strong>
+                </button>
+                <button (click)="deletePlanDetail(item.planDetailId)" class="btn btn-sm btn-danger ml-3">
+                  <span><i aria-hidden="true" class="fas fa-trash"></i></span>
+                  <strong class="ml-1">Delete</strong>
+                </button>
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td class="text-center bg-gradient-light" colspan="99">No data</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
