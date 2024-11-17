@@ -119,20 +119,17 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
                 nzTitle: `Tài khoản của bạn đã đăng nhập ở một thiết bị khác! Vui lòng đăng nhập lại!`,
                 nzContent: ``,
                 nzCentered: true,
-                nzFooter: [
-                  {
-                    label: 'Đồng ý',
-                    type: 'primary',
-                    onClick: () => {
-                      localStorage.removeItem('token');
-                      localStorage.removeItem('tokenValid');
-                      localStorage.removeItem('profile');
-                      localStorage.removeItem(`${this.defaultFormatAnswer}_${this.currentExam.examId}`);
-                      window.location.href = '/home';
-                      confirmModal.destroy();
-                    }
-                  }
-                ]
+                nzClosable: false,
+                nzCancelDisabled: true,
+                nzOkText: 'Thoát',
+                nzOnOk: () => {
+                  localStorage.removeItem('token');
+                  localStorage.removeItem('tokenValid');
+                  localStorage.removeItem('profile');
+                  localStorage.removeItem(`${this.defaultFormatAnswer}_${this.currentExam.examId}`);
+                  window.location.href = '/home';
+                  confirmModal.destroy();
+                },
               });
             }
           }
@@ -303,13 +300,8 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
         }))
       .subscribe((res: any) => {
         if (res?.success) {
-          this.ngOnDestroy();
           localStorage.removeItem(`${this.defaultFormatAnswer}_${this.currentExam.examId}`);
-          this.http.post(`api/user-exam-log/remove-answer/${this.currentExam.examId}`, {})
-            .subscribe({
-              next: _ => {
-              }
-            });
+          this.ngOnDestroy();
           this.toast.success('Nộp bài thành công');
           this.router.navigate([`/my-exam/detail/${res?.data}`]).then();
         } else {
@@ -393,19 +385,19 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
                 this.selectedAnswer[answer.questionId] = answer.answer;
                 this.buttonStates[answer.questionId] = !!answer.answer;
               });
+              if (this.param?.endTime && new Date(this.param.endTime).getTime() < new Date().getTime()) {
+                this.toast.error('Bài thi đã hết giờ làm bài');
+                const isNotSelectAll = this.checkSelectedAll();
+                this.submitTest(isNotSelectAll);
+              } else if (haveData) {
+                this.totalTimeInSeconds = (new Date(this.param.endTime).getTime() - new Date().getTime()) / 1000;
+                this.totalTimeInSeconds = Math.ceil(this.totalTimeInSeconds);
+              } else {
+                this.totalTimeInSeconds = 120 * 60;
+              }
             }
           }
         });
-      if (this.param?.endTime && new Date(this.param.endTime).getTime() < new Date().getTime()) {
-        this.toast.error('Bài thi đã hết giờ làm bài');
-        const isNotSelectAll = this.checkSelectedAll();
-        this.submitTest(isNotSelectAll);
-      } else if (haveData) {
-        this.totalTimeInSeconds = (new Date(this.param.endTime).getTime() - new Date().getTime()) / 1000;
-        this.totalTimeInSeconds = Math.ceil(this.totalTimeInSeconds);
-      } else {
-        this.totalTimeInSeconds = 120 * 60;
-      }
       if (!this.param?.examId) {
         this.param.examId = this.currentExam.examId;
         this.param.totalTime = 120 * 60;

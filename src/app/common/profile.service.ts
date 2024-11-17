@@ -18,6 +18,7 @@ export class ProfileService {
     phone: '',
     address: '',
     userId: '',
+    userType: ''
   };
   isLogin: boolean = false;
 
@@ -25,15 +26,20 @@ export class ProfileService {
     this.getProfileData();
   }
 
+  get getUserType() {
+    return this.currentUser.userType;
+  }
+
   get getAvatar() {
     return this.currentUser.avatar;
   }
+
   get getEmail() {
     return this.currentUser.email;
   }
 
   get isDevelopmentMode() {
-    return isDevMode() || window.location.href.includes('172.19.200.219') || window.location.href.includes('localhost');
+    return isDevMode() || window.location.href.includes('localhost');
   }
 
   public userIsLogin() {

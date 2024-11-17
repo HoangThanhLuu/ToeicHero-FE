@@ -1,6 +1,5 @@
 import {
-  Injectable,
-  isDevMode
+  Injectable
 } from '@angular/core';
 import {
   HttpRequest,
@@ -17,7 +16,6 @@ import {ProfileService} from './common/profile.service';
   providedIn: 'root'
 })
 export class AuthServiceService implements HttpInterceptor {
-  isDevelopMode: boolean = isDevMode();
 
   constructor(private authService: AuthService, private profileService: ProfileService) {
   }
@@ -26,7 +24,7 @@ export class AuthServiceService implements HttpInterceptor {
     let apiEndPoint = new URL(req.url, BASE_URL);
     const token = this.authService.getToken();
     // handle if running on production
-    if (this.profileService.isDevelopmentMode) {
+    if (this.profileService.isDevelopmentMode || req.url.includes('assets')) {
       req = req.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`

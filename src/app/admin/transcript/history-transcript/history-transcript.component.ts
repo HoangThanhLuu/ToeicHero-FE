@@ -21,7 +21,7 @@ import {BsModalService} from "ngx-bootstrap/modal";
   templateUrl: './history-transcript.component.html',
   styleUrls: ['./history-transcript.component.scss', ...AdminLibBaseCss3, ...AdminStyle2]
 })
-export class HistoryTranscriptComponent implements OnInit {
+export class HistoryTranscriptComponent implements OnInit, OnDestroy {
   @Input() isShowPageHeader: boolean = true;
   title: string = "History transcript";
   currentPage: string = "History transcript";
@@ -68,7 +68,7 @@ export class HistoryTranscriptComponent implements OnInit {
   ];
   maxDate: Date = new Date();
   rangeDate: Array<Date> = [new Date(new Date().setDate(new Date().getDate() - 7)), new Date()];
-
+  intervalProgress: any;
 
   constructor(private http: HttpClient,
               private toastr: ToastrService,
@@ -77,22 +77,26 @@ export class HistoryTranscriptComponent implements OnInit {
               private bsModal: BsModalService) {
   }
 
+  ngOnDestroy(): void {
+    clearInterval(this.intervalProgress);
+  }
+
   ngOnInit(): void {
     this.getListTranscript();
+    this.intervalProgress = setInterval(() => {
+      this.getListTranscript();
+    }, 15_000);
   }
 
   getListTranscript() {
-    this.spinnerService.show().then();
     const url = `/api/transcript/history?size=${this.pagination.size}&page=${this.pagination.page - 1}&status=${this.pagination.type}&dateFrom=${this.pagination.dateFrom}&dateTo=${this.pagination.dateTo}&sort=${this.pagination.sort}`;
     this.http.get(url)
       .subscribe({
         next: (res: any) => {
-          this.spinnerService.hide().then();
           this.list = res?.data?.content;
           this.pagination.total = res?.data?.totalElements;
         },
         error: () => {
-          this.spinnerService.hide().then();
           this.toastr.error();
         }
       });

@@ -104,7 +104,9 @@
     "CONFIRM_OTP_SUCCESS": "Xác nhận OTP thành công!",
     "OTP_EXPIRED": "OTP đã hết hạn!",
     "NOT_FOUNT_USER": "Không tìm thấy người dùng",
-    "NOT_SUPPORTED": "Không hỗ trợ!"
+    "NOT_SUPPORTED": "Không hỗ trợ!",
+    "EMAIL_EXISTED": "Email này đã đăng ký tài khoản rồi!",
+    "EMAIL_OR_PASSWORD_INCORRECT": "Email hoặc mật khẩu không đúng!"
   },
   "BLOG": {
     "CREATE_BLOG_SUCCESS" : "Tạo bài viết thành công",

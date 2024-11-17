@@ -102,9 +102,11 @@
     "EMAIL_NOT_REGISTERED": "This account has not been registered!",
     "CAPTCHA_INCORRECT": "Incorect CapCha!",
     "CONFIRM_OTP_SUCCESS": "Confirm OTP success!",
-    "OTP_EXPIRED": "OTP expired!",
+    "OTP_EXPIRED": "OTP Expired!",
     "NOT_FOUNT_USER": "User Not Found",
-    "NOT_SUPPORTED": "Not Support!"
+    "NOT_SUPPORTED": "Not Support!",
+    "EMAIL_EXISTED" : "Email Existed!",
+    "EMAIL_OR_PASSWORD_INCORRECT": "Email or password incorrect!"
   },
   "BLOG": {
     "CREATE_BLOG_SUCCESS": "Created blog successfully",

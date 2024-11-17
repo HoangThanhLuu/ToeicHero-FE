@@ -34,7 +34,6 @@ const routes: Routes = [
       },
       {
         path: 'my-exam',
-        resolve: [profileResolver],
         canActivate: [ClientGuardGuard],
         loadChildren: () => import('./history-exam/history-exam.module').then(m => m.HistoryExamModule)
       },
@@ -49,7 +48,8 @@ const routes: Routes = [
         path: 'thank-you/:payment',
         resolve: [profileResolver],
         loadChildren: () => import('./thank-you/thank-you.module').then(m => m.ThankYouModule)
-      }
+      },
+      { path: 'tests', loadChildren: () => import('./tests/tests.module').then(m => m.TestsModule) }
     ]
   },
 ];

@@ -16,6 +16,11 @@ import {TooltipModule} from 'ngx-bootstrap/tooltip';
 import {ScoreComponent} from './score/score.component';
 import {HomeComponent} from './home/home.component';
 import {PageHeaderComponent} from './page-header/page-header.component';
+import {NzPaginationComponent} from 'ng-zorro-antd/pagination';
+import {NzColDirective, NzRowDirective} from "ng-zorro-antd/grid";
+import {NzFormControlComponent, NzFormItemComponent, NzFormLabelComponent} from "ng-zorro-antd/form";
+import {NzImageDirective} from "ng-zorro-antd/image";
+import {NzOptionComponent, NzSelectComponent} from "ng-zorro-antd/select";
 
 @NgModule({
   declarations: [
@@ -25,20 +30,29 @@ import {PageHeaderComponent} from './page-header/page-header.component';
     ScoreComponent,
     HomeComponent
   ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    NgxSpinnerModule,
-    TranslateModule,
-    NzModalModule,
-    NgOptimizedImage,
-    FormsModule,
-    NzPopconfirmDirective,
-    NzInputDirective,
-    NzTableModule,
-    TooltipModule,
-    PageHeaderComponent
-  ],
+    imports: [
+        CommonModule,
+        AdminRoutingModule,
+        NgxSpinnerModule,
+        TranslateModule,
+        NzModalModule,
+        NgOptimizedImage,
+        FormsModule,
+        NzPopconfirmDirective,
+        NzInputDirective,
+        NzTableModule,
+        TooltipModule,
+        PageHeaderComponent,
+        NzPaginationComponent,
+        NzColDirective,
+        NzFormControlComponent,
+        NzFormItemComponent,
+        NzFormLabelComponent,
+        NzImageDirective,
+        NzOptionComponent,
+        NzRowDirective,
+        NzSelectComponent
+    ],
   exports: []
 })
 export class AdminModule {

@@ -4,6 +4,7 @@ import {Plan} from '../../common/model/Plan';
 import {NzDrawerRef, NzDrawerService} from 'ng-zorro-antd/drawer';
 import {ProfileService} from '../../common/profile.service';
 import {NgxSpinnerService} from 'ngx-spinner';
+import {AuthService} from '../../auth.service';
 
 @Component({
   selector: 'app-pricing',
@@ -32,8 +33,10 @@ export class PricingComponent implements OnInit {
       amount: this.currentChoicePlan.planPrice
     })
   };
+  currentUserType: string = '';
 
-  constructor(private http: HttpClient, private drawerService: NzDrawerService, private profileService: ProfileService, private spin: NgxSpinnerService) {
+
+  constructor(private http: HttpClient, private auth: AuthService, private drawerService: NzDrawerService, private profileService: ProfileService, private spin: NgxSpinnerService) {
     this.listMethodPayment = [
       new MethodPayment('Visa Card', MethodPaymentEnum.VISA, [
         new MethodImg('assets/images/logo-visa.png', 52, 17),
@@ -55,25 +58,38 @@ export class PricingComponent implements OnInit {
           this.list = res?.data;
         }
       });
+    const token = this.auth.getToken();
+    const isLogin = token ? !this.auth.isTokenExpired(token) : false;
+    if (isLogin) {
+      this.profileService.getProfileData().subscribe({
+        next: (profile) => {
+          if (profile) {
+            this.currentUserType = this.profileService.getUserType;
+          }
+        }
+      });
+    }
+  }
+
+  getNameButton(plan: Plan): string {
+    if (plan.planPrice === 0) {
+      return 'Miễn phí';
+    }
+    if (this.currentUserType === 'VIP_USER') {
+      return 'Đã mua';
+    }
+    return 'Mua ngay';
   }
 
   buyPackage(plan: Plan) {
-    if (plan.planPrice === 0 || plan.planPrice === null) {
+    if (plan.planPrice === 0 || plan.planPrice === null || this.currentUserType === 'VIP_USER') {
       return;
     }
     this.currentChoicePlan = plan;
-    const drawerRef = this.drawerService.create({
+    this.drawerService.create({
       nzTitle: 'Phương thức thanh toán',
       nzFooter: this.footer,
       nzContent: this.drawerTemplate
-    });
-
-    drawerRef.afterOpen.subscribe(() => {
-      console.log('Drawer(Template) open');
-    });
-
-    drawerRef.afterClose.subscribe(() => {
-      console.log('Drawer(Template) close');
     });
   }
 
@@ -87,8 +103,7 @@ export class PricingComponent implements OnInit {
             .subscribe({
               next: (res: any) => {
                 if (res?.success) {
-                  // window.location.href = res.data;
-                  window.open(res.data, '_blank');
+                  window.location.href = res?.data;
                 }
               },
               complete: () => this.spin.hide().then()

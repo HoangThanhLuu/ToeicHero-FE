@@ -3,6 +3,7 @@ import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
 import {NgxSpinnerService} from "ngx-spinner";
 import {finalize} from "rxjs";
+import {CONSTANT} from "../../common/constant";
 
 @Component({
   selector: 'app-history-exam',
@@ -11,6 +12,7 @@ import {finalize} from "rxjs";
 })
 export class HistoryExamComponent implements OnInit {
   listMyExam: any = [];
+  timezone: string = CONSTANT.timeZone;
 
   constructor(private toast: ToastrService,
               private http: HttpClient,

@@ -187,8 +187,10 @@ export class TestComponent implements OnInit {
   }
 
   startFullTest() {
+    this.spinnerService.show().then();
     this.profileService.getProfileData().subscribe({
       next: profile => {
+        this.spinnerService.hide().then();
         if (profile) {
           // window.location.href = `${window.location.href}/start`;
           this.router.navigate([`/test/${this.currentExam?.examId}/start`]).then();
@@ -197,6 +199,7 @@ export class TestComponent implements OnInit {
         }
       },
       error: () => {
+        this.spinnerService.hide().then();
         this.showLogin();
       }
     });
@@ -222,8 +225,10 @@ export class TestComponent implements OnInit {
       this.startFullTest();
       return;
     }
+    this.spinnerService.show().then();
     this.profileService.getProfileData().subscribe({
       next: (profile) => {
+        this.spinnerService.hide().then();
         if (profile) {
           const listPart = this.checkOptionsOne.filter(item => item.checked).map(item => item.value);
           const listPartString = listPart.join(',');
@@ -235,7 +240,10 @@ export class TestComponent implements OnInit {
           this.showLogin();
         }
       },
-      error: _ => this.showLogin()
+      error: _ => {
+        this.spinnerService.hide().then();
+        this.showLogin();
+      }
     });
   }
 

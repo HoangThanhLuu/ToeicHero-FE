@@ -66,7 +66,7 @@ export class OtpConfirmComponent {
           this.spinnerService.hide();
         }))
       .subscribe((res: any) => {
-        const msg = this.translate.instant(`OTP.${res?.message}`);
+        const msg = this.translate.instant(`USER.${res?.message}`);
         if (res?.success) {
           this.confirmed.emit();
           this.toast.success(msg);
