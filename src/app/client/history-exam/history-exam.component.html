@@ -23,7 +23,7 @@
           </thead>
           <tbody>
           <tr *ngFor="let data of basicTable.data">
-            <td>{{ data?.examDate | date: 'MMM d, y, h:mm:ss a' }}</td>
+            <td>{{ data?.examDate | date: 'MMM d, y, h:mm:ss a': timezone}}</td>
             <td>{{ data?.exam?.examName }}</td>
             <td>{{ data?.numberOfCorrectAnswer }}/{{ data?.totalQuestion }}</td>
             <td>{{ formatTimeFromSeconds((Number(data?.timeToDoExam) - Number(data?.timeRemaining))) }}</td>

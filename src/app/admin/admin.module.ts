@@ -17,6 +17,10 @@ import {ScoreComponent} from './score/score.component';
 import {HomeComponent} from './home/home.component';
 import {PageHeaderComponent} from './page-header/page-header.component';
 import {NzPaginationComponent} from 'ng-zorro-antd/pagination';
+import {NzColDirective, NzRowDirective} from "ng-zorro-antd/grid";
+import {NzFormControlComponent, NzFormItemComponent, NzFormLabelComponent} from "ng-zorro-antd/form";
+import {NzImageDirective} from "ng-zorro-antd/image";
+import {NzOptionComponent, NzSelectComponent} from "ng-zorro-antd/select";
 
 @NgModule({
   declarations: [
@@ -39,7 +43,15 @@ import {NzPaginationComponent} from 'ng-zorro-antd/pagination';
         NzTableModule,
         TooltipModule,
         PageHeaderComponent,
-        NzPaginationComponent
+        NzPaginationComponent,
+        NzColDirective,
+        NzFormControlComponent,
+        NzFormItemComponent,
+        NzFormLabelComponent,
+        NzImageDirective,
+        NzOptionComponent,
+        NzRowDirective,
+        NzSelectComponent
     ],
   exports: []
 })

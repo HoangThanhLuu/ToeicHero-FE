@@ -6,6 +6,7 @@ import {
 import {AdminComponent} from './admin.component';
 import {HomeComponent} from './home/home.component';
 import {ScoreComponent} from './score/score.component';
+import {DetailExamComponent} from "./home/detail-exam/detail-exam.component";
 
 const routes: Routes = [
   {
@@ -32,6 +33,7 @@ const routes: Routes = [
       {path: 'tiny', loadChildren: () => import('./tiny/tiny.module').then(m => m.TinyModule)},
       {path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)},
       {path: 'pricing', loadChildren: () => import('./price/price.module').then(m => m.PriceModule)},
+      {path: 'statistic/exam/:examId', component: DetailExamComponent},
     ]
   }
 ];
