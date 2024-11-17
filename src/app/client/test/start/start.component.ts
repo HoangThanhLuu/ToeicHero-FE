@@ -303,13 +303,8 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
         }))
       .subscribe((res: any) => {
         if (res?.success) {
-          this.ngOnDestroy();
           localStorage.removeItem(`${this.defaultFormatAnswer}_${this.currentExam.examId}`);
-          this.http.post(`api/user-exam-log/remove-answer/${this.currentExam.examId}`, {})
-            .subscribe({
-              next: _ => {
-              }
-            });
+          this.ngOnDestroy();
           this.toast.success('Nộp bài thành công');
           this.router.navigate([`/my-exam/detail/${res?.data}`]).then();
         } else {
