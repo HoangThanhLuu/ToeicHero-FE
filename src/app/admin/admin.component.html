@@ -68,8 +68,7 @@
   @if (!menu.haveChild) {
     <li class="nav-item">
       <a class="nav-link" href="javascript:void(0)"
-         (click)="openTab(menu.path)"
-         [target]="menu.path.includes('api/applications') ? 'blank' : ''">
+         (click)="openTab(menu.path)">
         <span class="menu-title">{{ menu.displayName }}</span>
         <i [class]="menu.icon"></i>
       </a>

@@ -14,4 +14,14 @@ export class Plan {
     this.planPrice = planPrice;
     this.description = description;
   }
+
+  clonePlan(): Plan {
+    const plan = new Plan();
+    plan.planId = this.planId;
+    plan.planName = this.planName;
+    plan.planPrice = this.planPrice;
+    plan.description = this.description;
+    plan.listDetail = [];
+    return plan;
+  }
 }

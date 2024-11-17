@@ -3,6 +3,7 @@ import {BsModalService} from "ngx-bootstrap/modal";
 import {LoginComponent} from "../login/login.component";
 import {AuthService} from "../../auth.service";
 import {ProfileService} from "../../common/profile.service";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -17,6 +18,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(private bs: BsModalService,
               private auth: AuthService,
+              private router: Router,
               protected profileService: ProfileService) {
   }
 
@@ -41,6 +43,11 @@ export class NavbarComponent implements OnInit {
         this.activeNav = nav;
       }
     });
+  }
+
+  directLink(link: string, activeNavbar: string) {
+    this.activeNav = activeNavbar;
+    this.router.navigate([`${link}`]).then();
   }
 
 

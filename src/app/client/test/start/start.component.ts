@@ -309,7 +309,7 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
               }
             });
           this.toast.success('Nộp bài thành công');
-          this.router.navigate([`/my-exam/detail/${this.currentExam?.examId}`]);
+          this.router.navigate([`/my-exam/detail/${res?.data}`]).then();
         } else {
           this.toast.error(res?.message);
         }

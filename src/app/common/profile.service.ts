@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Profile} from './model/Profile';
 import {ResolveFn} from '@angular/router';
 import {Observable} from 'rxjs';
+import {CONSTANT} from './constant';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,9 @@ export class ProfileService {
 
   get getAvatar() {
     return this.currentUser.avatar;
+  }
+  get getEmail() {
+    return this.currentUser.email;
   }
 
   get isDevelopmentMode() {
@@ -57,6 +61,9 @@ export class ProfileService {
             this.isLogin = false;
             localStorage.removeItem('token');
             localStorage.removeItem('tokenValid');
+            localStorage.removeItem(CONSTANT.systemMenu);
+            localStorage.removeItem(CONSTANT.memberMenu);
+            localStorage.removeItem(CONSTANT.formatAnswer);
             window.location.href = '/login';
           }
           subscriber.next(res.data);
