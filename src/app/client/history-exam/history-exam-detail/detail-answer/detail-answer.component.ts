@@ -1,10 +1,10 @@
 import {Component, Input} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {NzBadgeComponent} from "ng-zorro-antd/badge";
-import {ShareAdminModule} from "../../../../admin/share-admin/share-admin.module";
 import {TestModule} from "../../../test/test.module";
 import {SafeHtmlPipe} from "../../../../common/pipe/safe-html.pipe";
 import {NzRadioComponent} from "ng-zorro-antd/radio";
+import {ShareClientModule} from '../../../share-client/share-client.module';
 
 @Component({
   selector: 'app-detail-answer',
@@ -12,7 +12,7 @@ import {NzRadioComponent} from "ng-zorro-antd/radio";
   imports: [
     FormsModule,
     NzBadgeComponent,
-    ShareAdminModule,
+    ShareClientModule,
     TestModule,
     SafeHtmlPipe,
     NzRadioComponent
