@@ -393,19 +393,19 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
                 this.selectedAnswer[answer.questionId] = answer.answer;
                 this.buttonStates[answer.questionId] = !!answer.answer;
               });
+              if (this.param?.endTime && new Date(this.param.endTime).getTime() < new Date().getTime()) {
+                this.toast.error('Bài thi đã hết giờ làm bài');
+                const isNotSelectAll = this.checkSelectedAll();
+                this.submitTest(isNotSelectAll);
+              } else if (haveData) {
+                this.totalTimeInSeconds = (new Date(this.param.endTime).getTime() - new Date().getTime()) / 1000;
+                this.totalTimeInSeconds = Math.ceil(this.totalTimeInSeconds);
+              } else {
+                this.totalTimeInSeconds = 120 * 60;
+              }
             }
           }
         });
-      if (this.param?.endTime && new Date(this.param.endTime).getTime() < new Date().getTime()) {
-        this.toast.error('Bài thi đã hết giờ làm bài');
-        const isNotSelectAll = this.checkSelectedAll();
-        this.submitTest(isNotSelectAll);
-      } else if (haveData) {
-        this.totalTimeInSeconds = (new Date(this.param.endTime).getTime() - new Date().getTime()) / 1000;
-        this.totalTimeInSeconds = Math.ceil(this.totalTimeInSeconds);
-      } else {
-        this.totalTimeInSeconds = 120 * 60;
-      }
       if (!this.param?.examId) {
         this.param.examId = this.currentExam.examId;
         this.param.totalTime = 120 * 60;

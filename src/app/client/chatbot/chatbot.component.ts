@@ -1,14 +1,15 @@
-import {ChangeDetectorRef, Component, ElementRef, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ToastrService} from "ngx-toastr";
 import {CONSTANT} from '../../common/constant';
+import {ProfileService} from '../../common/profile.service';
 
 @Component({
   selector: 'app-chatbot',
   templateUrl: './chatbot.component.html',
   styleUrl: './chatbot.component.scss'
 })
-export class ChatbotComponent {
+export class ChatbotComponent implements OnInit {
   @ViewChild('chatContainer') private chatContainer!: ElementRef;
   isShow: boolean = false;
   isChatbot: boolean = true;
@@ -24,12 +25,18 @@ export class ChatbotComponent {
   params: Params = new Params();
   listChat: Chat[] = [];
   listTranslate: Chat[] = [];
+  noAllowFullBot: boolean = false;
 
   constructor(
     private http: HttpClient,
     private toastr: ToastrService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private profile: ProfileService
   ) {
+  }
+
+  ngOnInit(): void {
+    this.isEnableFullBot();
   }
 
   chat() {
@@ -40,6 +47,17 @@ export class ChatbotComponent {
         this.translate();
       }
     }
+  }
+
+  isEnableFullBot() {
+    this.profile.getProfileData().subscribe({
+      next: (profile) => {
+        if (profile) {
+          console.log(profile)
+          this.noAllowFullBot = profile.userType !== 'VIP_USER';
+        }
+      }
+    });
   }
 
   translate() {

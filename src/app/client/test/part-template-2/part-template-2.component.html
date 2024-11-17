@@ -18,7 +18,7 @@
           />
         </div>
       </ng-container>
-      <div class="col-6">
+      <div class="col-{{indexPart == 1 ? '6' : '12'}}">
         <ng-container *ngIf="!item?.questionContent">
           <div class="col-12 fw-bold fs-6">Câu  {{ item?.questionNumber }} - Answer this question:</div>
         </ng-container>
