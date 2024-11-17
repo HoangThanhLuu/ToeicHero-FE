@@ -16,6 +16,7 @@ import {TooltipModule} from 'ngx-bootstrap/tooltip';
 import {ScoreComponent} from './score/score.component';
 import {HomeComponent} from './home/home.component';
 import {PageHeaderComponent} from './page-header/page-header.component';
+import {NzPaginationComponent} from 'ng-zorro-antd/pagination';
 
 @NgModule({
   declarations: [
@@ -25,20 +26,21 @@ import {PageHeaderComponent} from './page-header/page-header.component';
     ScoreComponent,
     HomeComponent
   ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    NgxSpinnerModule,
-    TranslateModule,
-    NzModalModule,
-    NgOptimizedImage,
-    FormsModule,
-    NzPopconfirmDirective,
-    NzInputDirective,
-    NzTableModule,
-    TooltipModule,
-    PageHeaderComponent
-  ],
+    imports: [
+        CommonModule,
+        AdminRoutingModule,
+        NgxSpinnerModule,
+        TranslateModule,
+        NzModalModule,
+        NgOptimizedImage,
+        FormsModule,
+        NzPopconfirmDirective,
+        NzInputDirective,
+        NzTableModule,
+        TooltipModule,
+        PageHeaderComponent,
+        NzPaginationComponent
+    ],
   exports: []
 })
 export class AdminModule {

@@ -21,7 +21,11 @@
               <p class="card-text">{{ item.description }}</p>
             </div>
             <div class="card-footer">
-              <button type="button" class="w-100 btn btn-lg btn-primary" (click)="buyPackage(item)">{{item.planPrice === 0 ? 'Xem thêm' : 'Mua ngay'}}</button>
+              <button type="button" class="w-100 btn btn-lg"
+                      [ngClass]="{'btn-outline-primary': this.currentUserType === 'VIP_USER' && item.planPrice > 0,
+                      'btn-primary': this.currentUserType !== 'VIP_USER' || item.planPrice <= 0}"
+                      (click)="buyPackage(item)">{{ getNameButton(item) }}
+              </button>
             </div>
           </div>
         </div>

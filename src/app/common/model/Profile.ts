@@ -6,6 +6,8 @@ export class Profile {
   phone: string;
   address: string;
   userId: string;
+  userType: string;
+
   constructor() {
     this.fullName = '';
     this.email = '';
@@ -14,5 +16,6 @@ export class Profile {
     this.phone = '';
     this.address = '';
     this.userId = '';
+    this.userType = '';
   }
 }

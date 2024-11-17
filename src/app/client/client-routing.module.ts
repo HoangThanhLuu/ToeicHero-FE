@@ -34,7 +34,6 @@ const routes: Routes = [
       },
       {
         path: 'my-exam',
-        resolve: [profileResolver],
         canActivate: [ClientGuardGuard],
         loadChildren: () => import('./history-exam/history-exam.module').then(m => m.HistoryExamModule)
       },
