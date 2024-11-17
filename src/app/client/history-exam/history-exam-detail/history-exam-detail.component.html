@@ -13,8 +13,7 @@
         <p><i class="fa-regular fa-clock"></i> Thời gian làm bài: {{ this.examHistory?.timeToDoExam / 60 }} phút | 7
           phần
           thi | {{ this.examHistory?.totalQuestion }} câu hỏi
-          | {{ this.examHistory?.examDate | date: 'EEEE, MMMM d, y' }}
-          | {{ this.examHistory?.examDate | date: 'h:mm a' }}
+          | {{ this.examHistory?.examDate | date: 'MMM d, y, h:mm:ss a' : timeZone }}
         </p>
       </div>
       <div class="col-12 mt-3">

@@ -42,7 +42,7 @@ export class ProfileService {
     return isDevMode() || window.location.href.includes('localhost');
   }
 
-  public userIsLogin() {
+  get userIsLogin() {
     return this.isLogin;
   }
 

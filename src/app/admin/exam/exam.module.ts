@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
-import { ExamRoutingModule } from './exam-routing.module';
+import {ExamRoutingModule} from './exam-routing.module';
 import {ShareAdminModule} from '../share-admin/share-admin.module';
 import {ExamComponent} from './exam.component';
 import {ExamDetailComponent} from './exam-detail/exam-detail.component';
@@ -11,6 +11,7 @@ import {AddExamComponent} from './add-exam/add-exam.component';
 import {EditExamComponent} from './edit-exam/edit-exam.component';
 import {QuestionComponent} from './question/question.component';
 import {NzDatePickerComponent} from 'ng-zorro-antd/date-picker';
+import {NzModalModule} from 'ng-zorro-antd/modal';
 
 
 @NgModule({
@@ -24,10 +25,12 @@ import {NzDatePickerComponent} from 'ng-zorro-antd/date-picker';
     AddExamComponent,
     QuestionComponent
   ],
-    imports: [
-        ShareAdminModule,
-        ExamRoutingModule,
-        NzDatePickerComponent
-    ]
+  imports: [
+    ShareAdminModule,
+    ExamRoutingModule,
+    NzModalModule,
+    NzDatePickerComponent
+  ]
 })
-export class ExamModule { }
+export class ExamModule {
+}

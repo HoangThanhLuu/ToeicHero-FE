@@ -30,6 +30,7 @@ import 'prismjs/components/prism-typescript.min.js';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
 import 'prismjs/plugins/line-highlight/prism-line-highlight.js';
 import {DatetimeService} from './common/datetime.service';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 registerLocaleData(en);
 
@@ -76,7 +77,8 @@ registerLocaleData(en);
     TinyServiceService,
     ProfileService,
     SafeHtmlPipe,
-    DatetimeService
+    DatetimeService,
+    provideCharts(withDefaultRegisterables())
   ],
   exports: [FontAwesomeModule],
   bootstrap: [AppComponent],

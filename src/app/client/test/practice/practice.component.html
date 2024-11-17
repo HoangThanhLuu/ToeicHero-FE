@@ -99,12 +99,8 @@
       <div class="row right-button">
         <div class="col-12 d-flex flex-column align-items-start">
           <label class="text-center title fw-bold">Thời gian làm bài: </label>
-          <label class="text-center title">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
-            120 phút
-          </label>
           <div class="col-12">
-            <div class="time d-flex justify-content-center" [ngClass]="{'text-danger': totalTimeInSeconds < 300}">
+            <div class="time d-flex justify-content-center">
               <p #minutes></p>
               <p>:</p>
               <p #seconds></p>
@@ -134,7 +130,7 @@
                     <button class="mb-1 btn btn-outline-primary btn-circle mt-2 me-2"
                             (click)="switchToTab(partIndex , partIem?.questions[questionIndex]?.questionId)"
                             [ngClass]="{'btn-fill': buttonStates[questionButton?.questionId]}">
-                      {{questionButton?.questionNumber}}
+                      {{ questionButton?.questionNumber }}
                     </button>
                   </div>
                 </ng-container>

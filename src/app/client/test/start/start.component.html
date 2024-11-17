@@ -3,9 +3,18 @@
     <div class="col-md-12 bg-light">
       <h1 class="text-center text-primary mt-3" [innerText]="currentExam?.examName"></h1>
     </div>
-    <div class="col-sm-5 mb-2" >
-      <app-audio-part [audioSource]="this.audio"></app-audio-part>
-    </div>
+    @if (isRealTest) {
+      <div class="col-sm-5 mb-2">
+        <app-audio-part [audioSource]="this.audio"></app-audio-part>
+      </div>
+    } @else {
+      <div class="col-7">
+        <audio controls class="w-100 bg-white">
+          <source src="{{currentExam?.audio}}" type="audio/mpeg">
+          Trình duyệt của bạn không hỗ trợ phát audio
+        </audio>
+      </div>
+    }
   </div>
   <div class="row mb-2">
     <nz-tabset class="col-12 col-sm-12 col-md-10 left-content" [(nzSelectedIndex)]="selectedIndex">
@@ -130,8 +139,10 @@
     </div>
   </div>
 </div>
+@if (!this.isRealTest) {
+  <app-chatbot></app-chatbot>
+}
 
-<app-chatbot></app-chatbot>
 <ngx-spinner
   bdColor="rgba(51,51,51,0.8)"
   size="medium"

@@ -1,19 +1,20 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
 
-import { TestsRoutingModule } from './tests-routing.module';
-import { TestsComponent } from './tests.component';
-import {NzTagComponent} from 'ng-zorro-antd/tag';
+import {TestsRoutingModule} from './tests-routing.module';
+import {TestsComponent} from './tests.component';
+import {ShareClientModule} from '../share-client/share-client.module';
+import {NzModalModule} from 'ng-zorro-antd/modal';
 
 
 @NgModule({
   declarations: [
     TestsComponent
   ],
-    imports: [
-        CommonModule,
-        TestsRoutingModule,
-        NzTagComponent
-    ]
+  imports: [
+    ShareClientModule,
+    TestsRoutingModule,
+    NzModalModule
+  ]
 })
-export class TestsModule { }
+export class TestsModule {
+}

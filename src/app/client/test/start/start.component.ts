@@ -62,6 +62,7 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
   mouseEnterSubject$ = new Subject<void>();
   showAlert: boolean[] = Array(10).fill(false);
   defaultFormatAnswer: string = CONSTANT.formatAnswer;
+  isRealTest: boolean = true;
 
   constructor(private toast: ToastrService,
               private http: HttpClient,
@@ -76,7 +77,11 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (!this.profileService.userIsLogin() && !this.profileService.currentUser.userId) {
+
+  }
+
+  ngOnInit(): void {
+    if (!this.profileService.userIsLogin) {
       const confirmModal: NzModalRef = this.modal.create({
         nzTitle: `Vui lòng đăng nhập để thực hiện bài thi`,
         nzContent: `Bạn chưa đăng nhập, vui lòng đăng nhập để thực hiện bài thi?`,
@@ -102,11 +107,6 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
     } else {
       this.initData();
     }
-  }
-
-  ngOnInit(): void {
-    this.checkNetworkStatus();
-    this.detectMultipleLogin();
   }
 
   detectMultipleLogin() {
@@ -224,9 +224,14 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
         .subscribe((res: any) => {
           if (res?.success) {
             this.currentExam = res?.data;
+            this.isRealTest = !this.currentExam?.isFree;
             this.listPart = res?.data?.parts;
             this.audio = res?.data.examAudio;
             this.initializeSelectedAnswer();
+            if (this.isRealTest) {
+              this.checkNetworkStatus();
+              this.detectMultipleLogin();
+            }
           } else {
             this.toast.error(res?.message);
             window.location.href = '/list-test';
@@ -423,8 +428,10 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
     }
     this.startTimer();
     this.cacheAnswer();
-    this.detectTabVisibility();
-    this.detectMouseMove();
+    if (this.isRealTest) {
+      this.detectTabVisibility();
+      this.detectMouseMove();
+    }
   }
 
   changePart(event: any) {

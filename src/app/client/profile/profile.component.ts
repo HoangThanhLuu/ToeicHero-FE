@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
 import {HttpClient} from '@angular/common/http';
 import {NzModalRef, NzModalService} from 'ng-zorro-antd/modal';
@@ -7,16 +7,27 @@ import {NgxSpinnerService} from 'ngx-spinner';
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import {UpdateProfileComponent} from './update-profile/update-profile.component';
 import {ProfileService} from '../../common/profile.service';
+import {ChartConfiguration} from 'chart.js';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   avatarSrc: string = '';
   formData = new FormData();
   showDropdown = false;
+  barChartLegend = true;
+  barChartPlugins = [];
+  public barChartData: ChartConfiguration<'bar'>['data'] = {
+    labels: [],
+    datasets: []
+  };
+
+  public barChartOptions: ChartConfiguration<'bar'>['options'] = {
+    responsive: false,
+  };
 
   constructor(private toast: ToastrService,
               private http: HttpClient,
@@ -24,6 +35,31 @@ export class ProfileComponent {
               private bsModalService: BsModalService,
               private spinner: NgxSpinnerService,
               public profileService: ProfileService) {
+  }
+
+  ngOnInit(): void {
+    this.http.get('api/statistic/user/exam')
+      .subscribe({
+        next: (res: any) => {
+          if (res?.success) {
+            const data = res.data;
+            const label = data.map((item: any) => item.examDate);
+            const dataChart = data.map((item: any) => item.percent);
+            this.barChartData = {
+              labels: label,
+              datasets: [
+                {
+                  label: 'Tỉ lệ %',
+                  data: dataChart,
+                  backgroundColor: '#42A5F5',
+                  borderColor: '#1E88E5',
+                  borderWidth: 1
+                }
+              ]
+            };
+          }
+        }
+      });
   }
 
   openFormEditInfo() {

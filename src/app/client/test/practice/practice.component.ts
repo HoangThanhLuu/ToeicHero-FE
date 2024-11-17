@@ -226,7 +226,7 @@ export class PracticeComponent implements OnInit, OnDestroy {
       .subscribe((res: any) => {
         if (res?.success) {
           this.toast.success('Nộp bài thành công');
-          window.location.href = `/test/${this.currentExam?.examId}/result/${res?.data}`;
+          this.router.navigate([`/my-exam/detail/${res?.data}`]).then();
         } else {
           this.toast.error(res?.message);
         }

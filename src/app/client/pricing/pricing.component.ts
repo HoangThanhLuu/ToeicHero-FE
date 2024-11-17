@@ -27,7 +27,7 @@ export class PricingComponent implements OnInit {
       amount: this.currentChoicePlan.planPrice,
       email: this.profileService.getEmail
     }),
-    [MethodPaymentEnum.PAYPAL]: () => new Params(`/api/payment/paypal/create?sum=${this.currentChoicePlan.planPrice}`, {}),
+    [MethodPaymentEnum.PAYPAL]: () => new Params(`/api/payment/paypal/create`, this.currentChoicePlan.planPrice),
     [MethodPaymentEnum.VN_PAY]: () => new Params('/api/payment/vn-pay/create', {
       orderInfo: 'Dang ky goi thanh vien Toeicute',
       amount: this.currentChoicePlan.planPrice
