@@ -34,6 +34,11 @@
   color: #000;
 }
 
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-panel {
+  background-color: #fff;
+  color: #fff;
+}
 
 .audio-player {
   height: 50px;
@@ -199,13 +204,16 @@
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
-.part-content{
+
+.part-content {
   color: var(--primary-600);
 }
-.title{
+
+.title {
   color: var(--primary-800);
 }
-.notice{
+
+.notice {
   color: var(--primary-400);
 }
 

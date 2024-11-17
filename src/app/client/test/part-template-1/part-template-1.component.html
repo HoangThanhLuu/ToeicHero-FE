@@ -4,10 +4,15 @@
       {{ part?.partContent }}
     </p>
   </div>
+  @if(partIndex !=6) {
+    <div class="col-5 ">
+      <app-audio-part [audioSource]="part?.partAudio"></app-audio-part>
+    </div>
+  }
   <ng-container *ngFor="let item of part?.questions; let part3Index = index;">
     <div class="row">
       <ng-container *ngIf="part3Index % numberQuestion == 0">
-                <span class="col-12 mt-2 fs-6 fw-bold fs-6">Question {{ item?.questionNumber }}
+                <span class="col-12 mt-2 fs-6 fw-bold">Question {{ item?.questionNumber }}
                   - {{ Number(item?.questionNumber) + 2 }}
                   refer to
                   following conversation: </span>

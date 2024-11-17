@@ -1,10 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
-import {NzModalService} from "ng-zorro-antd/modal";
 import {BsModalRef} from "ngx-bootstrap/modal";
 import {NgxSpinnerService} from "ngx-spinner";
-import {ActivatedRoute} from "@angular/router";
 import {concatMap} from "rxjs/operators";
 import {finalize, from} from "rxjs";
 import {AdminLibBaseCss3, AdminStyle2} from "../../admin.style";
@@ -32,11 +30,9 @@ export class EditPartComponent implements OnInit {
 
   constructor(private toast: ToastrService,
               private http: HttpClient,
-              private modal: NzModalService,
               private bsModalRef: BsModalRef,
               private spinnerService: NgxSpinnerService,
-              private translate: TranslateService,
-              private route: ActivatedRoute) {
+              private translate: TranslateService) {
   }
 
   ngOnInit(): void {
@@ -84,7 +80,10 @@ export class EditPartComponent implements OnInit {
       .pipe(
         concatMap((url: any) => {
           this.param.partAudio = url;
-          return this.http.patch<any>('/api/admin/part/update-part', this.param);
+          return this.http.patch<any>('/api/admin/part/update-part', {
+            ...this.param,
+            examId: this.currentExam.examId
+          });
         }),
         finalize(() => this.spinnerService.hide())
       )

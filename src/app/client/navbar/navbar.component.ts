@@ -14,7 +14,8 @@ export class NavbarComponent implements OnInit {
   avatar: string = '/assets/images/default-avatar.jpg';
   activeNav: string = 'home';
   isLogin: boolean = false;
-  listNav: string[] = ['home', 'test', 'my-exam', 'blog', 'pricing'];
+  listNav: string[] = ['home', 'list-test', 'my-exam', 'blog', 'pricing', 'tests'];
+  userVip: boolean = false;
 
   constructor(private bs: BsModalService,
               private auth: AuthService,
@@ -27,7 +28,13 @@ export class NavbarComponent implements OnInit {
     const token = this.auth.getToken();
     this.isLogin = token ? !this.auth.isTokenExpired(token) : false;
     if (this.isLogin) {
-      this.profileService.getProfileData().subscribe();
+      this.profileService.getProfileData().subscribe({
+        next: (res: any) => {
+          if (res) {
+            this.userVip = res?.userType === 'VIP_USER';
+          }
+        }
+      });
     }
   }
 

@@ -22,6 +22,11 @@ export class HomeComponent implements OnInit {
   }
 
   loadKommunicateScript(scriptContent: string): void {
+    // check if script already exists
+    const scriptElement = document.getElementById('kommunicate-widget-iframe');
+    if (scriptElement) {
+      return;
+    }
     const script = this.renderer.createElement('script');
     script.type = 'text/javascript';
     script.text = scriptContent;

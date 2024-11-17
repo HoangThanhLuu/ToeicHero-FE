@@ -6,6 +6,7 @@ import {finalize} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 import {DetailAnswerComponent} from "./detail-answer/detail-answer.component";
 import {BsModalService} from "ngx-bootstrap/modal";
+import {CONSTANT} from '../../../common/constant';
 
 @Component({
   selector: 'app-history-exam-detail',
@@ -19,6 +20,7 @@ export class HistoryExamDetailComponent implements OnInit {
   colorLow = '#e2080f';
   colorMedium = '#d9e024';
   colorHigh = '#87d068';
+  timeZone: string = CONSTANT.timeZone;
 
   constructor(private toast: ToastrService,
               private http: HttpClient,
@@ -59,6 +61,7 @@ export class HistoryExamDetailComponent implements OnInit {
       }
     });
   }
+
   getColor(percent: number): string {
     if (percent < 50) {
       return this.colorLow;
@@ -68,32 +71,34 @@ export class HistoryExamDetailComponent implements OnInit {
       return this.colorHigh;
     }
   }
+
   detail(data: any) {
     this.bsModalService.show(DetailAnswerComponent, {
       class: 'modal-lg modal-dialog-centered',
       initialState: {
         title: 'Chi tiết đáp án',
-       params : {
-         questionNumber: data.question.questionNumber,
-         questionAudio: data?.question?.questionAudio,
-         questionImage: data?.question?.questionImage,
-         paragraph1: data?.question?.paragraph1,
-         paragraph2: data?.question?.paragraph2,
-         questionContent: data?.question?.questionContent,
-         answerA: data?.question?.answerA,
-         answerB: data?.question?.answerB,
-         answerD: data?.question?.answerD,
-         answerC: data?.question?.answerC,
-         selectedAnswer: data?.selectedAnswer,
-         correctAnswer: data?.question?.correctAnswer,
-         transcript: data?.question?.transcript,
-         translateTranscript: data?.question?.translateTranscript,
-         questionImages: data?.question?.questionImages,
-         haveMultiImage: data?.question?.haveMultiImage
-       }
+        params: {
+          questionNumber: data.question.questionNumber,
+          questionAudio: data?.question?.questionAudio,
+          questionImage: data?.question?.questionImage,
+          paragraph1: data?.question?.paragraph1,
+          paragraph2: data?.question?.paragraph2,
+          questionContent: data?.question?.questionContent,
+          answerA: data?.question?.answerA,
+          answerB: data?.question?.answerB,
+          answerD: data?.question?.answerD,
+          answerC: data?.question?.answerC,
+          selectedAnswer: data?.selectedAnswer,
+          correctAnswer: data?.question?.correctAnswer,
+          transcript: data?.question?.transcript,
+          translateTranscript: data?.question?.translateTranscript,
+          questionImages: data?.question?.questionImages,
+          haveMultiImage: data?.question?.haveMultiImage
+        }
       }
     });
   }
+
   formatTimeFromSeconds(seconds: number): string {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;

@@ -7,6 +7,7 @@ import {UpdateProfileComponent} from './update-profile/update-profile.component'
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import {NgOptimizedImage} from '@angular/common';
 import {NzModalModule} from 'ng-zorro-antd/modal';
+import {BaseChartDirective} from 'ng2-charts';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {NzModalModule} from 'ng-zorro-antd/modal';
     ShareClientModule,
     ProfileRoutingModule,
     NgOptimizedImage,
-    NzModalModule
+    NzModalModule,
+    BaseChartDirective
   ]
 })
 export class ProfileModule { }
