@@ -39,7 +39,7 @@ export class ProfileService {
   }
 
   get isDevelopmentMode() {
-    return isDevMode() || window.location.href.includes('assets') || window.location.href.includes('localhost');
+    return isDevMode() || window.location.href.includes('localhost');
   }
 
   public userIsLogin() {

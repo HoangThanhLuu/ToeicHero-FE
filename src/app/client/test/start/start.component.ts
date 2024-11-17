@@ -119,20 +119,16 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
                 nzTitle: `Tài khoản của bạn đã đăng nhập ở một thiết bị khác! Vui lòng đăng nhập lại!`,
                 nzContent: ``,
                 nzCentered: true,
-                nzFooter: [
-                  {
-                    label: 'Đồng ý',
-                    type: 'primary',
-                    onClick: () => {
-                      localStorage.removeItem('token');
-                      localStorage.removeItem('tokenValid');
-                      localStorage.removeItem('profile');
-                      localStorage.removeItem(`${this.defaultFormatAnswer}_${this.currentExam.examId}`);
-                      window.location.href = '/home';
-                      confirmModal.destroy();
-                    }
-                  }
-                ]
+                nzClosable: false,
+                nzOkText: 'Thoát',
+                nzOnOk: () => {
+                  localStorage.removeItem('token');
+                  localStorage.removeItem('tokenValid');
+                  localStorage.removeItem('profile');
+                  localStorage.removeItem(`${this.defaultFormatAnswer}_${this.currentExam.examId}`);
+                  window.location.href = '/home';
+                  confirmModal.destroy();
+                },
               });
             }
           }
