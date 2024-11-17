@@ -7,14 +7,8 @@ import {
   NzThMeasureDirective, NzTrDirective
 } from "ng-zorro-antd/table";
 import {PageHeaderComponent} from "../../page-header/page-header.component";
-import {BsModalService} from "ngx-bootstrap/modal";
 import {HttpClient} from "@angular/common/http";
-import {NzModalService} from "ng-zorro-antd/modal";
-import {NgxSpinnerService} from "ngx-spinner";
-import {TranslateService} from "@ngx-translate/core";
-import {ActivatedRoute, Router} from "@angular/router";
-import {ToastrService} from "ngx-toastr";
-import {finalize} from "rxjs";
+import {ActivatedRoute} from "@angular/router";
 import {DatePipe} from "@angular/common";
 import {CONSTANT} from "../../../common/constant";
 
@@ -35,20 +29,15 @@ import {CONSTANT} from "../../../common/constant";
   styleUrl: './detail-exam.component.scss'
 })
 export class DetailExamComponent implements OnInit {
-  title: string = 'Detail Statics';
-  currentPage: string = 'Detail Statics';
+  title: string = 'Detail Statistic';
+  currentPage: string = 'Detail Statistic';
   detail: any;
   timezone: string = CONSTANT.timeZone;
 
   constructor(
-    private bsModalService: BsModalService,
     private http: HttpClient,
-    private modal: NzModalService,
-    private spinner: NgxSpinnerService,
-    private translate: TranslateService,
-    private router: Router,
     private route: ActivatedRoute,
-    private toast: ToastrService) {
+   ) {
   }
 
   ngOnInit(): void {
