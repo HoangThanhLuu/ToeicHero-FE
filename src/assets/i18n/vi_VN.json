@@ -146,7 +146,9 @@
   "UPDATE_PROFILE": "Cập nhật trang cá nhân",
   "RESET_PASSWORD": "Đặt lại mật khẩu",
   "add": "Add",
-  "edit": "Edit"
+  "edit": "Edit",
+  "STANDARD_USER": "Thành viên thân thiết",
+  "VIP_USER": "Thành viên vip"
 }
 
 
