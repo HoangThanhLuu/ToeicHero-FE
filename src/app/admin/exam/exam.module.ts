@@ -12,6 +12,7 @@ import {EditExamComponent} from './edit-exam/edit-exam.component';
 import {QuestionComponent} from './question/question.component';
 import {NzDatePickerComponent} from 'ng-zorro-antd/date-picker';
 import {NzModalModule} from 'ng-zorro-antd/modal';
+import {ModalModule} from "ngx-bootstrap/modal";
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import {NzModalModule} from 'ng-zorro-antd/modal';
     ShareAdminModule,
     ExamRoutingModule,
     NzModalModule,
+    ModalModule,
     NzDatePickerComponent
   ]
 })

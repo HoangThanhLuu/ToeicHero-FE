@@ -21,7 +21,6 @@ import {NzColDirective, NzRowDirective} from "ng-zorro-antd/grid";
 import {NzFormControlComponent, NzFormItemComponent, NzFormLabelComponent} from "ng-zorro-antd/form";
 import {NzImageDirective} from "ng-zorro-antd/image";
 import {NzOptionComponent, NzSelectComponent} from "ng-zorro-antd/select";
-import {BaseChartDirective} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -52,8 +51,7 @@ import {BaseChartDirective} from 'ng2-charts';
         NzImageDirective,
         NzOptionComponent,
         NzRowDirective,
-        NzSelectComponent,
-        BaseChartDirective
+        NzSelectComponent
     ],
   exports: []
 })

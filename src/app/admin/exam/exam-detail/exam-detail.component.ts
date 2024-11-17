@@ -107,10 +107,7 @@ export class ExamDetailComponent implements OnInit {
     }
   }
 
-  deletePart(item
-               :
-               any
-  ) {
+  deletePart(item:  any) {
     const confirmModal: NzModalRef = this.modal.create({
       nzTitle: `Xác nhận`,
       nzContent: `Bạn có muốn chắc chắn muốn  xóa toàn bộ câu hỏi trong part ${item.partName} không?`,

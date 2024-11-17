@@ -26,7 +26,6 @@
           <th>Phone Number</th>
           <th>Address</th>
           <th>Status</th>
-          <th>User Type</th>
           <th> # </th>
         </tr>
         </thead>
@@ -41,9 +40,6 @@
             <td>{{item?.address}}</td>
             <td>
               <label class="badge badge-gradient-{{this.getCssStatus(item?.status)}}">{{item?.status}}</label>
-            </td>
-            <td>
-              {{item?.userType | translate}}
             </td>
             <td>
               <ng-container *ngIf="item?.status == 'ACTIVE'">

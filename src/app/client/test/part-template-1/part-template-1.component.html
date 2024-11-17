@@ -4,6 +4,11 @@
       {{ part?.partContent }}
     </p>
   </div>
+  @if(partIndex !=6) {
+    <div class="col-5 ">
+      <app-audio-part [audioSource]="part?.partAudio"></app-audio-part>
+    </div>
+  }
   <ng-container *ngFor="let item of part?.questions; let part3Index = index;">
     <div class="row">
       <ng-container *ngIf="part3Index % numberQuestion == 0">
