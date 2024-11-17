@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Plan} from '../../common/model/Plan';
 import {NzDrawerRef, NzDrawerService} from 'ng-zorro-antd/drawer';
 import {ProfileService} from '../../common/profile.service';
+import {NgxSpinnerService} from 'ngx-spinner';
 
 @Component({
   selector: 'app-pricing',
@@ -17,9 +18,22 @@ export class PricingComponent implements OnInit {
   @ViewChild('footer', {static: false}) footer?: TemplateRef<any>;
   listMethodPayment: MethodPayment[] = [];
   list: DataPricing = new DataPricing();
+  currentChoicePlan: Plan = new Plan();
+  paymentMethod: MethodPaymentEnum = MethodPaymentEnum.VISA;
+  mapPayment: Record<MethodPaymentEnum, () => Params> = {
+    [MethodPaymentEnum.VISA]: () => new Params('/api/payment/stripe/create', {
+      name: this.currentChoicePlan.planName,
+      amount: this.currentChoicePlan.planPrice,
+      email: this.profileService.getEmail
+    }),
+    [MethodPaymentEnum.PAYPAL]: () => new Params(`/api/payment/paypal/create?sum=${this.currentChoicePlan.planPrice}`, {}),
+    [MethodPaymentEnum.VN_PAY]: () => new Params('/api/payment/vn-pay/create', {
+      orderInfo: 'Dang ky goi thanh vien Toeicute',
+      amount: this.currentChoicePlan.planPrice
+    })
+  };
 
-
-  constructor(private http: HttpClient, private drawerService: NzDrawerService, private profileService: ProfileService) {
+  constructor(private http: HttpClient, private drawerService: NzDrawerService, private profileService: ProfileService, private spin: NgxSpinnerService) {
     this.listMethodPayment = [
       new MethodPayment('Visa Card', MethodPaymentEnum.VISA, [
         new MethodImg('assets/images/logo-visa.png', 52, 17),
@@ -44,6 +58,10 @@ export class PricingComponent implements OnInit {
   }
 
   buyPackage(plan: Plan) {
+    if (plan.planPrice === 0 || plan.planPrice === null) {
+      return;
+    }
+    this.currentChoicePlan = plan;
     const drawerRef = this.drawerService.create({
       nzTitle: 'Phương thức thanh toán',
       nzFooter: this.footer,
@@ -60,6 +78,34 @@ export class PricingComponent implements OnInit {
   }
 
   continueBuy() {
+    this.profileService.getProfileData().subscribe({
+      next: (profile) => {
+        if (profile) {
+          this.spin.show().then();
+          const param = this.mapPayment[this.paymentMethod]();
+          this.http.post(param.url, param.body)
+            .subscribe({
+              next: (res: any) => {
+                if (res?.success) {
+                  // window.location.href = res.data;
+                  window.open(res.data, '_blank');
+                }
+              },
+              complete: () => this.spin.hide().then()
+            });
+        }
+      }
+    });
+  }
+}
+
+export class Params {
+  url: string = '';
+  body: any = {};
+
+  constructor(url: string, body: any) {
+    this.url = url;
+    this.body = body;
   }
 }
 

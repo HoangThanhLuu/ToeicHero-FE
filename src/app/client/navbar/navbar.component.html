@@ -11,36 +11,38 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav ms-auto p-4 p-lg-0">
       <li class="nav-item">
-        <a routerLink="/home" class="nav-link" [ngClass]="{'active': activeNav=='home'}">Trang chủ</a>
+        <a (click)="directLink('/home', 'home')" class="nav-link" [ngClass]="{'active': activeNav=='home'}">Trang
+          chủ</a>
       </li>
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="javascript:void(0)" role="button" data-bs-toggle="dropdown"
-           aria-expanded="false">
-          Luyện tập
+      <li class="nav-item">
+        <a (click)="directLink('/list-test', 'test')" class="nav-item nav-link"
+           [ngClass]="{'active': activeNav=='test'}">
+          Luyện thi
         </a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" routerLink="/list-test"> Luyện đề</a></li>
-          <li><a class="dropdown-item" href="javascript:void(0)"> Luyện nghe </a></li>
-        </ul>
       </li>
       <li class="nav-item">
-        <a routerLink="/list-test" class="nav-item nav-link" [ngClass]="{'active': activeNav=='test'}">Thi</a>
+        <a (click)="directLink('/list-test', 'test')" class="nav-item nav-link d-none"
+           [ngClass]="{'active': activeNav=='test'}">Thi</a>
       </li>
       <li class="nav-item">
-        <a routerLink="/my-exam" class="nav-item nav-link" [ngClass]="{'active': activeNav=='my-exam'}">Kết quả</a>
+        <a (click)="directLink('/my-exam', 'my-exam')" class="nav-item nav-link"
+           [ngClass]="{'active': activeNav=='my-exam'}">Kết
+          quả</a>
       </li>
       <li class="nav-item">
-        <a routerLink="/blog" class="nav-item nav-link" [ngClass]="{'active': activeNav=='blog'}">Blog</a>
+        <a (click)="directLink('/blog', 'blog')" class="nav-item nav-link" [ngClass]="{'active': activeNav=='blog'}">Blog</a>
       </li>
       <li class="nav-item">
-        <a routerLink="/profile" class="nav-item nav-link d-xl-none">Trang cá nhân</a>
+        <a (click)="directLink('/profile', '')" class="nav-item nav-link d-xl-none">Trang cá nhân</a>
       </li>
       <li class="nav-item">
-        <a routerLink="/pricing" class="nav-item nav-link" [ngClass]="{'active': activeNav=='pricing'}">Bảng giá</a>
+        <a (click)="directLink('/pricing', 'pricing')" class="nav-item nav-link"
+           [ngClass]="{'active': activeNav=='pricing'}">Bảng
+          giá</a>
       </li>
       <li class="nav-item">
-        <a routerLink="/about" class="nav-item nav-link d-none">Liên hệ</a>
+        <a (click)="directLink('/about', '')" class="nav-item nav-link d-none">Liên hệ</a>
       </li>
       <li class="nav-item">
         <a href="javascript:void(0)" (click)="openLogin()"
@@ -51,12 +53,12 @@
       <a href="javascript:void(0)" class="navbar-brand d-flex align-items-center">
         <img class="nav-link dropdown-toggle rounded-circle d-none d-lg-block" role="button" data-bs-toggle="dropdown"
              aria-expanded="false"
-             [src]="profileService.getAvatar" width="60" height="60" style="object-fit: contain;"
+             [ngSrc]="profileService.getAvatar" width="60" height="60" style="object-fit: contain;"
              referrerpolicy="no-referrer"
              alt="Avatar"/>
       </a>
       <ul class="dropdown-menu dropdown-menu-2">
-        <li><a class="dropdown-item" routerLink="/profile">Trang cá nhân</a></li>
+        <li><a class="dropdown-item" (click)="directLink('/profile', '')">Trang cá nhân</a></li>
         <li><a class="dropdown-item" href="javascript:void(0)" (click)="logout()">Đăng xuất</a></li>
       </ul>
     </div>

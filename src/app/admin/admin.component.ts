@@ -117,7 +117,11 @@ export class AdminComponent implements OnInit {
   }
 
   openTab(path: string) {
-    this.router.navigateByUrl(path);
+    if (path.includes('api/applications')) {
+      window.open(path, '_blank');
+      return;
+    }
+    this.router.navigateByUrl(path).then();
   }
 }
 

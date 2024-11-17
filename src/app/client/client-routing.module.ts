@@ -44,9 +44,14 @@ const routes: Routes = [
       },
       {path: 'oauth2', loadChildren: () => import('./redirect/redirect.module').then(m => m.RedirectModule)},
       {path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)},
-      {path: 'pricing', loadChildren: () => import('./pricing/pricing.module').then(m => m.PricingModule)}
+      {path: 'pricing', loadChildren: () => import('./pricing/pricing.module').then(m => m.PricingModule)},
+      {
+        path: 'thank-you/:payment',
+        resolve: [profileResolver],
+        loadChildren: () => import('./thank-you/thank-you.module').then(m => m.ThankYouModule)
+      }
     ]
-  }
+  },
 ];
 
 @NgModule({

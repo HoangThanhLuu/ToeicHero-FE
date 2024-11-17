@@ -157,7 +157,6 @@ export class TestComponent implements OnInit {
           }
         });
     });
-    this.profileService.getProfileData().subscribe();
   }
 
   updateAllChecked() {
@@ -191,30 +190,27 @@ export class TestComponent implements OnInit {
     this.profileService.getProfileData().subscribe({
       next: profile => {
         if (profile) {
-          window.location.href = `${window.location.href}/start`;
+          // window.location.href = `${window.location.href}/start`;
+          this.router.navigate([`/test/${this.currentExam?.examId}/start`]).then();
         } else {
-          this.toast.error('Vui lòng đăng nhập để thực hiện bài test');
-          this.bsModalService.show(LoginComponent, {
-            class: 'modal-lg modal-dialog-centered',
-            initialState: {
-              isNotDirect: true,
-              directLink: window.location.href
-            }
-          });
+          this.showLogin();
         }
       },
       error: () => {
-        this.toast.error('Vui lòng đăng nhập để thực hiện bài test');
-        this.bsModalService.show(LoginComponent, {
-          class: 'modal-lg modal-dialog-centered',
-          initialState: {
-            isNotDirect: true,
-            directLink: window.location.href
-          }
-        });
+        this.showLogin();
       }
     });
+  }
 
+  showLogin() {
+    this.toast.error('Vui lòng đăng nhập để thực hiện bài test');
+    this.bsModalService.show(LoginComponent, {
+      class: 'modal-lg modal-dialog-centered',
+      initialState: {
+        isNotDirect: true,
+        directLink: window.location.href
+      }
+    });
   }
 
   startPractice() {
@@ -226,25 +222,21 @@ export class TestComponent implements OnInit {
       this.startFullTest();
       return;
     }
-    this.http.get('/api/user/get-profile')
-      .subscribe((res: any) => {
-        if (res?.success) {
+    this.profileService.getProfileData().subscribe({
+      next: (profile) => {
+        if (profile) {
           const listPart = this.checkOptionsOne.filter(item => item.checked).map(item => item.value);
           const listPartString = listPart.join(',');
           const routeParams = {
             part: listPartString,
           };
-          this.router.navigate([`/test/${this.currentExam?.examId}/practice`], {queryParams: routeParams});
+          this.router.navigate([`/test/${this.currentExam?.examId}/practice`], {queryParams: routeParams}).then();
         } else {
-          this.toast.error('Vui lòng đăng nhập để thực hiện bài test');
-          this.bsModalService.show(LoginComponent, {
-            class: 'modal-lg modal-dialog-centered',
-            initialState: {
-              isNotDirect: true
-            }
-          });
+          this.showLogin();
         }
-      });
+      },
+      error: _ => this.showLogin()
+    });
   }
 
 

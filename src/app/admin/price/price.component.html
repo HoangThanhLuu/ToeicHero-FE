@@ -4,7 +4,7 @@
 </app-page-header>
 
 
-<div class="container-fluid mt-4 px-5">
+<div class="container-fluid mt-4">
   <div class="row" id="customTable">
     <div class="col-sm">
       <div class="main-box-header d-flex align-items-center text-white px-3">
@@ -33,7 +33,7 @@
                 {{ item.planName }}
               </td>
               <td class="text-center">
-                {{ item.planPrice }}
+                {{ item.planPrice | currency: 'VND' }}
               </td>
               <td class="text-center text-center template-demo">
                 <button (click)="openCreatePlan(item)" class="btn btn-sm btn-warning">
@@ -78,7 +78,8 @@
               <th class="text-center align-middle" scope="row">{{ i + 1 }}</th>
               <td class="align-middle">{{ item.planDetailName }}</td>
               <td class="text-center align-middle">
-                <nz-switch [disabled]="currentPlan===-1" [(ngModel)]="item.status" (click)="updatePlanDetailAtPlan(item.planDetailId, item.status)"></nz-switch>
+                <nz-switch [disabled]="currentPlan===-1" [(ngModel)]="item.status"
+                           (click)="updatePlanDetailAtPlan(item.planDetailId, item.status)"></nz-switch>
               </td>
               <td class="text-center text-center template-demo">
                 <button (click)="openCreatePlanDetail(item)" class="btn btn-sm btn-warning">

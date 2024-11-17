@@ -37,6 +37,8 @@ export class DetailAnswerComponent {
     transcript:'',
     questionNumber: '',
     translateTranscript: '',
-    selectedAnswer: ''
+    selectedAnswer: '',
+    questionImages:'',
+    haveMultiImage:''
   };
 }
