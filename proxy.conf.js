@@ -1,7 +1,7 @@
 const PROXY_CONFIG = [
   {
     context: [
-      //"/api",
+      "/api",
     ],
     target: "http://localhost:8080",
     secure: false,
@@ -12,7 +12,7 @@ const PROXY_CONFIG = [
   },
   {
     context: [
-       "/api",
+       // "/api",
     ],
     target: "http://172.31.99.85:8080",
     secure: false,

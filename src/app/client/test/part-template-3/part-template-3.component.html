@@ -11,7 +11,7 @@
         - {{ item?.question[item?.question?.length - 1]?.questionNumber }} refer to following conversation:
       </span>
       <div class="col-12 row mh overflow-auto">
-        <div class="col-12">
+        <div class="col-12 paragraph">
           <ng-container *ngFor="let imgPart of item?.question[0]?.questionImages; let i = index;">
             <img nz-image
                  nz-tooltip="Click vào để xem rõ hơn."

@@ -4,7 +4,7 @@
       {{ part?.partContent }}
     </p>
   </div>
-  @if(indexPart != 5) {
+  @if(indexPart != 5 && !isReal) {
     <div class="col-5 ">
       <app-audio-part [audioSource]="part?.partAudio"></app-audio-part>
     </div>
@@ -17,7 +17,6 @@
             nz-image
             nz-tooltip="Click vào để xem rõ hơn."
             class="nz-image"
-            loading="lazy"
             [nzSrc]="item?.questionImage"
             [alt]="'TOEICUTE'"
           />

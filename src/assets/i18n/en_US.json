@@ -146,5 +146,7 @@
   "UPDATE_PROFILE": "Update Profile",
   "RESET_PASSWORD": "Reset Password",
   "add": "Add",
-  "edit": "Edit"
+  "edit": "Edit",
+  "STANDARD_USER": "Standard User",
+  "VIP_USER": "VIP User"
 }
