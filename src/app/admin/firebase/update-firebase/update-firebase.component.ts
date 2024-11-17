@@ -26,8 +26,6 @@ export class UpdateFirebaseComponent implements OnInit{
     id: '',
     tokenKey: ''
   };
-
-
   constructor(private http: HttpClient,
               private toastr: ToastrService,
               private spinnerService: NgxSpinnerService,

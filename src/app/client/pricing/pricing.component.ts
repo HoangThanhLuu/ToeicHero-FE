@@ -86,18 +86,10 @@ export class PricingComponent implements OnInit {
       return;
     }
     this.currentChoicePlan = plan;
-    const drawerRef = this.drawerService.create({
+    this.drawerService.create({
       nzTitle: 'Phương thức thanh toán',
       nzFooter: this.footer,
       nzContent: this.drawerTemplate
-    });
-
-    drawerRef.afterOpen.subscribe(() => {
-      console.log('Drawer(Template) open');
-    });
-
-    drawerRef.afterClose.subscribe(() => {
-      console.log('Drawer(Template) close');
     });
   }
 
@@ -111,8 +103,7 @@ export class PricingComponent implements OnInit {
             .subscribe({
               next: (res: any) => {
                 if (res?.success) {
-                  // window.location.href = res.data;
-                  window.open(res.data, '_blank');
+                  window.location.href = res?.data;
                 }
               },
               complete: () => this.spin.hide().then()

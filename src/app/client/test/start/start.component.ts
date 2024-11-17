@@ -120,6 +120,7 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
                 nzContent: ``,
                 nzCentered: true,
                 nzClosable: false,
+                nzCancelDisabled: true,
                 nzOkText: 'Thoát',
                 nzOnOk: () => {
                   localStorage.removeItem('token');
