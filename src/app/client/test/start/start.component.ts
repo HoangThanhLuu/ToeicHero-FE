@@ -46,6 +46,7 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
   buttonStates: { [key: number]: boolean } = {};
   currentExam: any;
   listPart: any = [];
+  audio: any;
   selectedIndex: number = 0;
   selectedAnswer: { [key: number]: string } = {};
   param: any = {};
@@ -227,6 +228,7 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
           if (res?.success) {
             this.currentExam = res?.data;
             this.listPart = res?.data?.parts;
+            this.audio = res?.data.examAudio;
             this.initializeSelectedAnswer();
           } else {
             this.toast.error(res?.message);

@@ -4,9 +4,6 @@
       {{ part?.partContent }}
     </p>
   </div>
-  <div class="col-5" [ngClass]="{'d-none': indexPart == 5}">
-    <app-audio-part [audioSource]="part?.partAudio"></app-audio-part>
-  </div>
   <ng-container *ngFor="let item of part?.questions; let part1Index = index;">
     <div class="row mt-3" id="questionContainer_0_{{item?.questionId}}">
       <ng-container *ngIf="item?.questionImage">

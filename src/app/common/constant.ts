@@ -1,5 +1,5 @@
 export const BASE_URL_LOCAL = 'http://localhost:8080';
-export const BASE_URL = 'https://toeicute-v2-54835bc4a925.herokuapp.com';
+export const BASE_URL = 'https://toeicute-38c2b32a7c77.herokuapp.com';
 
 export const CONSTANT = {
   formatDate: 'dd-MM-yyyy H:mm:ss',

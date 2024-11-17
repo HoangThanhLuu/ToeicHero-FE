@@ -88,7 +88,8 @@ export class HistoryExamDetailComponent implements OnInit {
          correctAnswer: data?.question?.correctAnswer,
          transcript: data?.question?.transcript,
          translateTranscript: data?.question?.translateTranscript,
-
+         questionImages: data?.question?.questionImages,
+         haveMultiImage: data?.question?.haveMultiImage
        }
       }
     });

@@ -3,19 +3,20 @@
     <div class="card-body">
       <h4 class="card-title" [innerText]="title"></h4>
       <h6> Câu: {{ this.params.questionNumber }}</h6>
-      @if( this.params.questionNumber <= 100) {
-        <audio controls >
-          <source src="{{this.params.questionAudio}}">
-        </audio>
+      @if (this.params.haveMultiImage) {
+        @for (image of this.params?.questionImages; track image) {
+          <img class="w-100 h-50 coverimage" [src]="image.questionImage"> <br>
+        }
+      } @else if (this.params?.questionImage && !this.params.haveMultiImage) {
+        <img class="w-100 h-50 coverimage" [src]="this.params?.questionImage"> <br>
       }
-      <img src="{{ this.params?.questionImage }} "> <br>
       <span> {{ this.params?.paragraph1 }} </span>
       <span> {{ this.params?.paragraph2 }} </span>
       <span> {{ this.params?.questionContent }} </span> <br>
       <label nz-radio [nzDisabled]>{{ this.params?.answerA }}</label> <br>
       <label nz-radio [nzDisabled]>{{ this.params?.answerB }}</label> <br>
       <label nz-radio [nzDisabled]>{{ this.params?.answerC }}</label> <br>
-      @if (this.params.questionNumber < 7 || this.params.questionNumber > 31 ) {
+      @if (this.params.questionNumber < 7 || this.params.questionNumber > 31) {
         <label nz-radio nzValue="D">{{ this.params?.answerD }}</label> <br>
       }
       <span>Đáp án bạn chọn: <mark> {{ this.params?.selectedAnswer }} </mark> </span> <br>

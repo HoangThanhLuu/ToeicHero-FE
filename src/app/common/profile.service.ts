@@ -18,7 +18,6 @@ export class ProfileService {
     phone: '',
     address: '',
     userId: '',
-    userType: ''
   };
   isLogin: boolean = false;
 
@@ -26,14 +25,9 @@ export class ProfileService {
     this.getProfileData();
   }
 
-  get getUserType() {
-    return this.currentUser.userType;
-  }
-
   get getAvatar() {
     return this.currentUser.avatar;
   }
-
   get getEmail() {
     return this.currentUser.email;
   }
