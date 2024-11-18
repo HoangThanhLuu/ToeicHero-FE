@@ -1,18 +1,18 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ToastrService} from 'ngx-toastr';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {BsModalRef} from 'ngx-bootstrap/modal';
 import {TranslateService} from '@ngx-translate/core';
 import {AdminLibBaseCss3, AdminStyle2} from '../../admin.style';
-import {TinyServiceService} from '../../../common/tiny-service.service';
+import {TinyConfig, TinyServiceService} from '../../../common/tiny-service.service';
 
 @Component({
   selector: 'app-add-blog',
   templateUrl: './add-blog.component.html',
   styleUrls: ['./add-blog.component.scss', ...AdminLibBaseCss3, ...AdminStyle2]
 })
-export class AddBlogComponent {
+export class AddBlogComponent implements OnInit {
   @Input() title: string = "Add Blog: ";
   @Input() isShowImage: boolean = false;
   @Input() imageSrc: string | undefined = "";
@@ -23,7 +23,7 @@ export class AddBlogComponent {
   showBorderError: any = [];
   formData = new FormData();
   fileImage: string | null = null;
-  tinymceConfig: any;
+  tinymceConfig: TinyConfig = new TinyConfig();
   params: any = {
     blogId: '',
     author: '',
@@ -41,7 +41,10 @@ export class AddBlogComponent {
               private bsModalRef: BsModalRef,
               private translate: TranslateService,
               private tinyService: TinyServiceService) {
-    this.tinymceConfig = tinyService.getTinyConfig();
+    this.tinymceConfig = this.tinyService.getTinyConfig;
+  }
+
+  ngOnInit(): void {
   }
 
   addBlog(): void {

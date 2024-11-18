@@ -6,6 +6,7 @@ import {LoginComponent} from './login.component';
 import {LoginPopupComponent} from './login-popup/login-popup.component';
 import {OtpConfirmComponent} from './otp-confirm/otp-confirm.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
+import {NgOptimizedImage} from '@angular/common';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {ForgotPasswordComponent} from './forgot-password/forgot-password.compone
   ],
   imports: [
     ShareClientModule,
-    LoginRoutingModule
+    LoginRoutingModule,
+    NgOptimizedImage
   ]
 })
 export class LoginModule { }

@@ -121,6 +121,8 @@ export class AdminComponent implements OnInit {
       window.open(path, '_blank');
       return;
     }
+    console.log(path)
+    return;
     this.router.navigateByUrl(path).then();
   }
 }

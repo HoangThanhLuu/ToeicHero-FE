@@ -14,7 +14,7 @@ const PROXY_CONFIG = [
     context: [
        // "/api",
     ],
-    target: "http://172.31.99.85:8080",
+    target: "http://192.168.1.26:8080",
     secure: false,
     "changeOrigin": true,
     "logLevel": "debug",

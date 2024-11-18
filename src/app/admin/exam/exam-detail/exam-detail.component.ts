@@ -4,7 +4,7 @@ import {ToastrService} from "ngx-toastr";
 import {HttpClient} from "@angular/common/http";
 import {NzModalRef, NzModalService} from "ng-zorro-antd/modal";
 import {BsModalService} from "ngx-bootstrap/modal";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {NgxSpinnerService} from "ngx-spinner";
 import {finalize} from "rxjs";
 import {EditPartComponent} from "../edit-part/edit-part.component";
@@ -34,6 +34,7 @@ export class ExamDetailComponent implements OnInit {
               private modal: NzModalService,
               private bsModalService: BsModalService,
               private spinnerService: NgxSpinnerService,
+              private router: Router,
               private route: ActivatedRoute) {
   }
 
@@ -73,7 +74,7 @@ export class ExamDetailComponent implements OnInit {
   }
 
   seeDetail(item: any) {
-    window.location.href = `/admin/exam/question/list-by-part?pid=${item?.partId}`;
+    this.router.navigate(['/admin/exam/question/list-by-part'], {queryParams: {pid: item?.partId}});
   }
 
   importExel(item: any, index: number) {

@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row mb-5">
+    <div class="col-12 fs-4 p-4 bg-ok mt-2 fw-bold">
+      Bạn đã đăng ký khóa học thành công! Vui lòng thanh toán đơn hàng theo hướng dẫn.
+      Mã kích hoạt sẽ được gửi qua email và sdt của bạn.
+    </div>
+    <div class="col-12"><h1>Hướng dẫn thanh toán</h1></div>
+    <div class="col-12 fs-5">
+      Bạn vui lòng chuyển khoản cho chúng tôi theo 1 trong các hình thức sau: <br><br>
+      Sau khi xác nhận thông tin chuyển khoản, chúng tôi sẽ liên hệ với bạn qua tin nhắn, zalo hoặc email để xác nhận.
+      Bạn có thể email, nhắn tin hoặc gọi điện cho chúng tôi để được hỗ trợ. <br><br>
+      Hotline hỗ trợ: <span class="text-info">19001122</span>
+    </div>
+    <div class="col-12 fs-5 mt-2">
+      <h2>1. Chuyển khoản qua ngân hàng</h2>
+    </div>
+    <ul class="col-12 d-flex flex-column">
+      <li class="fw-bold">Ngân hàng ACB - Ngân hàng thương mại cổ phần Á Châu ACB</li>
+      <li>Chủ tài khoản: <span class="fw-bold">333 555 444</span></li>
+      <li>Nội dung chuyển khoản: Tên + SDT</li>
+      <li>QR:</li>
+    </ul>
+    <div class="col-4">
+      @if (imgSrc) {
+        <img
+          nz-image
+          width="200px"
+          height="200px"
+          [nzSrc]="imgSrc"
+          alt=""
+        />
+      } @else {
+        <nz-qrcode
+          nzValue="ok"
+          nzIcon="https://genk.mediacdn.vn/k:thumb_w/640/2016/1-1462880995972/la-mat-voi-cosplay-boa-hancock-trong-truyen-tranh-one-piece.jpg"
+          nzLevel="H"
+        ></nz-qrcode>
+      }
+    </div>
+  </div>
+</div>

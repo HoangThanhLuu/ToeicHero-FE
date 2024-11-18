@@ -4,6 +4,7 @@ import {EmailComponent} from './email.component';
 import {UpdateEmailComponent} from './update-email/update-email.component';
 import {TemplateEmailComponent} from './template-email/template-email.component';
 import {UpdateTemplateEmailComponent} from './template-email/update-template-email/update-template-email.component';
+import {tinyResolver} from '../../common/tiny-service.service';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
     component: TemplateEmailComponent
   }, {
     path: 'template-email/update',
+    resolve: [tinyResolver],
     component: UpdateTemplateEmailComponent
   }
 ];

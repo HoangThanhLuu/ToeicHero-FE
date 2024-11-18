@@ -29,7 +29,7 @@ export class PricingComponent implements OnInit {
     }),
     [MethodPaymentEnum.PAYPAL]: () => new Params(`/api/payment/paypal/create`, this.currentChoicePlan.planPrice),
     [MethodPaymentEnum.VN_PAY]: () => new Params('/api/payment/vn-pay/create', {
-      orderInfo: 'Dang ky goi thanh vien Toeicute',
+      orderInfo: 'Dang ky goi thanh vien Toeic hero',
       amount: this.currentChoicePlan.planPrice
     })
   };

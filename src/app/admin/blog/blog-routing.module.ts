@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {BlogComponent} from './blog.component';
 import {AddBlogComponent} from './add-blog/add-blog.component';
+import {tinyResolver} from '../../common/tiny-service.service';
 
 const routes: Routes = [
   {
@@ -10,6 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'add',
+    resolve: [tinyResolver],
     component: AddBlogComponent
   }
 ];

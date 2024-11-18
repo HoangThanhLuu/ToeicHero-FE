@@ -15,13 +15,18 @@ import {NzSwitchModule} from 'ng-zorro-antd/switch';
 import {NzFormModule} from 'ng-zorro-antd/form';
 import {NzPaginationModule} from 'ng-zorro-antd/pagination';
 import {NzModalModule} from 'ng-zorro-antd/modal';
-import {TranslateModule} from '@ngx-translate/core';
+import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
 import {NzSelectModule} from 'ng-zorro-antd/select';
 import {NzWaterMarkModule} from 'ng-zorro-antd/water-mark';
 import {NzSpinModule} from 'ng-zorro-antd/spin';
 import {AudioPlayerComponent} from '../exam/audio-player/audio-player.component';
 import {PageHeaderComponent} from '../page-header/page-header.component';
+import {HttpClient} from '@angular/common/http';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -29,6 +34,13 @@ import {PageHeaderComponent} from '../page-header/page-header.component';
   ],
   imports: [
     CommonModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient]
+      }
+    }),
     ShareAdminRoutingModule,
     PageHeaderComponent
   ],
@@ -55,7 +67,11 @@ import {PageHeaderComponent} from '../page-header/page-header.component';
     NzSpinModule,
     AudioPlayerComponent,
     PageHeaderComponent
-  ]
+  ],
+  providers: [TranslateService]
 })
 export class ShareAdminModule {
+  constructor(private translateService: TranslateService) {
+    this.translateService.setDefaultLang('en_US');
+  }
 }

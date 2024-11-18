@@ -1,0 +1,24 @@
+<div class="col-12 grid-margin stretch-card mb-0">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title" [innerText]="title"></h4>
+      <form class="forms-sample">
+        <div class="form-group">
+          <label for="exampleInputName1">Category Course Name</label>
+          <input type="text" class="form-control" id="exampleInputName1" name="name"
+                 placeholder="Input Category Name" [(ngModel)]="this.params.categoryName">
+        </div>
+        <div class="form-group">
+          <label for="positionId">Position</label>
+          <input type="number" class="form-control" id="positionId" name="position"
+                 [disabled]="isAdd"
+                 min="0"
+                 [tooltip]="isAdd ? 'Position will be auto set' : ''"
+                 placeholder="Input Position of Category" [(ngModel)]="this.params.position">
+        </div>
+      </form>
+      <button class="btn btn-gradient-primary-2 mt-2" (click)="doAction()">{{ isAdd ? 'Add' : 'Edit' }}</button>
+      <button class="btn btn-secondary ms-2 mt-2" [ngClass]="{'d-none' : isAdd}" (click)="close()">Cancel</button>
+    </div>
+  </div>
+</div>

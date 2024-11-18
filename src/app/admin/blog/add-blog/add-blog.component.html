@@ -28,9 +28,10 @@
         </div>
         <div class="form-group">
           <label > Content </label>
-          <editor apiKey="01d1ysvvu8ltpjkbz1sn01lv6t5mu5wz0x6duazjsk6n6r66"
+          <editor [apiKey]="tinymceConfig.apiKey"
                   [(ngModel)]="params.content"
-                  [init]="tinymceConfig"
+                  [init]="tinymceConfig.config"
+                  name="content"
           ></editor>
         </div>
         <div class="form-group">

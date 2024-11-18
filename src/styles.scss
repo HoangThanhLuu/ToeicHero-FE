@@ -2,12 +2,12 @@
   --primary-100: #ECACC8;
   --primary-200: #E38CB2;
   --primary-300: #DC6A9C;
-  --primary-400: #D44986;
-  --primary-500: #C62F70;
-  --primary-600: #A5275E;
-  --primary: #7E1E47;
-  --primary-800: #631738;
-  --primary-900: #52142F;
+  --primary-400: #566573;
+  --primary-500: #2c3e50;
+  --primary-600: #273746;
+  --primary: #212f3d;
+  --primary-800: #1c2833;
+  --primary-900: #17202a;
   --light: #EFF5FF;
   --dark: #1B2C51;
   --gray-600: #6c757d;
@@ -17,7 +17,7 @@
 @import "node_modules/bootstrap/scss/variables";
 
 
-$default-text-color: #7E1E47;
+$default-text-color: #17202a;
 $color-2: #0D51A5;
 $color-3: #DC3545;
 $color-4: #BD2130;
@@ -175,9 +175,11 @@ $theme-colors: (
 .breadcrumb-item + .breadcrumb-item::before {
   color: var(--light);
 }
+
 .modal-dialog-custom {
   max-width: 50vw;
 }
+
 /* Importing Bootstrap SCSS file. */
 @import "node_modules/bootstrap/scss/bootstrap";
 @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
@@ -188,7 +190,7 @@ $theme-colors: (
 /* Importing Datepicker SCSS file. */
 @import "node_modules/ng-zorro-antd/ng-zorro-antd.min.css";
 @import "node_modules/ng-zorro-antd/style/index.min.css"; /* Import base styles */
-@import "node_modules/ng-zorro-antd/button/style/index.min.css";  /* Import one component's styles */
+@import "node_modules/ng-zorro-antd/button/style/index.min.css"; /* Import one component's styles */
 
 @import "node_modules/ng-zorro-antd/src/ng-zorro-antd.min.css";
 @import "node_modules/ng-zorro-antd/resizable/style/index.min.css";
@@ -196,9 +198,10 @@ $theme-colors: (
 @import "node_modules/ng-zorro-antd/graph/style/index.min.css";
 @import "ngx-toastr/toastr-bs5-alert";
 
-.fs-message{
+.fs-message {
   font-size: 0.8rem;
 }
+
 .error-input-custom {
   border: 1px solid red !important;
 }
@@ -216,21 +219,42 @@ $theme-colors: (
   font-size: 16px;
   z-index: 10000;
 }
+
 .cdk-overlay-container {
   z-index: 999999 !important;
 }
+
 .main-box-header {
   background: $primary;
   border: solid 1px $primary;
   height: 40px;
   padding: 0.5rem 1.25rem;
+
   .close-icon {
     color: $color-3;
+
     :hover {
       color: $color-4;
     }
   }
 }
+
 .cursor {
   cursor: pointer;
+}
+
+.course-reviews {
+  .images-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+
+  img {
+    width: 100%;
+    height: 450px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 5px;
+  }
 }

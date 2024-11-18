@@ -1,0 +1,45 @@
+<app-page-header
+  [title]="title"
+  [currentPage]="currentPage">
+</app-page-header>
+
+<div class="col-12 grid-margin stretch-card mb-0">
+  <div class="card">
+    <div class="card-body">
+      <form class="forms-sample">
+        <div class="form-group">
+          <label>Thumnail</label>
+          <div class="container-upload" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
+            <div class="upload-box">
+              <div class="content">
+                <div class="upload-icon" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
+                  <i class="mdi mdi-cloud-upload text-dark" style="height: 100px; width: 100px;"></i>
+                </div>
+                <h5 class="text-dark" (drop)="handleDrop($event)" (dragover)="allowDrop($event)">
+                  Drag and drop file here
+                </h5>
+                <p> Or </p>
+                <div class="upload-btn-wrapper">
+                  <button class="btn btn-gradient-primary">Upload</button>
+                  <input type="file" (change)="handleFileInput($event)" (drop)="handleDrop($event)"
+                         (dragover)="allowDrop($event)"/>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="box-body mt-3" [ngClass]="{'d-none' : !isShowImage}">
+            <div class="image-container">
+              <nz-badge [nzCount]="iconTemplate" (click)="deleteImg()">
+                <img [src]="this.imageSrc" alt="" style="width: 200px; height: 200px; object-fit: cover;"
+                     class="ant-image-preview">
+              </nz-badge>
+              <ng-template #iconTemplate><i class="mdi mdi-close-circle"></i></ng-template>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-gradient-primary-2" (click)="doAction()">Update</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -59,7 +59,7 @@
     "UPDATE_TINY_CONFIG_SUCCESS": "Cập nhật Tiny Config thành công!",
     "UPDATE_TINY_CONFIG_STATUS_SUCCESS": "Cập nhật trạng thái Tiny Config thành công!",
     "DELETE_TINY_CONFIG_SUCCESS": "Xóa Tiny Config thành công!",
-    "DUPLUCATE_KEY": "Key đã tồn tại!"
+    "DUPLICATE_KEY": "Key đã tồn tại!"
   },
   "CRAWL": {
     "UPDATE_CONFIG_SUCCESS": "Cập nhật Config thành công!",

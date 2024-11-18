@@ -1,76 +1,94 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {ResolveFn} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TinyServiceService {
   userDarkMode: boolean = false;
-  tinymceConfig = {
-    selector: 'textarea',
-    plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons accordion',
-    editimage_cors_hosts: ['picsum.photos'],
-    menubar: 'file edit view insert format tools table help',
-    toolbar: "undo redo | accordion accordionremove | blocks fontfamily fontsize | bold italic underline strikethrough | align numlist bullist | link image | table media | lineheight outdent indent| forecolor backcolor removeformat | charmap emoticons | code fullscreen preview | save print | pagebreak anchor codesample | ltr rtl",
-    autosave_ask_before_unload: true,
-    autosave_interval: '30s',
-    autosave_prefix: '{path}{query}-{id}-',
-    autosave_restore_when_empty: false,
-    autosave_retention: '2m',
-    image_advtab: true,
-    link_list: [
-      {title: 'My page 1', value: 'https://www.tiny.cloud'},
-      {title: 'My page 2', value: 'http://www.moxiecode.com'}
-    ],
-    image_list: [
-      {title: 'My page 1', value: 'https://www.tiny.cloud'},
-      {title: 'My page 2', value: 'http://www.moxiecode.com'}
-    ],
-    image_class_list: [
-      {title: 'None', value: ''},
-      {title: 'Some class', value: 'class-name'}
-    ],
-    importcss_append: true,
-    file_picker_callback: (callback: any, value: any, meta: any) => {
-      /* Provide file and text for the link dialog */
-      if (meta.filetype === 'file') {
-        // open file picker
+  tinymceConfig: TinyConfig = new TinyConfig();
 
-      }
-
-      /* Provide image and alt text for the image dialog */
-      if (meta.filetype === 'image') {
-      }
-
-      /* Provide alternative source and posted for the media dialog */
-      if (meta.filetype === 'media') {
-      }
-    },
-    templates: [
-      {
-        title: 'New Table',
-        description: 'creates a new table',
-        content: '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>'
-      },
-      {title: 'Starting my story', description: 'A cure for writers block', content: 'Once upon a time...'},
-      {
-        title: 'New list with dates',
-        description: 'New List with dates',
-        content: '<div class="mceTmpl"><span class="cdate">cdate</span><br><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>'
-      }
-    ],
-    template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
-    template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
-    height: 600,
-    image_caption: true,
-    quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
-    noneditable_class: 'mceNonEditable',
-    contextmenu: 'link image table',
-    skin: this.userDarkMode ? 'oxide-dark' : 'oxide',
-    content_css: this.userDarkMode ? 'dark' : 'default',
-    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
-  };
-  getTinyConfig(){
-    return this.tinymceConfig;
-
+  constructor(private http: HttpClient) {
   }
+
+  set setTinyConfig(config: TinyConfig) {
+    this.tinymceConfig = config;
+  }
+
+  get getTinyConfig(): TinyConfig {
+    return this.tinymceConfig;
+  }
+
+  getTinyConfigObservable(height: number = 600): Observable<TinyConfig> {
+    return new Observable<TinyConfig>((subscriber: any) => {
+      const sub = this.http.get('/api/tiny-config/get-active').subscribe({
+        next: (res: any) => {
+          this.tinymceConfig.apiKey = res.data.apiKey;
+          this.tinymceConfig.config.height = height;
+          subscriber.next(this.tinymceConfig);
+        },
+        error: (err: any) => {
+          subscriber.error(err);
+        },
+        complete: () => {
+          subscriber.next(this.tinymceConfig);
+          subscriber.complete();
+        }
+      });
+      return () => sub.unsubscribe();
+    });
+  }
+}
+
+export const tinyResolver: ResolveFn<Observable<TinyConfig>> = () => {
+  return inject(TinyServiceService).getTinyConfigObservable();
+}
+
+export class TinyConfig {
+  config: Config = new Config();
+  apiKey: string = '40ku6oculogk4tet8h0si5m7sg4z8qm85i5xl4xxgj0n3y3t';
+}
+
+export class Config {
+  selector: string = 'textarea';
+  plugins: string = 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons accordion';
+  editimage_cors_hosts: string[] = ['picsum.photos'];
+  menubar: string = 'file edit view insert format tools table help';
+  toolbar: string = "undo redo | accordion accordionremove | blocks fontfamily fontsize | bold italic underline strikethrough | align numlist bullist | link image | table media | lineheight outdent indent| forecolor backcolor removeformat | charmap emoticons | code fullscreen preview | save print | pagebreak anchor codesample | ltr rtl";
+  autosave_ask_before_unload: boolean = true;
+  autosave_interval: string = '30s';
+  autosave_prefix: string = '{path}{query}-{id}-';
+  autosave_restore_when_empty: boolean = false;
+  autosave_retention: string = '2m';
+  image_advtab: boolean = true;
+  link_list: [] = [];
+  image_list: [] = [];
+  image_class_list: [] = [];
+  importcss_append: boolean = true;
+  file_picker_callback: any = (callback: any, value: any, meta: any) => {
+    /* Provide file and text for the link dialog */
+    if (meta.filetype === 'file') {
+    }
+
+    /* Provide image and alt text for the image dialog */
+    if (meta.filetype === 'image') {
+    }
+
+    /* Provide alternative source and posted for the media dialog */
+    if (meta.filetype === 'media') {
+    }
+  };
+  templates: [] = [];
+  template_cdate_format: string = '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]';
+  template_mdate_format: string = '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]';
+  height: number = 600;
+  image_caption: boolean = true;
+  quickbars_selection_toolbar: string = 'bold italic | quicklink h2 h3 blockquote quickimage quicktable';
+  noneditable_class: string = 'mceNonEditable';
+  contextmenu: string = 'link image table';
+  skin: string = 'oxide';
+  content_css: string = 'default';
+  content_style: string = 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }'
 }
