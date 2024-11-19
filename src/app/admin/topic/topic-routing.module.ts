@@ -1,13 +1,15 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {TopicComponent} from './topic.component';
+import {AddTopicComponent} from './add-topic/add-topic.component';
 
 const routes: Routes = [
   {
     path: 'list',
-    loadComponent: () => import('./topic.component').then(m => m.TopicComponent)
+    component: TopicComponent
   }, {
     path: 'add',
-    loadComponent: () => import('./add-topic/add-topic.component').then(m => m.AddTopicComponent)
+    component: AddTopicComponent
   }
 ];
 
