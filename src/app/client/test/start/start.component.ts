@@ -106,6 +106,11 @@ export class StartComponent implements OnInit, OnDestroy, AfterViewInit {
       });
     } else {
       this.initData();
+      // remove iframe have id kommunicate-widget-iframe
+      const scriptElement = document.getElementById('kommunicate-widget-iframe');
+      if (scriptElement) {
+        scriptElement.remove();
+      }
     }
   }
 

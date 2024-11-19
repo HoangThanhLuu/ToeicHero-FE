@@ -33,9 +33,13 @@ const routes: Routes = [
       {path: 'tiny', loadChildren: () => import('./tiny/tiny.module').then(m => m.TinyModule)},
       {path: 'blog', loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)},
       {path: 'pricing', loadChildren: () => import('./price/price.module').then(m => m.PriceModule)},
+      {
+        path: 'course-mana',
+        loadChildren: () => import('./course-mana/course-mana.module').then(m => m.CourseManaModule)
+      },
       {path: 'statistic/exam/:examId', component: DetailExamComponent},
     ]
-  }
+  },
 ];
 
 @NgModule({

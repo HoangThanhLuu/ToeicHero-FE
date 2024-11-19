@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, isDevMode, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {matchpassword} from './matchpassword.validator';
@@ -203,7 +203,7 @@ export class LoginComponent implements OnInit {
             this.showConfirmOTP(this.loginForm.email, false);
           }
         } else {
-          const msg = this.translate.instant(`USER.${res?.message}`);
+          const msg = this.translate.instant(`${res?.message}`);
           if (res?.success) {
             this.toast.success(msg);
           } else {

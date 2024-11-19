@@ -6,7 +6,7 @@
           <h2 class="d-flex flex-row justify-content-center mt-3">{{ detailBlog?.title }}</h2>
           <div class="d-flex g-2">
             <img ngSrc="./assets/images/logo.jpg" class="rounded-circle d-none d-lg-block"
-                 alt="toeicute"
+                 alt="toeic hero"
                  width="50" height="50" style="object-fit: contain;">
             <div class="d-flex flex-column justify-content-center ms-3">
               <h6>{{ detailBlog?.author }}</h6>
@@ -26,7 +26,7 @@
           <ng-container *ngFor="let data of listBlog">
             <div class="d-flex g-2" (click)="blogDetail(data.blogId)">
               <img [nzSrc]="data.thumbnail" class="border-0" nz-image
-                   style="height: 50px; width: 50px; object-fit: contain;" alt="toeicute"/>
+                   style="height: 50px; width: 50px; object-fit: contain;" alt="toeic hero"/>
               <div class="d-flex flex-column justify-content-center ms-2">
                 <h6 class="text-capitalize fw-bold pointer">{{ data.title }}</h6>
                 <small class="fs-6">{{ data.createdAt | date : formatDate: timeZone }} </small>

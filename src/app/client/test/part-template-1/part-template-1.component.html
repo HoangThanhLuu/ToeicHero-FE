@@ -4,7 +4,7 @@
       {{ part?.partContent }}
     </p>
   </div>
-  @if(partIndex !=6) {
+  @if (partIndex != 6 && !isReal) {
     <div class="col-5 ">
       <app-audio-part [audioSource]="part?.partAudio"></app-audio-part>
     </div>
@@ -17,12 +17,12 @@
                   refer to
                   following conversation: </span>
         <ng-container *ngIf="item?.questionImage">
-          <div class="col-12 fs-6" translate="no">
+          <div class="col-7 fs-6 paragraph" translate="no">
             <img nz-image
                  class="nz-image"
                  loading="lazy"
                  [nzSrc]="item?.questionImage"
-                 [alt]="'TOEICUTE'"
+                 [alt]="'TOEIC HERO'"
             />
           </div>
         </ng-container>

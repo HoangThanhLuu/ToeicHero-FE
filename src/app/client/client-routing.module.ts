@@ -49,7 +49,9 @@ const routes: Routes = [
         resolve: [profileResolver],
         loadChildren: () => import('./thank-you/thank-you.module').then(m => m.ThankYouModule)
       },
-      { path: 'tests', loadChildren: () => import('./tests/tests.module').then(m => m.TestsModule) }
+      {path: 'tests', loadChildren: () => import('./tests/tests.module').then(m => m.TestsModule)},
+      {path: 'course', loadChildren: () => import('./course/course.module').then(m => m.CourseModule)},
+      {path: 'chat', loadChildren: () => import('./chat/chat.module').then(m => m.ChatModule)}
     ]
   },
 ];

@@ -13,6 +13,7 @@ import {QuestionComponent} from './question/question.component';
 import {NzDatePickerComponent} from 'ng-zorro-antd/date-picker';
 import {NzModalModule} from 'ng-zorro-antd/modal';
 import {ModalModule} from "ngx-bootstrap/modal";
+import {CarouselModule} from 'ngx-bootstrap/carousel';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {ModalModule} from "ngx-bootstrap/modal";
     ExamRoutingModule,
     NzModalModule,
     ModalModule,
-    NzDatePickerComponent
+    NzDatePickerComponent,
+    CarouselModule
   ]
 })
 export class ExamModule {

@@ -1,27 +1,26 @@
 @if (isShow) {
   <section class="chatbox-panel">
     <header class="chatbox-panel__header">
-      <aside aria-label="toeicute" style="flex:2">
+      <aside aria-label="toeic hero" style="flex:2">
         <img ngSrc="/assets/images/avatar_chatbot.jpg"
-             alt="Toeicute AI" class="rounded-circle"
+             alt="Toeic hero AI" class="rounded-circle"
              width="48"
              (click)="toggleChatbot()"
              height="48">
       </aside>
-      <aside aria-label="toeicute" style="flex:6">
-        <h1 class="mb-1" (click)="test()">TOEICUTE</h1>
+      <aside aria-label="toeic hero" style="flex:6">
+        <h1 class="mb-1" (click)="test()">TOEIC HERO</h1>
         <nz-select [(ngModel)]="selectedModel" nzPlaceHolder="Chọn chatbot" [ngClass]="{'d-none': !isChatbot}">
           <nz-option-group nzLabel="Miễn phí">
             <nz-option [nzValue]="ModelAI.LLAMAS" nzLabel="LLAMAS"></nz-option>
             <nz-option [nzValue]="ModelAI.PALM2" nzLabel="PALM2"></nz-option>
           </nz-option-group>
           <nz-option-group nzLabel="Thành viên">
-            <nz-option [nzDisabled]="noAllowFullBot" [nzValue]="ModelAI.CHAT_GPT" nzLabel="CHAT GPT"></nz-option>
             <nz-option [nzDisabled]="noAllowFullBot" [nzValue]="ModelAI.GEMINI" nzLabel="GEMINI"></nz-option>
           </nz-option-group>
         </nz-select>
       </aside>
-      <aside aria-label="toeicute" style="flex:3;text-align:right;">
+      <aside aria-label="toeic hero" style="flex:3;text-align:right;">
         <button class="chatbox-panel-close" (click)="toggleChatbot()"><i class="fa fa-close" aria-hidden="true"></i>
         </button>
       </aside>
@@ -30,7 +29,7 @@
       <div class="d-flex btn-group btn-group-justified bg-secondary mb-2">
         <button class="btn btn-secondary border-right mr-2" [ngClass]="{'active': isChatbot}"
                 (click)="isChatbot = true">
-          Toeicute AI
+          Toeic hero AI
         </button>
         <button class="btn btn-secondary" [ngClass]="{'active': !isChatbot}" (click)="isChatbot = false">Dịch thuật
         </button>
@@ -39,7 +38,7 @@
       <div #chatContainer class="container overflow-auto" style="max-height: 420px;">
         @if (isChatbot) {
           @if (listChat.length === 0) {
-            Toeicute sẽ giúp bạn giải đáp thắc mắc. <br/> Hãy nhập câu hỏi của bạn vào đây.
+            Toeic hero sẽ giúp bạn giải đáp thắc mắc. <br/> Hãy nhập câu hỏi của bạn vào đây.
           }
           @for (entry of listChat; track entry) {
             <div class="d-flex flex-row-reverse">
@@ -70,7 +69,7 @@
       </div>
     </main>
     <footer class="chatbox-panel__footer">
-      <aside aria-label="toeicute" style="flex:10">
+      <aside aria-label="toeic hero" style="flex:10">
         <textarea type="text" placeholder="Nhập câu hỏi của bạn vào đây..."
                   class="form-control text-start align-middle pt-1" id="exampleFormControlTextSarea1"
                   rows="3"
@@ -78,7 +77,7 @@
                   [readOnly]="isLoading"
                   autofocus [(ngModel)]="params.prompt"></textarea>
       </aside>
-      <aside aria-label="toeicute" style="flex:1;" class="d-flex justify-content-center align-items-center text-center h-100 bg-white">
+      <aside aria-label="toeic hero" style="flex:1;" class="d-flex justify-content-center align-items-center text-center h-100 bg-white">
         @if (isLoading) {
           <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
         } @else {

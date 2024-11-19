@@ -7,7 +7,7 @@
         @for (post of listBlog; track post) {
           <div class="d-flex g-2" (click)="blogDetail(post.blogId)">
             <img [nzSrc]="post.thumbnail" class="border-0" nz-image
-                 style="height: 100px; width: 100px; object-fit: contain;" alt="toeicute"/>
+                 style="height: 100px; width: 100px; object-fit: contain;" alt="toeic hero"/>
             <div class="d-flex flex-column justify-content-center ms-3">
               <h4 class="text-capitalize fw-bold pointer">{{ post.title }}</h4>
               <span class="fs-5">{{ post.summary }}</span>
@@ -27,7 +27,7 @@
           @for (data of listBlog; track data) {
             <div class="d-flex g-2" (click)="blogDetail(data.blogId)">
               <img [nzSrc]="data.thumbnail" class="border-0" nz-image
-                   style="height: 50px; width: 50px; object-fit: contain;" alt="toeicute"/>
+                   style="height: 50px; width: 50px; object-fit: contain;" alt="toeic hero"/>
               <div class="d-flex flex-column justify-content-center ms-2">
                 <h6 class="text-capitalize fw-bold pointer">{{ data.title }}</h6>
                 <small class="fs-6">{{ data.createdAt | date : formatDate: timeZone }} </small>

@@ -20,9 +20,10 @@
         </div>
         <div class="form-group">
           <label for="exampleInputName1">Template Context</label>
-          <editor apiKey="01d1ysvvu8ltpjkbz1sn01lv6t5mu5wz0x6duazjsk6n6r66"
+          <editor [apiKey]="tinymceConfig.apiKey"
                   [(ngModel)]="params.templateContent"
-                  [init]="tinymceConfig"
+                  name="templateContent"
+                  [init]="tinymceConfig.config"
           ></editor>
         </div>
       </form>

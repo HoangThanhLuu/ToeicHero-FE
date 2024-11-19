@@ -53,28 +53,6 @@ export class ListTestComponent implements OnInit {
       });
   }
 
-  getListTopic() {
-    this.spinnerService.show();
-    this.http.get('/api/topic/list')
-      .subscribe((res: any) => {
-        if (res?.success) {
-          this.listTopic = res?.data;
-          this.listTopic.unshift({
-            topicId: 0,
-            topicName: 'Tất cả'
-          });
-          this.listTopic.push({
-            topicId: -1,
-            topicName: 'Khác'
-          });
-          this.getListExam();
-        } else {
-          this.toast.error(res?.message);
-          this.spinnerService.hide();
-        }
-      });
-  }
-
   changeTopic(i: number) {
     this.spinnerService.show();
     this.http.get(`/api/exam/list-by-topic/${this.listTopic[i].topicId}`)
@@ -89,24 +67,6 @@ export class ListTestComponent implements OnInit {
           this.toast.error(res?.message);
         }
       });
-  }
-
-  private getListExam() {
-    this.http.get('/api/exam/list')
-      .pipe(finalize(() => {
-        this.spinnerService.hide();
-      }))
-      .subscribe((res: any) => {
-        if (res?.success) {
-          this.listExam = res?.data;
-        } else {
-          this.toast.error(res?.message);
-        }
-      });
-  }
-
-  changeExam(i: number) {
-
   }
 
   trackByIndexTopic(index: number, item: any): number {

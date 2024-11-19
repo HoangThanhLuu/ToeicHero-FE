@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
   avatar: string = '/assets/images/default-avatar.jpg';
   activeNav: string = 'home';
   isLogin: boolean = false;
-  listNav: string[] = ['home', 'list-test', 'my-exam', 'blog', 'pricing', 'tests'];
+  listNav: string[] = ['home', 'list-test', 'my-exam', 'blog', 'pricing', 'tests', 'chat', 'course'];
   userVip: boolean = false;
 
   constructor(private bs: BsModalService,
@@ -64,4 +64,6 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('profile');
     window.location.href = '/home';
   }
+
+  protected readonly window = window;
 }

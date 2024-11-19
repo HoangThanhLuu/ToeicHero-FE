@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg bg-white navbar-light p-0 wow fadeIn" data-wow-delay="0.1s">
   <a routerLink="/home" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
     <h1 class="m-0 text-primary d-flex align-items-center">
-      <img ngSrc="assets/images/logo_tachnen.png" width="60" height="60" alt="">
-      TOEICUTE
+      <img ngSrc="assets/images/logo_new.jpg" width="60" height="60" alt="">
+      TOEIC HERO
     </h1>
   </a>
   <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -11,13 +11,14 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav ms-auto p-4 p-lg-0">
       <li class="nav-item">
-        <a (click)="directLink('/home', 'home')" class="nav-link" [ngClass]="{'active': activeNav=='home'}">Trang
+        <a (click)="directLink('/home', 'home')" class="nav-link"
+           [ngClass]="{'active': activeNav=='home' && !window.location.pathname.includes('test')}">Trang
           chủ</a>
       </li>
 
       <li class="nav-item">
         <a (click)="directLink('/list-test', 'list-test')" class="nav-item nav-link"
-           [ngClass]="{'active': activeNav=='list-test'}">
+           [ngClass]="{'active': activeNav=='list-test' || window.location.pathname.includes('test')}">
           Luyện thi
         </a>
       </li>
@@ -27,11 +28,18 @@
       </li>
       <li class="nav-item">
         <a (click)="directLink('/my-exam', 'my-exam')" class="nav-item nav-link"
-           [ngClass]="{'active': activeNav=='my-exam'}">Kết
-          quả</a>
+           [ngClass]="{'active': activeNav.includes('my-exam')}">Kết quả</a>
       </li>
       <li class="nav-item">
         <a (click)="directLink('/blog', 'blog')" class="nav-item nav-link" [ngClass]="{'active': activeNav=='blog'}">Blog</a>
+      </li>
+      <li class="nav-item">
+        <a (click)="directLink('/chat', 'chat')" class="nav-item nav-link d-none"
+           [ngClass]="{'active': activeNav=='chat'}">Room chat</a>
+      </li>
+      <li class="nav-item">
+        <a (click)="directLink('/course', 'course')" class="nav-item nav-link"
+           [ngClass]="{'active': activeNav.includes('course')}">Khóa học</a>
       </li>
       <li class="nav-item">
         <a (click)="directLink('/profile', '')" class="nav-item nav-link d-xl-none">Trang cá nhân</a>

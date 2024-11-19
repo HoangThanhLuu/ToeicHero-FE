@@ -10,7 +10,7 @@
     } @else {
       <div class="col-7">
         <audio controls class="w-100 bg-white">
-          <source src="{{currentExam?.audio}}" type="audio/mpeg">
+          <source [src]="currentExam?.examAudio" type="audio/mpeg">
           Trình duyệt của bạn không hỗ trợ phát audio
         </audio>
       </div>
@@ -24,6 +24,7 @@
           [selectedAnswer]="selectedAnswer"
           [numberQuestion]="6"
           [indexPart]="1"
+          [isReal]="true"
           (changePart)="changePart($event)"
           (selectedAnswerChange)="selectedAnswerChange($event)"
         ></app-part-template-2>
@@ -34,6 +35,7 @@
           [selectedAnswer]="selectedAnswer"
           [numberQuestion]="6"
           [indexPart]="2"
+          [isReal]="true"
           (changePart)="changePart($event)"
           (selectedAnswerChange)="selectedAnswerChange($event)"
         ></app-part-template-2>

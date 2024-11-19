@@ -38,13 +38,13 @@ export class UpdateSliderComponent {
   ) {
   }
 
+  close() {
+    this.bsModalRef.hide();
+  }
+
   handleFileInput(event: any) {
     const file = event.target.files[0];
     this.handleFiles(file);
-  }
-
-  close() {
-    this.bsModalRef.hide();
   }
 
   handleFiles(file: any) {

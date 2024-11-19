@@ -5,8 +5,13 @@
       <form class="forms-sample">
         <div class="form-group">
           <label for="exampleInputName1">Topic Name</label>
-          <input type="text" class="form-control" [ngClass]="{'error-input-custom': showBorderError}" id="exampleInputName1"
-                 [(ngModel)]="param.topicName" placeholder="Input topic name">
+          <input type="text"
+                 class="form-control"
+                 name="name"
+                 [ngClass]="{'error-input-custom': showBorderError}"
+                 id="exampleInputName1"
+                 [(ngModel)]="param.topicName"
+                 placeholder="Input topic name">
         </div>
         <div class="form-group">
           <label>Image</label>
@@ -22,7 +27,7 @@
                 <p>Or</p>
                 <div class="upload-btn-wrapper">
                   <button class="btn btn-gradient-primary-2">Upload</button>
-                  <input type="file" (change)="handleFileInput($event)" (drop)="handleDrop($event)"
+                  <input type="file" name="file" (change)="handleFileInput($event)" (drop)="handleDrop($event)"
                          (dragover)="allowDrop($event)"/>
                 </div>
               </div>

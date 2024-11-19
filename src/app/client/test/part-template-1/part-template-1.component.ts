@@ -18,6 +18,7 @@ export class PartTemplate1Component {
   @Input() selectedAnswer: any = {};
   @Input() numberQuestion: any = 0;
   @Input() partIndex: any = 0;
+  @Input() isReal = true;
 
   @Output() selectedAnswerChange = new EventEmitter<any>();
   @Output() changePart = new EventEmitter<any>();

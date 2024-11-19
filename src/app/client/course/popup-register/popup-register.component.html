@@ -1,0 +1,43 @@
+<div class="form">
+  <div class="mb-3">
+    <label class="form-label">Họ và tên *</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text">
+        <i class="fa fa-user"></i>
+      </span>
+      <input type="text"
+             class="form-control"
+             [(ngModel)]="params.name"
+             placeholder="Họ và tên" aria-label="fullName" name="fullName"
+             required>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Số điện thoại *</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text">
+        <i class="fa fa-phone"></i>
+      </span>
+      <input type="text"
+             class="form-control"
+             [(ngModel)]="params.phone"
+             placeholder="Số điện thoại"
+             aria-label="phone" name="phone" required>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Email</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text">&#64;</span>
+      <input type="email" class="form-control"
+             [(ngModel)]="params.email"
+             placeholder="Email"
+             aria-label="email" name="email" required>
+    </div>
+  </div>
+</div>
+<div *nzModalFooter>
+  <button nz-button nzType="primary" (click)="submit()">Đăng ký ngay</button>
+</div>

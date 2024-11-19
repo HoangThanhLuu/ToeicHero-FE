@@ -1,19 +1,23 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {TinyComponent} from './tiny.component';
+import {UpdateTinyComponent} from './update-tiny/update-tiny.component';
+import {ConfigTinyComponent} from './config-tiny/config-tiny.component';
+import {UpdateTinyConfigComponent} from './config-tiny/update-tiny-config/update-tiny-config.component';
 
 const routes: Routes = [
   {
     path: 'account/list',
-    loadComponent: () => import('./tiny.component').then(m => m.TinyComponent)
+    component: TinyComponent
   }, {
     path: 'account/update',
-    loadComponent: () => import('./update-tiny/update-tiny.component').then(m => m.UpdateTinyComponent)
+    component: UpdateTinyComponent
   }, {
     path: 'config/list',
-    loadComponent: () => import('./config-tiny/config-tiny.component').then(m => m.ConfigTinyComponent)
+    component: ConfigTinyComponent
   }, {
     path: 'config/update',
-    loadComponent: () => import('./config-tiny/update-tiny-config/update-tiny-config.component').then(m => m.UpdateTinyConfigComponent)
+    component: UpdateTinyConfigComponent
   }
 ];
 

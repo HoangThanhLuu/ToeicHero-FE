@@ -1,0 +1,27 @@
+.page-header {
+  background: url(/assets/images/carousel-4.jpg) bottom center no-repeat;
+  background-size: cover;
+  z-index: -121;
+  text-shadow: 0 0 30px rgba(0, 0, 0, .1);
+  -webkit-filter: contrast(1.25);
+  filter: contrast(1.25);
+}
+
+.border {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.ps-15 {
+  padding-left: 15rem;
+}
+
+.btn-blue {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.course-sidebar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}

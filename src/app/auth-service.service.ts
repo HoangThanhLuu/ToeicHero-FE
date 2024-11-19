@@ -1,15 +1,8 @@
-import {
-  Injectable
-} from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor
-} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AuthService} from "./auth.service";
-import {BASE_URL, CONSTANT} from "./common/constant";
+import {BASE_URL_LOCAL, CONSTANT} from "./common/constant";
 import {ProfileService} from './common/profile.service';
 
 @Injectable({
@@ -21,7 +14,7 @@ export class AuthServiceService implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let apiEndPoint = new URL(req.url, BASE_URL);
+    let apiEndPoint = new URL(req.url, BASE_URL_LOCAL);
     const token = this.authService.getToken();
     // handle if running on production
     if (this.profileService.isDevelopmentMode || req.url.includes('assets')) {

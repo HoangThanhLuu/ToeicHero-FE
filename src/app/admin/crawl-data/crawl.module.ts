@@ -8,6 +8,7 @@ import {CrawlDataComponent} from './crawl-data.component';
 import {UpdateConfigCrawlComponent} from './crawl-config/update-config-crawl/update-config-crawl.component';
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {PopoverModule} from 'ngx-bootstrap/popover';
+import {NzInputDirective} from 'ng-zorro-antd/input';
 
 
 @NgModule({
@@ -17,12 +18,13 @@ import {PopoverModule} from 'ngx-bootstrap/popover';
     CrawlDataComponent,
     UpdateConfigCrawlComponent
   ],
-  imports: [
-    ShareAdminModule,
-    CrawlRoutingModule,
-    BsDatepickerModule,
-    PopoverModule
-  ]
+    imports: [
+        ShareAdminModule,
+        CrawlRoutingModule,
+        BsDatepickerModule,
+        PopoverModule,
+        NzInputDirective
+    ]
 })
 export class CrawlModule {
 }

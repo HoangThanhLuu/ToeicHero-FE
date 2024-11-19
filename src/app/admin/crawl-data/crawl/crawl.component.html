@@ -14,7 +14,7 @@
         <nz-form-item>
           <nz-form-label [nzSpan]="1">URL</nz-form-label>
           <nz-form-control [nzSpan]="20" nzValidateStatus="URL" nzHasFeedback>
-            <input [(ngModel)]="params.url" placeholder="Input URL"
+            <input [(ngModel)]="params.url" placeholder="Input URL" nz-input name="url"
                    [ngClass]="{'error-input-custom': showBorderError}" id="url"/>
           </nz-form-control>
         </nz-form-item>
@@ -36,7 +36,7 @@
         <h4 class="card-title text-center">List Crawl this week</h4>
         <div class="d-flex flex-row-reverse">
         </div>
-        <table class="table table-bordered table-striped table-hover mt-2" aria-label="toeicute">
+        <table class="table table-bordered table-striped table-hover mt-2" aria-label="toeic hero">
           <thead>
           <tr>
             <th>Id</th>
