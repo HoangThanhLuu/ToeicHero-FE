@@ -1,0 +1,174 @@
+<div class="container-fluid bg-info-test mb-5">
+  <div class="container mt-3 main-info-test py-2 px-4">
+    <div class="row">
+      <div class="col-12">
+        <nz-tag [nzMode]="'default'" [nzChecked]="true" [nzColor]="'#000'">
+          <span>#Toeic</span>
+        </nz-tag>
+      </div>
+      <div class="col-12">
+        <h1 class="">Kết quả: {{ this.exam?.examName }}</h1>
+      </div>
+      <div class="col-12">
+        <p><i class="fa-regular fa-clock"></i> Thời gian làm bài: {{ this.examHistory?.timeToDoExam / 60 }} phút | 7
+          phần
+          thi | {{ this.examHistory?.totalQuestion }} câu hỏi
+          | {{ this.examHistory?.examDate | date: 'MMM d, y, h:mm:ss a' : timeZone }}
+        </p>
+      </div>
+      <div class="col-12 mt-3">
+        <div class="row">
+          <nz-card class="col-4 bg-light-success shadow">
+            <div>
+              <p><i class="fa fa-check"></i>
+                Kết quả làm bài <span> {{ this.examHistory?.numberOfCorrectAnswer }}
+                  / {{ this.examHistory?.totalQuestion }}</span>
+              </p>
+            </div>
+            <div>
+              <p><i class="fa fa-bullseye"></i>
+                Độ chính xác
+                (#đúng/#tổng)
+                <span> {{ Number(this.examHistory?.numberOfCorrectAnswer) / (Number(this.examHistory?.numberOfWrongAnswer) + Number(this.examHistory?.numberOfCorrectAnswer)) * 100 }}
+                  % </span>
+              </p>
+            </div>
+            <div>
+              <p>
+                <i class="fa fa-clock"></i>
+                Thời gian làm
+                bài
+                <span>  {{ formatTimeFromSeconds((Number(this.examHistory?.timeToDoExam) - Number(this.examHistory?.timeRemaining))) }}
+                  phút </span>
+              </p>
+            </div>
+            <div>
+              <p>
+                <i class="fa fa-headphones"></i>
+                Điểm nghe
+                <span class="fw-bold text-danger">{{ this.examHistory?.totalScoreListening }} / 495</span>
+              </p>
+            </div>
+            <div>
+              <p>
+                <i class="fa fa-eye"></i>
+                Điểm đọc
+                <span class="fw-bold text-danger">{{ this.examHistory?.totalScoreReading }} / 495</span>
+              </p>
+            </div>
+            <div>
+              <p>
+                <i class="fa fa-bullseye"></i>
+                Tổng điểm
+                <span class="fw-bold text-danger">{{ this.examHistory?.totalScore }} / 990</span>
+              </p>
+            </div>
+
+            <div>
+              <p>
+                <i class="fa fa-bullseye"></i>
+                Số lần mở tab mới:
+                <span class="fw-bold text-danger">{{ this.examHistory?.totalOpenNewTab }}</span>
+              </p>
+            </div>
+
+            <div>
+              <p>
+                <i class="fa fa-bullseye"></i>
+                Số lần thoát ra ngoài:
+                <span class="fw-bold text-danger">{{ this.examHistory?.totalLeave }}</span>
+              </p>
+            </div>
+
+          </nz-card>
+          <div class="col-12 col-sm-12 col-xl-7 ms-2 mt-2 mt-xl-0">
+            <div class="row">
+              <nz-card class="col-4 d-flex flex-column justify-content-center align-items-center">
+                <span nz-icon [nzType]="'check-circle'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"
+                      class="text-center"></span>
+                <p class="text-success">Trả lời đúng</p>
+                <p class="text-dark text-center">{{ this.examHistory?.numberOfCorrectAnswer }} <br/> Câu hỏi</p>
+              </nz-card>
+
+              <nz-card class="col-4 d-flex flex-column justify-content-center align-items-center">
+                <span nz-icon nzType="close-circle" nzTheme="twotone" [nzTwotoneColor]="'#f10729'"></span>
+                <p class="text-danger">Trả lời sai</p>
+                <p class="text-dark text-center">{{ this.examHistory?.numberWrongAnswer }}
+                  <br/> Câu hỏi</p>
+              </nz-card>
+
+              <nz-card class="col-4 d-flex flex-column justify-content-center align-items-center">
+                <span nz-icon nzType="minus-circle" [nzTheme]="'twotone'" [nzTwotoneColor]="'#808080'"></span>
+                <p class="text-dark">Bỏ qua</p>
+                <p class="text-dark text-center">{{ this.examHistory?.numberOfNotAnswer }} <br/> Câu hỏi</p>
+              </nz-card>
+
+            </div>
+            <div class="row">
+              <nz-card class="col-4 d-flex flex-column justify-content-center align-items-center">
+                <h3 class="text-center">Điểm số nghe</h3>
+                <nz-progress [nzPercent]="this.examHistory?.percentListening"
+                             [nzStrokeColor]="this.examHistory.colorListening"
+                             nzType="circle" [nzWidth]="80"></nz-progress>
+              </nz-card>
+              <nz-card class="col-4 d-flex flex-column justify-content-center align-items-center">
+                <h3 class="text-center">Điểm số đọc</h3>
+                <nz-progress [nzPercent]="this.examHistory?.percentReading"
+                             [nzStrokeColor]="this.examHistory.colorReading"
+                             nzType="circle" [nzWidth]="80"></nz-progress>
+              </nz-card>
+              <nz-card class="col-4 d-flex flex-column justify-content-center align-items-center">
+                <h3 class="text-center">Tổng điểm</h3>
+                <nz-progress [nzPercent]="this.examHistory?.percentTotal"
+                             [nzStrokeColor]="this.examHistory.colorTotal"
+                             nzType="circle" [nzWidth]="80"></nz-progress>
+              </nz-card>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+      <div class="col-5 mt-2" style="background: white;">
+        <div class="row">
+          <nz-list nzBordered nzHeader="Phân tích chi tiết">
+            <nz-list-item>
+              <span nz-typography><mark>[Part 1]</mark></span>
+              {{ this.examHistory?.numberOfCorrectAnswerPart1 }} câu đúng
+            </nz-list-item>
+
+            <nz-list-item>
+              <span nz-typography><mark>[Part 2]</mark></span>
+              {{ this.examHistory?.numberOfCorrectAnswerPart2 }} câu đúng
+            </nz-list-item>
+
+            <nz-list-item>
+              <span nz-typography><mark>[Part 3]</mark></span>
+              {{ this.examHistory?.numberOfCorrectAnswerPart3 }} câu đúng
+            </nz-list-item>
+
+            <nz-list-item>
+              <span nz-typography><mark>[Part 4]</mark></span>
+              {{ this.examHistory?.numberOfCorrectAnswerPart4 }} câu đúng
+            </nz-list-item>
+
+            <nz-list-item>
+              <span nz-typography><mark>[Part 5]</mark></span>
+              {{ this.examHistory?.numberOfCorrectAnswerPart5 }} câu đúng
+            </nz-list-item>
+
+            <nz-list-item>
+              <span nz-typography><mark>[Part 6]</mark></span>
+              {{ this.examHistory?.numberOfCorrectAnswerPart6 }} câu đúng
+            </nz-list-item>
+
+            <nz-list-item>
+              <span nz-typography><mark>[Part 7]</mark></span>
+              {{ this.examHistory?.numberOfCorrectAnswerPart7 }} câu đúng
+            </nz-list-item>
+          </nz-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

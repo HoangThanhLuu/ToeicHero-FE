@@ -1,0 +1,48 @@
+<app-page-header
+  [title]="title"
+  [currentPage]="currentPage">
+</app-page-header>
+
+<div class="row">
+  <div class="col-12 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover table-bordered table-fixed" aria-label="toeic hero">
+            <thead>
+            <tr>
+              <th>ID</th>
+              <th>User</th>
+              <th>Exam</th>
+              <th>Parts</th>
+              <th>Total Score</th>
+              <th>Listening Score</th>
+              <th>Reading Score</th>
+              <th>Open new tab</th>
+              <th>Total Leave</th>
+              <th>Date</th>
+            </tr>
+            </thead>
+            <tbody>
+              @for (item of list; track item; ) {
+                <tr class="cursor" (click)="openHistroyDetail(item.userExamHistoryId)">
+                  <td>{{ item.userExamHistoryId }}</td>
+                  <td>{{ item.user.email }}</td>
+                  <td>{{ item.exam.examName }}</td>
+                  <td>
+                  </td>
+                  <td>{{item.totalScore}}</td>
+                  <td>{{item.totalScoreListening}}</td>
+                  <td>{{item.totalScoreReading}}</td>
+                  <td>{{item.totalOpenNewTab}}</td>
+                  <td>{{item.totalLeave}}</td>
+                  <td>{{item.examDate | date: 'MMM d, y, h:mm:ss a' : timeZone}}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

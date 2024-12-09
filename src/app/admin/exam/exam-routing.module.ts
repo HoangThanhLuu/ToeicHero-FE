@@ -20,6 +20,11 @@ const routes: Routes = [
   }, {
     path: 'question/list-by-part',
     component: QuestionComponent
+  },
+  {path: 'history', loadChildren: () => import('./history/history.module').then(m => m.HistoryModule)},
+  {
+    path: 'history-detail',
+    loadChildren: () => import('./history-detail/history-detail.module').then(m => m.HistoryDetailModule)
   }
 ];
 

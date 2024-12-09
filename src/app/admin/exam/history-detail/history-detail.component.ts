@@ -1,19 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import {ToastrService} from "ngx-toastr";
-import {HttpClient} from "@angular/common/http";
-import {NgxSpinnerService} from "ngx-spinner";
-import {finalize} from "rxjs";
-import {ActivatedRoute} from "@angular/router";
-import {DetailAnswerComponent} from "./detail-answer/detail-answer.component";
-import {BsModalService} from "ngx-bootstrap/modal";
 import {CONSTANT} from '../../../common/constant';
+import {ToastrService} from 'ngx-toastr';
+import {HttpClient} from '@angular/common/http';
+import {ActivatedRoute} from '@angular/router';
+import {BsModalService} from 'ngx-bootstrap/modal';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {finalize} from 'rxjs';
 
 @Component({
-  selector: 'app-history-exam-detail',
-  templateUrl: './history-exam-detail.component.html',
-  styleUrls: ['./history-exam-detail.component.scss']
+  selector: 'app-history-detail',
+  templateUrl: './history-detail.component.html',
+  styleUrl: './history-detail.component.scss'
 })
-export class HistoryExamDetailComponent implements OnInit {
+export class HistoryDetailComponent implements OnInit {
   exam: any;
   listAnswer: any = [];
   colorLow = '#e2080f';
@@ -34,11 +33,11 @@ export class HistoryExamDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      const userExamHistoryId = params['userExamHistoryId'];
+    this.activatedRoute.queryParams.subscribe(params => {
+      const userExamHistoryId = params['id'];
       if (userExamHistoryId) {
         this.spinnerService.show().then(r => r);
-        this.http.get(`/api/exam-history/my-detail/${userExamHistoryId}`)
+        this.http.get(`/api/exam-history/detail/${userExamHistoryId}`)
           .pipe(finalize(() => this.spinnerService.hide()))
           .subscribe((res: any) => {
             if (res?.success) {
@@ -74,33 +73,6 @@ export class HistoryExamDetailComponent implements OnInit {
     } else {
       return this.colorHigh;
     }
-  }
-
-  detail(data: any) {
-    this.bsModalService.show(DetailAnswerComponent, {
-      class: 'modal-lg modal-dialog-centered',
-      initialState: {
-        title: 'Chi tiết đáp án',
-        params: {
-          questionNumber: data.question.questionNumber,
-          questionAudio: data?.question?.questionAudio,
-          questionImage: data?.question?.questionImage,
-          paragraph1: data?.question?.paragraph1,
-          paragraph2: data?.question?.paragraph2,
-          questionContent: data?.question?.questionContent,
-          answerA: data?.question?.answerA,
-          answerB: data?.question?.answerB,
-          answerD: data?.question?.answerD,
-          answerC: data?.question?.answerC,
-          selectedAnswer: data?.selectedAnswer,
-          correctAnswer: data?.question?.correctAnswer,
-          transcript: data?.question?.transcript,
-          translateTranscript: data?.question?.translateTranscript,
-          questionImages: data?.question?.questionImages,
-          haveMultiImage: data?.question?.haveMultiImage
-        }
-      }
-    });
   }
 
   formatTimeFromSeconds(seconds: number): string {
