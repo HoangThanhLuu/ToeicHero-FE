@@ -16,47 +16,52 @@
           </nz-form-control>
         </nz-form-item>
       </div>
-      <table class="table" aria-label="toeic hero">
-        <thead>
-        <tr>
-          <th> ID </th>
-          <th>Username</th>
-          <th>Avatar</th>
-          <th>Email</th>
-          <th>Phone Number</th>
-          <th>Address</th>
-          <th>Status</th>
-          <th>User Type</th>
-          <th> # </th>
-        </tr>
-        </thead>
-        <tbody>
-        <ng-container *ngFor="let item of listUser">
+      <div class="table-responsive">
+        <table class="table" aria-label="toeic hero">
+          <thead>
           <tr>
-            <td>{{item?.user_id}}</td>
-            <td>{{item?.full_name}}</td>
-            <td><img nz-image [nzSrc]="item?.avatar" style="height: 60px; width: 60px;" alt="toeic hero" /></td>
-            <td>{{item?.email}}</td>
-            <td>{{item?.phone}}</td>
-            <td>{{item?.address}}</td>
-            <td>
-              <label class="badge badge-gradient-{{this.getCssStatus(item?.status)}}">{{item?.status}}</label>
-            </td>
-            <td>
-              {{item?.userType | translate}}
-            </td>
-            <td>
-              <ng-container *ngIf="item?.status == 'ACTIVE'">
-                <button class="btn btn-sm btn-outline-danger " (click)="changeState(item?.user_id,'BLOCKED')"> BLOCK </button>
-              </ng-container>
-              <ng-container *ngIf="item?.status == 'BLOCKED'">
-                <button class="btn btn-sm btn-gradient-primary" (click)="changeState(item?.user_id,'ACTIVE')">UN BLOCK</button>
-              </ng-container>
-            </td>
+            <th> ID</th>
+            <th>Username</th>
+            <th>Avatar</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+            <th>Status</th>
+            <th>User Type</th>
+            <th> #</th>
           </tr>
-        </ng-container>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+          <ng-container *ngFor="let item of listUser">
+            <tr>
+              <td>{{ item?.user_id }}</td>
+              <td>{{ item?.full_name }}</td>
+              <td><img nz-image [nzSrc]="item?.avatar" style="height: 60px; width: 60px;" alt="toeic hero"/></td>
+              <td>{{ item?.email }}</td>
+              <td>{{ item?.phone }}</td>
+              <td>{{ item?.address }}</td>
+              <td>
+                <label class="badge badge-gradient-{{this.getCssStatus(item?.status)}}">{{ item?.status }}</label>
+              </td>
+              <td>
+                {{ item?.userType | translate }}
+              </td>
+              <td>
+                <ng-container *ngIf="item?.status == 'ACTIVE'">
+                  <button class="btn btn-sm btn-outline-danger " (click)="changeState(item?.user_id,'BLOCKED')"> BLOCK
+                  </button>
+                </ng-container>
+                <ng-container *ngIf="item?.status == 'BLOCKED'">
+                  <button class="btn btn-sm btn-gradient-primary" (click)="changeState(item?.user_id,'ACTIVE')">UN
+                    BLOCK
+                  </button>
+                </ng-container>
+              </td>
+            </tr>
+          </ng-container>
+          </tbody>
+        </table>
+      </div>
       <div class="mt-2 d-flex flex-row-reverse">
         <nz-pagination
           [(nzPageIndex)]="this.params.page"
