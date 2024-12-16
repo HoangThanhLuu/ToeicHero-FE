@@ -3,7 +3,7 @@ const PROXY_CONFIG = [
     context: [
       "/api",
     ],
-    target: "http://localhost:8080",
+    target: "https://toeichero-be-latest.onrender.com",
     secure: false,
     "changeOrigin": true,
     "logLevel": "debug",
