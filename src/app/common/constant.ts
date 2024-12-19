@@ -1,5 +1,5 @@
 export const BASE_URL_LOCAL = 'http://localhost:8080';
-export const BASE_URL = 'https://toeichero-be-latest.onrender.com';
+export const BASE_URL = 'https://be-toeic.onrender.com';
 
 export const CONSTANT = {
   formatDate: 'dd-MM-yyyy H:mm:ss',

@@ -3,7 +3,7 @@ const PROXY_CONFIG = [
     context: [
       "/api",
     ],
-    target: "https://toeichero-be-latest.onrender.com",
+    target: "https://be-toeic.onrender.com",
     secure: false,
     "changeOrigin": true,
     "logLevel": "debug",
