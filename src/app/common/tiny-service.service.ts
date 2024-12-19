@@ -48,7 +48,7 @@ export const tinyResolver: ResolveFn<Observable<TinyConfig>> = () => {
 
 export class TinyConfig {
   config: Config = new Config();
-  apiKey: string = '40ku6oculogk4tet8h0si5m7sg4z8qm85i5xl4xxgj0n3y3t';
+  apiKey: string = '8b794dn1wu635cyq3thspfbaxifw3gqoghn9gbc442kgjf8j';
 }
 
 export class Config {
